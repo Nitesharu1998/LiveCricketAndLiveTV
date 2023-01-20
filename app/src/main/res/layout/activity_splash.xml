@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/ic_splash"
-    tools:context=".SplashActivity">
+    tools:context=".Activities.SplashActivity">
 
     <ImageView
         android:id="@+id/iv_applogo"
@@ -18,7 +18,11 @@
         android:layout_below="@id/iv_applogo"
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop=""
+        android:layout_marginTop="@dimen/_12sdp"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:fontFamily="@font/nunito_sans"
         android:layout_height="wrap_content"/>
 
 

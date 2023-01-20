@@ -1,0 +1,30 @@
+package com.example.livecrickettvscores.Activities.Fragments;
+
+import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.example.livecrickettvscores.Activities.Utils.Global;
+import com.example.livecrickettvscores.R;
+
+public class FixtureFragment extends Fragment {
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        Global.sout("Fixture fragment ", "Fixture fragment initiated");
+        return inflater.inflate(R.layout.fragment_fixture, container, false);
+    }
+}

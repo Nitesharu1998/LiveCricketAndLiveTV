@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/fixture"
+        android:enabled="true"
+        android:icon="@drawable/ic_fixture"
+        android:title="Fixture" />
+
+    <item
+        android:id="@+id/videos"
+        android:enabled="true"
+        android:icon="@drawable/ic_video"
+        android:title="Videos" />
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:checked="true"
+        android:title="Home" />
+    <item
+        android:id="@+id/stats"
+        android:enabled="true"
+        android:icon="@drawable/ic_stats"
+        android:title="Stats" />
+    <item
+        android:id="@+id/more"
+        android:enabled="true"
+        android:icon="@drawable/ic_more"
+        android:title="More" />
+
+</menu>
