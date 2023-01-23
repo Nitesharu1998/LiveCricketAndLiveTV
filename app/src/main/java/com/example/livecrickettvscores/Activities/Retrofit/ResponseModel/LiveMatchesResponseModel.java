@@ -1,6 +1,6 @@
 package com.example.livecrickettvscores.Activities.Retrofit.ResponseModel;
 
-import java.util.ArrayArrayList;
+
 import java.util.ArrayList;
 
 public class LiveMatchesResponseModel {
@@ -143,9 +143,9 @@ public class LiveMatchesResponseModel {
         private String venue;
         private String date;
         private String dateTimeGMT;
-        private ArrayArrayList<String> teams;
-        private ArrayArrayList<TeamInfoDTO> teamInfo;
-        private ArrayArrayList<ScoreDTO> score;
+        private ArrayList<String> teams;
+        private ArrayList<TeamInfoDTO> teamInfo;
+        private ArrayList<ScoreDTO> score;
         private String series_id;
         private boolean fantasyEnabled;
         private boolean bbbEnabled;
@@ -209,27 +209,27 @@ public class LiveMatchesResponseModel {
             this.dateTimeGMT = dateTimeGMT;
         }
 
-        public ArrayArrayList<String> getTeams() {
+        public ArrayList<String> getTeams() {
             return teams;
         }
 
-        public void setTeams(ArrayArrayList<String> teams) {
+        public void setTeams(ArrayList<String> teams) {
             this.teams = teams;
         }
 
-        public ArrayArrayList<TeamInfoDTO> getTeamInfo() {
+        public ArrayList<TeamInfoDTO> getTeamInfo() {
             return teamInfo;
         }
 
-        public void setTeamInfo(ArrayArrayList<TeamInfoDTO> teamInfo) {
+        public void setTeamInfo(ArrayList<TeamInfoDTO> teamInfo) {
             this.teamInfo = teamInfo;
         }
 
-        public ArrayArrayList<ScoreDTO> getScore() {
+        public ArrayList<ScoreDTO> getScore() {
             return score;
         }
 
-        public void setScore(ArrayArrayList<ScoreDTO> score) {
+        public void setScore(ArrayList<ScoreDTO> score) {
             this.score = score;
         }
 

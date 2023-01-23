@@ -22,8 +22,8 @@ public class LiveMatchesAdapter extends RecyclerView.Adapter<LiveMatchesAdapter.
     @NonNull
     @Override
     public LiveMatchesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       /* LayoutInflater inflater = LayoutInflater.from(parent.getContext()).inflate(R.layout.singlelivematchlayout, false);*/
-        return null/* new ViewHolder()*/;
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.singlelivematchlayout, parent, false);
+        return new ViewHolder(itemView);
     }
 
     @Override

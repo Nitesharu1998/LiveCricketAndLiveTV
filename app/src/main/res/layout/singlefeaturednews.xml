@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_8sdp"
+    app:cardCornerRadius="@dimen/_8sdp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_4sdp">
+
+        <ImageView
+            android:id="@+id/iv_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_rectangle"
+            android:src="@drawable/ic_applogo" />
+
+        <TextView
+            android:id="@+id/tv_newssource"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_toEndOf="@+id/iv_news"
+            android:fontFamily="@font/nunito_sans"
+            android:text="NDTV sports"
+            android:textColor="@color/gray"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_newsdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_toEndOf="@+id/tv_newssource"
+            android:fontFamily="@font/nunito_sans"
+            android:gravity="end"
+            android:text="NDTV sports"
+            android:textColor="@color/gray"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_newstitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_newssource"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_toEndOf="@+id/iv_news"
+            android:fontFamily="@font/nunito_sans"
+            android:text="‘You think he's not better than the ones selectors, warns them..."
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

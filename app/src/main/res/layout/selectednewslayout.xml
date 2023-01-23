@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/purple_700"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingVertical="@dimen/_8sdp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:src="@drawable/ic_back" />
+
+
+        <ImageView
+            android:id="@+id/iv_link"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/_35sdp"
+            android:src="@drawable/ic_link" />
+
+        <ImageView
+            android:id="@+id/iv_share"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_share" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/_8sdp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/_38sdp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_200sdp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/testimage" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cv_uploaderimg"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    app:cardCornerRadius="@dimen/_50sdp">
+
+                    <ImageView
+                        android:id="@+id/iv_uploader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_applogo" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/tv_newssource"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="@dimen/_8sdp"
+
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_toRightOf="@id/cv_uploaderimg"
+                    android:fontFamily="@font/nunito_sans"
+                    android:text="NDTV sports"
+                    android:textColor="@color/gray" />
+
+                <TextView
+                    android:id="@+id/tv_uploadername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/_10sdp"
+
+                    android:layout_toStartOf="@id/tv_uploadtime"
+                    android:fontFamily="@font/nunito_sans"
+                    android:gravity="center"
+                    android:text="NDTV sports"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tv_uploadtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/nunito_sans"
+                    android:gravity="center"
+                    android:text=". 3 hours ago"
+                    android:textColor="@color/gray" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_newsheader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Test news header"
+                android:textColor="@color/black" />
+
+            <TextView
+
+                android:id="@+id/tv_newsdetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text=".afl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjf"
+                android:textColor="@color/gray" />
+
+            <!--featured news recycler view for next read-->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:text="Test next read"
+                android:textColor="@color/black" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcl_nextreadnews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_featurednews"
+                android:layout_marginTop="@dimen/_4sdp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

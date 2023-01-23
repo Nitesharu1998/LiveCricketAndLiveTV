@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:expandableTextView="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_10sdp"
+    android:layout_marginVertical="@dimen/_10sdp"
+
+    app:cardCornerRadius="@dimen/_10sdp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingVertical="@dimen/_10sdp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/roundedbg"
+            android:src="@drawable/ic_applogo" />
+
+        <TextView
+            android:id="@+id/tv_newssource"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@+id/tv_match1score"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/nunito_sans"
+            android:text="NDTV sports"
+            android:textColor="@color/gray" />
+
+        <io.github.glailton.expandabletextview.ExpandableTextView
+            android:id="@+id/tv_headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/nunito_sans"
+            android:text="Explainer - Why did India and Pakistan have five fielders inside"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:animDuration="50"
+            app:collapsedLines="3"
+            expandableTextView:isExpanded="true"
+            expandableTextView:readLessText="Read More"
+            expandableTextView:readMoreText="Read Less"
+            expandableTextView:textMode="line" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cv_uploaderimg"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:cardCornerRadius="@dimen/_50sdp">
+
+                <ImageView
+                    android:id="@+id/iv_uploader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_applogo" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/tv_uploadername"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_toEndOf="@+id/cv_uploaderimg"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text="NDTV sports"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_uploadtime"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_toEndOf="@+id/tv_uploadername"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text=". 3 hours ago"
+                android:textColor="@color/gray" />
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
