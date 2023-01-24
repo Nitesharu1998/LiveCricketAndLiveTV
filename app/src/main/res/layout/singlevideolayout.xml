@@ -50,7 +50,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_nextblack"
-                android:layout_marginEnd="12sdp"/>
+                android:layout_marginEnd="@dimen/_12sdp"/>
 
         </RelativeLayout>
 

@@ -1,14 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_gray"
     tools:context=".Activities.Fragments.StatsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:id="@+id/rl_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/purple_700"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingVertical="@dimen/_8sdp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:src="@drawable/ic_back" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_toRightOf="@id/iv_back"
+            android:fontFamily="@font/nunito_sans"
+            android:text="Statistics"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_below="@+id/rl_appbar"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginVertical="@dimen/_8sdp"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <Spinner
+            android:id="@+id/spn_countries"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_38sdp"
+            android:background="@drawable/rounded_rectangle"
+            android:backgroundTint="@color/purple_700" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:cardCornerRadius="@dimen/_10sdp">
+
+            <EditText
+                android:id="@+id/edt_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_4sdp"
+                android:layout_marginVertical="@dimen/_8sdp"
+                android:background="@null"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="@dimen/_8sdp"
+                android:hint="Search Player For *country_name*"
+                android:paddingStart="@dimen/_8sdp" />
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_toRightOf="@id/iv_back"
+            android:fontFamily="@font/nunito_sans"
+            android:text="All Players"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcl_players"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/singleplayer_layout" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_videoplayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <VideoView
+            android:id="@+id/vv_matchplayer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_190sdp"
+            android:keepScreenOn="true" />
+
+        <ImageView
+            android:id="@+id/iv_share"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:src="@drawable/ic_share" />
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:src="@drawable/ic_back" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/vv_matchplayer"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:paddingHorizontal="@dimen/_8sdp">
+
+            <TextView
+                android:id="@+id/vidheader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text="test header test header test header"
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_alignParentEnd="true"
+                android:rotation="90"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:src="@drawable/ic_nextblack" />
+
+            <TextView
+                android:id="@+id/tv_uploadtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vidheader"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/nunito_sans"
+                android:text=". 3 hours ago"
+                android:textColor="@color/gray" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_uploadtime"
+                android:fontFamily="@font/nunito_sans"
+                android:text="Suggested Videos"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <!--use singlevideolayout here-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcl_datewisevideos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_below="@+id/tv_date" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="@dimen/_20sdp">
+
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:src="@drawable/ic_close" />
+
+
+    <TextView
+        android:id="@+id/tv_uploadtime"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@+id/iv_close"
+        android:fontFamily="@font/nunito_sans"
+        android:gravity="center"
+        android:text="Description"
+        android:textColor="@color/gray" />
+
+    <TextView
+        android:id="@+id/vidheader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_uploadtime"
+        android:fontFamily="@font/nunito_sans"
+        android:gravity="center"
+        android:text="test header test header test header"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tv_newsdesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/vidheader"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:fontFamily="@font/nunito_sans"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ullamcorper leo tristique vivamus sociis varius magna in fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ullamcorper leo tristique vivamus sociis varius magna in fermentum. "
+        android:textColor="@color/gray" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_newsdesc"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text="Series:"
+                android:textColor="@color/black" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text="Match:"
+                android:textColor="@color/black" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text="Team:"
+                android:textColor="@color/black" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text="Player:"
+                android:textColor="@color/black" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:orientation="vertical">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text="Asia cup 22"
+                android:textColor="@color/light_blue" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text="Asia cup 22:"
+                android:textColor="@color/light_blue" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text="Asia cup 22:"
+                android:textColor="@color/light_blue" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text="Asia cup 22:"
+                android:textColor="@color/light_blue" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Activities.Fragments.InfoFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:id="@+id/rl_profileview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingVertical="@dimen/_12sdp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_playerimage"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            app:civ_border_color="@color/purple_700"
+            android:src="@drawable/testimage" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_toRightOf="@+id/civ_playerimage"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_playername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_sans"
+                android:text="playername"
+                android:layout_marginBottom="@dimen/_12sdp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_playerdob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_sans"
+                android:text="player dob and age"
+                android:textColor="@color/dark_gray" />
+
+            <TextView
+                android:id="@+id/tv_playercountry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_sans"
+                android:text="coountry name"
+                android:textColor="@color/dark_gray" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</FrameLayout>

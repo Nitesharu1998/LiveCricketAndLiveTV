@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".Activities.Fragments.FixtureFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-
+    tools:context=".Activities.PlayerInformation">
     <RelativeLayout
         android:id="@+id/rl_appbar"
         android:layout_width="match_parent"
@@ -31,19 +28,12 @@
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_toRightOf="@id/iv_back"
             android:fontFamily="@font/nunito_sans"
-            android:text="Fixtures"
+            android:text="Statistics"
             android:textColor="@color/white"
             android:textSize="@dimen/_14sdp"
             android:textStyle="bold" />
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-    </LinearLayout>
-    <!--add tabs dynamically-->
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tablayout"
         style="@style/TabLayout"
@@ -57,13 +47,9 @@
         app:tabIndicatorFullWidth="false"
         app:tabIndicatorHeight="@dimen/_3sdp"
         app:tabSelectedTextColor="@color/white"
-        app:tabTextColor="@color/white"/>
+        app:tabTextColor="@color/white"
+        android:layout_marginBottom="@dimen/_12sdp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcl_fixtures"
-        android:layout_marginVertical="@dimen/_12sdp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
 
 </LinearLayout>
