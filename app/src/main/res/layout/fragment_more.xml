@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".Activities.Fragments.MoreFragment">
+
+    <RelativeLayout
+        android:id="@+id/rl_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingVertical="@dimen/_8sdp">
+
+        <TextView
+            android:id="@+id/tv_appbarplayername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:fontFamily="@font/nunito_sans"
+            android:text="More"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_fantacycricket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_1sdp"
+        android:background="@color/light_gray"
+        android:fontFamily="@font/nunito_sans"
+        android:paddingVertical="@dimen/_12sdp"
+        android:paddingStart="@dimen/_12sdp"
+        android:drawableStart="@drawable/ic_fantasy"
+        android:drawablePadding="@dimen/_12sdp"
+        android:text="Fantasy cricket tips and Predictions"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tv_quiz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_1sdp"
+        android:background="@color/light_gray"
+        android:fontFamily="@font/nunito_sans"
+        android:paddingVertical="@dimen/_12sdp"
+        android:paddingStart="@dimen/_12sdp"
+        android:drawableStart="@drawable/ic_quiz"
+        android:drawablePadding="@dimen/_12sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:text="Quiz"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tv_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_1sdp"
+        android:background="@color/light_gray"
+        android:fontFamily="@font/nunito_sans"
+        android:paddingVertical="@dimen/_12sdp"
+        android:paddingStart="@dimen/_12sdp"
+        android:drawableStart="@drawable/ic_cricket"
+        android:drawablePadding="@dimen/_12sdp"
+        android:text="About Cricket"
+        android:textColor="@color/black" />
+    <TextView
+        android:id="@+id/tv_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_1sdp"
+        android:background="@color/light_gray"
+        android:fontFamily="@font/nunito_sans"
+        android:paddingVertical="@dimen/_12sdp"
+        android:paddingStart="@dimen/_12sdp"
+        android:drawableStart="@drawable/ic_graysettings"
+        android:drawablePadding="@dimen/_12sdp"
+        android:text="Settings"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tv_aboutus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_1sdp"
+        android:background="@color/light_gray"
+        android:fontFamily="@font/nunito_sans"
+        android:paddingVertical="@dimen/_12sdp"
+        android:paddingStart="@dimen/_12sdp"
+        android:drawableStart="@drawable/ic_about"
+        android:drawablePadding="@dimen/_12sdp"
+        android:text="About Us"
+        android:textColor="@color/black" />
+
+
+    <TextView
+        android:id="@+id/tv_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_1sdp"
+        android:background="@color/light_gray"
+        android:fontFamily="@font/nunito_sans"
+        android:paddingVertical="@dimen/_12sdp"
+        android:paddingStart="@dimen/_12sdp"
+        android:drawableStart="@drawable/ic_feedback"
+        android:drawablePadding="@dimen/_12sdp"
+        android:text="Feedback"
+        android:textColor="@color/black" />
+
+
+</LinearLayout>

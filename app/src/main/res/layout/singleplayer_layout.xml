@@ -26,7 +26,7 @@
         app:cardCornerRadius="@dimen/_50sdp">
 
         <ImageView
-            android:id="@+id/iv_uploader"
+            android:id="@+id/iv_player"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_applogo" />

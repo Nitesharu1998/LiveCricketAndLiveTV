@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/_8sdp"
+    android:paddingVertical="@dimen/_12sdp"
+    app:cardCornerRadius="@dimen/_24sdp">
+
+    <RelativeLayout
+        android:id="@+id/rl_teamstatus"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/_8sdp"
+        android:paddingVertical="@dimen/_12sdp">
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:drawableStart="@drawable/ic_clock"
+            android:drawablePadding="@dimen/_12sdp"
+            android:fontFamily="@font/nunito_sans"
+            android:text="14:00"
+            android:textColor="@color/black" />
+
+
+        <TextView
+            android:id="@+id/tv_livemark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:drawableStart="@drawable/ic_live"
+            android:drawablePadding="@dimen/_12sdp"
+            android:fontFamily="@font/nunito_sans"
+            android:text="Live"
+            android:textColor="@color/dark_gray" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_team1"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_below="@+id/tv_time"
+            android:src="@drawable/ic_applogo" />
+
+        <TextView
+            android:id="@+id/tv_team1"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_below="@+id/tv_time"
+            android:layout_toRightOf="@+id/iv_team1"
+            android:fontFamily="@font/nunito_sans"
+            android:gravity="center"
+            android:text="team 1"
+            android:textColor="@color/black" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_team2"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_below="@+id/iv_team1"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:src="@drawable/ic_applogo" />
+
+        <TextView
+            android:id="@+id/tv_team2"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_below="@+id/tv_team1"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_toRightOf="@+id/iv_team2"
+            android:fontFamily="@font/nunito_sans"
+            android:gravity="center"
+            android:text="team 2"
+            android:textColor="@color/black" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_team2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginVertical="@dimen/_8sdp"
+                android:background="@color/light_gray" />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</com.google.android.material.card.MaterialCardView>
