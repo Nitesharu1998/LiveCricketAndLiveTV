@@ -1,38 +1,17 @@
 package com.example.livecrickettvscores.Activities.Utils;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.provider.Settings;
-import android.util.Base64;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-
 import com.example.livecrickettvscores.BuildConfig;
-import com.example.livecrickettvscores.R;
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -232,16 +211,18 @@ public class Global {
         return imeiNo;
     }
 
+    public static boolean CheckArrayList(ArrayList<?> matches) {
+        return matches.size() != 0 && matches != null;
+    }
+
 
     public String convertNumberToPrice(String s) {
         Double price = Double.parseDouble(s);
         Locale locale = new Locale("en", "IN");
         DecimalFormat formatter = (DecimalFormat) NumberFormat.getCurrencyInstance(locale);
         DecimalFormatSymbols symbols = formatter.getDecimalFormatSymbols();
-        if (checkForApi14())
-            symbols.setCurrencySymbol("\u20B9"); // Don't use null.
-        else
-            symbols.setCurrencySymbol("\u20A8"); // Don't use null.
+        if (checkForApi14()) symbols.setCurrencySymbol("\u20B9"); // Don't use null.
+        else symbols.setCurrencySymbol("\u20A8"); // Don't use null.
         formatter.setDecimalFormatSymbols(symbols);
         formatter.setMaximumFractionDigits(0);
         //MessageLogger.PrintMsg(formatter.format(price));

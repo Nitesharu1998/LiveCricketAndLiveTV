@@ -7,15 +7,15 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.LiveMatchesResponseModel;
+import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 import com.example.livecrickettvscores.R;
 
 import java.util.ArrayList;
 
-public class LiveMatchesAdapter extends RecyclerView.Adapter<LiveMatchesAdapter.ViewHolder> {
-    ArrayList<LiveMatchesResponseModel.DataDTO> data;
+public class LiveMatchesAdapter/* extends RecyclerView.Adapter<LiveMatchesAdapter.ViewHolder> */{/*
+    ArrayList<FixturesResponseModel.DataDTO> data;
 
-    public LiveMatchesAdapter(ArrayList<LiveMatchesResponseModel.DataDTO> data) {
+    public LiveMatchesAdapter(ArrayList<FixturesResponseModel.DataDTO> data) {
         this.data = data;
     }
 
@@ -40,5 +40,5 @@ public class LiveMatchesAdapter extends RecyclerView.Adapter<LiveMatchesAdapter.
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
         }
-    }
+    }*/
 }

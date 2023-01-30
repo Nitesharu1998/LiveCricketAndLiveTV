@@ -14,6 +14,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        resValue "string", "CRICKBUZZ_API_BASE", CRICKBUZZ_API_BASE
+        resValue "string", "CRICKBUZZ_API_KEY", CRICKBUZZ_API_KEY
+        resValue "string", "CRICKBUZZ_API_HOST", CRICKBUZZ_API_HOST
     }
     signingConfigs {
         release {

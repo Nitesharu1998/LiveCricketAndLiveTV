@@ -19,6 +19,9 @@
         android:theme="@style/Theme.LiveCricketTVScores"
         tools:targetApi="31">
         <activity
+            android:name=".PredictionDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".PredictionsMainActivity"
             android:exported="false" />
         <activity

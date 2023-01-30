@@ -33,7 +33,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="@dimen/_8sdp"
             android:drawableStart="@drawable/ic_live"
-            android:drawablePadding="@dimen/_12sdp"
+            android:drawablePadding="@dimen/_8sdp"
             android:fontFamily="@font/nunito_sans"
             android:text="Live"
             android:textColor="@color/dark_gray" />
@@ -53,8 +53,10 @@
             android:layout_toRightOf="@+id/iv_team1"
             android:fontFamily="@font/nunito_sans"
             android:gravity="center"
+            android:layout_marginStart="@dimen/_24sdp"
             android:text="team 1"
-            android:textColor="@color/black" />
+            android:textColor="@color/dark_gray"
+            android:textStyle="bold" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_team2"
@@ -72,23 +74,97 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_toRightOf="@+id/iv_team2"
             android:fontFamily="@font/nunito_sans"
+            android:layout_marginStart="@dimen/_24sdp"
             android:gravity="center"
             android:text="team 2"
-            android:textColor="@color/black" />
+            android:textColor="@color/dark_gray"
+            android:textStyle="bold" />
 
 
         <RelativeLayout
+            android:id="@+id/rl_divider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_team2">
 
             <LinearLayout
+
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_1sdp"
+                android:layout_height="2dp"
                 android:layout_marginVertical="@dimen/_8sdp"
-                android:background="@color/light_gray" />
+                android:background="@color/light_gray"
+                android:orientation="horizontal" />
 
 
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_matchdetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_divider"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/tv_whowinsmatch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_check"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text="Who will win the match"
+                android:textColor="@color/dark_gray"
+                android:textSize="@dimen/_12sdp" />
+
+            <TextView
+                android:id="@+id/tv_dream11prediciton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:drawableStart="@drawable/ic_check"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text="Dream 11 Prediciton"
+                android:textColor="@color/dark_gray"
+                android:textSize="@dimen/_12sdp" />
+
+            <TextView
+                android:id="@+id/tv_matchlocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_whowinsmatch"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawableStart="@drawable/ic_location"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text="Daren sammy stadium"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/_12sdp" />
+
+            <TextView
+                android:id="@+id/tv_information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_matchlocation"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawableStart="@drawable/ic_info"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text="carribean premier league"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/_12sdp" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_below="@+id/tv_information"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:backgroundTint="@color/light_blue"
+                app:cornerRadius="@dimen/_8sdp"
+                android:text="team a vs team b"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_12sdp" />
         </RelativeLayout>
 
     </RelativeLayout>

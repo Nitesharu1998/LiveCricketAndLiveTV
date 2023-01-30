@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/_12sdp"
+    tools:context=".Activities.PredictionDetailsActivity">
+
+    <!--TODO match details view-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:id="@+id/rl_matchdetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp">
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/_12sdp"
+                    android:fontFamily="@font/nunito_sans"
+                    android:gravity="center"
+                    android:text="27th jan 2023|"
+                    android:textColor="@color/dark_gray"
+                    app:drawableStartCompat="@drawable/ic_clock" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_toRightOf="@+id/tv_date"
+                    android:drawablePadding="@dimen/_12sdp"
+                    android:gravity="center"
+                    android:fontFamily="@font/nunito_sans"
+                    android:text="14:00"
+                    android:textColor="@color/dark_gray"
+                    app:drawableStartCompat="@drawable/ic_clock" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_matchlocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_whowinsmatch"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawableStart="@drawable/ic_location"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text="Daren sammy stadium"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/_12sdp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_matchlocation"
+                android:layout_marginTop="@dimen/_16sdp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_team1"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:src="@drawable/ic_applogo" />
+
+                <TextView
+                    android:id="@+id/tv_team1"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_team1"
+                    android:fontFamily="@font/nunito_sans"
+                    android:gravity="center"
+                    android:text="team 1"
+                    android:textColor="@color/dark_gray"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/ll_matchscore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_teamscore1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/nunito_sans"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:text="0/0 in 0.0"
+                        android:textColor="@color/black" />
+
+                    <LinearLayout
+
+                        android:layout_width="@dimen/_1sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:background="@color/dark_gray" />
+
+
+                    <TextView
+                        android:id="@+id/tv_teamscore2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        android:fontFamily="@font/nunito_sans"
+                        android:text="0/0 in 0.0"
+                        android:textColor="@color/black" />
+
+
+                </LinearLayout>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_team2"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_applogo" />
+
+                <TextView
+                    android:id="@+id/tv_team2"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_team2"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/nunito_sans"
+                    android:gravity="center"
+                    android:text="team 1"
+                    android:textColor="@color/dark_gray"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:elevation="@dimen/_4sdp"
+                app:cardCornerRadius="@dimen/_24sdp"
+                android:outlineSpotShadowColor="@color/white"
+                app:cardElevation="@dimen/_4sdp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/tv_information"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:gravity="center"
+                        android:src="@drawable/ic_info"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_winningprob"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_information"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/nunito_sans"
+                        android:text="bk vs tkr winnnig probability"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_winningprob"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginVertical="@dimen/_24sdp"
+                        android:paddingHorizontal="@dimen/_50sdp">
+
+                        <TextView
+                            android:id="@+id/tv_team1name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunito_sans"
+                            android:text="BK" />
+
+
+                        <TextView
+                            android:id="@+id/tv_team1prob"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_team1name"
+                            android:fontFamily="@font/nunito_sans"
+                            android:text="65.8%"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/tv_team2name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunito_sans"
+                            android:layout_alignParentEnd="true"
+                            android:text="BK" />
+
+
+                        <TextView
+                            android:id="@+id/tv_team2prob"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_team2name"
+                            android:layout_alignParentEnd="true"
+                            android:text="65.8%"
+                            android:textColor="@color/black" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_6sdp"
+                            android:layout_below="@+id/tv_team2prob"
+                            android:layout_marginTop="@dimen/_12sdp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_prob1"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4"
+                                android:background="@color/purple_700" />
+
+                            <TextView
+                                android:id="@+id/tv_prob2"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="6"
+                                android:background="@color/red" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!--TODO Betting tips UI-->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:outlineSpotShadowColor="@color/white"
+                android:elevation="@dimen/_4sdp"
+                app:cardCornerRadius="@dimen/_24sdp"
+                app:cardElevation="@dimen/_4sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_matchtitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_information"
+                        android:background="@color/purple_700"
+                        android:gravity="center"
+                        android:paddingVertical="@dimen/_12sdp"
+                        android:text="bk vs tkr betting tips"
+                        android:textColor="@color/white"
+                        android:textAllCaps="true"
+                        android:fontFamily="@font/nunito_sans"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/tv_matchtips"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/tv_information"
+                        android:gravity="center"
+                        android:fontFamily="@font/nunito_sans"
+                        android:layout_marginVertical="@dimen/_16sdp"
+                        android:text="bk vs tkr winnnig probability"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_12sdp" />
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>

@@ -57,7 +57,11 @@
         app:tabIndicatorFullWidth="false"
         app:tabIndicatorHeight="@dimen/_3sdp"
         app:tabSelectedTextColor="@color/white"
-        app:tabTextColor="@color/white"/>
+        app:tabTextColor="@color/white">
+
+
+
+    </com.google.android.material.tabs.TabLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcl_fixtures"

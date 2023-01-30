@@ -13,8 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.livecrickettvscores.Activities.APIControllers.MatchesAPIController;
 import com.example.livecrickettvscores.Activities.Adapters.LiveMatchesAdapter;
-import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
-import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.LiveMatchesResponseModel;
+import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 import com.example.livecrickettvscores.Activities.Utils.Global;
 import com.example.livecrickettvscores.R;
 
@@ -39,22 +38,22 @@ public class HomeFragment extends Fragment {
 
     private void callLiveMatchesAPI() {
         MatchesAPIController controller = new MatchesAPIController();
-        controller.calLiveMatchesAPI(context, new AppInterfaces.LiveMatchInterface() {
+       /* controller.calLiveMatchesAPI(context, new AppInterfaces.LiveMatchInterface() {
             @Override
-            public void getLiveMatchesResponseModel(LiveMatchesResponseModel liveMatchesResponseModel) {
+            public void getLiveMatchesResponseModel(FixturesResponseModel liveMatchesResponseModel) {
                 if (liveMatchesResponseModel.getData().size() > 0){
                     setLiveMatchesList(liveMatchesResponseModel);
                 }
             }
         });
-
+*/
 
     }
 
-    private void setLiveMatchesList(LiveMatchesResponseModel liveMatchesResponseModel) {
+    private void setLiveMatchesList(FixturesResponseModel fixturesResponseModel) {
         LinearLayoutManager manager= new LinearLayoutManager(context);
         manager.setOrientation(RecyclerView.HORIZONTAL);
-        LiveMatchesAdapter adapter = new LiveMatchesAdapter(liveMatchesResponseModel.getData());
+        /*LiveMatchesAdapter adapter = new LiveMatchesAdapter(fixturesResponseModel.getData());*/
     }
 
     private void initUI(ViewGroup container) {

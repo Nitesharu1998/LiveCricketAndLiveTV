@@ -1,15 +1,13 @@
 package com.example.livecrickettvscores.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.livecrickettvscores.Activities.Utils.EncryptionUtils;
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.livecrickettvscores.Activities.Utils.EncryptionUtils;
 import com.example.livecrickettvscores.Activities.Utils.Global;
-import com.example.livecrickettvscores.R;
 import com.example.livecrickettvscores.databinding.ActivitySplashBinding;
 
 public class SplashActivity extends AppCompatActivity {
@@ -22,8 +20,10 @@ public class SplashActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
 
-        Global.sout("CRICKAPI base>>>>>>>>>>> ", EncryptionUtils.Ecrp_Hex("https://api.cricapi.com/v1"));
-        Global.sout("CRICK live data>>>>>>>>>>> ", EncryptionUtils.Ecrp_Hex("https://cricket-live-data.p.rapidapi.com"));
+        Global.sout("Crickbuzz base>>>>>>>>>>> ", EncryptionUtils.Ecrp_Hex("https://unofficial-cricbuzz.p.rapidapi.com/"));
+        Global.sout("Crickbuzz rapid api key>>>>>>>>>>> ", EncryptionUtils.Ecrp_Hex("9008284513msh0c98ccd4665e950p16b992jsnaa622c8d33b1"));
+        Global.sout("Crickbuzz rapid host>>>>>>>>>>> ", EncryptionUtils.Ecrp_Hex("unofficial-cricbuzz.p.rapidapi.com"));
+
         Activity activity = SplashActivity.this;
 
 
