@@ -1,32 +1,31 @@
 package com.example.livecrickettvscores.Activities.Fragments;
 
+import static com.gun0912.tedpermission.provider.TedPermissionProvider.context;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TableLayout;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.livecrickettvscores.Activities.APIControllers.FixturesAPIController;
+import com.example.livecrickettvscores.Activities.Adapters.FixturesAdapter;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 import com.example.livecrickettvscores.Activities.Utils.Constants;
 import com.example.livecrickettvscores.Activities.Utils.Global;
 import com.example.livecrickettvscores.R;
-import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
 public class FixtureFragment extends Fragment {
-    private FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO.MatchInfoDTO matchInfoDTO;
-    private FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO.MatchScoreDTO matchScoreDTO;
-    private FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO matchesDTO;
-    private ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO> matchesDTOArrayList = new ArrayList<>();
-    private TabItem recenttab, upcomingtab, livetab;
+    private ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO> matchesDTOArrayList;
+    private ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO> filteredMatchesDTOArrayList;
     private RecyclerView rcl_fixtures;
     private ImageView iv_back;
     private TabLayout tablayout;
@@ -96,33 +95,37 @@ public class FixtureFragment extends Fragment {
         fixtureapicontroller.callFixturesAPI(new AppInterfaces.FixturesInterface() {
             @Override
             public void getAllMatchesData(FixturesResponseModel fixturesResponseModel) {
-                matchesDTOArrayList = setUpMatchesList(fixturesResponseModel);
+                filteredMatchesDTOArrayList = new ArrayList<>();
+                filteredMatchesDTOArrayList = filterMatchesList(fixturesResponseModel);
+                setUpMatchesListView(matchesDTOArrayList);
             }
         });
     }
 
-    private ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO> setUpMatchesList(FixturesResponseModel fixturesResponseModel) {
+    private void setUpMatchesListView(ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO> matchesDTOArrayList) {
+        if (!Global.isArrayListNull(matchesDTOArrayList)) {
+            LinearLayoutManager manager = new LinearLayoutManager(context);
+            manager.setOrientation(RecyclerView.VERTICAL);
+            rcl_fixtures.setLayoutManager(manager);
+            rcl_fixtures.removeAllViews();
+            FixturesAdapter fixturesAdapter = new FixturesAdapter(getContext(), matchesDTOArrayList);
+            rcl_fixtures.setAdapter(fixturesAdapter);
+
+        }
+    }
+
+    private ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO> filterMatchesList(FixturesResponseModel fixturesResponseModel) {
         try {
-            if (Global.CheckArrayList(fixturesResponseModel.getTypeMatches())) {
+            matchesDTOArrayList = new ArrayList<>();
+            ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO> seriesAdWrapperDTOS = new ArrayList<>();
+            if (!Global.isArrayListNull(fixturesResponseModel.getTypeMatches())) {
                 for (int i = 0; i < fixturesResponseModel.getTypeMatches().size(); i++) {
-                    if (Global.CheckArrayList(fixturesResponseModel.getTypeMatches().get(i).getSeriesAdWrapper())) {
-                        for (int j = 0; j < fixturesResponseModel.getTypeMatches().get(i).getSeriesAdWrapper().size(); j++) {
-                            if (Global.CheckArrayList(fixturesResponseModel.getTypeMatches().get(i).getSeriesAdWrapper().get(j).getSeriesMatches().getMatches())) {
-                                for (int k = 0; k < fixturesResponseModel.getTypeMatches().get(i).getSeriesAdWrapper().get(j).getSeriesMatches().getMatches().size(); k++) {
-                                    matchInfoDTO = new FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO.MatchInfoDTO();
-                                    matchScoreDTO = new FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO.MatchScoreDTO();
-                                    matchesDTO = new FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO();
-
-                                    matchInfoDTO = fixturesResponseModel.getTypeMatches().get(i).getSeriesAdWrapper().get(j).getSeriesMatches().getMatches().get(k).getMatchInfo();
-                                    matchScoreDTO = fixturesResponseModel.getTypeMatches().get(i).getSeriesAdWrapper().get(j).getSeriesMatches().getMatches().get(k).getMatchScore();
-
-                                    matchesDTO.setMatchInfo(matchInfoDTO);
-                                    matchesDTO.setMatchScore(matchScoreDTO);
-                                    matchesDTOArrayList.add(matchesDTO);
-                                }
-                            }
-                        }
-                    }
+                    seriesAdWrapperDTOS.addAll(fixturesResponseModel.getTypeMatches().get(i).getSeriesAdWrapper());
+                }
+            }
+            for (int i = 0; i < seriesAdWrapperDTOS.size(); i++) {
+                if (seriesAdWrapperDTOS.get(i).getSeriesMatches() != null && !Global.isArrayListNull(seriesAdWrapperDTOS.get(i).getSeriesMatches().getMatches())) {
+                    matchesDTOArrayList.addAll(seriesAdWrapperDTOS.get(i).getSeriesMatches().getMatches());
 
                 }
             }

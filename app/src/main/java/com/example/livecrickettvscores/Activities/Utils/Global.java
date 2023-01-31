@@ -211,8 +211,19 @@ public class Global {
         return imeiNo;
     }
 
-    public static boolean CheckArrayList(ArrayList<?> matches) {
-        return matches.size() != 0 && matches != null;
+    public static boolean isArrayListNull(ArrayList arrayList) {
+        try {
+            if (arrayList == null) {
+                return true;
+            } else if (arrayList != null && arrayList.size() <= 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 
@@ -268,7 +279,7 @@ public class Global {
     public void showProgressDialog(Activity activity, String msg) {
 
         progressDialog = new ProgressDialog(activity);
-        progressDialog.setTitle(null);
+        progressDialog.setTitle("Please wait");
         progressDialog.setMessage(msg);
         progressDialog.setIndeterminate(false);
         progressDialog.setCanceledOnTouchOutside(false);

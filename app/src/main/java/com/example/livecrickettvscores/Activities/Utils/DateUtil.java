@@ -979,4 +979,17 @@ public class DateUtil {
         return listYears;
     }
 
+    public static String getDateFromSeconds(long milliseconds) {
+        //We are converting millisec to date here.
+        try {
+            Calendar cal = Calendar.getInstance();
+            cal.setTimeInMillis(milliseconds);
+            SimpleDateFormat dateFormat =new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+            return dateFormat.format(cal.getTime());
+        } catch (Exception e) {
+            Global.sout("Date format error", e.getLocalizedMessage());
+        }
+        return "";
+    }
+
 }

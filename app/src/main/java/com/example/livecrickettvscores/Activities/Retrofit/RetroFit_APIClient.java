@@ -2,7 +2,10 @@ package com.example.livecrickettvscores.Activities.Retrofit;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import com.example.livecrickettvscores.BuildConfig;
+import com.grapesnberries.curllogger.CurlLoggerInterceptor;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -51,6 +54,7 @@ public class RetroFit_APIClient {
         client.readTimeout(60, TimeUnit.SECONDS);
         client.writeTimeout(60, TimeUnit.SECONDS);
         client.connectTimeout(60, TimeUnit.SECONDS);
+        client.addInterceptor(new CurlLoggerInterceptor());
         retrofit = new Retrofit.Builder().baseUrl(BASE_URL).client(client.build()).addConverterFactory(ScalarsConverterFactory.create()).addConverterFactory(GsonConverterFactory.create()).build();
 
 

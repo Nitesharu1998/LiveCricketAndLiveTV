@@ -146,8 +146,8 @@ public class FixturesResponseModel {
                 }
 
                 public static class MatchesDTO {
-                    public static MatchInfoDTO matchInfo;
-                    public static MatchScoreDTO matchScore;
+                    public MatchInfoDTO matchInfo;
+                    public MatchScoreDTO matchScore;
 
                     public MatchInfoDTO getMatchInfo() {
                         return matchInfo;
