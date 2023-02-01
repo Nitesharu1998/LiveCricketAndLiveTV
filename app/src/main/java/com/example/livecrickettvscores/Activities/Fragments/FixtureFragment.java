@@ -25,7 +25,6 @@ import java.util.ArrayList;
 
 public class FixtureFragment extends Fragment {
     private ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO> matchesDTOArrayList;
-    private ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO> filteredMatchesDTOArrayList;
     private RecyclerView rcl_fixtures;
     private ImageView iv_back;
     private TabLayout tablayout;
@@ -95,9 +94,7 @@ public class FixtureFragment extends Fragment {
         fixtureapicontroller.callFixturesAPI(new AppInterfaces.FixturesInterface() {
             @Override
             public void getAllMatchesData(FixturesResponseModel fixturesResponseModel) {
-                filteredMatchesDTOArrayList = new ArrayList<>();
-                filteredMatchesDTOArrayList = filterMatchesList(fixturesResponseModel);
-                setUpMatchesListView(matchesDTOArrayList);
+                setUpMatchesListView(Global.filterMatchesList(fixturesResponseModel));
             }
         });
     }
@@ -114,7 +111,7 @@ public class FixtureFragment extends Fragment {
         }
     }
 
-    private ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO> filterMatchesList(FixturesResponseModel fixturesResponseModel) {
+    public static ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO> filterMatchesList(FixturesResponseModel fixturesResponseModel) {
         try {
             matchesDTOArrayList = new ArrayList<>();
             ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO> seriesAdWrapperDTOS = new ArrayList<>();

@@ -12,10 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.LazyHeaders;
+import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 import com.example.livecrickettvscores.Activities.Utils.ConnectionDetector;
 import com.example.livecrickettvscores.Activities.Utils.DateUtil;
 import com.example.livecrickettvscores.Activities.Utils.EncryptionUtils;
+import com.example.livecrickettvscores.Activities.Utils.Global;
 import com.example.livecrickettvscores.Activities.Utils.InputUtils;
 import com.example.livecrickettvscores.R;
 import com.example.livecrickettvscores.databinding.SinglelivematchlayoutBinding;
@@ -26,7 +28,6 @@ public class FixturesAdapter extends RecyclerView.Adapter<FixturesAdapter.ViewHo
     Context context;
     ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO> matchesDTOArrayList;
     ConnectionDetector cd;
-
     public FixturesAdapter(Context context, ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO> matchesDTOArrayList) {
         this.context = context;
         this.matchesDTOArrayList = matchesDTOArrayList;
@@ -37,7 +38,6 @@ public class FixturesAdapter extends RecyclerView.Adapter<FixturesAdapter.ViewHo
     @Override
     public FixturesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         SinglelivematchlayoutBinding singlelivematchlayoutBinding = SinglelivematchlayoutBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-
         return new ViewHolder(singlelivematchlayoutBinding);
     }
 
@@ -77,11 +77,9 @@ public class FixturesAdapter extends RecyclerView.Adapter<FixturesAdapter.ViewHo
 
     private void loadImagesForTeams(ViewHolder holder, int team1Image, int team2Image) {
         if (cd.isConnectingToInternet()) {
-            GlideUrl urlforteam1 = new GlideUrl(EncryptionUtils.Dcrp_Hex(context.getString(R.string.CRICKBUZZ_API_BASE)) + "get-image?id=" + team1Image, new LazyHeaders.Builder().addHeader("X-RapidAPI-Key", EncryptionUtils.Dcrp_Hex(context.getString(R.string.CRICKBUZZ_API_KEY))).addHeader("X-RapidAPI-Host", EncryptionUtils.Dcrp_Hex(context.getString(R.string.CRICKBUZZ_API_HOST))).build());
-            Glide.with(context).load(urlforteam1).into(holder.iv_team1);
+            Glide.with(context).load(Global.getTheImage(context, String.valueOf(team1Image))).into(holder.iv_team1);
 
-            GlideUrl urlforteam2 = new GlideUrl(EncryptionUtils.Dcrp_Hex(context.getString(R.string.CRICKBUZZ_API_BASE)) + "get-image?id=" + team2Image, new LazyHeaders.Builder().addHeader("X-RapidAPI-Key", EncryptionUtils.Dcrp_Hex(context.getString(R.string.CRICKBUZZ_API_KEY))).addHeader("X-RapidAPI-Host", EncryptionUtils.Dcrp_Hex(context.getString(R.string.CRICKBUZZ_API_HOST))).build());
-            Glide.with(context).load(urlforteam2).into(holder.iv_team2);
+            Glide.with(context).load(Global.getTheImage(context, String.valueOf(team2Image))).into(holder.iv_team2);
         }
     }
 
@@ -91,7 +89,7 @@ public class FixturesAdapter extends RecyclerView.Adapter<FixturesAdapter.ViewHo
         return matchesDTOArrayList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_team2, iv_team1, iv_bgteam2, iv_bgteam1;
         TextView tv_matchstatus, tv_match2score, tv_match2team, tv_match1score, tv_match1team, tv_matchtitle;
 

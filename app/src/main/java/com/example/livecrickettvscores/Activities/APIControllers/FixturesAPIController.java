@@ -12,7 +12,6 @@ import com.example.livecrickettvscores.Activities.Utils.EncryptionUtils;
 import com.example.livecrickettvscores.Activities.Utils.Global;
 import com.example.livecrickettvscores.R;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,7 +34,7 @@ public class FixturesAPIController {
         callFixtures.enqueue(new Callback<FixturesResponseModel>() {
             @Override
             public void onResponse(Call<FixturesResponseModel> call, Response<FixturesResponseModel> response) {
-                global.hideProgressDialogg();
+                global.hideProgressDialog();
                 if (response.isSuccessful() && response.body() != null) {
                     fixturesInterface.getAllMatchesData(response.body());
                 }
@@ -44,7 +43,7 @@ public class FixturesAPIController {
 
             @Override
             public void onFailure(Call<FixturesResponseModel> call, Throwable t) {
-                global.hideProgressDialogg();
+                global.hideProgressDialog();
                 Toast.makeText(context, ConstantsMessages.SomethingWentWrong, Toast.LENGTH_SHORT).show();
 
             }

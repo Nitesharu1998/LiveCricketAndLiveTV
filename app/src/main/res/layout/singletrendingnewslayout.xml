@@ -16,6 +16,7 @@
         android:paddingVertical="@dimen/_10sdp">
 
         <ImageView
+            android:id="@+id/iv_newsImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_8sdp"
@@ -30,12 +31,13 @@
             android:layout_below="@+id/tv_match1score"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="@dimen/_8sdp"
+            android:gravity="center"
             android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/nunito_sans"
             android:text="NDTV sports"
             android:textColor="@color/gray" />
 
-        <io.github.glailton.expandabletextview.ExpandableTextView
+        <TextView
             android:id="@+id/tv_headline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,13 +46,7 @@
             android:fontFamily="@font/nunito_sans"
             android:text="Explainer - Why did India and Pakistan have five fielders inside"
             android:textColor="@color/black"
-            android:textStyle="bold"
-            app:animDuration="50"
-            app:collapsedLines="3"
-            expandableTextView:isExpanded="true"
-            expandableTextView:readLessText="Read More"
-            expandableTextView:readMoreText="Read Less"
-            expandableTextView:textMode="line" />
+            android:textStyle="bold" />
 
         <RelativeLayout
             android:layout_width="match_parent"

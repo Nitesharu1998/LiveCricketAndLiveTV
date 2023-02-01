@@ -52,6 +52,7 @@
                 app:cardCornerRadius="@dimen/_38sdp">
 
                 <ImageView
+                    android:id="@+id/newsImage"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_200sdp"
                     android:scaleType="centerCrop"

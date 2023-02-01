@@ -11,7 +11,11 @@ import android.os.Build;
 import android.provider.Settings;
 import android.widget.Toast;
 
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.load.model.LazyHeaders;
+import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 import com.example.livecrickettvscores.BuildConfig;
+import com.example.livecrickettvscores.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -332,10 +336,9 @@ public class Global {
         }
     }
 
-    public void hideProgressDialogg() {
+    public void hideProgressDialog() {
         try {
-            if (progressDialog != null && progressDialog.isShowing())
-                progressDialog.dismiss();
+            if (progressDialog != null && progressDialog.isShowing()) progressDialog.dismiss();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -423,8 +426,6 @@ public class Global {
     }
 
 
-
-
     public interface OnBarcodeDialogSubmitClickListener {
         public void onSubmitButtonClicked(String barcode);
     }
@@ -434,4 +435,33 @@ public class Global {
             System.out.println(TagToString + " " + whatToPrint);
         }
     }
+
+    public static ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO> filterMatchesList(FixturesResponseModel fixturesResponseModel) {
+        ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO> matchesDTOArrayList = new ArrayList<>();
+        try {
+
+            ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO> seriesAdWrapperDTOS = new ArrayList<>();
+            if (!Global.isArrayListNull(fixturesResponseModel.getTypeMatches())) {
+                for (int i = 0; i < fixturesResponseModel.getTypeMatches().size(); i++) {
+                    seriesAdWrapperDTOS.addAll(fixturesResponseModel.getTypeMatches().get(i).getSeriesAdWrapper());
+                }
+            }
+            for (int i = 0; i < seriesAdWrapperDTOS.size(); i++) {
+                if (seriesAdWrapperDTOS.get(i).getSeriesMatches() != null && !Global.isArrayListNull(seriesAdWrapperDTOS.get(i).getSeriesMatches().getMatches())) {
+                    matchesDTOArrayList.addAll(seriesAdWrapperDTOS.get(i).getSeriesMatches().getMatches());
+
+                }
+            }
+
+        } catch (Exception e) {
+            Global.sout("Crash while processing the fixtures", e.getLocalizedMessage());
+        }
+        return matchesDTOArrayList;
+    }
+
+    public static GlideUrl getTheImage(Context context, String imageID) {
+        //TODO this method hits and return the imager response of api
+        return new GlideUrl(EncryptionUtils.Dcrp_Hex(context.getString(R.string.CRICKBUZZ_API_BASE)) + "get-image?id=" + imageID + "&p=de", new LazyHeaders.Builder().addHeader("X-RapidAPI-Key", EncryptionUtils.Dcrp_Hex(context.getString(R.string.CRICKBUZZ_API_KEY))).addHeader("X-RapidAPI-Host", EncryptionUtils.Dcrp_Hex(context.getString(R.string.CRICKBUZZ_API_HOST))).build());
+    }
+
 }
