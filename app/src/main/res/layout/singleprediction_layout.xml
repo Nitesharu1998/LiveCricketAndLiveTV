@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:paddingHorizontal="@dimen/_8sdp"
     android:paddingVertical="@dimen/_12sdp"
+    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
     app:cardCornerRadius="@dimen/_24sdp">
 
     <RelativeLayout

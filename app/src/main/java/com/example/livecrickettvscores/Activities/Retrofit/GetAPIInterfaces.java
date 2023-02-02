@@ -3,6 +3,8 @@ package com.example.livecrickettvscores.Activities.Retrofit;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.NewsDetailsResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.NewsListResponseModel;
+import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.PlayerDetailsResponseModel;
+import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.TrendingPlayersResponseModel;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -21,5 +23,14 @@ public interface GetAPIInterfaces {
 
     @GET("/get-image")
     Call<ResponseBody> getImageOfTeam(@Query("id") String idOfTeam);
+
+    @GET("players/list-trending")
+    Call<TrendingPlayersResponseModel> getTrendingPlayers();
+
+    @GET("players/get-info")
+    Call<PlayerDetailsResponseModel> getPlayerInfo(@Query("playerId") Integer playerID);
+
+    @GET("players/get-news")
+    Call<NewsListResponseModel> getPlayerNews(@Query("playerId") Integer playerID);
 
 }

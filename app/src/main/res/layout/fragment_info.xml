@@ -116,6 +116,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_4sdp"
+                    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
                     android:background="@color/white"
                     android:outlineSpotShadowColor="@color/white"
                     app:cardCornerRadius="@dimen/_24sdp">
@@ -253,6 +254,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_4sdp"
                     android:background="@color/white"
+                    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
                     android:outlineSpotShadowColor="@color/white"
                     app:cardCornerRadius="@dimen/_24sdp">
 
@@ -528,7 +530,7 @@
                     android:layout_marginTop="@dimen/_4sdp"
                     android:backgroundTint="@color/light_gray"
                     android:outlineSpotShadowColor="@color/white"
-
+                    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
                     app:cardCornerRadius="@dimen/_24sdp">
 
                     <TextView
@@ -557,7 +559,7 @@
                     android:layout_marginTop="@dimen/_4sdp"
                     android:backgroundTint="@color/light_gray"
                     android:outlineSpotShadowColor="@color/white"
-
+                    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
                     app:cardCornerRadius="@dimen/_24sdp">
 
                     <TextView

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="@dimen/_236sdp"
     android:layout_height="@dimen/_150sdp"
+    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
     android:layout_marginHorizontal="@dimen/_12sdp"
     android:orientation="vertical"
     app:cardCornerRadius="@dimen/_15sdp">

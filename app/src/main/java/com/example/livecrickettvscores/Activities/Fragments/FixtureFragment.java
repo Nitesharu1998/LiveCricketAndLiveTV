@@ -111,27 +111,5 @@ public class FixtureFragment extends Fragment {
         }
     }
 
-    public static ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO> filterMatchesList(FixturesResponseModel fixturesResponseModel) {
-        try {
-            matchesDTOArrayList = new ArrayList<>();
-            ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO> seriesAdWrapperDTOS = new ArrayList<>();
-            if (!Global.isArrayListNull(fixturesResponseModel.getTypeMatches())) {
-                for (int i = 0; i < fixturesResponseModel.getTypeMatches().size(); i++) {
-                    seriesAdWrapperDTOS.addAll(fixturesResponseModel.getTypeMatches().get(i).getSeriesAdWrapper());
-                }
-            }
-            for (int i = 0; i < seriesAdWrapperDTOS.size(); i++) {
-                if (seriesAdWrapperDTOS.get(i).getSeriesMatches() != null && !Global.isArrayListNull(seriesAdWrapperDTOS.get(i).getSeriesMatches().getMatches())) {
-                    matchesDTOArrayList.addAll(seriesAdWrapperDTOS.get(i).getSeriesMatches().getMatches());
-
-                }
-            }
-
-        } catch (Exception e) {
-            Global.sout("Crash while processing the fixtures", e.getLocalizedMessage());
-        }
-        return matchesDTOArrayList;
-    }
-
 }
 

@@ -1,25 +1,19 @@
 package com.example.livecrickettvscores.Activities.Fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
 import com.example.livecrickettvscores.R;
-
-public class CareerFragment extends Fragment {
-
-    public CareerFragment(Integer playerID) {
-
-    }
+public class BattingBowlingStats extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_career, container, false);
+        return inflater.inflate(R.layout.fragment_batting_bowling_stats, container, false);
     }
 }

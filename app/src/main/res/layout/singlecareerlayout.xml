@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_4sdp"
         android:background="@color/white"
+        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
         android:outlineSpotShadowColor="@color/white"
         app:cardCornerRadius="@dimen/_24sdp">
 

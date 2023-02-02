@@ -11,9 +11,13 @@ import android.os.Build;
 import android.provider.Settings;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.LazyHeaders;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
+import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.NewsDetailsResponseModel;
 import com.example.livecrickettvscores.BuildConfig;
 import com.example.livecrickettvscores.R;
 
@@ -463,5 +467,34 @@ public class Global {
         //TODO this method hits and return the imager response of api
         return new GlideUrl(EncryptionUtils.Dcrp_Hex(context.getString(R.string.CRICKBUZZ_API_BASE)) + "get-image?id=" + imageID + "&p=de", new LazyHeaders.Builder().addHeader("X-RapidAPI-Key", EncryptionUtils.Dcrp_Hex(context.getString(R.string.CRICKBUZZ_API_KEY))).addHeader("X-RapidAPI-Host", EncryptionUtils.Dcrp_Hex(context.getString(R.string.CRICKBUZZ_API_HOST))).build());
     }
+
+    public static boolean isClassNull(Object objectToCheck) {
+        return objectToCheck == null;
+    }
+
+    public static RecyclerView.LayoutManager getManagerWithOrientation(Context context, int orientation) {
+        LinearLayoutManager manager = new LinearLayoutManager(context);
+        manager.setOrientation(orientation);
+        return manager;
+    }
+
+    public static String getTextFromDataModel(ArrayList<NewsDetailsResponseModel.ContentDTO> content) {
+        String newsDetails = "";
+        try {
+            if (!Global.isArrayListNull(content)) {
+
+                for (int i = 0; i < content.size(); i++) {
+                    if (InputUtils.CheckEqualCaseSensitive(content.get(i).getContent().getContentType(), "text")) {
+                        newsDetails = newsDetails + content.get(i).getContent().getContentValue() + "\n";
+                    }
+                }
+            }
+        } catch (Exception e) {
+            Global.sout("something crashed while getting the text >>>>>>>>>>>>>>", e.getMessage());
+        }
+        Global.sout("news details string", newsDetails);
+        return newsDetails.trim();
+    }
+
 
 }

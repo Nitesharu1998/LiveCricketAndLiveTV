@@ -22,6 +22,7 @@
 
 
         <TextView
+            android:id="@+id/tv_playername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -49,7 +50,6 @@
         app:tabSelectedTextColor="@color/white"
         app:tabTextColor="@color/white"
         android:layout_marginBottom="@dimen/_12sdp"/>
-
 
 
 </LinearLayout>

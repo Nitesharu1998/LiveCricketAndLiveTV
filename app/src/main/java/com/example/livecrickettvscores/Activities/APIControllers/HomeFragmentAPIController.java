@@ -70,4 +70,26 @@ public class HomeFragmentAPIController {
             }
         });
     }
+
+    public void callPlayerNewsAPI(AppInterfaces.NewsInterface newsInterface) {
+        global.showProgressDialog(context, ConstantsMessages.PLEASE_WAIT);
+        GetAPIInterfaces apiInterfaces = RetroFit_APIClient.getInstance().getClient(context, EncryptionUtils.Dcrp_Hex(context.getString(R.string.CRICKBUZZ_API_BASE)), EncryptionUtils.Dcrp_Hex(context.getString(R.string.CRICKBUZZ_API_KEY)), EncryptionUtils.Dcrp_Hex(context.getString(R.string.CRICKBUZZ_API_HOST))).create(GetAPIInterfaces.class);
+        Call<NewsListResponseModel> call = apiInterfaces.getPlayerNews(categoryID);
+        call.enqueue(new Callback<NewsListResponseModel>() {
+            @Override
+            public void onResponse(Call<NewsListResponseModel> call, Response<NewsListResponseModel> response) {
+                global.hideProgressDialog();
+                if (response.isSuccessful() && response.body() != null) {
+                    newsInterface.getNewsList(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<NewsListResponseModel> call, Throwable t) {
+                global.hideProgressDialog();
+                Toast.makeText(context, ConstantsMessages.SomethingWentWrong, Toast.LENGTH_SHORT).show();
+                Global.sout("newslist api failure", t.getLocalizedMessage());
+            }
+        });
+    }
 }

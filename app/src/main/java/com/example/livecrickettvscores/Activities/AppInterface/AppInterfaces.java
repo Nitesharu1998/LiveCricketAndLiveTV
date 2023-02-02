@@ -5,6 +5,8 @@ import android.media.Image;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.NewsDetailsResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.NewsListResponseModel;
+import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.PlayerDetailsResponseModel;
+import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.TrendingPlayersResponseModel;
 
 public class AppInterfaces {
     public interface LiveMatchInterface {
@@ -30,5 +32,14 @@ public class AppInterfaces {
     public interface ImageInterface {
         void getImage(Image image);
     }
+
+    public interface APIResponseInterface {
+        void theApiResponse(TrendingPlayersResponseModel trendingPlayersResponseModel);
+    }
+
+    public interface PlayerDetailsInterface {
+        void getPlayerDetails(PlayerDetailsResponseModel playerDetailsResponseModel);
+    }
+
 
 }
