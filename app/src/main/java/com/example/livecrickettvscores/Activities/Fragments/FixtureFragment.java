@@ -1,7 +1,6 @@
 package com.example.livecrickettvscores.Activities.Fragments;
 
-import static com.gun0912.tedpermission.provider.TedPermissionProvider.context;
-
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +27,7 @@ public class FixtureFragment extends Fragment {
     private RecyclerView rcl_fixtures;
     private ImageView iv_back;
     private TabLayout tablayout;
+    Context context;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,8 +40,8 @@ public class FixtureFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fixture, container, false);
-
-        tablayout=view.findViewById(R.id.tablayout);
+        context = view.getContext();
+        tablayout = view.findViewById(R.id.tablayout);
         rcl_fixtures = view.findViewById(R.id.rcl_fixtures);
         iv_back = view.findViewById(R.id.iv_back);
 
@@ -90,7 +90,7 @@ public class FixtureFragment extends Fragment {
     }
 
     private void callFixturesAPI(String matchtype) {
-        FixturesAPIController fixtureapicontroller = new FixturesAPIController(getContext(), matchtype);
+        FixturesAPIController fixtureapicontroller = new FixturesAPIController(context, matchtype);
         fixtureapicontroller.callFixturesAPI(new AppInterfaces.FixturesInterface() {
             @Override
             public void getAllMatchesData(FixturesResponseModel fixturesResponseModel) {

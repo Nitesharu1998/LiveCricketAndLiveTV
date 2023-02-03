@@ -1,9 +1,11 @@
 package com.example.livecrickettvscores.Activities.APIControllers;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.Retrofit.GetAPIInterfaces;
+import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.PlayerCareerDetailsResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.PlayerDetailsResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.TrendingPlayersResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.RetroFit_APIClient;
@@ -22,7 +24,7 @@ public class StatsAPIController {
 
     public StatsAPIController(Context context) {
         this.context = context;
-        Global global = new Global(context);
+        this.global = new Global(context);
     }
 
     public void callTrendingPlayerAPI(AppInterfaces.APIResponseInterface apiResponseInterface) {
@@ -38,7 +40,8 @@ public class StatsAPIController {
 
             @Override
             public void onFailure(Call<TrendingPlayersResponseModel> call, Throwable t) {
-
+                Global.sout("Trending players api failure", t.getMessage());
+                global.hideProgressDialog();
             }
         });
     }
@@ -58,6 +61,31 @@ public class StatsAPIController {
 
             @Override
             public void onFailure(Call<PlayerDetailsResponseModel> call, Throwable t) {
+                Global.sout("Trending players api failure", t.getMessage());
+                Toast.makeText(context, ConstantsMessages.SomethingWentWrong, Toast.LENGTH_SHORT).show();
+                global.hideProgressDialog();
+            }
+        });
+
+    }
+
+    public void callPlayerCareerDetailsAPI(Integer playerID, AppInterfaces.PlayerCareerInformation playerCareerInformation) {
+        global.showProgressDialog(context, ConstantsMessages.PLEASE_WAIT);
+        GetAPIInterfaces apiInterfaces = RetroFit_APIClient.getInstance().getClient(context, EncryptionUtils.Dcrp_Hex(context.getString(R.string.CRICKBUZZ_API_BASE)), EncryptionUtils.Dcrp_Hex(context.getString(R.string.CRICKBUZZ_API_KEY)), EncryptionUtils.Dcrp_Hex(context.getString(R.string.CRICKBUZZ_API_HOST))).create(GetAPIInterfaces.class);
+        Call<PlayerCareerDetailsResponseModel> call = apiInterfaces.getPlayerCareer(playerID);
+        call.enqueue(new Callback<PlayerCareerDetailsResponseModel>() {
+            @Override
+            public void onResponse(Call<PlayerCareerDetailsResponseModel> call, Response<PlayerCareerDetailsResponseModel> response) {
+                global.hideProgressDialog();
+                if (response.isSuccessful() && response.body() != null) {
+                    playerCareerInformation.getPlayerCareerInfo(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PlayerCareerDetailsResponseModel> call, Throwable t) {
+                Global.sout("Trending players api failure", t.getMessage());
+                Toast.makeText(context, ConstantsMessages.SomethingWentWrong, Toast.LENGTH_SHORT).show();
                 global.hideProgressDialog();
             }
         });

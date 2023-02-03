@@ -31,12 +31,14 @@ public class StatsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentStatsBinding fragmentStatsBinding = FragmentStatsBinding.inflate(LayoutInflater.from(getContext()), container, false);
+        context = fragmentStatsBinding.getRoot().getContext();
+        fragmentStatsBinding.rclPlayers.setHasFixedSize(true);
         callPopularPlayerAPI(fragmentStatsBinding.rclPlayers);
         return fragmentStatsBinding.getRoot();
     }
 
     private void callPopularPlayerAPI(RecyclerView rclPlayers) {
-        StatsAPIController statsAPIController = new StatsAPIController(getContext());
+        StatsAPIController statsAPIController = new StatsAPIController(context);
         statsAPIController.callTrendingPlayerAPI(new AppInterfaces.APIResponseInterface() {
             @Override
             public void theApiResponse(TrendingPlayersResponseModel trendingPlayersResponseModel) {
@@ -48,13 +50,13 @@ public class StatsFragment extends Fragment {
     }
 
     private void setUpTrendingPlayersList(RecyclerView rclPlayers, ArrayList<TrendingPlayersResponseModel.PlayerDTO> playerDTO) {
-        rclPlayers.setLayoutManager(Global.getManagerWithOrientation(getContext(), RecyclerView.VERTICAL));
+        rclPlayers.setLayoutManager(Global.getManagerWithOrientation(context, RecyclerView.VERTICAL));
 
-        TrendingPlayersAdapter adapter = new TrendingPlayersAdapter(getContext(), playerDTO, new AppInterfaces.NewsAdapterClick() {
+        TrendingPlayersAdapter adapter = new TrendingPlayersAdapter(context, playerDTO, new AppInterfaces.NewsAdapterClick() {
             @Override
             public void getClickedNewsID(Integer someID) {
                 if (someID != null && someID != 0) {
-                    Intent intent = new Intent(getContext(), PlayerInformation.class);
+                    Intent intent = new Intent(context, PlayerInformation.class);
                     intent.putExtra("playerID", someID);
                     startActivity(intent);
                 }

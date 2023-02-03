@@ -3,6 +3,7 @@ package com.example.livecrickettvscores.Activities.Retrofit;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.NewsDetailsResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.NewsListResponseModel;
+import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.PlayerCareerDetailsResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.PlayerDetailsResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.TrendingPlayersResponseModel;
 
@@ -32,5 +33,8 @@ public interface GetAPIInterfaces {
 
     @GET("players/get-news")
     Call<NewsListResponseModel> getPlayerNews(@Query("playerId") Integer playerID);
+
+    @GET("players/get-career")
+    Call<PlayerCareerDetailsResponseModel> getPlayerCareer(@Query("playerId") Integer playerID);
 
 }

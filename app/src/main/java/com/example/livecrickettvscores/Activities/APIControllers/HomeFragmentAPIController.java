@@ -67,6 +67,7 @@ public class HomeFragmentAPIController {
             public void onFailure(Call<NewsDetailsResponseModel> call, Throwable t) {
                 global.hideProgressDialog();
                 Toast.makeText(context, ConstantsMessages.SomethingWentWrong, Toast.LENGTH_SHORT).show();
+                Global.sout("news details api failure", t.getLocalizedMessage());
             }
         });
     }

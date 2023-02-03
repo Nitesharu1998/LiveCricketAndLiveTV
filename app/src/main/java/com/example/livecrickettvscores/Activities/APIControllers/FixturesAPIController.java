@@ -43,6 +43,7 @@ public class FixturesAPIController {
 
             @Override
             public void onFailure(Call<FixturesResponseModel> call, Throwable t) {
+                Global.sout("Fixtures api failure", t.getMessage());
                 global.hideProgressDialog();
                 Toast.makeText(context, ConstantsMessages.SomethingWentWrong, Toast.LENGTH_SHORT).show();
 

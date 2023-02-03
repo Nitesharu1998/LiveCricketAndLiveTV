@@ -1,18 +1,18 @@
 package com.example.livecrickettvscores.Activities;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.FrameLayout;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.FrameLayout;
-import android.widget.Toast;
-
 import com.example.livecrickettvscores.Activities.Fragments.FixtureFragment;
 import com.example.livecrickettvscores.Activities.Fragments.HomeFragment;
+import com.example.livecrickettvscores.Activities.Fragments.MoreFragment;
 import com.example.livecrickettvscores.Activities.Fragments.StatsFragment;
 import com.example.livecrickettvscores.Activities.Fragments.VideosFragment;
 import com.example.livecrickettvscores.R;
@@ -37,9 +37,9 @@ public class AppHomeActivity extends AppCompatActivity {
                 return true;
             }
         });
-        appbottomnav.setSelectedItemId(R.id.home);
+        appbottomnav.setSelectedItemId(R.id.stats);
         appbottomnav.performClick();
-        setUpBottomNavigation(R.id.home);
+        setUpBottomNavigation(R.id.stats);
     }
 
     private void setUpBottomNavigation(int itemId) {
@@ -57,7 +57,7 @@ public class AppHomeActivity extends AppCompatActivity {
                 refreshFragment(new StatsFragment());
                 break;
             case R.id.more:
-                //TODO for later
+                refreshFragment(new MoreFragment());
                 break;
 
         }

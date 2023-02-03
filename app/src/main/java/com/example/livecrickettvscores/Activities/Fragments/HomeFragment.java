@@ -148,7 +148,7 @@ public class HomeFragment extends Fragment {
 
     private void setLiveMatchesList(FixturesResponseModel fixturesResponseModel) {
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
-        manager.setOrientation(RecyclerView.VERTICAL);
+        manager.setOrientation(RecyclerView.HORIZONTAL);
         rcl_livematches.setLayoutManager(manager);
         FixturesAdapter adapter = new FixturesAdapter(context, Global.filterMatchesList(fixturesResponseModel));
         rcl_livematches.setAdapter(adapter);
