@@ -23,7 +23,6 @@ public class SplashActivity extends AppCompatActivity {
         Global.sout("Crickbuzz base>>>>>>>>>>> ", EncryptionUtils.Ecrp_Hex("https://unofficial-cricbuzz.p.rapidapi.com/"));
         Global.sout("Crickbuzz rapid api key>>>>>>>>>>> ", EncryptionUtils.Ecrp_Hex("9008284513msh0c98ccd4665e950p16b992jsnaa622c8d33b1"));
         Global.sout("Crickbuzz rapid host>>>>>>>>>>> ", EncryptionUtils.Ecrp_Hex("unofficial-cricbuzz.p.rapidapi.com"));
-
         Activity activity = SplashActivity.this;
 
 
@@ -35,10 +34,10 @@ public class SplashActivity extends AppCompatActivity {
                     try {
                         wait(3000);
                     } catch (InterruptedException e) {
+                        Global.sout("running thread interrupted", e.getLocalizedMessage());
                     } finally {
                         finish();
-                        Intent intent = new Intent(activity,
-                                AppHomeActivity.class);
+                        Intent intent = new Intent(activity, AppHomeActivity.class);
                         startActivity(intent);
                     }
                 }
@@ -47,4 +46,6 @@ public class SplashActivity extends AppCompatActivity {
         };
         mSplashThread.start();
     }
+
+
 }

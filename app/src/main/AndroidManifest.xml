@@ -19,13 +19,13 @@
         android:theme="@style/Theme.LiveCricketTVScores"
         tools:targetApi="31">
         <activity
-            android:name=".PredictionDetailsActivity"
+            android:name=".Activities.PredictionDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".PredictionsMainActivity"
+            android:name=".Activities.PredictionsMainActivity"
             android:exported="false" />
         <activity
-            android:name=".PlayerInformation"
+            android:name=".Activities.PlayerInformation"
             android:exported="false"
             android:label="@string/title_activity_player_information"
             android:theme="@style/Theme.LiveCricketTVScores.NoActionBar" />

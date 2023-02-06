@@ -93,4 +93,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
     //For getting Curl in Logcat
     implementation 'com.github.grapesnberries:curlloggerinterceptor:0.1'
+
+    //Jsoup dependency
+    implementation 'org.jsoup:jsoup:1.15.3'
 }

@@ -9,6 +9,9 @@ import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.PlayerC
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.PlayerDetailsResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.TrendingPlayersResponseModel;
 
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
 public class AppInterfaces {
     public interface LiveMatchInterface {
         void getLiveMatchesResponseModel(FixturesResponseModel fixturesResponseModel);
@@ -44,6 +47,10 @@ public class AppInterfaces {
 
     public interface PlayerCareerInformation {
         void getPlayerCareerInfo(PlayerCareerDetailsResponseModel playerCareerDetailsResponseModel);
+    }
+
+    public interface WebScrappingInterface {
+        void getScrapedDocument(Elements document);
     }
 
 

@@ -23,7 +23,11 @@ import com.example.livecrickettvscores.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
@@ -232,6 +236,16 @@ public class Global {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public static Elements getListOfPredictions() throws IOException {
+        Document document = Jsoup.connect(Constants.PREDICTIONS_URL).get();
+        return document.select("div.flex-container");
+    }
+
+    public static Elements getPredictionDetails(String predictionURL) throws IOException {
+        Document document = Jsoup.connect(predictionURL).get();
+        return document.select("div.flex-container");
     }
 
 
