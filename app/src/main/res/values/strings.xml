@@ -11,4 +11,5 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="pred_wizrddetails">Our \"Prediction Wizard\" will calculate, based on the current available betting odds, the implicit winning percentages for the possible outcomes in a match. This will be updated as soon as we fetch the odds from the betting sites and keep updating until the match is finished.</string>
 </resources>

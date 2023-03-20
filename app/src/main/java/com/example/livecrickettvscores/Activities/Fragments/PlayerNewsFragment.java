@@ -47,7 +47,8 @@ public class PlayerNewsFragment extends Fragment {
         controller.callPlayerNewsAPI(new AppInterfaces.NewsInterface() {
             @Override
             public void getNewsList(NewsListResponseModel newsListResponseModel) {
-                setUpNewsList(newsListResponseModel);
+                if (!Global.isArrayListNull(newsListResponseModel.getNewsList()))
+                    setUpNewsList(newsListResponseModel);
             }
         });
     }

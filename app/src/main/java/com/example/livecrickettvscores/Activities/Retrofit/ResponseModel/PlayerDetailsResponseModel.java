@@ -7,25 +7,25 @@ import java.util.ArrayList;
 public class PlayerDetailsResponseModel {
 
 
-    private String id;
-    private String bat;
-    private String bowl;
-    private String name;
-    private String nickName;
-    private String height;
-    private String role;
-    private String birthPlace;
-    private ArrayList<String> intlTeam;
-    private ArrayList<String> teams;
+    private String id = "";
+    private String bat = "";
+    private String bowl = "";
+    private String name = "";
+    private String nickName = "";
+    private String height = "";
+    private String role = "";
+    private String birthPlace = "";
+    private ArrayList<String> intlTeam = new ArrayList<>();
+    private ArrayList<String> teams = new ArrayList<>();
     @SerializedName("DoB")
-    private String doB;
-    private String image;
-    private String bio;
-    private CurrRankDTO currRank;
-    private AppIndexDTO appIndex;
+    private String doB = "";
+    private String image = "";
+    private String bio = "";
+    private CurrRankDTO currRank = new CurrRankDTO();
+    private AppIndexDTO appIndex = new AppIndexDTO();
     @SerializedName("DoBFormat")
-    private String doBFormat;
-    private String faceImageId;
+    private String doBFormat = "";
+    private String faceImageId = "";
 
     public String getId() {
         return id;
@@ -193,14 +193,14 @@ public class PlayerDetailsResponseModel {
         }
 
         public static class BatDTO {
-            private String testRank;
-            private String odiRank;
-            private String t20Rank;
-            private String testBestRank;
-            private String odiBestRank;
-            private String t20BestRank;
-            private String odiDiffRank;
-            private String t20DiffRank;
+            private String testRank = "";
+            private String odiRank = "";
+            private String t20Rank = "";
+            private String testBestRank = "";
+            private String odiBestRank = "";
+            private String t20BestRank = "";
+            private String odiDiffRank = "";
+            private String t20DiffRank = "";
 
             public String getTestRank() {
                 return testRank;
@@ -269,14 +269,14 @@ public class PlayerDetailsResponseModel {
 
         public static class BowlDTO {
 
-            private String testRank;
-            private String odiRank;
-            private String t20Rank;
-            private String testBestRank;
-            private String odiBestRank;
-            private String t20BestRank;
-            private String odiDiffRank;
-            private String t20DiffRank;
+            private String testRank = "";
+            private String odiRank = "";
+            private String t20Rank = "";
+            private String testBestRank = "";
+            private String odiBestRank = "";
+            private String t20BestRank = "";
+            private String odiDiffRank = "";
+            private String t20DiffRank = "";
 
             public String getTestRank() {
                 return testRank;
@@ -344,14 +344,14 @@ public class PlayerDetailsResponseModel {
         }
 
         public static class AllDTO {
-            private String testRank;
-            private String odiRank;
-            private String t20Rank;
-            private String testBestRank;
-            private String odiBestRank;
-            private String t20BestRank;
-            private String odiDiffRank;
-            private String t20DiffRank;
+            private String testRank = "";
+            private String odiRank = "";
+            private String t20Rank = "";
+            private String testBestRank = "";
+            private String odiBestRank = "";
+            private String t20BestRank = "";
+            private String odiDiffRank = "";
+            private String t20DiffRank = "";
 
             public String getTestRank() {
                 return testRank;
@@ -420,8 +420,8 @@ public class PlayerDetailsResponseModel {
     }
 
     public static class AppIndexDTO {
-        private String seoTitle;
-        private String webURL;
+        private String seoTitle = "";
+        private String webURL = "";
 
         public String getSeoTitle() {
             return seoTitle;

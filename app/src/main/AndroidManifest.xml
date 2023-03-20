@@ -16,8 +16,13 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@drawable/ic_applogo"
         android:supportsRtl="true"
+        android:hardwareAccelerated="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.LiveCricketTVScores"
         tools:targetApi="31">
+        <activity
+            android:name=".Activities.AboutUsActivity"
+            android:exported="false" />
         <activity
             android:name=".Activities.PredictionDetailsActivity"
             android:exported="false" />
@@ -27,8 +32,7 @@
         <activity
             android:name=".Activities.PlayerInformation"
             android:exported="false"
-            android:label="@string/title_activity_player_information"
-            android:theme="@style/Theme.LiveCricketTVScores.NoActionBar" />
+            android:label="@string/title_activity_player_information" />
         <activity
             android:name=".Activities.AppHomeActivity"
             android:exported="false"

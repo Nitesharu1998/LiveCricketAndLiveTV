@@ -40,7 +40,7 @@ public class CareerFragment extends Fragment {
         controller.callPlayerCareerDetailsAPI(playerID, new AppInterfaces.PlayerCareerInformation() {
             @Override
             public void getPlayerCareerInfo(PlayerCareerDetailsResponseModel playerCareerDetailsResponseModel) {
-                if (Global.isArrayListNull(playerCareerDetailsResponseModel.getValues()))
+                if (!Global.isArrayListNull(playerCareerDetailsResponseModel.getValues()))
                     setUpPlayerCareerList(playerCareerDetailsResponseModel);
             }
 

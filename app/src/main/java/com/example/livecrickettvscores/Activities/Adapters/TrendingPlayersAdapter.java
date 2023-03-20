@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.TrendingPlayersResponseModel;
-import com.example.livecrickettvscores.Activities.Utils.Global;
 import com.example.livecrickettvscores.databinding.SingleplayerLayoutBinding;
 
 import java.util.ArrayList;
@@ -38,10 +37,15 @@ public class TrendingPlayersAdapter extends RecyclerView.Adapter<TrendingPlayers
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.tv_playercount.setText("" + position + 1);
+        holder.tv_playercount.setText("" + Integer.valueOf(position + 1));
         holder.tv_playercountry.setText(playerDTO.get(position).getTeamName());
         holder.tv_playername.setText(playerDTO.get(position).getName());
-        Glide.with(context).load(Global.getTheImage(context, playerDTO.get(position).getId())).into(holder.iv_player);
+
+        Glide.with(context).load("https://www.cricbuzz.com/" + playerDTO.get(position).getFaceImageId())
+                .encodeQuality(70)
+
+                .into(holder.iv_player);
+
 
         holder.rl_player.setOnClickListener(v -> newsAdapterClick.getClickedNewsID(position));
     }

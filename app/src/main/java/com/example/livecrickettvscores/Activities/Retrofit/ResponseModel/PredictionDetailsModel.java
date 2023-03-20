@@ -7,6 +7,32 @@ public class PredictionDetailsModel {
     String predictionStatus;
     String matchPredictionURL;
     String team1Img, team2Img;
+    String matchStatus;
+    boolean isMatchWin,isDreamElevenPredicted;
+
+    public boolean isMatchWin() {
+        return isMatchWin;
+    }
+
+    public void setMatchWin(boolean matchWin) {
+        isMatchWin = matchWin;
+    }
+
+    public boolean isDreamElevenPredicted() {
+        return isDreamElevenPredicted;
+    }
+
+    public void setDreamElevenPredicted(boolean dreamElevenPredicted) {
+        isDreamElevenPredicted = dreamElevenPredicted;
+    }
+
+    public String getMatchStatus() {
+        return matchStatus;
+    }
+
+    public void setMatchStatus(String matchStatus) {
+        this.matchStatus = matchStatus;
+    }
 
     public String getTeam1Img() {
         return team1Img;

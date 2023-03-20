@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.livecrickettvscores.Activities.AboutUsActivity;
 import com.example.livecrickettvscores.Activities.PredictionsMainActivity;
 import com.example.livecrickettvscores.databinding.FragmentMoreBinding;
 
@@ -26,6 +27,12 @@ public class MoreFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(context, PredictionsMainActivity.class));
+            }
+        });
+        binding.tvAboutus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, AboutUsActivity.class));
             }
         });
 

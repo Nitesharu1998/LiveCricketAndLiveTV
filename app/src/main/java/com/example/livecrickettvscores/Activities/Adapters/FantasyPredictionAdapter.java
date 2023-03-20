@@ -3,6 +3,7 @@ package com.example.livecrickettvscores.Activities.Adapters;
 import android.app.Activity;
 import android.graphics.Color;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -53,13 +54,18 @@ public class FantasyPredictionAdapter extends RecyclerView.Adapter<FantasyPredic
         if (InputUtils.CheckEqualCaseSensitive(singleData.getPredictionStatus(), "Prediction posted!")) {
             holder.btnMatch.setBackgroundColor(Color.parseColor("#103CC5"));
             holder.btnMatch.setClickable(true);
+
+            holder.btnMatch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    newsAdapterClick.getClickedNewsID(position);
+                }
+            });
         } else {
             holder.btnMatch.setBackgroundColor(Color.parseColor("#A3A3A3"));
             holder.btnMatch.setClickable(false);
         }
-        holder.btnMatch.setOnClickListener(v -> {
-            newsAdapterClick.getClickedNewsID(position);
-        });
+
     }
 
     @Override

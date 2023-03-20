@@ -30,9 +30,9 @@
                     android:drawablePadding="@dimen/_12sdp"
                     android:fontFamily="@font/nunito_sans"
                     android:gravity="center"
-                    android:text="27th jan 2023|"
+                    android:text="27th jan 2023"
                     android:textColor="@color/dark_gray"
-                    app:drawableStartCompat="@drawable/ic_clock" />
+                     />
 
                 <TextView
                     android:id="@+id/tv_time"
@@ -198,6 +198,25 @@
 
 
                         <TextView
+                            android:id="@+id/tv_draw"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_team1name"
+                            android:fontFamily="@font/nunito_sans"
+                            android:text="65.8%"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/tv_drawprob"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:fontFamily="@font/nunito_sans"
+                            android:text="Draw" />
+
+
+                        <TextView
                             android:id="@+id/tv_team1prob"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -205,6 +224,7 @@
                             android:fontFamily="@font/nunito_sans"
                             android:text="65.8%"
                             android:textColor="@color/black" />
+
 
                         <TextView
                             android:id="@+id/tv_team2name"
@@ -238,7 +258,12 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="4"
                                 android:background="@color/purple_700" />
-
+                            <TextView
+                                android:id="@+id/tv_probdraw"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:background="@color/black" />
                             <TextView
                                 android:id="@+id/tv_prob2"
                                 android:layout_width="0dp"

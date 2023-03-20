@@ -50,6 +50,14 @@
         app:tabSelectedTextColor="@color/white"
         app:tabTextColor="@color/white"
         android:layout_marginBottom="@dimen/_12sdp"/>
+    <FrameLayout
+        android:id="@+id/fl_mainframe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/_4sdp"
+        android:layout_above="@+id/appbottomnav"
+        />
+
 
 
 </LinearLayout>

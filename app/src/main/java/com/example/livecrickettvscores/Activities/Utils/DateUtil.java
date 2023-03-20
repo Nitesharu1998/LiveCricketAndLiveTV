@@ -447,7 +447,7 @@ public class DateUtil {
     }
 
     public static long getMillisecondsFromDateString(String dob) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy HH:mm");
         Date date = null;
         try {
             date = sdf.parse(dob);

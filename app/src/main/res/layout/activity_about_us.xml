@@ -3,12 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical"
-    android:background="@color/light_gray"
-    tools:context=".Activities.Fragments.PlayerNewsFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    tools:context=".Activities.AboutUsActivity">
 
     <RelativeLayout
         android:id="@+id/rl_appbar"
@@ -22,7 +18,6 @@
             android:id="@+id/iv_back"
             android:layout_width="@dimen/_35sdp"
             android:layout_height="@dimen/_35sdp"
-            android:visibility="gone"
             android:src="@drawable/ic_back" />
 
 
@@ -34,18 +29,23 @@
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_toRightOf="@id/iv_back"
             android:fontFamily="@font/nunito_sans"
-            android:text="Player name"
-            android:visibility="gone"
+            android:text="About Us"
             android:textColor="@color/white"
-            android:textSize="@dimen/_14sdp"
-            android:textStyle="bold" />
+            android:textSize="@dimen/_12sdp" />
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcl_playernews"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/_12sdp"
-        />
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_8sdp"
+        android:layout_marginVertical="@dimen/_8sdp"
+        android:fontFamily="@font/nunito_sans"
+        android:lineSpacingExtra="1.5dp"
+        android:text="Live Cricket TV &amp; Scores works to provide you with blazing fast, reliable and accurate cricket updates of all live cricket news, international cricket matches as well as the cricket leagues from around the world (Indian Premier League, Big Bash League, Champions League T20 .. etc).\n\n
+
+Our team of cricket commentators, editors and technicians ensure you get the best possible updates about a live cricket match or breaking cricket news in a snap.
+\n\n
+Do write to us about your feedback on the application."
+        android:textColor="@color/black" />
 
 </LinearLayout>

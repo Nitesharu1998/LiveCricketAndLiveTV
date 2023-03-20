@@ -245,7 +245,7 @@ public class Global {
 
     public static Elements getPredictionDetails(String predictionURL) throws IOException {
         Document document = Jsoup.connect(predictionURL).get();
-        return document.select("div.flex-container");
+        return document.select("div.single-tip");
     }
 
 

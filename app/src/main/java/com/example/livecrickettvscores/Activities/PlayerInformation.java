@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,14 +26,15 @@ public class PlayerInformation extends AppCompatActivity {
     Activity activity;
     Context context;
     Integer playerID;
+    FrameLayout fl_mainframe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player_information);
         initView();
-        setUpTabs();
         initListener();
+        setUpTabs();
     }
 
     private void initListener() {
@@ -86,6 +88,7 @@ public class PlayerInformation extends AppCompatActivity {
         iv_back = findViewById(R.id.iv_back);
         tv_playername = findViewById(R.id.tv_playername);
         tabLayout = findViewById(R.id.tablayout);
+        fl_mainframe = findViewById(R.id.fl_mainframe);
         activity = PlayerInformation.this;
         context = getApplicationContext();
         playerID = getIntent().getIntExtra("playerID", 0);
@@ -98,5 +101,6 @@ public class PlayerInformation extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Bowling"));
         tabLayout.addTab(tabLayout.newTab().setText("Career"));
         tabLayout.addTab(tabLayout.newTab().setText("News"));
+
     }
 }
