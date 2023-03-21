@@ -85,7 +85,9 @@ public class StatsFragment extends Fragment {
             public void getClickedNewsID(Integer someID) {
                 if (someID != null) {
                     Intent intent = new Intent(context, PlayerInformation.class);
-                    intent.putExtra("playerURL", "https://www.cricbuzz.com/"+playerDTO.get(someID).getId());
+                    intent.putExtra("playerURL", "https://www.cricbuzz.com/" + playerDTO.get(someID).getId());
+                    intent.putExtra("playerName", playerDTO.get(someID).getName());
+                    intent.putExtra("playerImage", "https://www.cricbuzz.com" + playerDTO.get(someID).getFaceImageId());
                     startActivity(intent);
                 }
 

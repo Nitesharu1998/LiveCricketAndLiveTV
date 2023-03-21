@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/purple_700"
+        android:visibility="gone"
         android:paddingHorizontal="@dimen/_12sdp"
         android:paddingVertical="@dimen/_8sdp">
 

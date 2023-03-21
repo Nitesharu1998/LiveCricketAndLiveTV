@@ -9,33 +9,66 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.livecrickettvscores.Activities.APIControllers.StatsAPIController;
 import com.example.livecrickettvscores.Activities.Adapters.CareerDetailsAdapter;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
+import com.example.livecrickettvscores.Activities.Retrofit.AppAsyncTasks;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.PlayerCareerDetailsResponseModel;
 import com.example.livecrickettvscores.Activities.Utils.Global;
+import com.example.livecrickettvscores.Activities.Utils.StringUtils;
 import com.example.livecrickettvscores.databinding.FragmentCareerBinding;
 
-public class CareerFragment extends Fragment {
+import org.jsoup.select.Elements;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
+public class CareerFragment extends Fragment {
+    String[] matchNameArray = {"Test debut","Last Test","ODI debut","Last ODI","T20 debut","Last T20"};
     FragmentCareerBinding binding;
     Context context;
-    Integer playerID;
+    String playerURL;
 
-    public CareerFragment(Integer playerID) {
-        this.playerID = playerID;
+    public CareerFragment(String playerURL) {
+        this.playerURL = playerURL;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentCareerBinding.inflate(LayoutInflater.from(getContext()), container, false);
         context = binding.getRoot().getContext();
-        callCareerDetailsAPI();
+        AppAsyncTasks.CallClickedPlayerDetails callClickedPlayerDetails = new AppAsyncTasks.CallClickedPlayerDetails(playerURL, requireContext(), new AppInterfaces.WebScrappingInterface() {
+            @Override
+            public void getScrapedDocument(Elements document) {
+                setUpPlayerCareerList(getPlayerDetailsModel(document.select("div.cb-col.cb-col-67.cb-bg-white.cb-plyr-rt-col").select("div.cb-col.cb-col-100")));
+            }
+        });
+        callClickedPlayerDetails.execute();
 
         return binding.getRoot();
     }
 
-    private void callCareerDetailsAPI() {
+    private PlayerCareerDetailsResponseModel getPlayerDetailsModel(Elements careerElements) {
+        PlayerCareerDetailsResponseModel model = new PlayerCareerDetailsResponseModel();
+        PlayerCareerDetailsResponseModel.ValuesDTO responseModel;
+        ArrayList<PlayerCareerDetailsResponseModel.ValuesDTO> valuesDTOArrayList = new ArrayList<>();
+        Elements debutNames = careerElements.get(0).getElementsByClass("cb-text-link");
+        for (int i = 0; i < debutNames.size(); i++) {
+            responseModel = new PlayerCareerDetailsResponseModel.ValuesDTO();
+            responseModel.setLastPlayed(debutNames.get(i).text());
+            responseModel.setDebut(matchNameArray[i]);
+            if (i%2==0){
+                responseModel.setName(matchNameArray[i].replace("debut","Match"));
+            }else{
+                responseModel.setName("");
+            }
+            valuesDTOArrayList.add(responseModel);
+            model.setValues(valuesDTOArrayList);
+        }
+
+        return model;
+    }
+
+    /*private void callCareerDetailsAPI() {
         StatsAPIController controller = new StatsAPIController(context);
         controller.callPlayerCareerDetailsAPI(playerID, new AppInterfaces.PlayerCareerInformation() {
             @Override
@@ -45,7 +78,7 @@ public class CareerFragment extends Fragment {
             }
 
         });
-    }
+    }*/
 
     private void setUpPlayerCareerList(PlayerCareerDetailsResponseModel playerCareerDetailsResponseModel) {
         binding.rclCareerinfo.setLayoutManager(Global.getManagerWithOrientation(context, RecyclerView.VERTICAL));

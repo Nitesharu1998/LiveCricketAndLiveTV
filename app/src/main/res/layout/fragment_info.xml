@@ -18,35 +18,6 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:id="@+id/rl_appbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/purple_700"
-                android:paddingHorizontal="@dimen/_12sdp"
-                android:paddingVertical="@dimen/_8sdp">
-
-                <ImageView
-                    android:id="@+id/iv_back"
-                    android:layout_width="@dimen/_35sdp"
-                    android:layout_height="@dimen/_35sdp"
-                    android:src="@drawable/ic_back" />
-
-
-                <TextView
-                    android:id="@+id/tv_appbarplayername"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/_15sdp"
-                    android:layout_toRightOf="@id/iv_back"
-                    android:fontFamily="@font/nunito_sans"
-                    android:text="Player name"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_14sdp"
-                    android:textStyle="bold" />
-            </RelativeLayout>
-
-            <RelativeLayout
                 android:id="@+id/rl_profileview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -153,6 +124,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/txt_birthplace"
                             android:layout_marginTop="@dimen/_1sdp"
+                            android:visibility="gone"
                             android:background="@color/light_gray"
                             android:fontFamily="@font/nunito_sans"
                             android:paddingVertical="@dimen/_12sdp"
@@ -165,6 +137,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/txt_birthplace"
                             android:layout_marginTop="@dimen/_1sdp"
+                            android:visibility="gone"
                             android:layout_toRightOf="@+id/txt_nickname"
                             android:background="@color/light_gray"
                             android:fontFamily="@font/nunito_sans"
@@ -456,6 +429,7 @@
                                 android:background="@color/light_blue"
                                 android:fontFamily="@font/nunito_sans"
                                 android:gravity="center"
+                                android:visibility="gone"
                                 android:paddingVertical="@dimen/_8sdp"
                                 android:text="All round"
                                 android:textColor="@color/white" />
@@ -466,6 +440,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="@dimen/_2sdp"
                                 android:layout_weight="1"
+                                android:visibility="gone"
                                 android:background="@color/light_gray"
                                 android:fontFamily="@font/nunito_sans"
                                 android:gravity="center"
@@ -479,6 +454,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="@dimen/_2sdp"
                                 android:layout_weight="1"
+                                android:visibility="gone"
                                 android:background="@color/light_gray"
                                 android:fontFamily="@font/nunito_sans"
                                 android:gravity="center"
@@ -494,6 +470,7 @@
                                 android:background="@color/light_gray"
                                 android:fontFamily="@font/nunito_sans"
                                 android:gravity="center"
+                                android:visibility="gone"
                                 android:paddingVertical="@dimen/_8sdp"
                                 android:text="Best:02"
                                 android:textColor="@color/black" />

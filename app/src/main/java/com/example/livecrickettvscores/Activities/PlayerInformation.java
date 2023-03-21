@@ -15,7 +15,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.livecrickettvscores.Activities.Fragments.CareerFragment;
 import com.example.livecrickettvscores.Activities.Fragments.InfoFragment;
-import com.example.livecrickettvscores.Activities.Fragments.PlayerNewsFragment;
 import com.example.livecrickettvscores.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -25,7 +24,7 @@ public class PlayerInformation extends AppCompatActivity {
     TabLayout tabLayout;
     Activity activity;
     Context context;
-    Integer playerID;
+    String playerURL, playerName, playerImage;
     FrameLayout fl_mainframe;
 
     @Override
@@ -50,17 +49,18 @@ public class PlayerInformation extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (tab.getPosition()) {
                     case 0:
-                        refreshFragment(new InfoFragment(playerID));
+                        refreshFragment(new InfoFragment(playerURL, playerImage, playerName));
                         break;
                     case 1:
+                        refreshFragment(new CareerFragment(playerURL));
+
                         break;
                     case 2:
                         break;
                     case 3:
-                        refreshFragment(new CareerFragment(playerID));
                         break;
                     case 4:
-                        refreshFragment(new PlayerNewsFragment(playerID));
+                        /* refreshFragment(new PlayerNewsFragment(playerURL));*/
                         break;
                 }
             }
@@ -91,16 +91,19 @@ public class PlayerInformation extends AppCompatActivity {
         fl_mainframe = findViewById(R.id.fl_mainframe);
         activity = PlayerInformation.this;
         context = getApplicationContext();
-        playerID = getIntent().getIntExtra("playerID", 0);
+        playerURL = getIntent().getStringExtra("playerURL");
+        playerImage = getIntent().getStringExtra("playerImage");
+        playerName = getIntent().getStringExtra("playerName");
+
     }
 
     private void setUpTabs() {
         //TODO static part
         tabLayout.addTab(tabLayout.newTab().setText("Info"));
-        tabLayout.addTab(tabLayout.newTab().setText("Batting"));
-        tabLayout.addTab(tabLayout.newTab().setText("Bowling"));
+       /* tabLayout.addTab(tabLayout.newTab().setText("Batting"));
+        tabLayout.addTab(tabLayout.newTab().setText("Bowling"));*/
         tabLayout.addTab(tabLayout.newTab().setText("Career"));
-        tabLayout.addTab(tabLayout.newTab().setText("News"));
+        /*tabLayout.addTab(tabLayout.newTab().setText("News"));*/
 
     }
 }

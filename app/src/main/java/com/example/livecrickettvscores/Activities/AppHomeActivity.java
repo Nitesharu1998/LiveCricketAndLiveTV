@@ -50,9 +50,9 @@ public class AppHomeActivity extends AppCompatActivity {
             case R.id.home:
                 refreshFragment(new HomeFragment());
                 break;
-            case R.id.videos:
+           /* case R.id.videos:
                 refreshFragment(new VideosFragment());
-                break;
+                break;*/
             case R.id.stats:
                 refreshFragment(new StatsFragment());
                 break;
