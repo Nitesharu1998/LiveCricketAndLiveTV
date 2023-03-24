@@ -26,6 +26,7 @@ public class NewsListResponseModel {
 
 
         public static class StoryDTO {
+            private String imageURL;
             private int id;
             private String hline;
             private String intro;
@@ -115,6 +116,14 @@ public class NewsListResponseModel {
 
             public void setCoverImage(CoverImageDTO coverImage) {
                 this.coverImage = coverImage;
+            }
+
+            public String getImageURL() {
+                return imageURL;
+            }
+
+            public void setImageURL(String imageURL) {
+                this.imageURL = imageURL;
             }
 
             public static class CoverImageDTO {

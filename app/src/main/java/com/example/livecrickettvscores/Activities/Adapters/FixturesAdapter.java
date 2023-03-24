@@ -1,3 +1,4 @@
+/*
 package com.example.livecrickettvscores.Activities.Adapters;
 
 import android.content.Context;
@@ -110,3 +111,4 @@ public class FixturesAdapter extends RecyclerView.Adapter<FixturesAdapter.ViewHo
         }
     }
 }
+*/

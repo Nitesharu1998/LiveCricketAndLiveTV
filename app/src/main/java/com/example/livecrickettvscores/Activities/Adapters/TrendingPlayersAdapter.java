@@ -41,7 +41,7 @@ public class TrendingPlayersAdapter extends RecyclerView.Adapter<TrendingPlayers
         holder.tv_playercountry.setText(playerDTO.get(position).getTeamName());
         holder.tv_playername.setText(playerDTO.get(position).getName());
 
-        Glide.with(context).load("https://www.cricbuzz.com/" + playerDTO.get(position).getFaceImageId())
+        Glide.with(context).load("https://www.cricbuzz.com" + playerDTO.get(position).getFaceImageId())
                 .encodeQuality(70)
 
                 .into(holder.iv_player);

@@ -2,6 +2,7 @@ package com.example.livecrickettvscores.Activities.AppInterface;
 
 import android.media.Image;
 
+import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdsJsonPOJO;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.NewsDetailsResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.NewsListResponseModel;
@@ -51,6 +52,18 @@ public class AppInterfaces {
 
     public interface WebScrappingInterface {
         void getScrapedDocument(Elements document);
+    }
+
+    public interface AdDataInterface {
+        void getAdData(AdsJsonPOJO adsJsonPOJO);
+    }
+
+    public interface InterStitialADInterface {
+        void adLoadState(boolean isLoaded);
+    }
+
+    public interface AppOpenADInterface {
+        void appOpenAdState(boolean state_load);
     }
 
 

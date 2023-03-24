@@ -52,7 +52,7 @@
             android:id="@+id/tv_newstitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_newssource"
+            android:layout_below="@+id/tv_newsdate"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_12sdp"

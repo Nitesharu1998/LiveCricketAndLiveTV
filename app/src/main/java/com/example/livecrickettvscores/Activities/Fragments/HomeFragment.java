@@ -3,10 +3,12 @@ package com.example.livecrickettvscores.Activities.Fragments;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -17,8 +19,8 @@ import com.bumptech.glide.Glide;
 import com.example.livecrickettvscores.Activities.APIControllers.FixturesAPIController;
 import com.example.livecrickettvscores.Activities.APIControllers.HomeFragmentAPIController;
 import com.example.livecrickettvscores.Activities.Adapters.FeaturedNewsAdapter;
-import com.example.livecrickettvscores.Activities.Adapters.FixturesAdapter;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
+import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.NewsDetailsResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.NewsListResponseModel;
@@ -35,6 +37,7 @@ public class HomeFragment extends Fragment {
 
     RecyclerView rcl_featurednews, rcl_trendingnews, rcl_livematches;
     Context context;
+    LinearLayout native_ads;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,8 +52,9 @@ public class HomeFragment extends Fragment {
         rcl_livematches = view.findViewById(R.id.rcl_livematches);
         rcl_trendingnews = view.findViewById(R.id.rcl_trendingnews);
         rcl_featurednews = view.findViewById(R.id.rcl_featurednews);
+        native_ads = view.findViewById(R.id.native_ads);
         callLiveMatchesAPI();
-        callNewsAPI();
+        AdUtils.showNativeAd(requireActivity(), Constants.adsJsonPOJO.getParameters().getNative_id().getDefaultValue().getValue(), native_ads, false);
         Global.sout("Home fragment ", "home fragment initiated");
         return view;
     }
@@ -69,7 +73,7 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(context);
         manager.setOrientation(RecyclerView.VERTICAL);
         rcl_featurednews.setLayoutManager(manager);
-        FeaturedNewsAdapter featuredNewsAdapter = new FeaturedNewsAdapter(context, filterNewsList(newsListResponseModel.getNewsList()), new AppInterfaces.NewsAdapterClick() {
+        FeaturedNewsAdapter featuredNewsAdapter = new FeaturedNewsAdapter(0, context, filterNewsList(newsListResponseModel.getNewsList()), new AppInterfaces.NewsAdapterClick() {
             @Override
             public void getClickedNewsID(Integer newsID) {
                 callNewsDetailsAPI(newsID);
@@ -117,6 +121,21 @@ public class HomeFragment extends Fragment {
                     btms.dismiss();
                 }
             });
+
+            binding.ivShare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+                    /*This will be the actual content you wish you share.*/
+                    /*The type of the content is text, obviously.*/
+                    intent.setType("text/plain");
+                    /*Applying information Subject and Body.*/
+                    intent.putExtra(android.content.Intent.EXTRA_TEXT, newsDetailsResponseModel.getAppIndex().getWebURL());
+                    /*Fire!*/
+                    startActivity(Intent.createChooser(intent, newsDetailsResponseModel.getAppIndex().getWebURL()));
+
+                }
+            });
             binding.ivLink.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -141,17 +160,18 @@ public class HomeFragment extends Fragment {
         fixturesAPIController.callFixturesAPI(new AppInterfaces.FixturesInterface() {
             @Override
             public void getAllMatchesData(FixturesResponseModel fixturesResponseModel) {
-                setLiveMatchesList(fixturesResponseModel);
+                callNewsAPI();
+                //setLiveMatchesList(fixturesResponseModel);
             }
         });
     }
 
-    private void setLiveMatchesList(FixturesResponseModel fixturesResponseModel) {
+   /* private void setLiveMatchesList(FixturesResponseModel fixturesResponseModel) {
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(RecyclerView.HORIZONTAL);
         rcl_livematches.setLayoutManager(manager);
         FixturesAdapter adapter = new FixturesAdapter(context, Global.filterMatchesList(fixturesResponseModel));
         rcl_livematches.setAdapter(adapter);
-    }
+    }*/
 
 }

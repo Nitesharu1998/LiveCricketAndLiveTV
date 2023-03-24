@@ -36,7 +36,7 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/rl_appbar"
@@ -69,10 +69,10 @@
 
 
         <TextView
+            android:id="@+id/txtpopular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_15sdp"
-            android:layout_toRightOf="@id/iv_back"
             android:fontFamily="@font/nunito_sans"
             android:text="Popular Players"
             android:textColor="@color/gray"
@@ -83,8 +83,20 @@
             android:id="@+id/rcl_players"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/txtpopular"
+            android:layout_above="@+id/native_ads"
             tools:listitem="@layout/singleplayer_layout" />
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/native_ads"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"
+            android:layout_marginBottom="@dimen/_1sdp"
+            android:orientation="vertical" />
+
+
+    </RelativeLayout>
 
 </RelativeLayout>

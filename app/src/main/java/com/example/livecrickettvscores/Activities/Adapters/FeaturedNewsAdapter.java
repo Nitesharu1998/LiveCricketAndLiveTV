@@ -24,11 +24,13 @@ public class FeaturedNewsAdapter extends RecyclerView.Adapter<FeaturedNewsAdapte
     Context context;
     ArrayList<NewsListResponseModel.NewsListDTO> newsList;
     AppInterfaces.NewsAdapterClick newsAdapterClick;
+    int state;
 
-    public FeaturedNewsAdapter(Context context, ArrayList<NewsListResponseModel.NewsListDTO> newsList, AppInterfaces.NewsAdapterClick newsAdapterClick) {
+    public FeaturedNewsAdapter(int state, Context context, ArrayList<NewsListResponseModel.NewsListDTO> newsList, AppInterfaces.NewsAdapterClick newsAdapterClick) {
         this.context = context;
         this.newsList = newsList;
         this.newsAdapterClick = newsAdapterClick;
+        this.state = state;
     }
 
     @NonNull
@@ -43,15 +45,31 @@ public class FeaturedNewsAdapter extends RecyclerView.Adapter<FeaturedNewsAdapte
         NewsListResponseModel.NewsListDTO newsListDTO = newsList.get(position);
         holder.tv_newstitle.setText(newsListDTO.getStory().getHline());
         holder.tv_newssource.setText(newsListDTO.getStory().getSource());
-        holder.tv_newsdate.setText(DateUtil.getDateFromSeconds(Long.parseLong(newsListDTO.getStory().getPubTime())));
-        Glide.with(context).load(Global.getTheImage(context, String.valueOf(newsListDTO.getStory().getImageId()))).into(holder.iv_news);
 
-        holder.rl_matchview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                newsAdapterClick.getClickedNewsID(newsListDTO.getStory().getId());
-            }
-        });
+
+        if (state == 0) {
+            holder.tv_newssource.setVisibility(View.VISIBLE);
+
+            holder.rl_matchview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    newsAdapterClick.getClickedNewsID(newsListDTO.getStory().getId());
+                }
+            });
+            holder.tv_newsdate.setText(DateUtil.getDateFromSeconds(Long.parseLong(newsListDTO.getStory().getPubTime())));
+            Glide.with(context).load(Global.getTheImage(context, String.valueOf(newsListDTO.getStory().getImageId()))).into(holder.iv_news);
+        } else {
+            holder.tv_newssource.setVisibility(View.GONE);
+            holder.rl_matchview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    newsAdapterClick.getClickedNewsID(position);
+                }
+            });
+            holder.tv_newsdate.setText((newsListDTO.getStory().getPubTime()));
+            Glide.with(context).load(newsListDTO.getStory().getImageURL()).into(holder.iv_news);
+        }
+
 
     }
 

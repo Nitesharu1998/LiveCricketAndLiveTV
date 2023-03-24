@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import androidx.fragment.app.Fragment;
-
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.Utils.ConstantsMessages;
 import com.example.livecrickettvscores.Activities.Utils.Global;
@@ -127,8 +125,6 @@ public class AppAsyncTasks {
         }
     }
 
-
-
     public static class CallClickedPlayerDetails extends AsyncTask<String, Void, String> {
         Context context;
         AppInterfaces.WebScrappingInterface webScrappingInterface;
@@ -154,7 +150,82 @@ public class AppAsyncTasks {
             try {
 
                 Document document = Jsoup.connect(playerDetailsURL).get();
-                elements=document.getElementById("page-wrapper").getAllElements();
+                elements = document.getElementById("page-wrapper").getAllElements();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPreExecute() {
+            global.showProgressDialog(context, ConstantsMessages.PLEASE_WAIT);
+        }
+    }
+
+    public static class CallNewsDetails extends AsyncTask<String, Void, String> {
+        Context context;
+        AppInterfaces.WebScrappingInterface webScrappingInterface;
+        Global global;
+        Elements elements;
+        String playerDetailsURL;
+
+        public CallNewsDetails(String playerDetailsURL, Context context, AppInterfaces.WebScrappingInterface webScrappingInterface) {
+            this.context = context;
+            this.webScrappingInterface = webScrappingInterface;
+            this.global = new Global(context);
+            this.playerDetailsURL = playerDetailsURL;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            global.hideProgressDialog();
+            webScrappingInterface.getScrapedDocument(elements);
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                Document document = Jsoup.connect(playerDetailsURL).get();
+                elements = document.getElementById("page-wrapper").getAllElements();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPreExecute() {
+            global.showProgressDialog(context, ConstantsMessages.PLEASE_WAIT);
+        }
+    }
+
+
+    public static class CallFixturesDetails extends AsyncTask<String, Void, String> {
+        Context context;
+        AppInterfaces.WebScrappingInterface webScrappingInterface;
+        Global global;
+        Elements elements;
+        String UpcomingMatchesURL;
+
+        public CallFixturesDetails(String UpcomingMatchesURL, Context context, AppInterfaces.WebScrappingInterface webScrappingInterface) {
+            this.context = context;
+            this.webScrappingInterface = webScrappingInterface;
+            this.global = new Global(context);
+            this.UpcomingMatchesURL = UpcomingMatchesURL;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            global.hideProgressDialog();
+            webScrappingInterface.getScrapedDocument(elements);
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                Document document = Jsoup.connect(UpcomingMatchesURL).get();
+                elements = document.select("div.cb-col.cb-col-67.cb-scrd-lft-col");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

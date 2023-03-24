@@ -37,7 +37,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:nestedScrollingEnabled="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -136,25 +137,12 @@
                 android:id="@+id/tv_newsdetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
                 android:text=".afl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjf"
                 android:textColor="@color/gray" />
 
             <!--featured news recycler view for next read-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:text="Test next read"
-                android:textColor="@color/black" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcl_nextreadnews"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_featurednews"
-                android:layout_marginTop="@dimen/_4sdp" />
         </LinearLayout>
     </ScrollView>
 

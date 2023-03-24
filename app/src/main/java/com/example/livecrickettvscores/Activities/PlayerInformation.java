@@ -13,8 +13,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
+import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.Fragments.CareerFragment;
 import com.example.livecrickettvscores.Activities.Fragments.InfoFragment;
+import com.example.livecrickettvscores.Activities.Fragments.PlayerNewsFragment;
 import com.example.livecrickettvscores.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -37,10 +40,13 @@ public class PlayerInformation extends AppCompatActivity {
     }
 
     private void initListener() {
+
+
+
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                onBackPressed();
             }
         });
 
@@ -49,18 +55,37 @@ public class PlayerInformation extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (tab.getPosition()) {
                     case 0:
-                        refreshFragment(new InfoFragment(playerURL, playerImage, playerName));
+                        AdUtils.showInterstitialAd(PlayerInformation.this, new AppInterfaces.InterStitialADInterface() {
+                            @Override
+                            public void adLoadState(boolean isLoaded) {
+                                refreshFragment(new InfoFragment(playerURL, playerImage, playerName));
+                            }
+                        });
+
                         break;
                     case 1:
-                        refreshFragment(new CareerFragment(playerURL));
+                        AdUtils.showInterstitialAd(PlayerInformation.this, new AppInterfaces.InterStitialADInterface() {
+                            @Override
+                            public void adLoadState(boolean isLoaded) {
+                                refreshFragment(new CareerFragment(playerURL));
+
+                            }
+                        });
 
                         break;
                     case 2:
+                        AdUtils.showInterstitialAd(PlayerInformation.this, new AppInterfaces.InterStitialADInterface() {
+                            @Override
+                            public void adLoadState(boolean isLoaded) {
+                                refreshFragment(new PlayerNewsFragment(playerURL));
+                            }
+                        });
+
                         break;
                     case 3:
                         break;
                     case 4:
-                        /* refreshFragment(new PlayerNewsFragment(playerURL));*/
+
                         break;
                 }
             }
@@ -103,7 +128,7 @@ public class PlayerInformation extends AppCompatActivity {
        /* tabLayout.addTab(tabLayout.newTab().setText("Batting"));
         tabLayout.addTab(tabLayout.newTab().setText("Bowling"));*/
         tabLayout.addTab(tabLayout.newTab().setText("Career"));
-        /*tabLayout.addTab(tabLayout.newTab().setText("News"));*/
+        tabLayout.addTab(tabLayout.newTab().setText("News"));
 
     }
 }

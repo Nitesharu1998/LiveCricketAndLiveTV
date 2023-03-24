@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.livecrickettvscores.Activities.Adapters.FantasyPredictionAdapter;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
+import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.Retrofit.AppAsyncTasks;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.PredictionDetailsModel;
 import com.example.livecrickettvscores.Activities.Utils.DateUtil;
@@ -34,6 +35,11 @@ public class PredictionsMainActivity extends AppCompatActivity {
         callFantasyPredictionsData();
 
         initListeners();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     private void callFantasyPredictionsData() {
@@ -82,7 +88,13 @@ public class PredictionsMainActivity extends AppCompatActivity {
         FantasyPredictionAdapter fantasyPredictionAdapter = new FantasyPredictionAdapter(activity, predictionDetailsModels, new AppInterfaces.NewsAdapterClick() {
             @Override
             public void getClickedNewsID(Integer predictionPosition) {
-                startActivity(new Intent(activity, PredictionDetailsActivity.class).putExtra("predictionURL", predictionDetailsModels.get(predictionPosition).getMatchPredictionURL()));
+                AdUtils.showInterstitialAd(PredictionsMainActivity.this, new AppInterfaces.InterStitialADInterface() {
+                    @Override
+                    public void adLoadState(boolean isLoaded) {
+                        startActivity(new Intent(activity, PredictionDetailsActivity.class).putExtra("predictionURL", predictionDetailsModels.get(predictionPosition).getMatchPredictionURL()));
+
+                    }
+                });
             }
         }); binding.rclPredictionList.setAdapter(fantasyPredictionAdapter);
     }

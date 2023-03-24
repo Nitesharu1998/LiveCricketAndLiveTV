@@ -325,12 +325,18 @@
 
             </com.google.android.material.card.MaterialCardView>
 
+            <LinearLayout
+                android:id="@+id/native_ads"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/nav"
+                android:layout_marginBottom="@dimen/_1sdp"
+                android:gravity="bottom"
+                android:orientation="vertical"
+                android:visibility="gone" />
+
         </LinearLayout>
 
 
     </ScrollView>
-
-
-
-
 </LinearLayout>

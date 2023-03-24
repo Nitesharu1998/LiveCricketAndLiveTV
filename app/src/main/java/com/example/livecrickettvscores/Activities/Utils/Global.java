@@ -16,10 +16,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.LazyHeaders;
+import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdsJsonPOJO;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.NewsDetailsResponseModel;
 import com.example.livecrickettvscores.BuildConfig;
 import com.example.livecrickettvscores.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,6 +31,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
@@ -454,7 +458,7 @@ public class Global {
         }
     }
 
-    public static ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO> filterMatchesList(FixturesResponseModel fixturesResponseModel) {
+   /* public static ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO> filterMatchesList(FixturesResponseModel fixturesResponseModel) {
         ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO> matchesDTOArrayList = new ArrayList<>();
         try {
 
@@ -475,7 +479,7 @@ public class Global {
             Global.sout("Crash while processing the fixtures", e.getLocalizedMessage());
         }
         return matchesDTOArrayList;
-    }
+    }*/
 
     public static GlideUrl getTheImage(Context context, String imageID) {
         //TODO this method hits and return the imager response of api
@@ -508,6 +512,13 @@ public class Global {
         }
         Global.sout("news details string", newsDetails);
         return newsDetails.trim();
+    }
+
+    public static AdsJsonPOJO getAdsData(String json) {
+        Type familyType = new TypeToken<AdsJsonPOJO>() {
+        }.getType();
+        return new Gson().fromJson(json, familyType);
+
     }
 
 

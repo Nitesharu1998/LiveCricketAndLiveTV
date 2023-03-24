@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<defaults>
+  <entry>
+    <key>AppAdDataTesting</key>
+    <value>{"parameters":{"pageShow":{"defaultValue":{"value":"false"},"valueType":"BOOLEAN"},"banner_id":{"defaultValue":{"value":"ca-app-pub-3940256099942544/6300978111"},"valueType":"STRING"},"app_open_ad1":{"defaultValue":{"value":"ca-app-pub-3940256099942544/3419835294"},"valueType":"STRING"},"native_id":{"defaultValue":{"value":"ca-app-pub-3940256099942544/2247696110"},"valueType":"STRING"},"showAd":{"defaultValue":{"value":"true"},"valueType":"BOOLEAN"},"app_open_ad":{"defaultValue":{"hits":"2","value":"ca-app-pub-3940256099942544/3419835294"},"valueType":"STRING"},"rewarded_ad":{"defaultValue":{"value":"ca-app-pub-3940256099942544/5224354917"},"valueType":"STRING"},"full_id":{"defaultValue":{"value":"ca-app-pub-3940256099942544/1033173712"},"valueType":"STRING"},"native_h":{"defaultValue":{"value":"100"},"valueType":"NUMBER"}},"version":{"versionNumber":"0","updateTime":"2023-02-07T10:09:10.332135Z","updateUser":{"email":"idepriya9892@gmail.com"},"updateOrigin":"CONSOLE","updateType":"INCREMENTAL_UPDATE"}}</value>
+  </entry>
+  <entry>
+    <key>AppAdDataProduction</key>
+    <value>{}</value>
+  </entry>
+</defaults>

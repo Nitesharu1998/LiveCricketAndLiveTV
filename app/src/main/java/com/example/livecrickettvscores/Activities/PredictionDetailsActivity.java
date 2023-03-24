@@ -10,8 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
+import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.Retrofit.AppAsyncTasks;
 import com.example.livecrickettvscores.Activities.Utils.ConnectionDetector;
+import com.example.livecrickettvscores.Activities.Utils.Constants;
 import com.example.livecrickettvscores.Activities.Utils.Global;
 import com.example.livecrickettvscores.Activities.Utils.StringUtils;
 import com.example.livecrickettvscores.R;
@@ -31,6 +33,8 @@ public class PredictionDetailsActivity extends AppCompatActivity {
         binding = ActivityPredictionDetailsBinding.inflate(getLayoutInflater());
         activity = PredictionDetailsActivity.this;
         cd = new ConnectionDetector(activity);
+        AdUtils.showNativeAd(PredictionDetailsActivity.this, Constants.adsJsonPOJO.getParameters().getNative_id().getDefaultValue().getValue(),binding.nativeAds,false);
+
         getThePredictionDetails(getIntent().getStringExtra("predictionURL") != null ? getIntent().getStringExtra("predictionURL") : "");
         binding.tvInformation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +46,12 @@ public class PredictionDetailsActivity extends AppCompatActivity {
             }
         });
         setContentView(binding.getRoot());
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
     }
 
     private void getThePredictionDetails(String predictionURL) {

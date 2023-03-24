@@ -10,8 +10,11 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
+import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.Retrofit.AppAsyncTasks;
+import com.example.livecrickettvscores.Activities.Utils.Constants;
 import com.example.livecrickettvscores.Activities.Utils.Global;
+import com.example.livecrickettvscores.R;
 import com.example.livecrickettvscores.databinding.FragmentInfoBinding;
 
 import org.jsoup.select.Elements;
@@ -32,6 +35,10 @@ public class InfoFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentInfoBinding.inflate(LayoutInflater.from(getContext()), container, false);
         context = binding.getRoot().getContext();
+
+        AdUtils.showNativeAd(requireActivity(), Constants.adsJsonPOJO.getParameters().getNative_id().getDefaultValue().getValue(), binding.nativeAds,false);
+
+
         AppAsyncTasks.CallClickedPlayerDetails callClickedPlayerDetails = new AppAsyncTasks.CallClickedPlayerDetails(playerURL, requireActivity(), new AppInterfaces.WebScrappingInterface() {
             @Override
             public void getScrapedDocument(Elements document) {
@@ -45,22 +52,9 @@ public class InfoFragment extends Fragment {
         });
         callClickedPlayerDetails.execute();
 
-
-        /*  callPlayerInfoAPI();*/
         return binding.getRoot();
     }
 
-    /*private void callPlayerInfoAPI() {
-        StatsAPIController controller = new StatsAPIController(context);
-        controller.getSelectedPlayerInfo(playerID, new AppInterfaces.PlayerDetailsInterface() {
-            @Override
-            public void getPlayerDetails(PlayerDetailsResponseModel playerDetailsResponseModel) {
-                if (!Global.isClassNull(playerDetailsResponseModel)) {
-                    updateUI(playerDetailsResponseModel);
-                }
-            }
-        });
-    }*/
 
     private void updateUI(Elements document, Elements playerCareer, Elements playerBasicInfo) {
 

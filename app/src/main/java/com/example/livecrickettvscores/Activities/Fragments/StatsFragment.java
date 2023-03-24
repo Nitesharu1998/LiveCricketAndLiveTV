@@ -13,9 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.livecrickettvscores.Activities.APIControllers.StatsAPIController;
 import com.example.livecrickettvscores.Activities.Adapters.TrendingPlayersAdapter;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
+import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.PlayerInformation;
 import com.example.livecrickettvscores.Activities.Retrofit.AppAsyncTasks;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.TrendingPlayersResponseModel;
+import com.example.livecrickettvscores.Activities.Utils.Constants;
 import com.example.livecrickettvscores.Activities.Utils.Global;
 import com.example.livecrickettvscores.databinding.FragmentStatsBinding;
 
@@ -33,11 +35,13 @@ public class StatsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+
         FragmentStatsBinding fragmentStatsBinding = FragmentStatsBinding.inflate(LayoutInflater.from(getContext()), container, false);
         context = fragmentStatsBinding.getRoot().getContext();
         fragmentStatsBinding.rclPlayers.setHasFixedSize(true);
         //callPopularPlayerAPI(fragmentStatsBinding.rclPlayers);
-
+        AdUtils.showNativeAd(requireActivity(), Constants.adsJsonPOJO.getParameters().getNative_id().getDefaultValue().getValue(), fragmentStatsBinding.nativeAds, false);
         AppAsyncTasks.CallTrendingPlayers callTrendingPlayers = new AppAsyncTasks.CallTrendingPlayers("https://www.cricbuzz.com/cricket-stats/icc-rankings/men/batting", requireActivity(), new AppInterfaces.WebScrappingInterface() {
             @Override
             public void getScrapedDocument(Elements document) {
@@ -45,6 +49,13 @@ public class StatsFragment extends Fragment {
             }
         });
         callTrendingPlayers.execute();
+
+        fragmentStatsBinding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                requireActivity().finish();
+            }
+        });
 
         return fragmentStatsBinding.getRoot();
     }
@@ -65,6 +76,7 @@ public class StatsFragment extends Fragment {
         return playerList;
     }
 
+
     private void callPopularPlayerAPI(RecyclerView rclPlayers) {
         StatsAPIController statsAPIController = new StatsAPIController(context);
         statsAPIController.callTrendingPlayerAPI(new AppInterfaces.APIResponseInterface() {
@@ -84,11 +96,19 @@ public class StatsFragment extends Fragment {
             @Override
             public void getClickedNewsID(Integer someID) {
                 if (someID != null) {
-                    Intent intent = new Intent(context, PlayerInformation.class);
-                    intent.putExtra("playerURL", "https://www.cricbuzz.com/" + playerDTO.get(someID).getId());
-                    intent.putExtra("playerName", playerDTO.get(someID).getName());
-                    intent.putExtra("playerImage", "https://www.cricbuzz.com" + playerDTO.get(someID).getFaceImageId());
-                    startActivity(intent);
+
+                    AdUtils.showInterstitialAd(requireActivity(), new AppInterfaces.InterStitialADInterface() {
+                        @Override
+                        public void adLoadState(boolean isLoaded) {
+                            Intent intent = new Intent(context, PlayerInformation.class);
+                            intent.putExtra("playerURL", "https://www.cricbuzz.com/" + playerDTO.get(someID).getId());
+                            intent.putExtra("playerName", playerDTO.get(someID).getName());
+                            intent.putExtra("playerImage", "https://www.cricbuzz.com" + playerDTO.get(someID).getFaceImageId());
+                            startActivity(intent);
+                        }
+                    });
+
+
                 }
 
 

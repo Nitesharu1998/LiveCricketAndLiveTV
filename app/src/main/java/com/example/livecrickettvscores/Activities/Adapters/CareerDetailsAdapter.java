@@ -34,7 +34,7 @@ public class CareerDetailsAdapter extends RecyclerView.Adapter<CareerDetailsAdap
     public void onBindViewHolder(@NonNull CareerDetailsAdapter.ViewHolder holder, int position) {
         binding.tvCareertype.setText(values.get(position).getName());
         binding.tvBattingstyle.setText(values.get(position).getLastPlayed());
-        binding.tvCareertype.setText(values.get(position).getDebut());
+        binding.tvBirthplace.setText(values.get(position).getDebut());
     }
 
     @Override

@@ -11,16 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.livecrickettvscores.Activities.Adapters.CareerDetailsAdapter;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
+import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.Retrofit.AppAsyncTasks;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.PlayerCareerDetailsResponseModel;
+import com.example.livecrickettvscores.Activities.Utils.Constants;
 import com.example.livecrickettvscores.Activities.Utils.Global;
-import com.example.livecrickettvscores.Activities.Utils.StringUtils;
 import com.example.livecrickettvscores.databinding.FragmentCareerBinding;
+
 
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class CareerFragment extends Fragment {
     String[] matchNameArray = {"Test debut","Last Test","ODI debut","Last ODI","T20 debut","Last T20"};
@@ -36,6 +37,9 @@ public class CareerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentCareerBinding.inflate(LayoutInflater.from(getContext()), container, false);
         context = binding.getRoot().getContext();
+        AdUtils.showNativeAd(requireActivity(), Constants.adsJsonPOJO.getParameters().getNative_id().getDefaultValue().getValue(),binding.nativeAds,false);
+
+
         AppAsyncTasks.CallClickedPlayerDetails callClickedPlayerDetails = new AppAsyncTasks.CallClickedPlayerDetails(playerURL, requireContext(), new AppInterfaces.WebScrappingInterface() {
             @Override
             public void getScrapedDocument(Elements document) {
@@ -55,11 +59,13 @@ public class CareerFragment extends Fragment {
         for (int i = 0; i < debutNames.size(); i++) {
             responseModel = new PlayerCareerDetailsResponseModel.ValuesDTO();
             responseModel.setLastPlayed(debutNames.get(i).text());
-            responseModel.setDebut(matchNameArray[i]);
+            responseModel.setDebut(i < 6 ? matchNameArray[i] : "");
+            responseModel.setName(i < 6 ?matchNameArray[i].replace("debut","Match"):"Other");
+
             if (i%2==0){
-                responseModel.setName(matchNameArray[i].replace("debut","Match"));
+                responseModel.setDebut(i < 6 ? matchNameArray[i] : "");
             }else{
-                responseModel.setName("");
+                responseModel.setDebut("");
             }
             valuesDTOArrayList.add(responseModel);
             model.setValues(valuesDTOArrayList);
