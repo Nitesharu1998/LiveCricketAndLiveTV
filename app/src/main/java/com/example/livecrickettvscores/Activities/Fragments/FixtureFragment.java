@@ -2,6 +2,7 @@ package com.example.livecrickettvscores.Activities.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +10,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.livecrickettvscores.Activities.Adapters.FixturesAdapter;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.Retrofit.AppAsyncTasks;
@@ -23,6 +26,10 @@ import com.google.android.material.tabs.TabLayout;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class FixtureFragment extends Fragment {
     //    private ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO> matchesDTOArrayList;
@@ -82,7 +89,7 @@ public class FixtureFragment extends Fragment {
                         AdUtils.showInterstitialAd(requireActivity(), new AppInterfaces.InterStitialADInterface() {
                             @Override
                             public void adLoadState(boolean isLoaded) {
-                                callFixturesAPI(Constants.UPCOMINGMATCHES);
+                                callUpComingMatchesTask(Constants.UPCOMINGMATCHES);
                             }
                         });
 
@@ -112,6 +119,9 @@ public class FixtureFragment extends Fragment {
 
     }
 
+    private void callUpComingMatchesTask(String upcomingmatches) {
+    }
+
     private void callFixturesAPI(String matchtype) {
         /*FixturesAPIController fixtureapicontroller = new FixturesAPIController(context, matchtype);
         fixtureapicontroller.callFixturesAPI(new AppInterfaces.FixturesInterface() {
@@ -123,53 +133,80 @@ public class FixtureFragment extends Fragment {
 
         AppAsyncTasks.CallFixturesDetails callFixturesDetails = new AppAsyncTasks.CallFixturesDetails(matchtype, requireActivity(), new AppInterfaces.WebScrappingInterface() {
             @Override
-            public void getScrapedDocument(Elements document) {
-                //setUpMatchesListView();
-                getFixturesData(document.select("div.cb-col.cb-col-100.cb-rank-tabs").get(0).getElementsByClass("cb-col cb-col-100 cb-plyr-tbody cb-rank-hdr cb-lv-main"));
+            public void getScrapedDocument(Elements fetchedElements) {
+                getFixturesData(matchtype, fetchedElements);
+
             }
         });
         callFixturesDetails.execute();
 
     }
 
-    private FixturesResponseModel getFixturesData(Elements fixtureElements) {
-        Elements singleMatchElement;
+    private FixturesResponseModel getFixturesData(String matchtype, Elements fixtureElements) {
+        Elements singleMatchElement = new Elements();
         FixturesResponseModel fixturesResponseModel = new FixturesResponseModel();
-        FixturesResponseModel.MatchesDTO matchesDTO = new FixturesResponseModel.MatchesDTO();
+        FixturesResponseModel.MatchesDTO matchesDTO;
         ArrayList<FixturesResponseModel.MatchesDTO> matchList = new ArrayList<>();
-        for (int i = 0; i < fixtureElements.size(); i++) {
-            singleMatchElement = fixtureElements.get(i).getElementsByClass("cb-mtch-lst cb-col cb-col-100 cb-tms-itm");
-            for (int j = 0; j < singleMatchElement.size(); j++) {
-                matchesDTO.setMatchTitle(singleMatchElement.get(j).select("div.cb-col-100.cb-col.cb-schdl.cb-billing-plans-text").select("h3.cb-lv-scr-mtch-hdr.inline-block")
-                        .select("a").text());
+        for (int i = 0; i < fixtureElements.size(); i++) {//4
+            singleMatchElement.addAll(fixtureElements.get(i).select("div.ds-border-b.ds-border-line"));
 
-                matchesDTO.setMatchDate(singleMatchElement.get(j).select("div.cb-col-100.cb-col.cb-schdl.cb-billing-plans-text").select("h3.cb-lv-scr-mtch-hdr.inline-block")
-                        .select("div.text-gray").select("span.ng-if").text());
-                matchesDTO.setMatchTime(singleMatchElement.get(j).select("div.cb-col-100.cb-col.cb-schdl.cb-billing-plans-text").select("h3.cb-lv-scr-mtch-hdr.inline-block")
-                        .select("div.text-gray").select("span.ng-bind").text());
-                matchesDTO.setTeamOne(singleMatchElement.get(j).select("div.cb-col-100.cb-col.cb-schdl").select("a").select("div.cb-scr-wll-chvrn.cb-lv-scrs-col ")
-                        .select("div.cb-hmscg-bwl-txt.cb-ovr-flo ").select("div.cb-ovr-flo.cb-hmscg-tm-nm").text());
-                matchesDTO.setTeamTwo(singleMatchElement.get(j).select("div.cb-col-100.cb-col.cb-schdl").select("a").select("div.cb-scr-wll-chvrn.cb-lv-scrs-col ")
-                        .select("div.cb-hmscg-bat-txt ").select("div.cb-ovr-flo.cb-hmscg-tm-nm").text());
+            for (int j = 1; j < singleMatchElement.size(); j++) { //6
+                //Log.e( "getFixturesData: ", singleMatchElement.get(i).select("").toString());
+                matchesDTO=new FixturesResponseModel.MatchesDTO();
+                String matchTitle = singleMatchElement.get(j).select("div.ds-text-tight-xs.ds-truncate.ds-text-typo-mid3").select("a.ds-no-tap-higlight").text();
+                String matchStatus = singleMatchElement.get(j).select("div.ds-relative").
+                        select("p").select("span").text();
+                matchesDTO.setMatchTitle(matchTitle);
+                matchesDTO.setSession(matchStatus);
+
+                /*String matchType = singleMatchElement.get(j).select("div.cb-mtch-lst-info").text();*/ //TODO bhetla tr baghu
+
+               /* System.out.println("Title and time and location: " + matchTitle);
+                System.out.println("status: " + matchStatus);
+                System.out.println("---------------------------");*/
+                Elements teamScores = singleMatchElement.get(i).select("div.ci-team-score");
+                for (int k = 0; k < teamScores.size(); k++) {//2
+                    if (k == 0) {
+                        /*System.out.println("teamName1" + teamScores.get(k).select("p").text());
+                        System.out.println("score1" + teamScores.get(k).select("span").text());*/
+                        matchesDTO.setTeamOne(teamScores.get(k).select("p").text());
+                        matchesDTO.setTeamOneScore(teamScores.get(k).select("span").text());
+                    } else {
+                        matchesDTO.setTeamTwo(teamScores.get(k).select("p").text());
+                        matchesDTO.setTeamTwoScore(teamScores.get(k).select("span").text());
+                        /*System.out.println("teamName2" + teamScores.get(k).select("p").text());
+                        System.out.println("score2" + teamScores.get(k).select("span").text());*/
+                    }
+                }
+                matchList.add(matchesDTO);
+
             }
-        }
 
-
+        }Collections.reverse(matchList);
+        fixturesResponseModel.setMatches(matchList);
         return fixturesResponseModel;
     }
 
+    private String filterText(String teamTwoScore) {
+        String[] words = teamTwoScore.split("\\s+");
+        Set<String> uniqueWords = new LinkedHashSet<>(Arrays.asList(words));
+        String outputString = String.join(" ", uniqueWords);
 
-    /*private void setUpMatchesListView(ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO> matchesDTOArrayList) {
-        if (!Global.isArrayListNull(matchesDTOArrayList)) {
+        return outputString;
+    }
+
+
+    private void setUpMatchesListView(FixturesResponseModel fixturesResponseModel) {
+        if (!Global.isArrayListNull(fixturesResponseModel.getMatches())) {
             LinearLayoutManager manager = new LinearLayoutManager(context);
             manager.setOrientation(RecyclerView.VERTICAL);
             rcl_fixtures.setLayoutManager(manager);
             rcl_fixtures.removeAllViews();
-            FixturesAdapter fixturesAdapter = new FixturesAdapter(getContext(), matchesDTOArrayList);
+            FixturesAdapter fixturesAdapter = new FixturesAdapter(getContext(), fixturesResponseModel.getMatches());
             rcl_fixtures.setAdapter(fixturesAdapter);
 
         }
-    }*/
+    }
 
 }
 

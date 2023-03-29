@@ -49,9 +49,9 @@ public class AppHomeActivity extends AppCompatActivity {
                 return true;
             }
         });
-        appbottomnav.setSelectedItemId(R.id.home);
+        appbottomnav.setSelectedItemId(R.id.fixture);
         appbottomnav.performClick();
-        setUpBottomNavigation(R.id.home);
+        setUpBottomNavigation(R.id.fixture);
     }
 
     private void setUpBottomNavigation(int itemId) {

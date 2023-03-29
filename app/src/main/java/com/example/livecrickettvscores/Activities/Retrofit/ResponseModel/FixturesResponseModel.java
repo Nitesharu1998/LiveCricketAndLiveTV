@@ -15,7 +15,52 @@ public class FixturesResponseModel {
     ArrayList<MatchesDTO> matches;
 
     public static class MatchesDTO {
-        String matchTitle, matchDate, matchTime, teamOne, teamTwo, teamOneScore, teamTwoScore, session;
+        String matchTitle;
+        String matchDate;
+        String matchTime;
+        String teamOne;
+        String teamTwo;
+        String teamOneScore;
+        String teamTwoScore;
+        String session;
+        String teamOneUrl;
+        String teamTwoUrl;
+        String MatchType;
+        String matchLocation;
+
+        public String getTeamOneUrl() {
+            return teamOneUrl;
+        }
+
+        public void setTeamOneUrl(String teamOneUrl) {
+            this.teamOneUrl = teamOneUrl;
+        }
+
+        public String getTeamTwoUrl() {
+            return teamTwoUrl;
+        }
+
+        public void setTeamTwoUrl(String teamTwoUrl) {
+            this.teamTwoUrl = teamTwoUrl;
+        }
+
+        public String getMatchType() {
+            return MatchType;
+        }
+
+        public void setMatchType(String matchType) {
+            MatchType = matchType;
+        }
+
+
+        public String getMatchLocation() {
+            return matchLocation;
+        }
+
+        public void setMatchLocation(String matchLocation) {
+            this.matchLocation = matchLocation;
+        }
+
 
         public String getMatchTitle() {
             return matchTitle;

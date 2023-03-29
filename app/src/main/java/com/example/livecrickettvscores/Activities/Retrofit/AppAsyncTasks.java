@@ -207,6 +207,7 @@ public class AppAsyncTasks {
         Global global;
         Elements elements;
         String UpcomingMatchesURL;
+        Document document;
 
         public CallFixturesDetails(String UpcomingMatchesURL, Context context, AppInterfaces.WebScrappingInterface webScrappingInterface) {
             this.context = context;
@@ -225,7 +226,7 @@ public class AppAsyncTasks {
         protected String doInBackground(String... strings) {
             try {
                 Document document = Jsoup.connect(UpcomingMatchesURL).get();
-                elements = document.select("div.cb-col.cb-col-67.cb-scrd-lft-col");
+                elements = document.select("div[class=ds-mb-4]");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
