@@ -12,6 +12,11 @@
         android:checked="true"
         android:title="Home" />
     <item
+        android:id="@+id/videos"
+        android:icon="@drawable/ic_home"
+        android:checked="true"
+        android:title="Videos" />
+    <item
         android:id="@+id/stats"
         android:enabled="true"
         android:icon="@drawable/ic_stats"

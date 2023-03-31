@@ -6,8 +6,8 @@ import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdsJsonPOJO
 public class Constants {
 
     public static final String LIVEMATHCES = "https://www.espncricinfo.com/live-cricket-score";
-    public static final String UPCOMINGMATCHES = "https://www.cricbuzz.com/cricket-match/live-scores/upcoming-matches";
-    public static final String RECENTMATCHES = "https://www.cricbuzz.com/cricket-match/live-scores/recent-matches";
+    public static final String UPCOMINGMATCHES = "https://www.espncricinfo.com/live-cricket-match-schedule-fixtures";
+    public static final String RECENTMATCHES = "https://www.espncricinfo.com/live-cricket-match-results";
     public static final int NEWSCONSTANT = 1;
     public static final String PREDICTIONS_URL = "https://www.onlinecricketbetting.net/cricket-betting-tips/?utm_source=yt&utm_medium=vd&utm_campaign=youthiya";
     public static final String PREDICTIONDETAILSURL = "https://www.onlinecricketbetting.net/cricket-betting-tips/";
@@ -21,4 +21,5 @@ public class Constants {
     public static final String ADSJSON = "LIVECRICKET_ADS_JSON";
 
 
+    public static String YoutubeURL="https://www.youtube.com/@ICC/videos";
 }

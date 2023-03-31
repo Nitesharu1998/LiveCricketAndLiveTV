@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 import com.example.livecrickettvscores.Activities.Utils.ConnectionDetector;
-import com.example.livecrickettvscores.databinding.SinglelivematchlayoutBinding;
+import com.example.livecrickettvscores.databinding.MatchLayoutBinding;
 
 import java.util.ArrayList;
 
@@ -29,8 +29,8 @@ public class FixturesAdapter extends RecyclerView.Adapter<FixturesAdapter.ViewHo
     @NonNull
     @Override
     public FixturesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        SinglelivematchlayoutBinding singlelivematchlayoutBinding = SinglelivematchlayoutBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        return new ViewHolder(singlelivematchlayoutBinding);
+        MatchLayoutBinding matchLayoutBinding = MatchLayoutBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new ViewHolder(matchLayoutBinding);
     }
 
     @Override
@@ -53,19 +53,19 @@ public class FixturesAdapter extends RecyclerView.Adapter<FixturesAdapter.ViewHo
         ImageView iv_team2, iv_team1, iv_bgteam2, iv_bgteam1;
         TextView tv_matchstatus, tv_match2score, tv_match2team, tv_match1score, tv_match1team, tv_matchtitle;
 
-        public ViewHolder(SinglelivematchlayoutBinding singlelivematchlayoutBinding) {
-            super(singlelivematchlayoutBinding.getRoot());
-            iv_team2 = singlelivematchlayoutBinding.ivTeam2;
-            iv_team1 = singlelivematchlayoutBinding.ivTeam1;
-            iv_bgteam2 = singlelivematchlayoutBinding.ivBgteam2;
-            iv_bgteam1 = singlelivematchlayoutBinding.ivBgteam1;
+        public ViewHolder(MatchLayoutBinding matchLayoutBinding) {
+            super(matchLayoutBinding.getRoot());
+            iv_team2 = matchLayoutBinding.ivTeam2;
+            iv_team1 = matchLayoutBinding.ivTeam1;
+            iv_bgteam2 = matchLayoutBinding.ivBgteam2;
+            iv_bgteam1 = matchLayoutBinding.ivBgteam1;
 
-            tv_matchstatus = singlelivematchlayoutBinding.tvMatchstatus;
-            tv_match2score = singlelivematchlayoutBinding.tvMatch2score;
-            tv_match2team = singlelivematchlayoutBinding.tvMatch2team;
-            tv_match1score = singlelivematchlayoutBinding.tvMatch1score;
-            tv_match1team = singlelivematchlayoutBinding.tvMatch1team;
-            tv_matchtitle = singlelivematchlayoutBinding.tvMatchtitle;
+            tv_matchstatus = matchLayoutBinding.tvMatchstatus;
+            tv_match2score = matchLayoutBinding.tvMatch2score;
+            tv_match2team = matchLayoutBinding.tvMatch2team;
+            tv_match1score = matchLayoutBinding.tvMatch1score;
+            tv_match1team = matchLayoutBinding.tvMatch1team;
+            tv_matchtitle = matchLayoutBinding.tvMatchtitle;
 
         }
     }

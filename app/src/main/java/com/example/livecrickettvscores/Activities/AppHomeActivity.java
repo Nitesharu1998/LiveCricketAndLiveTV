@@ -15,9 +15,9 @@ import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.Fragments.FixtureFragment;
 import com.example.livecrickettvscores.Activities.Fragments.HomeFragment;
-import com.example.livecrickettvscores.Activities.Fragments.MoreFragment;
 import com.example.livecrickettvscores.Activities.Fragments.StatsFragment;
-import com.example.livecrickettvscores.Activities.Utils.Constants;
+import com.example.livecrickettvscores.Activities.Fragments.VideosFragment;
+import com.example.livecrickettvscores.Activities.videoplayer.fragment.YoutubeFragment;
 import com.example.livecrickettvscores.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -62,16 +62,23 @@ public class AppHomeActivity extends AppCompatActivity {
             case R.id.home:
                 refreshFragment(new HomeFragment());
                 break;
-           /* case R.id.videos:
-                refreshFragment(new VideosFragment());
-                break;*/
+            case R.id.videos:
+               
+                refreshFragment(new YoutubeFragment());
+                break;
             case R.id.stats:
                 refreshFragment(new StatsFragment());
                 break;
-            case R.id.more:
-                refreshFragment(new MoreFragment());
-                break;
+//            case R.id.more:
+//                refreshFragment(new MoreFragment());
+//                break;
         }
+    }
+
+    private void refreshFragment(YoutubeFragment youtubeFragment) {
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+        android.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fl_mainframe, youtubeFragment).commit();
     }
 
     @Override

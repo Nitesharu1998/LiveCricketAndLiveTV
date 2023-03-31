@@ -16,7 +16,6 @@ import java.io.IOException;
 
 public class AppAsyncTasks {
 
-
     public static class GetPredictionTask extends AsyncTask<String, Void, String> {
         Activity activity;
         AppInterfaces.WebScrappingInterface webScrappingInterface;
@@ -200,7 +199,6 @@ public class AppAsyncTasks {
         }
     }
 
-
     public static class CallFixturesDetails extends AsyncTask<String, Void, String> {
         Context context;
         AppInterfaces.WebScrappingInterface webScrappingInterface;
@@ -237,6 +235,46 @@ public class AppAsyncTasks {
         protected void onPreExecute() {
             global.showProgressDialog(context, ConstantsMessages.PLEASE_WAIT);
         }
+
+    }
+
+    public static class CallUpComingDetails extends AsyncTask<String, Void, String> {
+        Context context;
+        AppInterfaces.WebScrappingInterface webScrappingInterface;
+        Global global;
+        Elements elements;
+        String UpcomingMatchesURL;
+        Document document;
+
+        public CallUpComingDetails(String UpcomingMatchesURL, Context context, AppInterfaces.WebScrappingInterface webScrappingInterface) {
+            this.context = context;
+            this.webScrappingInterface = webScrappingInterface;
+            this.global = new Global(context);
+            this.UpcomingMatchesURL = UpcomingMatchesURL;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            global.hideProgressDialog();
+            webScrappingInterface.getScrapedDocument(elements);
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                Document document = Jsoup.connect(UpcomingMatchesURL).get();
+                elements = document.select("div[class=debug-fixture-date-item]");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPreExecute() {
+            global.showProgressDialog(context, ConstantsMessages.PLEASE_WAIT);
+        }
+
     }
 
 }

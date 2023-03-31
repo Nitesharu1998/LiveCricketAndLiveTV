@@ -18,6 +18,9 @@ android {
         resValue "string", "CRICKBUZZ_API_BASE", CRICKBUZZ_API_BASE
         resValue "string", "CRICKBUZZ_API_KEY", CRICKBUZZ_API_KEY
         resValue "string", "CRICKBUZZ_API_HOST", CRICKBUZZ_API_HOST
+        buildConfigField "String", "API_YOUTUBE_URL", "\"https://www.googleapis.com/youtube/v3/\""
+        buildConfigField "String", "YOTUBE_DATA_TOKEN", "\"AIzaSyBfHhqRqWmO5ziLfvApg2FM8ScCpQwSiCM\""
+
     }
     signingConfigs {
         release {
@@ -106,4 +109,7 @@ dependencies {
 
     //ADs
     implementation 'com.google.android.gms:play-services-ads-lite:21.5.0'
+
+    implementation files('libs/YouTubeAndroidPlayerApi.jar')
+    implementation 'androidx.media:media:1.6.0'
 }

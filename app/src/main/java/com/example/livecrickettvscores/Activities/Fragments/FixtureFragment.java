@@ -2,7 +2,6 @@ package com.example.livecrickettvscores.Activities.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.livecrickettvscores.Activities.Adapters.FixturesAdapter;
+import com.example.livecrickettvscores.Activities.Adapters.MatchMainAdapater;
+import com.example.livecrickettvscores.Activities.Adapters.UpcomingMatchAdapter;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.Retrofit.AppAsyncTasks;
@@ -120,21 +120,69 @@ public class FixtureFragment extends Fragment {
     }
 
     private void callUpComingMatchesTask(String upcomingmatches) {
+        AppAsyncTasks.CallUpComingDetails upComingDetails = new AppAsyncTasks.CallUpComingDetails(upcomingmatches, context, new AppInterfaces.WebScrappingInterface() {
+            @Override
+            public void getScrapedDocument(Elements upComingElements) {
+                System.out.println("upcoming doc size>>>>>>>>>>>>>>" + upComingElements.size());
+                setUpUpcomingMatches(getUpComingList(upComingElements));
+            }
+        });
+        upComingDetails.execute();
+    }
+
+    private void setUpUpcomingMatches(ArrayList<FixturesResponseModel> upComingList) {
+        if (!Global.isArrayListNull(upComingList)) {
+            LinearLayoutManager manager = new LinearLayoutManager(context);
+            manager.setOrientation(RecyclerView.VERTICAL);
+            rcl_fixtures.setLayoutManager(manager);
+            rcl_fixtures.removeAllViews();
+            UpcomingMatchAdapter adapter = new UpcomingMatchAdapter(getContext(), upComingList);
+            rcl_fixtures.setAdapter(adapter);
+
+           /* FixturesAdapter fixturesAdapter = new FixturesAdapter(getContext(), fixturesResponseModel);
+            rcl_fixtures.setAdapter(fixturesAdapter);*/
+
+        }
+    }
+
+    private ArrayList<FixturesResponseModel> getUpComingList(Elements upComingElements) {
+
+        ArrayList<FixturesResponseModel> fixturesResponseModelArrayList = new ArrayList<>();
+
+        FixturesResponseModel responseModel;
+
+        Elements singleMatchElement;
+        Elements singleTempMatchElement;
+        for (int i = 0; i < upComingElements.size(); i++) {//4
+
+            ArrayList<FixturesResponseModel.MatchesDTO> matchesDTOS = new ArrayList<>();
+            responseModel = new FixturesResponseModel();
+            responseModel.setMatchTitle(upComingElements.get(i).select("div.ds-flex.ds-justify-center.ds-mb-2").select("span").text());
+            singleMatchElement = upComingElements.get(i).select("div.ds-border.ds-border-line.ds-rounded-xl.ds-overflow-hidden").select("a").attr("class", "ds-no-tap-higlight");
+            singleTempMatchElement = upComingElements.get(i).select("div.ds-border.ds-border-line.ds-rounded-xl.ds-overflow-hidden").select("div[class=ds-w-2/5]");
+            for (int j = 0; j < singleMatchElement.size(); j++) {
+                FixturesResponseModel.MatchesDTO singleMatch = new FixturesResponseModel.MatchesDTO();
+                singleMatch.setMatchTime(singleMatchElement.get(j).select("span[class=ds-text-compact-xs ds-font-bold ds-block ds--mb-1 ds-mt-[3px] ds-text-typo]").text());
+                singleMatch.setTeamOne(singleMatchElement.get(j).select("div[class=ds-w-3/5]").select("p.ds-text-compact-s.ds-font-bold.ds--mb-1.ds-text-typo").text().replace("Int’l", ""));
+                singleMatch.setMatchLocation(singleMatchElement.get(j).select("div[class=ds-w-3/5]").select("span[class=ds-text-tight-xs ds-text-typo-mid3]").text());
+                singleMatch.setMatchType(singleMatchElement.get(j).select("div[class=ds-w-3/5]").select("p.ds-text-compact-s.ds-font-bold.ds--mb-1.ds-text-typo").select("span").text());
+                matchesDTOS.add(singleMatch);
+            }
+            responseModel.setMatches(matchesDTOS);
+
+            fixturesResponseModelArrayList.add(responseModel);
+        }
+
+        return fixturesResponseModelArrayList;
+
     }
 
     private void callFixturesAPI(String matchtype) {
-        /*FixturesAPIController fixtureapicontroller = new FixturesAPIController(context, matchtype);
-        fixtureapicontroller.callFixturesAPI(new AppInterfaces.FixturesInterface() {
-            @Override
-            public void getAllMatchesData(FixturesResponseModel fixturesResponseModel) {
-                setUpMatchesListView(Global.filterMatchesList(fixturesResponseModel));
-            }
-        });*/
 
         AppAsyncTasks.CallFixturesDetails callFixturesDetails = new AppAsyncTasks.CallFixturesDetails(matchtype, requireActivity(), new AppInterfaces.WebScrappingInterface() {
             @Override
             public void getScrapedDocument(Elements fetchedElements) {
-                getFixturesData(matchtype, fetchedElements);
+                setUpMatchesListView(getFixturesData(fetchedElements));
 
             }
         });
@@ -142,49 +190,50 @@ public class FixtureFragment extends Fragment {
 
     }
 
-    private FixturesResponseModel getFixturesData(String matchtype, Elements fixtureElements) {
-        Elements singleMatchElement = new Elements();
-        FixturesResponseModel fixturesResponseModel = new FixturesResponseModel();
-        FixturesResponseModel.MatchesDTO matchesDTO;
-        ArrayList<FixturesResponseModel.MatchesDTO> matchList = new ArrayList<>();
+   /* private LiveData<List<FixturesResponseModel>> getMatches() {
+        MutableLiveData<List<FixturesResponseModel>> mutableLiveData = new MutableLiveData<>();
+
+        mutableLiveData.postValue(getFixturesData());
+
+
+        return mutableLiveData;
+    }*/
+
+    private ArrayList<FixturesResponseModel> getFixturesData(Elements fixtureElements) {
+
+        ArrayList<FixturesResponseModel> fixturesResponseModelArrayList = new ArrayList<>();
         for (int i = 0; i < fixtureElements.size(); i++) {//4
+            Elements singleMatchElement = new Elements();
             singleMatchElement.addAll(fixtureElements.get(i).select("div.ds-border-b.ds-border-line"));
+            FixturesResponseModel fixturesResponseModel = new FixturesResponseModel();
+            ArrayList<FixturesResponseModel.MatchesDTO> matchList = new ArrayList<>();
+            fixturesResponseModel.setMatchTitle(filterText(fixtureElements.get(i).select("span.ds-text-title-xs.ds-font-bold").text()));
 
-            for (int j = 1; j < singleMatchElement.size(); j++) { //6
-                //Log.e( "getFixturesData: ", singleMatchElement.get(i).select("").toString());
-                matchesDTO=new FixturesResponseModel.MatchesDTO();
-                String matchTitle = singleMatchElement.get(j).select("div.ds-text-tight-xs.ds-truncate.ds-text-typo-mid3").select("a.ds-no-tap-higlight").text();
-                String matchStatus = singleMatchElement.get(j).select("div.ds-relative").
-                        select("p").select("span").text();
-                matchesDTO.setMatchTitle(matchTitle);
-                matchesDTO.setSession(matchStatus);
+            for (int j = 1; j < singleMatchElement.size(); j++) {//6
+                FixturesResponseModel.MatchesDTO matchesDTO = new FixturesResponseModel.MatchesDTO();
+                matchesDTO.setMatchTitle(singleMatchElement.get(j).select("div.ds-text-tight-xs.ds-truncate.ds-text-typo-mid3").select("a.ds-no-tap-higlight").text());
+                matchesDTO.setSession(singleMatchElement.get(j).select("div.ds-relative").select("p.ds-text-tight-s.ds-font-regular.ds-truncate.ds-text-typo").select("span").text());
 
-                /*String matchType = singleMatchElement.get(j).select("div.cb-mtch-lst-info").text();*/ //TODO bhetla tr baghu
-
-               /* System.out.println("Title and time and location: " + matchTitle);
-                System.out.println("status: " + matchStatus);
-                System.out.println("---------------------------");*/
-                Elements teamScores = singleMatchElement.get(i).select("div.ci-team-score");
+                Elements teamScores = singleMatchElement.get(j).select("div.ci-team-score");
                 for (int k = 0; k < teamScores.size(); k++) {//2
                     if (k == 0) {
-                        /*System.out.println("teamName1" + teamScores.get(k).select("p").text());
-                        System.out.println("score1" + teamScores.get(k).select("span").text());*/
                         matchesDTO.setTeamOne(teamScores.get(k).select("p").text());
-                        matchesDTO.setTeamOneScore(teamScores.get(k).select("span").text());
+                        matchesDTO.setTeamOneScore(teamScores.get(k).select("strong").text());
                     } else {
                         matchesDTO.setTeamTwo(teamScores.get(k).select("p").text());
-                        matchesDTO.setTeamTwoScore(teamScores.get(k).select("span").text());
-                        /*System.out.println("teamName2" + teamScores.get(k).select("p").text());
-                        System.out.println("score2" + teamScores.get(k).select("span").text());*/
+                        matchesDTO.setTeamTwoScore(teamScores.get(k).select("strong").text());
+
                     }
                 }
                 matchList.add(matchesDTO);
-
             }
+            //Collections.reverse(matchList);
+            fixturesResponseModel.setMatches(matchList);
+            fixturesResponseModelArrayList.add(fixturesResponseModel);
 
-        }Collections.reverse(matchList);
-        fixturesResponseModel.setMatches(matchList);
-        return fixturesResponseModel;
+        }
+
+        return fixturesResponseModelArrayList;
     }
 
     private String filterText(String teamTwoScore) {
@@ -196,14 +245,17 @@ public class FixtureFragment extends Fragment {
     }
 
 
-    private void setUpMatchesListView(FixturesResponseModel fixturesResponseModel) {
-        if (!Global.isArrayListNull(fixturesResponseModel.getMatches())) {
+    private void setUpMatchesListView(ArrayList<FixturesResponseModel> fixturesResponseModel) {
+        if (!Global.isArrayListNull(fixturesResponseModel)) {
             LinearLayoutManager manager = new LinearLayoutManager(context);
             manager.setOrientation(RecyclerView.VERTICAL);
             rcl_fixtures.setLayoutManager(manager);
             rcl_fixtures.removeAllViews();
-            FixturesAdapter fixturesAdapter = new FixturesAdapter(getContext(), fixturesResponseModel.getMatches());
-            rcl_fixtures.setAdapter(fixturesAdapter);
+            MatchMainAdapater adapter = new MatchMainAdapater(getContext(), fixturesResponseModel);
+            rcl_fixtures.setAdapter(adapter);
+
+           /* FixturesAdapter fixturesAdapter = new FixturesAdapter(getContext(), fixturesResponseModel);
+            rcl_fixtures.setAdapter(fixturesAdapter);*/
 
         }
     }

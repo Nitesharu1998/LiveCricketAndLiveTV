@@ -4,6 +4,16 @@ package com.example.livecrickettvscores.Activities.Retrofit.ResponseModel;
 import java.util.ArrayList;
 
 public class FixturesResponseModel {
+    public String getMatchTitle() {
+        return MatchTitle;
+    }
+
+    public void setMatchTitle(String matchTitle) {
+        MatchTitle = matchTitle;
+    }
+
+    String MatchTitle;
+    ArrayList<MatchesDTO> matches;
     public ArrayList<MatchesDTO> getMatches() {
         return matches;
     }
@@ -11,8 +21,6 @@ public class FixturesResponseModel {
     public void setMatches(ArrayList<MatchesDTO> matches) {
         this.matches = matches;
     }
-
-    ArrayList<MatchesDTO> matches;
 
     public static class MatchesDTO {
         String matchTitle;
