@@ -14,13 +14,13 @@
         android:text="Career type"
         android:textColor="@color/dark_gray" />
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:outlineSpotShadowColor="@color/dark_gray"
         android:layout_marginTop="@dimen/_4sdp"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-        android:outlineSpotShadowColor="@color/dark_gray"
-        app:cardCornerRadius="@dimen/_24sdp">
+        app:cardElevation="@dimen/_10sdp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -83,6 +83,6 @@
 
         </RelativeLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

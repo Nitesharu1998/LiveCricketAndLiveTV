@@ -38,11 +38,11 @@ public class YoutubePlayerActivity extends YouTubeBaseActivity implements YouTub
         Intent intent = getIntent();
         if (intent != null) {
             video = intent.getParcelableExtra("video");
-
+        }
         binding.youtubePlayer.initialize(BuildConfig.YOTUBE_DATA_TOKEN, this);
         binding.tvTitleVideo.setText(video.getSnippet().getTitle());
         binding.tvTitleArtist.setText(video.getSnippet().getChannelTitle());}
-    }
+
 
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {

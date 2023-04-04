@@ -210,39 +210,41 @@ public class AdUtils {
     public static void showInterstitialAd(Activity activity, AppInterfaces.InterStitialADInterface interStitialADInterface) {
         cd = new ConnectionDetector(activity);
         global = new Global(activity);
-        Constants.adsJsonPOJO.getParameters().getApp_open_ad().getDefaultValue().setHits("0");
+//        Constants.adsJsonPOJO.getParameters().getApp_open_ad().getDefaultValue().setHits("0");
         Constants.hitCounter = 0;
-        if (cd.isConnectingToInternet() && Constants.adsJsonPOJO.getParameters().getShowAd().getDefaultValue().getValue().equals("true")) {
-            if (Constants.hitCounter == Integer.parseInt(Constants.adsJsonPOJO.getParameters().getApp_open_ad().getDefaultValue().getHits())) {
-                Constants.hitCounter = 0;
-                global.showProgressDialog(activity, ConstantsMessages.PLEASE_WAIT);
-                AdRequest adRequest = new AdRequest.Builder().build();
-                InterstitialAd.load(activity, Constants.adsJsonPOJO.getParameters().getFull_id().getDefaultValue().getValue(), adRequest, new InterstitialAdLoadCallback() {
-                    @Override
-                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                        global.hideProgressDialog();
-
-                        mpreloadAds = interstitialAd;
-                        loadInterstitialAd(activity, interStitialADInterface);
-                    }
-
-                    @Override
-                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                        global.hideProgressDialog();
-                        interStitialADInterface.adLoadState(false);
-                    }
-                });
-            } else {
-                global.hideProgressDialog();
-                Constants.hitCounter++;
-                interStitialADInterface.adLoadState(false);
-
-            }
-
-        } else {
-            global.hideProgressDialog();
-            interStitialADInterface.adLoadState(false);
-        }
+        interStitialADInterface.adLoadState(false);
+//        if (cd.isConnectingToInternet() && Constants.adsJsonPOJO.getParameters().getShowAd().getDefaultValue().getValue().equals("true")) {
+//            if (Constants.hitCounter == Integer.parseInt(Constants.adsJsonPOJO.getParameters().getApp_open_ad().getDefaultValue().getHits())) {
+//                Constants.hitCounter = 0;
+//                global.showProgressDialog(activity, ConstantsMessages.PLEASE_WAIT);
+//                AdRequest adRequest = new AdRequest.Builder().build();
+//                InterstitialAd.load(activity, Constants.adsJsonPOJO.getParameters().getFull_id().getDefaultValue().getValue(), adRequest, new InterstitialAdLoadCallback() {
+//                    @Override
+//                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+//                        global.hideProgressDialog();
+//
+//                        mpreloadAds = interstitialAd;
+//                        loadInterstitialAd(activity, interStitialADInterface);
+//                    }
+//
+//                    @Override
+//                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+//                        global.hideProgressDialog();
+//                        interStitialADInterface.adLoadState(false);
+//                    }
+//                });
+//            } else {
+//                global.hideProgressDialog();
+//                Constants.hitCounter++;
+//                interStitialADInterface.adLoadState(false);
+//
+//            }
+//
+//        }
+//        else {
+//            global.hideProgressDialog();
+//            interStitialADInterface.adLoadState(false);
+//        }
     }
 
     public static void showAppOpenAd(Activity activity, AppInterfaces.AppOpenADInterface appOpenADInterface) {

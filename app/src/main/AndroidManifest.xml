@@ -8,6 +8,12 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+    <queries>
+        <intent>
+            <action android:name="com.google.android.youtube.api.service.START" />
+        </intent>
+    </queries>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -54,11 +60,21 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
+            android:name=".Activities.videoplayer.VideoPlayerActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+        <activity
             android:name=".Activities.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.Light.NoActionBar">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
             <meta-data
                 android:name="android.app.lib_name"
@@ -66,11 +82,6 @@
         </activity>
         <activity android:name="com.example.livecrickettvscores.Activities.videoplayer.YoutubePlayerActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
 
@@ -84,10 +95,16 @@
             android:enabled="true"
             android:exported="false"
             android:stopWithTask="false">
+
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+        <service android:name=".Activities.videoplayer.service.SongService" />
+
+        <service android:name=".Activities.videoplayer.service.NotificationServiceConnection" />
+
+        <receiver android:name=".Activities.videoplayer.service.NotificationService" />
     </application>
 
 </manifest>

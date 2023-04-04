@@ -3,7 +3,6 @@ package com.example.livecrickettvscores.Activities.Adapters;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,7 +26,7 @@ public class CareerDetailsAdapter extends RecyclerView.Adapter<CareerDetailsAdap
     @Override
     public CareerDetailsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         binding = SinglecareerlayoutBinding.inflate(LayoutInflater.from(context), parent, false);
-        return new ViewHolder(binding.getRoot());
+        return new ViewHolder(binding);
     }
 
     @Override
@@ -43,8 +42,8 @@ public class CareerDetailsAdapter extends RecyclerView.Adapter<CareerDetailsAdap
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ViewHolder(@NonNull LinearLayout binding) {
-            super(binding);
+        public ViewHolder(@NonNull SinglecareerlayoutBinding binding) {
+            super(binding.getRoot());
         }
     }
 }

@@ -24,6 +24,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.livecrickettvscores.Activities.AppHomeActivity;
+import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
+import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.videoplayer.data.model.ISongList;
 import com.example.livecrickettvscores.Activities.videoplayer.data.model.Song;
 import com.example.livecrickettvscores.Activities.videoplayer.data.model.youtube.IYoutubeVideo;
@@ -79,12 +82,12 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
         binding.back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                AdUtils.showInterstitialAd(VideoPlayerActivity.this, new AppInterfaces.InterStitialADInterface() {
-//                    @Override
-//                    public void adLoadState(boolean isLoaded) {
-                       // startActivity(new Intent(VideoPlayerActivity.this, DashboardActivity.class));
-//                    }
-//                });
+                AdUtils.showInterstitialAd(VideoPlayerActivity.this, new AppInterfaces.InterStitialADInterface() {
+                    @Override
+                    public void adLoadState(boolean isLoaded) {
+                        startActivity(new Intent(VideoPlayerActivity.this, AppHomeActivity.class));
+                    }
+                });
 
             }
         });

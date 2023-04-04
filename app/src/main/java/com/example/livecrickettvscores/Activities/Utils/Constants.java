@@ -10,7 +10,6 @@ public class Constants {
     public static final String RECENTMATCHES = "https://www.espncricinfo.com/live-cricket-match-results";
     public static final int NEWSCONSTANT = 1;
     public static final String PREDICTIONS_URL = "https://www.onlinecricketbetting.net/cricket-betting-tips/?utm_source=yt&utm_medium=vd&utm_campaign=youthiya";
-    public static final String PREDICTIONDETAILSURL = "https://www.onlinecricketbetting.net/cricket-betting-tips/";
     public static final String IS_FIRST_RUN = "ISFIRSTRUN";
     public static final String USERNAME = "USERNAME";
     public static final String USER_AVATAR = "USER_AVATAR";
@@ -21,5 +20,7 @@ public class Constants {
     public static final String ADSJSON = "LIVECRICKET_ADS_JSON";
 
 
-    public static String YoutubeURL="https://www.youtube.com/@ICC/videos";
+    public static String CricketNewsURL = "https://www.cricbuzz.com/cricket-news";
+    public static String CricketSpotlightNewsURL = "https://www.cricbuzz.com/cricket-news/editorial/spotlight";
+    public static String CricBuzzBaseURL = "https://www.cricbuzz.com";
 }

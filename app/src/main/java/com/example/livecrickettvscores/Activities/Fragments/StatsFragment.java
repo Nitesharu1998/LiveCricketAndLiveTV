@@ -41,7 +41,7 @@ public class StatsFragment extends Fragment {
         context = fragmentStatsBinding.getRoot().getContext();
         fragmentStatsBinding.rclPlayers.setHasFixedSize(true);
         //callPopularPlayerAPI(fragmentStatsBinding.rclPlayers);
-        AdUtils.showNativeAd(requireActivity(), Constants.adsJsonPOJO.getParameters().getNative_id().getDefaultValue().getValue(), fragmentStatsBinding.nativeAds, false);
+//        AdUtils.showNativeAd(requireActivity(), Constants.adsJsonPOJO.getParameters().getNative_id().getDefaultValue().getValue(), fragmentStatsBinding.nativeAds, false);
         AppAsyncTasks.CallTrendingPlayers callTrendingPlayers = new AppAsyncTasks.CallTrendingPlayers("https://www.cricbuzz.com/cricket-stats/icc-rankings/men/batting", requireActivity(), new AppInterfaces.WebScrappingInterface() {
             @Override
             public void getScrapedDocument(Elements document) {
@@ -101,7 +101,7 @@ public class StatsFragment extends Fragment {
                         @Override
                         public void adLoadState(boolean isLoaded) {
                             Intent intent = new Intent(context, PlayerInformation.class);
-                            intent.putExtra("playerURL", "https://www.cricbuzz.com/" + playerDTO.get(someID).getId());
+                            intent.putExtra("playerURL", Constants.CricBuzzBaseURL + playerDTO.get(someID).getId());
                             intent.putExtra("playerName", playerDTO.get(someID).getName());
                             intent.putExtra("playerImage", "https://www.cricbuzz.com" + playerDTO.get(someID).getFaceImageId());
                             startActivity(intent);

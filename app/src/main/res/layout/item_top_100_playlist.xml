@@ -44,7 +44,7 @@
         android:textStyle="bold"
         android:gravity="center"
         android:maxLines="1"
-        android:textColor="@color/purple_700"
+        android:textColor="@color/black"
         android:textSize="13sp"
         tools:text="" />
 

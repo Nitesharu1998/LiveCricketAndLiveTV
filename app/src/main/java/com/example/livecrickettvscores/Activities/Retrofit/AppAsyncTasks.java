@@ -277,4 +277,88 @@ public class AppAsyncTasks {
 
     }
 
+    public static class GetFeaturedNews extends AsyncTask<String, Void, String> {
+        Context context;
+        AppInterfaces.WebScrappingInterface webScrappingInterface;
+        Global global;
+        Elements elements;
+        String NewsURL;
+        Document document;
+
+        public GetFeaturedNews(String NewsURL, Context context, AppInterfaces.WebScrappingInterface webScrappingInterface) {
+            this.context = context;
+            this.webScrappingInterface = webScrappingInterface;
+            this.global = new Global(context);
+            this.NewsURL = NewsURL;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            global.hideProgressDialog();
+            webScrappingInterface.getScrapedDocument(elements);
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                Document document = Jsoup.connect(NewsURL).get();
+                elements = document.select("div[class=cb-col cb-col-100 cb-lst-itm cb-pos-rel cb-lst-itm-lg]");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPreExecute() {
+            global.showProgressDialog(context, ConstantsMessages.PLEASE_WAIT);
+        }
+
+    }
+
+
+    public static class GetNewsDetails extends AsyncTask<String, Void, String> {
+        Context context;
+        AppInterfaces.NewsWebScrappingInterface webScrappingInterface;
+        Global global;
+        Elements elements;
+        String NewsURL;
+        Document document;
+        int state = 0;
+
+        public GetNewsDetails(String NewsURL, Context context, AppInterfaces.NewsWebScrappingInterface webScrappingInterface) {
+            this.context = context;
+            this.webScrappingInterface = webScrappingInterface;
+            this.global = new Global(context);
+            this.NewsURL = NewsURL;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            global.hideProgressDialog();
+            webScrappingInterface.getScrapedDocument(elements, state);
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                Document document = Jsoup.connect(NewsURL).get();
+                elements = document.select("div[class=cb-col cb-col-67 cb-nws-dtl-lft-col]");
+                if (elements.isEmpty()){
+                    state =1;
+                    elements=document.select("div[class=cb-col cb-col-100 cb-bg-white]");
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPreExecute() {
+            global.showProgressDialog(context, ConstantsMessages.PLEASE_WAIT);
+        }
+
+    }
+
 }

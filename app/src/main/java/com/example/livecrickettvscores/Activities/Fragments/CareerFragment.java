@@ -18,7 +18,6 @@ import com.example.livecrickettvscores.Activities.Utils.Constants;
 import com.example.livecrickettvscores.Activities.Utils.Global;
 import com.example.livecrickettvscores.databinding.FragmentCareerBinding;
 
-
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
@@ -40,10 +39,13 @@ public class CareerFragment extends Fragment {
         AdUtils.showNativeAd(requireActivity(), Constants.adsJsonPOJO.getParameters().getNative_id().getDefaultValue().getValue(),binding.nativeAds,false);
 
 
-        AppAsyncTasks.CallClickedPlayerDetails callClickedPlayerDetails = new AppAsyncTasks.CallClickedPlayerDetails(playerURL, requireContext(), new AppInterfaces.WebScrappingInterface() {
+        AppAsyncTasks.CallClickedPlayerDetails callClickedPlayerDetails = new AppAsyncTasks.CallClickedPlayerDetails(playerURL, context, new AppInterfaces.WebScrappingInterface() {
             @Override
             public void getScrapedDocument(Elements document) {
-                setUpPlayerCareerList(getPlayerDetailsModel(document.select("div.cb-col.cb-col-67.cb-bg-white.cb-plyr-rt-col").select("div.cb-col.cb-col-100")));
+                if (!document.isEmpty()) {
+                    System.out.println("document is empty");
+                    setUpPlayerCareerList(getPlayerDetailsModel(document.select("div.cb-col.cb-col-67.cb-bg-white.cb-plyr-rt-col").select("div.cb-col.cb-col-100")));
+                }
             }
         });
         callClickedPlayerDetails.execute();

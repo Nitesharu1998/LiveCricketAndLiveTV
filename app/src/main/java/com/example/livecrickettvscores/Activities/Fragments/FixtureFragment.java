@@ -18,6 +18,7 @@ import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.Retrofit.AppAsyncTasks;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
+import com.example.livecrickettvscores.Activities.Utils.ConnectionDetector;
 import com.example.livecrickettvscores.Activities.Utils.Constants;
 import com.example.livecrickettvscores.Activities.Utils.Global;
 import com.example.livecrickettvscores.R;
@@ -27,17 +28,16 @@ import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class FixtureFragment extends Fragment {
-    //    private ArrayList<FixturesResponseModel.TypeMatchesDTO.SeriesAdWrapperDTO.SeriesMatchesDTO.MatchesDTO> matchesDTOArrayList;
     private RecyclerView rcl_fixtures;
     private ImageView iv_back;
     private TabLayout tablayout;
     Context context;
     LinearLayout native_ads;
+    ConnectionDetector cd;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,13 +55,17 @@ public class FixtureFragment extends Fragment {
         rcl_fixtures = view.findViewById(R.id.rcl_fixtures);
         native_ads = view.findViewById(R.id.native_ads);
         iv_back = view.findViewById(R.id.iv_back);
+        cd =new ConnectionDetector(context);
         AdUtils.showNativeAd(requireActivity(), Constants.adsJsonPOJO.getParameters().getNative_id().getDefaultValue().getValue(), native_ads, false);
 
 
         Global.sout("Fixture fragment ", "Fixture fragment initiated");
         setUptabs();
         initListeners();
-        callFixturesAPI(Constants.LIVEMATHCES);
+        if (cd.isConnectingToInternet()) {
+            callFixturesAPI(Constants.LIVEMATHCES);
+        }
+
         return view;
     }
 
@@ -80,7 +84,8 @@ public class FixtureFragment extends Fragment {
                         AdUtils.showInterstitialAd(requireActivity(), new AppInterfaces.InterStitialADInterface() {
                             @Override
                             public void adLoadState(boolean isLoaded) {
-                                callFixturesAPI(Constants.LIVEMATHCES);
+                                if (cd.isConnectingToInternet())
+                                    callFixturesAPI(Constants.LIVEMATHCES);
                             }
                         });
 
@@ -89,7 +94,8 @@ public class FixtureFragment extends Fragment {
                         AdUtils.showInterstitialAd(requireActivity(), new AppInterfaces.InterStitialADInterface() {
                             @Override
                             public void adLoadState(boolean isLoaded) {
-                                callUpComingMatchesTask(Constants.UPCOMINGMATCHES);
+                                if (cd.isConnectingToInternet())
+                                    callUpComingMatchesTask(Constants.UPCOMINGMATCHES);
                             }
                         });
 
@@ -98,7 +104,8 @@ public class FixtureFragment extends Fragment {
                         AdUtils.showInterstitialAd(requireActivity(), new AppInterfaces.InterStitialADInterface() {
                             @Override
                             public void adLoadState(boolean isLoaded) {
-                                callFixturesAPI(Constants.RECENTMATCHES);
+                                if (cd.isConnectingToInternet())
+                                    callFixturesAPI(Constants.RECENTMATCHES);
                             }
                         });
 

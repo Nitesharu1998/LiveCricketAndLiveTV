@@ -12,9 +12,9 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/more_item_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/purple_700"
         android:elevation="10dp"
-        android:background="@drawable/ic_bg"
         tools:targetApi="lollipop">
 
         <RelativeLayout
@@ -89,6 +89,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:visibility="gone"
             android:layout_marginTop="20dp"
             app:labelVisibilityMode="labeled"
             android:layout_marginBottom="20dp"

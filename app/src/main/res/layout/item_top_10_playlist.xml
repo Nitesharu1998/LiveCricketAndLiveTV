@@ -31,7 +31,7 @@
             android:scaleType="centerCrop"
             android:padding="10dp"
             android:src="@drawable/video_play_button"
-            app:tint="@color/white" />
+            app:tint="@color/black" />
 
     </androidx.cardview.widget.CardView>
 
@@ -45,7 +45,7 @@
         android:textStyle="bold"
         android:gravity="center"
         android:maxLines="1"
-        android:textColor="@color/purple_700"
+        android:textColor="@color/black"
         android:textSize="15sp"
         tools:text="" />
 

@@ -14,7 +14,6 @@ import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.Retrofit.AppAsyncTasks;
 import com.example.livecrickettvscores.Activities.Utils.Constants;
 import com.example.livecrickettvscores.Activities.Utils.Global;
-import com.example.livecrickettvscores.R;
 import com.example.livecrickettvscores.databinding.FragmentInfoBinding;
 
 import org.jsoup.select.Elements;
@@ -67,8 +66,8 @@ public class InfoFragment extends Fragment {
         binding.tvTestbowl.setText(playerOverall.get(3).ownText());
         binding.tvOdibowl.setText(playerOverall.get(4).ownText());
         binding.tvT20bowl.setText(playerOverall.get(5).ownText());
-        Global.sout("profleURL>>>>>>>>>>", "https://www.cricbuzz.com/"+document.select("div.cb-col.cb-col-20.cb-col-rt").select("img").attr("src"));
-        Glide.with(context).load("https://www.cricbuzz.com/"+document.select("div.cb-col.cb-col-20.cb-col-rt").select("img").attr("src")).into(binding.civPlayerimage);
+        Global.sout("profileURL>>>>>>>>>>", Constants.CricBuzzBaseURL + document.select("div.cb-col.cb-col-20.cb-col-rt").select("img").attr("src"));
+        Glide.with(context).load(Constants.CricBuzzBaseURL + document.select("div.cb-col.cb-col-20.cb-col-rt").select("img").attr("src")).into(binding.civPlayerimage);
 
 
         binding.tvPlayername.setText(playerName);

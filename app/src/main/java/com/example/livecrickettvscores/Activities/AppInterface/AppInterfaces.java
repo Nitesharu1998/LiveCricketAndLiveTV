@@ -53,6 +53,9 @@ public class AppInterfaces {
     public interface WebScrappingInterface {
         void getScrapedDocument(Elements document);
     }
+    public interface NewsWebScrappingInterface{
+        void getScrapedDocument(Elements document, int state);
+    }
 
     public interface AdDataInterface {
         void getAdData(AdsJsonPOJO adsJsonPOJO);

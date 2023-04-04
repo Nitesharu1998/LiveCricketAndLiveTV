@@ -1,5 +1,6 @@
 package com.example.livecrickettvscores.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -15,8 +16,10 @@ import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.Fragments.FixtureFragment;
 import com.example.livecrickettvscores.Activities.Fragments.HomeFragment;
+import com.example.livecrickettvscores.Activities.Fragments.MoreFragment;
 import com.example.livecrickettvscores.Activities.Fragments.StatsFragment;
 import com.example.livecrickettvscores.Activities.Fragments.VideosFragment;
+import com.example.livecrickettvscores.Activities.videoplayer.VideoPlayerActivity;
 import com.example.livecrickettvscores.Activities.videoplayer.fragment.YoutubeFragment;
 import com.example.livecrickettvscores.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -49,9 +52,9 @@ public class AppHomeActivity extends AppCompatActivity {
                 return true;
             }
         });
-        appbottomnav.setSelectedItemId(R.id.fixture);
+        appbottomnav.setSelectedItemId(R.id.home);
         appbottomnav.performClick();
-        setUpBottomNavigation(R.id.fixture);
+        setUpBottomNavigation(R.id.home);
     }
 
     private void setUpBottomNavigation(int itemId) {
@@ -63,15 +66,14 @@ public class AppHomeActivity extends AppCompatActivity {
                 refreshFragment(new HomeFragment());
                 break;
             case R.id.videos:
-               
-                refreshFragment(new YoutubeFragment());
+               startActivity(new Intent(AppHomeActivity.this, VideoPlayerActivity.class));
                 break;
             case R.id.stats:
                 refreshFragment(new StatsFragment());
                 break;
-//            case R.id.more:
-//                refreshFragment(new MoreFragment());
-//                break;
+            case R.id.more:
+                refreshFragment(new MoreFragment());
+                break;
         }
     }
 
