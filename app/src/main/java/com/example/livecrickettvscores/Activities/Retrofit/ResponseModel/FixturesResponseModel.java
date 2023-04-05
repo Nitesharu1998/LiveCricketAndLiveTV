@@ -35,6 +35,15 @@ public class FixturesResponseModel {
         String teamTwoUrl;
         String MatchType;
         String matchLocation;
+        String matchScoreLink;
+
+        public String getMatchScoreLink() {
+            return matchScoreLink;
+        }
+
+        public void setMatchScoreLink(String matchScoreLink) {
+            this.matchScoreLink = matchScoreLink;
+        }
 
         public String getTeamOneUrl() {
             return teamOneUrl;

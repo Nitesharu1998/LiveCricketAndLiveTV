@@ -218,9 +218,10 @@ public class FixtureFragment extends Fragment {
 
             for (int j = 1; j < singleMatchElement.size(); j++) {//6
                 FixturesResponseModel.MatchesDTO matchesDTO = new FixturesResponseModel.MatchesDTO();
-                matchesDTO.setMatchTitle(singleMatchElement.get(j).select("div.ds-text-tight-xs.ds-truncate.ds-text-typo-mid3").select("a.ds-no-tap-higlight").text());
-                matchesDTO.setSession(singleMatchElement.get(j).select("div.ds-relative").select("p.ds-text-tight-s.ds-font-regular.ds-truncate.ds-text-typo").select("span").text());
-
+                matchesDTO.setMatchTitle(singleMatchElement.get(j).select("div.ds-truncate").select("div.ds-text-tight-xs.ds-truncate.ds-text-typo-mid3").text());
+                matchesDTO.setSession(singleMatchElement.get(j)/*.select("div.ds-relative")*/.select("p.ds-text-tight-s.ds-font-regular.ds-truncate.ds-text-typo").select("span").text());
+                matchesDTO.setMatchScoreLink(singleMatchElement.get(j).select("div.ds-px-4.ds-py-3").select("a").attr("href"));
+                Global.sout("mathscorelink >>>>"+i+">>>>>>",singleMatchElement.get(j).select("div.ds-px-4.ds-py-3").select("a").attr("href") );
                 Elements teamScores = singleMatchElement.get(j).select("div.ci-team-score");
                 for (int k = 0; k < teamScores.size(); k++) {//2
                     if (k == 0) {
@@ -258,7 +259,12 @@ public class FixtureFragment extends Fragment {
             manager.setOrientation(RecyclerView.VERTICAL);
             rcl_fixtures.setLayoutManager(manager);
             rcl_fixtures.removeAllViews();
-            MatchMainAdapater adapter = new MatchMainAdapater(getContext(), fixturesResponseModel);
+            MatchMainAdapater adapter = new MatchMainAdapater(getContext(), fixturesResponseModel, new AppInterfaces.NewsAdapterClick() {
+                @Override
+                public void getClickedNewsID(Integer newsID) {
+
+                }
+            });
             rcl_fixtures.setAdapter(adapter);
 
            /* FixturesAdapter fixturesAdapter = new FixturesAdapter(getContext(), fixturesResponseModel);

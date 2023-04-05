@@ -44,7 +44,8 @@
         android:layout_marginStart="@dimen/_15sdp"
         android:fontFamily="@font/nunito_sans"
         android:visibility="gone"
-        android:text="Sep 07, 2022 - Match predictions"
+        android:text=""
+        android:layout_gravity="center_horizontal"
         android:textColor="@color/dark_gray"
         android:textSize="@dimen/_14sdp" />
 

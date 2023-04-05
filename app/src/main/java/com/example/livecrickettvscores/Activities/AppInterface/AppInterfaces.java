@@ -3,6 +3,7 @@ package com.example.livecrickettvscores.Activities.AppInterface;
 import android.media.Image;
 
 import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdsJsonPOJO;
+import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.CricketFlagsResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.NewsDetailsResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.NewsListResponseModel;
@@ -67,6 +68,9 @@ public class AppInterfaces {
 
     public interface AppOpenADInterface {
         void appOpenAdState(boolean state_load);
+    }
+    public interface FlagsInterface {
+        void setFlagsData(CricketFlagsResponseModel cricketFlagsResponseModel);
     }
 
 

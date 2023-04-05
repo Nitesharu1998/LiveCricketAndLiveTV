@@ -5,6 +5,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
+import com.example.livecrickettvscores.Activities.FirebaseADHandlers.FirebaseUtils;
+import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.CricketFlagsResponseModel;
+import com.example.livecrickettvscores.Activities.Utils.Constants;
 import com.example.livecrickettvscores.Activities.Utils.ConstantsMessages;
 import com.example.livecrickettvscores.Activities.Utils.Global;
 
@@ -316,7 +319,6 @@ public class AppAsyncTasks {
 
     }
 
-
     public static class GetNewsDetails extends AsyncTask<String, Void, String> {
         Context context;
         AppInterfaces.NewsWebScrappingInterface webScrappingInterface;
@@ -359,6 +361,30 @@ public class AppAsyncTasks {
             global.showProgressDialog(context, ConstantsMessages.PLEASE_WAIT);
         }
 
+    }
+
+    public static class GetFlags extends AsyncTask<Void, Void, Void> {
+        Context context;
+
+        public GetFlags(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            FirebaseUtils.getFlagsFromFirebase(context, new AppInterfaces.FlagsInterface() {
+                @Override
+                public void setFlagsData(CricketFlagsResponseModel cricketFlagsResponseModel) {
+                    Constants.cricketFlagsModel = cricketFlagsResponseModel;
+                }
+            });
+            return null;
+        }
     }
 
 }

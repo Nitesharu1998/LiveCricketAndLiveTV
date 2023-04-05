@@ -45,4 +45,12 @@ public class AppPreferencesManger {
         appPreference.putInt(Constants.USERNAME, avatarPos);
     }
 
+    public void setFlagsModel(String model) {
+        appPreference.putString(Constants.FlagsModel, model);
+    }
+
+    public String getFlagsModel() {
+        return appPreference.getString(Constants.FlagsModel, "");
+    }
+
 }

@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.livecrickettvscores.Activities.Adapters.FixturesAdapter;
-import com.example.livecrickettvscores.Activities.Adapters.MatchMainAdapater;
 import com.example.livecrickettvscores.Activities.Adapters.MatchNewsAdapter;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
@@ -299,7 +298,7 @@ public class HomeFragment extends Fragment {
     private ArrayList<FixturesResponseModel> getFixturesData(Elements fixtureElements) {
 
         ArrayList<FixturesResponseModel> fixturesResponseModelArrayList = new ArrayList<>();
-        for (int i = 0; i < 1; i++) {//4
+        for (int i = 0; i < fixtureElements.size(); i++) {//4
             Elements singleMatchElement = new Elements();
             singleMatchElement.addAll(fixtureElements.get(i).select("div.ds-border-b.ds-border-line"));
             FixturesResponseModel fixturesResponseModel = new FixturesResponseModel();
@@ -308,8 +307,8 @@ public class HomeFragment extends Fragment {
 
             for (int j = 1; j < singleMatchElement.size(); j++) {//6
                 FixturesResponseModel.MatchesDTO matchesDTO = new FixturesResponseModel.MatchesDTO();
-                matchesDTO.setMatchTitle(singleMatchElement.get(j).select("div.ds-text-tight-xs.ds-truncate.ds-text-typo-mid3").select("a.ds-no-tap-higlight").text());
-                matchesDTO.setSession(singleMatchElement.get(j).select("div.ds-relative").select("p.ds-text-tight-s.ds-font-regular.ds-truncate.ds-text-typo").select("span").text());
+                matchesDTO.setMatchTitle(singleMatchElement.get(j).select("div.ds-truncate").select("div.ds-text-tight-xs.ds-truncate.ds-text-typo-mid3").text());
+                matchesDTO.setSession(singleMatchElement.get(j)/*.select("div.ds-relative")*/.select("p.ds-text-tight-s.ds-font-regular.ds-truncate.ds-text-typo").select("span").text());
 
                 Elements teamScores = singleMatchElement.get(j).select("div.ci-team-score");
                 for (int k = 0; k < teamScores.size(); k++) {//2
@@ -340,7 +339,12 @@ public class HomeFragment extends Fragment {
             rcl_livematches.setLayoutManager(manager);
             rcl_livematches.removeAllViews();
 
-            FixturesAdapter fixturesAdapter = new FixturesAdapter(context, fixturesResponseModel.get(0).getMatches());
+            FixturesAdapter fixturesAdapter = new FixturesAdapter(context, fixturesResponseModel.get(0).getMatches(), new AppInterfaces.NewsAdapterClick() {
+                @Override
+                public void getClickedNewsID(Integer newsID) {
+                    //TODO to open the score of match
+                }
+            });
             rcl_livematches.setAdapter(fixturesAdapter);
 
 

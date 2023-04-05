@@ -16,11 +16,15 @@ import com.example.livecrickettvscores.Activities.Retrofit.AppAsyncTasks;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.PredictionDetailsModel;
 import com.example.livecrickettvscores.Activities.Utils.DateUtil;
 import com.example.livecrickettvscores.Activities.Utils.Global;
+import com.example.livecrickettvscores.Activities.videoplayer.utils.TimeUtils;
 import com.example.livecrickettvscores.databinding.ActivityPredictionsMainBinding;
 
 import org.jsoup.select.Elements;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class PredictionsMainActivity extends AppCompatActivity {
     ActivityPredictionsMainBinding binding;
@@ -33,6 +37,7 @@ public class PredictionsMainActivity extends AppCompatActivity {
         binding = ActivityPredictionsMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         activity = PredictionsMainActivity.this;
+
         callFantasyPredictionsData();
 
         initListeners();
@@ -48,12 +53,9 @@ public class PredictionsMainActivity extends AppCompatActivity {
             @Override
             public void getScrapedDocument(Elements multipleElements) {
                 if (multipleElements != null && multipleElements.size() > 0) {
-
                     predictionDetailsModels = new ArrayList<>();
-                    Elements filteredElements = multipleElements;
                     for (int i = 0; i < multipleElements.size(); i++) {
                         if (DateUtils.isToday(DateUtil.getMillisecondsFromDateString(multipleElements.get(i).select("div.match").select("div.time").attr("content")))) {
-                            /*filteredElements.add(filteredElements.get(i));*/
                             PredictionDetailsModel model = new PredictionDetailsModel();
                             model.setMatchLocation(multipleElements.get(i).select("div.match-meta").select("div.location").text());
                             model.setMatchName(multipleElements.get(i).select("div.league").text());
@@ -61,7 +63,7 @@ public class PredictionsMainActivity extends AppCompatActivity {
                             model.setTeam2(multipleElements.get(i).select("div.away-team").select("div.name").text());
                             model.setPredictionStatus(multipleElements.get(i).select("div.tip-status").text());
                             model.setMatchPredictionURL(multipleElements.get(i).select("a").attr("href"));
-                            model.setTime(multipleElements.get(i).select("div.time").text());
+                            model.setTime(multipleElements.get(i).select("div.time").attr("content"));
                             model.setMatchStatus(multipleElements.get(i).select("div.isfinished").text());
                             model.setTeam1Img(multipleElements.get(i).select("div.home-team").select("img").attr("src"));
                             model.setTeam2Img(multipleElements.get(i).select("div.away-team").select("img").attr("src"));

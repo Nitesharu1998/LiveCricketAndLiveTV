@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.LazyHeaders;
 import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdsJsonPOJO;
-import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
+import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.CricketFlagsResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.NewsDetailsResponseModel;
 import com.example.livecrickettvscores.BuildConfig;
 import com.example.livecrickettvscores.R;
@@ -521,5 +521,20 @@ public class Global {
 
     }
 
+    public static CricketFlagsResponseModel setUpFlagsModel(String json) {
+        Type flagsType = new TypeToken<CricketFlagsResponseModel>() {
+        }.getType();
+        return new Gson().fromJson(json, flagsType);
+    }
 
+    public static String getFlagOfCountry(String teamName) {
+        if (Constants.cricketFlagsModel.getFlagList().size() > 0) {
+            for (int i = 0; i < Constants.cricketFlagsModel.getFlagList().size(); i++) {
+                if (StringUtils.CheckEqualIgnoreCase(Constants.cricketFlagsModel.getFlagList().get(i).getFlagName(), teamName)) {
+                    return Constants.cricketFlagsModel.getFlagList().get(i).getFlagURL();
+                }
+            }
+        }
+        return "";
+    }
 }

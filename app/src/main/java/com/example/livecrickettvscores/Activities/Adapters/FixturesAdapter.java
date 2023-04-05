@@ -9,8 +9,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 import com.example.livecrickettvscores.Activities.Utils.ConnectionDetector;
+import com.example.livecrickettvscores.Activities.Utils.Global;
 import com.example.livecrickettvscores.databinding.MatchLayoutBinding;
 
 import java.util.ArrayList;
@@ -20,7 +23,7 @@ public class FixturesAdapter extends RecyclerView.Adapter<FixturesAdapter.ViewHo
     ArrayList<FixturesResponseModel.MatchesDTO> matchesDTOArrayList;
     ConnectionDetector cd;
 
-    public FixturesAdapter(Context context, ArrayList<FixturesResponseModel.MatchesDTO> matchesDTOArrayList) {
+    public FixturesAdapter(Context context, ArrayList<FixturesResponseModel.MatchesDTO> matchesDTOArrayList, AppInterfaces.NewsAdapterClick newsAdapterClick) {
         this.context = context;
         this.matchesDTOArrayList = matchesDTOArrayList;
         cd = new ConnectionDetector(context);
@@ -41,6 +44,8 @@ public class FixturesAdapter extends RecyclerView.Adapter<FixturesAdapter.ViewHo
         holder.tv_match2team.setText(matchesDTOArrayList.get(position).getTeamTwo());
         holder.tv_match1score.setText(matchesDTOArrayList.get(position).getTeamOneScore());
         holder.tv_match2score.setText(matchesDTOArrayList.get(position).getTeamTwoScore());
+        Glide.with(context).load(Global.getFlagOfCountry(matchesDTOArrayList.get(position).getTeamOne())).into(holder.iv_team1);
+        Glide.with(context).load(Global.getFlagOfCountry(matchesDTOArrayList.get(position).getTeamTwo())).into(holder.iv_team2);
     }
 
 

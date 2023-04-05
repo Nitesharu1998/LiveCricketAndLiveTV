@@ -9,7 +9,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
+import com.example.livecrickettvscores.Activities.Utils.Global;
 import com.example.livecrickettvscores.databinding.SingleUpcomingMatchBinding;
 
 import java.util.ArrayList;
@@ -35,6 +38,8 @@ public class SingleUpcomingDetailsAdapter extends RecyclerView.Adapter<SingleUpc
         holder.tv_intl.setText(fixturesResponseModel.get(position).getMatchType());
         holder.tv_match1team.setText(fixturesResponseModel.get(position).getTeamOne());
         holder.tv_matchtitle.setText(fixturesResponseModel.get(position).getMatchTitle());
+        Glide.with(context).load(Global.getFlagOfCountry(fixturesResponseModel.get(position).getTeamOne())).diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(holder.binding.ivTeam1);
+        Glide.with(context).load(Global.getFlagOfCountry(fixturesResponseModel.get(position).getTeamTwo())).diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(holder.binding.ivTeam2);
     }
 
     @Override
@@ -45,9 +50,11 @@ public class SingleUpcomingDetailsAdapter extends RecyclerView.Adapter<SingleUpc
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_team2, iv_team1;
         TextView tv_intl, tv_matchtitle, tv_match1team;
+        SingleUpcomingMatchBinding binding;
 
         public ViewHolder(@NonNull SingleUpcomingMatchBinding itemView) {
             super(itemView.getRoot());
+            binding = itemView;
             iv_team1=itemView.ivTeam1;
             iv_team2=itemView.ivTeam2;
             tv_intl=itemView.tvIntl;

@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 import com.example.livecrickettvscores.databinding.SinglelivematchlayoutBinding;
 
@@ -17,10 +18,12 @@ import java.util.ArrayList;
 public class MatchMainAdapater extends RecyclerView.Adapter<MatchMainAdapater.ViewHolder> {
     Context context;
     ArrayList<FixturesResponseModel> fixturesResponseModel;
+    AppInterfaces.NewsAdapterClick newsAdapterClick;
 
-    public MatchMainAdapater(Context context, ArrayList<FixturesResponseModel> fixturesResponseModel) {
+    public MatchMainAdapater(Context context, ArrayList<FixturesResponseModel> fixturesResponseModel, AppInterfaces.NewsAdapterClick newsAdapterClick) {
         this.context = context;
         this.fixturesResponseModel = fixturesResponseModel;
+        this.newsAdapterClick=newsAdapterClick;
     }
 
     @NonNull
@@ -38,7 +41,12 @@ public class MatchMainAdapater extends RecyclerView.Adapter<MatchMainAdapater.Vi
         manager.setOrientation(RecyclerView.VERTICAL);
         holder.rcl_matches.setLayoutManager(manager);
         holder.rcl_matches.removeAllViews();
-        FixturesAdapter adapter = new FixturesAdapter(context, fixturesResponseModel.get(position).getMatches());
+        FixturesAdapter adapter = new FixturesAdapter(context, fixturesResponseModel.get(position).getMatches(), new AppInterfaces.NewsAdapterClick() {
+            @Override
+            public void getClickedNewsID(Integer newsID) {
+
+            }
+        });
         holder.rcl_matches.setAdapter(adapter);
     }
 
