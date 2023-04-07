@@ -20,6 +20,8 @@ import com.example.livecrickettvscores.Activities.Adapters.FixturesAdapter;
 import com.example.livecrickettvscores.Activities.Adapters.MatchNewsAdapter;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
+import com.example.livecrickettvscores.Activities.FullScoreBoardActivity;
+import com.example.livecrickettvscores.Activities.LiveMatchScoreBoardActivity;
 import com.example.livecrickettvscores.Activities.Retrofit.AppAsyncTasks;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.LatestNewsModel;
@@ -309,7 +311,7 @@ public class HomeFragment extends Fragment {
                 FixturesResponseModel.MatchesDTO matchesDTO = new FixturesResponseModel.MatchesDTO();
                 matchesDTO.setMatchTitle(singleMatchElement.get(j).select("div.ds-truncate").select("div.ds-text-tight-xs.ds-truncate.ds-text-typo-mid3").text());
                 matchesDTO.setSession(singleMatchElement.get(j)/*.select("div.ds-relative")*/.select("p.ds-text-tight-s.ds-font-regular.ds-truncate.ds-text-typo").select("span").text());
-
+                matchesDTO.setMatchScoreLink(singleMatchElement.get(j).select("div.ds-px-4.ds-py-3").select("a").attr("href"));
                 Elements teamScores = singleMatchElement.get(j).select("div.ci-team-score");
                 for (int k = 0; k < teamScores.size(); k++) {//2
                     if (k == 0) {
@@ -323,7 +325,6 @@ public class HomeFragment extends Fragment {
                 }
                 matchList.add(matchesDTO);
             }
-            //Collections.reverse(matchList);
             fixturesResponseModel.setMatches(matchList);
             fixturesResponseModelArrayList.add(fixturesResponseModel);
 
@@ -343,6 +344,16 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void getClickedNewsID(Integer newsID) {
                     //TODO to open the score of match
+                    Constants.matchDTO = fixturesResponseModel.get(0).getMatches().get(newsID);
+                    if (!fixturesResponseModel.get(0).getMatches().get(newsID).getSession().contains("won")) {
+                        context.startActivity(new Intent(context, LiveMatchScoreBoardActivity.class));
+                    } else if (Constants.matchDTO.getMatchScoreLink().contains("live-cricket-score")) {
+                        Constants.matchDTO.getMatchScoreLink().replace("live-cricket-score", "full-scorecard");
+                        context.startActivity(new Intent(context, FullScoreBoardActivity.class));
+                    } else if (Constants.matchDTO.getMatchScoreLink().contains("match-preview")) {
+                        Constants.matchDTO.getMatchScoreLink().replace("match-preview", "full-scorecard");
+                        context.startActivity(new Intent(context, FullScoreBoardActivity.class));
+                    }
                 }
             });
             rcl_livematches.setAdapter(fixturesAdapter);

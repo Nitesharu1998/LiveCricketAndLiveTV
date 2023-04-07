@@ -363,6 +363,99 @@ public class AppAsyncTasks {
 
     }
 
+
+    public static class GetLiveScoreBoard extends AsyncTask<String, Void, String> {
+        Context context;
+        AppInterfaces.WebScrappingInterface webScrappingInterface;
+        Global global;
+        Elements elements;
+        String NewsURL;
+        Elements ElementsTest = new Elements();
+        boolean showLoader;
+
+        public GetLiveScoreBoard(boolean showLoader, String NewsURL, Context context, AppInterfaces.WebScrappingInterface webScrappingInterface) {
+            this.context = context;
+            this.webScrappingInterface = webScrappingInterface;
+            this.global = new Global(context);
+            this.NewsURL = NewsURL;
+            this.showLoader = showLoader;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            if (showLoader) {
+                global.hideProgressDialog();
+            }
+            webScrappingInterface.getScrapedDocument(ElementsTest);
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                Document document = Jsoup.connect(NewsURL).get();
+                elements = document.select("div.ds-grow").select("div.ds-w-full.ds-bg-fill-content-prime.ds-overflow-hidden.ds-rounded-xl.ds-border.ds-border-line");
+                ElementsTest.addAll(elements);
+                elements = document.select("div.ds-grow").select("div[class=ds-mt-3]");
+                ElementsTest.addAll(elements);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPreExecute() {
+            if (showLoader)
+                global.showProgressDialog(context, ConstantsMessages.PLEASE_WAIT);
+        }
+
+    }
+
+    public static class GetFinishedScoreBoard extends AsyncTask<String, Void, String> {
+        Context context;
+        AppInterfaces.WebScrappingInterface webScrappingInterface;
+        Global global;
+        Elements elements;
+        String NewsURL;
+        Elements ElementsTest = new Elements();
+        boolean showLoader;
+
+        public GetFinishedScoreBoard(boolean showLoader, String NewsURL, Context context, AppInterfaces.WebScrappingInterface webScrappingInterface) {
+            this.context = context;
+            this.webScrappingInterface = webScrappingInterface;
+            this.global = new Global(context);
+            this.NewsURL = NewsURL;
+            this.showLoader = showLoader;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            if (showLoader) {
+                global.hideProgressDialog();
+            }
+            webScrappingInterface.getScrapedDocument(ElementsTest);
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                Document document = Jsoup.connect(NewsURL).get();
+                ElementsTest.addAll(document.select("div[class=ds-rounded-lg ds-mt-2]"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPreExecute() {
+            if (showLoader)
+                global.showProgressDialog(context, ConstantsMessages.PLEASE_WAIT);
+        }
+
+    }
+
+
     public static class GetFlags extends AsyncTask<Void, Void, Void> {
         Context context;
 

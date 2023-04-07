@@ -1,16 +1,21 @@
 package com.example.livecrickettvscores.Activities.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
+import com.example.livecrickettvscores.Activities.FullScoreBoardActivity;
+import com.example.livecrickettvscores.Activities.LiveMatchScoreBoardActivity;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
+import com.example.livecrickettvscores.Activities.Utils.Constants;
 import com.example.livecrickettvscores.databinding.SinglelivematchlayoutBinding;
 
 import java.util.ArrayList;
@@ -44,6 +49,20 @@ public class MatchMainAdapater extends RecyclerView.Adapter<MatchMainAdapater.Vi
         FixturesAdapter adapter = new FixturesAdapter(context, fixturesResponseModel.get(position).getMatches(), new AppInterfaces.NewsAdapterClick() {
             @Override
             public void getClickedNewsID(Integer newsID) {
+                Constants.matchDTO = fixturesResponseModel.get(position).getMatches().get(newsID);
+                if (!fixturesResponseModel.get(position).getMatches().get(newsID).getSession().contains("won")) {
+                    context.startActivity(new Intent(context, LiveMatchScoreBoardActivity.class));
+                } else if (fixturesResponseModel.get(position).getMatches().get(newsID).getSession().contains("starts in")) {
+                    Toast.makeText(context, "Scores are not currently available", Toast.LENGTH_SHORT).show();
+                } else if (Constants.matchDTO.getMatchScoreLink().contains("live-cricket-score")) {
+                    Constants.matchDTO.getMatchScoreLink().replace("live-cricket-score", "full-scorecard");
+                    context.startActivity(new Intent(context, FullScoreBoardActivity.class));
+                } else if (Constants.matchDTO.getMatchScoreLink().contains("match-preview")) {
+                    Constants.matchDTO.getMatchScoreLink().replace("match-preview", "full-scorecard");
+                    context.startActivity(new Intent(context, FullScoreBoardActivity.class));
+                }else{
+                    context.startActivity(new Intent(context, FullScoreBoardActivity.class));
+                }
 
             }
         });

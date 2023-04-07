@@ -528,7 +528,7 @@ public class Global {
     }
 
     public static String getFlagOfCountry(String teamName) {
-        if (Constants.cricketFlagsModel.getFlagList().size() > 0) {
+        if (!Global.isArrayListNull(Constants.cricketFlagsModel.getFlagList())) {
             for (int i = 0; i < Constants.cricketFlagsModel.getFlagList().size(); i++) {
                 if (StringUtils.CheckEqualIgnoreCase(Constants.cricketFlagsModel.getFlagList().get(i).getFlagName(), teamName)) {
                     return Constants.cricketFlagsModel.getFlagList().get(i).getFlagURL();

@@ -146,9 +146,6 @@ public class FixtureFragment extends Fragment {
             UpcomingMatchAdapter adapter = new UpcomingMatchAdapter(getContext(), upComingList);
             rcl_fixtures.setAdapter(adapter);
 
-           /* FixturesAdapter fixturesAdapter = new FixturesAdapter(getContext(), fixturesResponseModel);
-            rcl_fixtures.setAdapter(fixturesAdapter);*/
-
         }
     }
 
@@ -171,6 +168,9 @@ public class FixtureFragment extends Fragment {
                 FixturesResponseModel.MatchesDTO singleMatch = new FixturesResponseModel.MatchesDTO();
                 singleMatch.setMatchTime(singleMatchElement.get(j).select("span[class=ds-text-compact-xs ds-font-bold ds-block ds--mb-1 ds-mt-[3px] ds-text-typo]").text());
                 singleMatch.setTeamOne(singleMatchElement.get(j).select("div[class=ds-w-3/5]").select("p.ds-text-compact-s.ds-font-bold.ds--mb-1.ds-text-typo").text().replace("Int’l", ""));
+                String[] filtername = singleMatch.getTeamOne().split("vs");
+                singleMatch.setTeamOne(filtername[0].trim());
+                singleMatch.setTeamTwo(filtername[1].trim());
                 singleMatch.setMatchLocation(singleMatchElement.get(j).select("div[class=ds-w-3/5]").select("span[class=ds-text-tight-xs ds-text-typo-mid3]").text());
                 singleMatch.setMatchType(singleMatchElement.get(j).select("div[class=ds-w-3/5]").select("p.ds-text-compact-s.ds-font-bold.ds--mb-1.ds-text-typo").select("span").text());
                 matchesDTOS.add(singleMatch);
@@ -197,15 +197,6 @@ public class FixtureFragment extends Fragment {
 
     }
 
-   /* private LiveData<List<FixturesResponseModel>> getMatches() {
-        MutableLiveData<List<FixturesResponseModel>> mutableLiveData = new MutableLiveData<>();
-
-        mutableLiveData.postValue(getFixturesData());
-
-
-        return mutableLiveData;
-    }*/
-
     private ArrayList<FixturesResponseModel> getFixturesData(Elements fixtureElements) {
 
         ArrayList<FixturesResponseModel> fixturesResponseModelArrayList = new ArrayList<>();
@@ -221,7 +212,6 @@ public class FixtureFragment extends Fragment {
                 matchesDTO.setMatchTitle(singleMatchElement.get(j).select("div.ds-truncate").select("div.ds-text-tight-xs.ds-truncate.ds-text-typo-mid3").text());
                 matchesDTO.setSession(singleMatchElement.get(j)/*.select("div.ds-relative")*/.select("p.ds-text-tight-s.ds-font-regular.ds-truncate.ds-text-typo").select("span").text());
                 matchesDTO.setMatchScoreLink(singleMatchElement.get(j).select("div.ds-px-4.ds-py-3").select("a").attr("href"));
-                Global.sout("mathscorelink >>>>"+i+">>>>>>",singleMatchElement.get(j).select("div.ds-px-4.ds-py-3").select("a").attr("href") );
                 Elements teamScores = singleMatchElement.get(j).select("div.ci-team-score");
                 for (int k = 0; k < teamScores.size(); k++) {//2
                     if (k == 0) {
@@ -262,7 +252,6 @@ public class FixtureFragment extends Fragment {
             MatchMainAdapater adapter = new MatchMainAdapater(getContext(), fixturesResponseModel, new AppInterfaces.NewsAdapterClick() {
                 @Override
                 public void getClickedNewsID(Integer newsID) {
-
                 }
             });
             rcl_fixtures.setAdapter(adapter);

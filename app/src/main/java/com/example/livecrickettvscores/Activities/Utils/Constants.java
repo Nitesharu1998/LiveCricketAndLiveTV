@@ -3,6 +3,7 @@ package com.example.livecrickettvscores.Activities.Utils;
 
 import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdsJsonPOJO;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.CricketFlagsResponseModel;
+import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 
 public class Constants {
 
@@ -24,6 +25,8 @@ public class Constants {
     public static String CricketNewsURL = "https://www.cricbuzz.com/cricket-news";
     public static String CricketSpotlightNewsURL = "https://www.cricbuzz.com/cricket-news/editorial/spotlight";
     public static String CricBuzzBaseURL = "https://www.cricbuzz.com";
+    public static String ESPNBaseURL = "https://www.espncricinfo.com";
     public static CricketFlagsResponseModel cricketFlagsModel;
     public static String FlagsModel = "FlagsModel";
+    public static FixturesResponseModel.MatchesDTO matchDTO ;
 }

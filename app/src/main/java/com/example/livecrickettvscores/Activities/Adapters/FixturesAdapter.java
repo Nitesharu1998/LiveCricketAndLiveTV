@@ -2,8 +2,10 @@ package com.example.livecrickettvscores.Activities.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,10 +24,13 @@ public class FixturesAdapter extends RecyclerView.Adapter<FixturesAdapter.ViewHo
     Context context;
     ArrayList<FixturesResponseModel.MatchesDTO> matchesDTOArrayList;
     ConnectionDetector cd;
+    AppInterfaces.NewsAdapterClick newsAdapterClick;
+
 
     public FixturesAdapter(Context context, ArrayList<FixturesResponseModel.MatchesDTO> matchesDTOArrayList, AppInterfaces.NewsAdapterClick newsAdapterClick) {
         this.context = context;
         this.matchesDTOArrayList = matchesDTOArrayList;
+        this.newsAdapterClick = newsAdapterClick;
         cd = new ConnectionDetector(context);
     }
 
@@ -38,6 +43,12 @@ public class FixturesAdapter extends RecyclerView.Adapter<FixturesAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull FixturesAdapter.ViewHolder holder, int position) {
+        holder.ll_mainLinear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                newsAdapterClick.getClickedNewsID(position);
+            }
+        });
         holder.tv_matchstatus.setText(matchesDTOArrayList.get(position).getSession());
         holder.tv_matchtitle.setText(matchesDTOArrayList.get(position).getMatchTitle());
         holder.tv_match1team.setText(matchesDTOArrayList.get(position).getTeamOne());
@@ -57,6 +68,7 @@ public class FixturesAdapter extends RecyclerView.Adapter<FixturesAdapter.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_team2, iv_team1, iv_bgteam2, iv_bgteam1;
         TextView tv_matchstatus, tv_match2score, tv_match2team, tv_match1score, tv_match1team, tv_matchtitle;
+        LinearLayout ll_mainLinear;
 
         public ViewHolder(MatchLayoutBinding matchLayoutBinding) {
             super(matchLayoutBinding.getRoot());
@@ -64,6 +76,7 @@ public class FixturesAdapter extends RecyclerView.Adapter<FixturesAdapter.ViewHo
             iv_team1 = matchLayoutBinding.ivTeam1;
             iv_bgteam2 = matchLayoutBinding.ivBgteam2;
             iv_bgteam1 = matchLayoutBinding.ivBgteam1;
+            ll_mainLinear = matchLayoutBinding.llMainLinear;
 
             tv_matchstatus = matchLayoutBinding.tvMatchstatus;
             tv_match2score = matchLayoutBinding.tvMatch2score;

@@ -37,6 +37,7 @@ public class SingleUpcomingDetailsAdapter extends RecyclerView.Adapter<SingleUpc
     public void onBindViewHolder(@NonNull SingleUpcomingDetailsAdapter.ViewHolder holder, int position) {
         holder.tv_intl.setText(fixturesResponseModel.get(position).getMatchType());
         holder.tv_match1team.setText(fixturesResponseModel.get(position).getTeamOne());
+        holder.tv_match2team.setText(fixturesResponseModel.get(position).getTeamTwo());
         holder.tv_matchtitle.setText(fixturesResponseModel.get(position).getMatchTitle());
         Glide.with(context).load(Global.getFlagOfCountry(fixturesResponseModel.get(position).getTeamOne())).diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(holder.binding.ivTeam1);
         Glide.with(context).load(Global.getFlagOfCountry(fixturesResponseModel.get(position).getTeamTwo())).diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(holder.binding.ivTeam2);
@@ -49,17 +50,18 @@ public class SingleUpcomingDetailsAdapter extends RecyclerView.Adapter<SingleUpc
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_team2, iv_team1;
-        TextView tv_intl, tv_matchtitle, tv_match1team;
+        TextView tv_intl, tv_matchtitle, tv_match1team, tv_match2team;
         SingleUpcomingMatchBinding binding;
 
         public ViewHolder(@NonNull SingleUpcomingMatchBinding itemView) {
             super(itemView.getRoot());
             binding = itemView;
-            iv_team1=itemView.ivTeam1;
-            iv_team2=itemView.ivTeam2;
-            tv_intl=itemView.tvIntl;
-            tv_matchtitle=itemView.tvMatchtitle;
-            tv_match1team=itemView.tvMatch1team;
+            iv_team1 = itemView.ivTeam1;
+            iv_team2 = itemView.ivTeam2;
+            tv_intl = itemView.tvIntl;
+            tv_matchtitle = itemView.tvMatchtitle;
+            tv_match1team = itemView.tvMatch1team;
+            tv_match2team = itemView.tvMatch2team;
         }
     }
 }
