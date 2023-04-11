@@ -28,5 +28,6 @@ public class Constants {
     public static String ESPNBaseURL = "https://www.espncricinfo.com";
     public static CricketFlagsResponseModel cricketFlagsModel;
     public static String FlagsModel = "FlagsModel";
-    public static FixturesResponseModel.MatchesDTO matchDTO ;
+    public static FixturesResponseModel.MatchesDTO matchDTO;
+    public static String CricketTeamURL= "https://www.cricbuzz.com/cricket-team";
 }

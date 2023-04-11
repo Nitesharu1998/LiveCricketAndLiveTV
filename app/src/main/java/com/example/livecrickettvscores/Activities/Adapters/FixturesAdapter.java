@@ -16,6 +16,7 @@ import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 import com.example.livecrickettvscores.Activities.Utils.ConnectionDetector;
 import com.example.livecrickettvscores.Activities.Utils.Global;
+import com.example.livecrickettvscores.Activities.Utils.StringUtils;
 import com.example.livecrickettvscores.databinding.MatchLayoutBinding;
 
 import java.util.ArrayList;
@@ -43,6 +44,12 @@ public class FixturesAdapter extends RecyclerView.Adapter<FixturesAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull FixturesAdapter.ViewHolder holder, int position) {
+        if (StringUtils.isNull(matchesDTOArrayList.get(position).getSession())){
+            holder.ll_mainLinear.setVisibility(View.GONE);
+        }else{
+            holder.ll_mainLinear.setVisibility(View.VISIBLE);
+        }
+
         holder.ll_mainLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

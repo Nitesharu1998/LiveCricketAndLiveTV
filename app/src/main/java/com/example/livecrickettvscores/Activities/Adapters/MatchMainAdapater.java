@@ -50,19 +50,17 @@ public class MatchMainAdapater extends RecyclerView.Adapter<MatchMainAdapater.Vi
             @Override
             public void getClickedNewsID(Integer newsID) {
                 Constants.matchDTO = fixturesResponseModel.get(position).getMatches().get(newsID);
-                if (!fixturesResponseModel.get(position).getMatches().get(newsID).getSession().contains("won")) {
-                    context.startActivity(new Intent(context, LiveMatchScoreBoardActivity.class));
-                } else if (fixturesResponseModel.get(position).getMatches().get(newsID).getSession().contains("starts in")) {
-                    Toast.makeText(context, "Scores are not currently available", Toast.LENGTH_SHORT).show();
-                } else if (Constants.matchDTO.getMatchScoreLink().contains("live-cricket-score")) {
-                    Constants.matchDTO.getMatchScoreLink().replace("live-cricket-score", "full-scorecard");
-                    context.startActivity(new Intent(context, FullScoreBoardActivity.class));
-                } else if (Constants.matchDTO.getMatchScoreLink().contains("match-preview")) {
-                    Constants.matchDTO.getMatchScoreLink().replace("match-preview", "full-scorecard");
-                    context.startActivity(new Intent(context, FullScoreBoardActivity.class));
-                }else{
+
+                if (Constants.matchDTO.getSession().contains("won") || Constants.matchDTO.getSession().contains("draw")) {
+                    Constants.matchDTO.setMatchScoreLink(Constants.matchDTO.getMatchScoreLink().replace("live-cricket-score", "full-scoreboard"));
                     context.startActivity(new Intent(context, FullScoreBoardActivity.class));
                 }
+                if (Constants.matchDTO.getSession().contains("choose") || Constants.matchDTO.getSession().contains("lead") || Constants.matchDTO.getSession().contains("trail")) {
+                    context.startActivity(new Intent(context, LiveMatchScoreBoardActivity.class));
+                } else if (Constants.matchDTO.getSession().contains("yet")) {
+                    Toast.makeText(context, "Score are not available yet", Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });

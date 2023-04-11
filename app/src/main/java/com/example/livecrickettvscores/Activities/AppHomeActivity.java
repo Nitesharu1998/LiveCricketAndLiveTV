@@ -17,8 +17,7 @@ import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.Fragments.FixtureFragment;
 import com.example.livecrickettvscores.Activities.Fragments.HomeFragment;
 import com.example.livecrickettvscores.Activities.Fragments.MoreFragment;
-import com.example.livecrickettvscores.Activities.Fragments.StatsFragment;
-import com.example.livecrickettvscores.Activities.Fragments.VideosFragment;
+import com.example.livecrickettvscores.Activities.Fragments.RankingPlayersFragment;
 import com.example.livecrickettvscores.Activities.videoplayer.VideoPlayerActivity;
 import com.example.livecrickettvscores.Activities.videoplayer.fragment.YoutubeFragment;
 import com.example.livecrickettvscores.R;
@@ -66,10 +65,11 @@ public class AppHomeActivity extends AppCompatActivity {
                 refreshFragment(new HomeFragment());
                 break;
             case R.id.videos:
-               startActivity(new Intent(AppHomeActivity.this, VideoPlayerActivity.class));
+                startActivity(new Intent(AppHomeActivity.this, VideoPlayerActivity.class));
                 break;
             case R.id.stats:
-                refreshFragment(new StatsFragment());
+                //refreshFragment(new StatsFragment());
+                refreshFragment(new RankingPlayersFragment());
                 break;
             case R.id.more:
                 refreshFragment(new MoreFragment());

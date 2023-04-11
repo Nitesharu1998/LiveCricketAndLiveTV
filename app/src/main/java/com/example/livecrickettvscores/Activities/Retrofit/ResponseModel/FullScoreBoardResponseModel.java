@@ -14,7 +14,7 @@ public class FullScoreBoardResponseModel {
         this.matchInningDTOS = matchInningDTOS;
     }
 
-    public class MatchInningDTO {
+    public static class MatchInningDTO {
         String teamName, teamTotal, teamFallOfWicket;
         ArrayList<BatsmanDTO> batsmanDTOS;
         ArrayList<BowlerDTO> bowlerDTOS;
@@ -60,7 +60,7 @@ public class FullScoreBoardResponseModel {
         }
     }
 
-    public class BatsmanDTO {
+    public static class BatsmanDTO {
         String batsmanName, status, R, B, M, fours, sixes, SR;
 
         public String getBatsmanName() {
@@ -128,7 +128,7 @@ public class FullScoreBoardResponseModel {
         }
     }
 
-    public class BowlerDTO {
+    public static class BowlerDTO {
         String bowlerName, O, M, R, W, econ;
 
         public String getBowlerName() {

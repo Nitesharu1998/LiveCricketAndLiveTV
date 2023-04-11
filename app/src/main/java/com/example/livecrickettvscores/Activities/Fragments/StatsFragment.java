@@ -36,7 +36,6 @@ public class StatsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-
         FragmentStatsBinding fragmentStatsBinding = FragmentStatsBinding.inflate(LayoutInflater.from(getContext()), container, false);
         context = fragmentStatsBinding.getRoot().getContext();
         fragmentStatsBinding.rclPlayers.setHasFixedSize(true);

@@ -114,7 +114,7 @@ public class AppAsyncTasks {
             try {
 
                 Document document = Jsoup.connect(predictionURL).get();
-                elements=document.select("div.cb-col.cb-col-100.cb-font-14.cb-lst-itm.text-center");
+                elements = document.select("div.cb-col.cb-col-100.cb-font-14.cb-lst-itm.text-center");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -346,9 +346,9 @@ public class AppAsyncTasks {
             try {
                 Document document = Jsoup.connect(NewsURL).get();
                 elements = document.select("div[class=cb-col cb-col-67 cb-nws-dtl-lft-col]");
-                if (elements.isEmpty()){
-                    state =1;
-                    elements=document.select("div[class=cb-col cb-col-100 cb-bg-white]");
+                if (elements.isEmpty()) {
+                    state = 1;
+                    elements = document.select("div[class=cb-col cb-col-100 cb-bg-white]");
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -362,7 +362,6 @@ public class AppAsyncTasks {
         }
 
     }
-
 
     public static class GetLiveScoreBoard extends AsyncTask<String, Void, String> {
         Context context;
@@ -449,12 +448,100 @@ public class AppAsyncTasks {
 
         @Override
         protected void onPreExecute() {
-            if (showLoader)
-                global.showProgressDialog(context, ConstantsMessages.PLEASE_WAIT);
+            if (showLoader) global.showProgressDialog(context, ConstantsMessages.PLEASE_WAIT);
         }
 
     }
 
+    public static class GetPlayers extends AsyncTask<String, Void, String> {
+        Context context;
+        AppInterfaces.WebScrappingInterface webScrappingInterface;
+        Global global;
+        Elements elements;
+        String NewsURL;
+        Elements ElementsTest = new Elements();
+
+        public GetPlayers(String NewsURL, Context context, AppInterfaces.WebScrappingInterface webScrappingInterface) {
+            this.context = context;
+            this.webScrappingInterface = webScrappingInterface;
+            this.global = new Global(context);
+            this.NewsURL = NewsURL;
+
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            global.hideProgressDialog();
+            webScrappingInterface.getScrapedDocument(ElementsTest);
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                Document document = Jsoup.connect(NewsURL).get();
+                ElementsTest = document.select("div[class=cb-col-67 cb-col cb-left cb-top-zero]").select("a[class=cb-col cb-col-50]");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+            global.showProgressDialog(context, ConstantsMessages.PLEASE_WAIT);
+        }
+
+    }
+
+
+    public static class CallRankingContries extends AsyncTask<String, Void, String> {
+        Context context;
+        AppInterfaces.WebScrappingInterface webScrappingInterface;
+        Global global;
+        Elements elements;
+        String countriesURL;
+        Elements ElementsTest = new Elements();
+
+        public CallRankingContries(String countriesURL, Context context, AppInterfaces.WebScrappingInterface webScrappingInterface) {
+            this.context = context;
+            this.webScrappingInterface = webScrappingInterface;
+            this.global = new Global(context);
+            this.countriesURL = countriesURL;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+
+            global.hideProgressDialog();
+
+            webScrappingInterface.getScrapedDocument(ElementsTest);
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                Document document = Jsoup.connect(countriesURL).get();
+                elements = document.select("div[class=cb-col cb-col-50 cb-team-item cb-lst-itm cb-team-lft-item]");
+                ElementsTest.addAll(elements);
+                elements = document.select("div[class=cb-col cb-col-50 cb-team-item cb-lst-itm cb-team-rght-item]");
+                ElementsTest.addAll(elements);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+            global.showProgressDialog(context, ConstantsMessages.PLEASE_WAIT);
+
+
+        }
+
+
+    }
 
     public static class GetFlags extends AsyncTask<Void, Void, Void> {
         Context context;

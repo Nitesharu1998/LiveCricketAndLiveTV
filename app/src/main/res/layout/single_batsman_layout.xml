@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_2sdp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/_4sdp">
+
+            <TextView
+                android:id="@+id/batman1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:text="Batsman"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/batman1Runs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="R"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/batman1Balls"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="B"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/batman1Fours"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="4s"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/batman1Six"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="6s"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/batman1Strike"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="SR"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
