@@ -5,27 +5,39 @@
 
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/purple_700"
-        android:layout_marginVertical="@dimen/_8sdp"
-        android:orientation="horizontal">
+        android:backgroundTint="@color/light_gray"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingVertical="@dimen/_10sdp">
 
         <ImageView
             android:id="@+id/iv_country"
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp" />
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            />
 
         <TextView
             android:id="@+id/tv_countryName"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center"
-
-            android:textColor="@color/white"
+            android:layout_height="@dimen/_30sdp"
+            android:textSize="@dimen/_16sdp"
+            android:text=""
+            android:gravity="center_vertical"
+            android:layout_toEndOf="@+id/iv_country"
+            android:textColor="@color/app_primarycolor"
             android:layout_marginStart="@dimen/_8sdp" />
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_below="@+id/iv_country"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="#80000000"
+            android:orientation="horizontal"
+
+            />
+
+    </RelativeLayout>
 </layout>

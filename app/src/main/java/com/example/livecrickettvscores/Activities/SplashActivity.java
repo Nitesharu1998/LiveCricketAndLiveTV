@@ -39,6 +39,7 @@ public class SplashActivity extends AppCompatActivity {
 
         if (Constants.adsJsonPOJO != null && !StringUtils.isNull(Constants.adsJsonPOJO.getParameters().getApp_open_ad().getDefaultValue().getValue())) {
             Constants.adsJsonPOJO = Global.getAdsData(appPreferencesManger.getAdsModel());
+            Constants.adsJsonPOJO.getParameters().getShowAd().getDefaultValue().setValue("false");
             AdUtils.showAppOpenAd(activity, new AppInterfaces.AppOpenADInterface() {
                 @Override
                 public void appOpenAdState(boolean state_load) {
@@ -72,7 +73,7 @@ public class SplashActivity extends AppCompatActivity {
                     //Need to call this only once per
                     appPreferencesManger.setAdsModel(adsJsonPOJO);
                     Constants.adsJsonPOJO = adsJsonPOJO;
-                    //Constants.hitCounter = Integer.parseInt(Constants.adsJsonPOJO.getParameters().getApp_open_ad().getDefaultValue().getHits());
+                    Constants.adsJsonPOJO.getParameters().getShowAd().getDefaultValue().setValue("false");
                     AdUtils.showAppOpenAd(activity, new AppInterfaces.AppOpenADInterface() {
                         @Override
                         public void appOpenAdState(boolean state_load) {
@@ -83,7 +84,7 @@ public class SplashActivity extends AppCompatActivity {
                                     synchronized (this) {
                                         Intent intent;
                                         try {
-                                            wait(300);
+                                            wait(2000);
                                         } catch (InterruptedException e) {
                                             Global.sout("running thread interrupted", e.getLocalizedMessage());
                                         } finally {

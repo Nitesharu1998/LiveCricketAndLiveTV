@@ -41,7 +41,6 @@ public class MatchMainAdapater extends RecyclerView.Adapter<MatchMainAdapater.Vi
     @Override
     public void onBindViewHolder(@NonNull MatchMainAdapater.ViewHolder holder, int position) {
         holder.tv_matchTitle.setText(fixturesResponseModel.get(position).getMatchTitle());
-
         LinearLayoutManager manager = new LinearLayoutManager(context);
         manager.setOrientation(RecyclerView.VERTICAL);
         holder.rcl_matches.setLayoutManager(manager);
@@ -50,8 +49,7 @@ public class MatchMainAdapater extends RecyclerView.Adapter<MatchMainAdapater.Vi
             @Override
             public void getClickedNewsID(Integer newsID) {
                 Constants.matchDTO = fixturesResponseModel.get(position).getMatches().get(newsID);
-
-                if (Constants.matchDTO.getSession().contains("won") || Constants.matchDTO.getSession().contains("draw")) {
+                if (Constants.matchDTO.getSession().contains("won") || Constants.matchDTO.getSession().contains("draw") || Constants.matchDTO.getSession().contains("match over")) {
                     Constants.matchDTO.setMatchScoreLink(Constants.matchDTO.getMatchScoreLink().replace("live-cricket-score", "full-scoreboard"));
                     context.startActivity(new Intent(context, FullScoreBoardActivity.class));
                 }
@@ -60,7 +58,6 @@ public class MatchMainAdapater extends RecyclerView.Adapter<MatchMainAdapater.Vi
                 } else if (Constants.matchDTO.getSession().contains("yet")) {
                     Toast.makeText(context, "Score are not available yet", Toast.LENGTH_SHORT).show();
                 }
-
 
             }
         });

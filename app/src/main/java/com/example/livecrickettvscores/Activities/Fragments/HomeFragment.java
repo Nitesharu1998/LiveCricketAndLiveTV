@@ -6,11 +6,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,6 +36,7 @@ import com.example.livecrickettvscores.Activities.Utils.Global;
 import com.example.livecrickettvscores.R;
 import com.example.livecrickettvscores.databinding.SelectednewslayoutBinding;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.navigation.NavigationView;
 
 import org.jsoup.select.Elements;
 
@@ -45,6 +51,10 @@ public class HomeFragment extends Fragment {
     Context context;
     LinearLayout native_ads;
     ConnectionDetector cd;
+    NavigationView navigationView;
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle toggle;
+    ImageView iv_nav;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,6 +71,47 @@ public class HomeFragment extends Fragment {
         rcl_trendingnews = view.findViewById(R.id.rcl_trendingnews);
         rcl_featurednews = view.findViewById(R.id.rcl_featurednews);
         native_ads = view.findViewById(R.id.native_ads);
+        navigationView = view.findViewById(R.id.mNavigationView);
+        drawerLayout = view.findViewById(R.id.drawer);
+        iv_nav = view.findViewById(R.id.iv_nav);
+
+        toggle = new ActionBarDrawerToggle(requireActivity(), drawerLayout, R.string.opendrawer, R.string.closedrawer);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        iv_nav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.open();
+            }
+        });
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
+                    case R.id.sidenav_news:
+                        Toast.makeText(context, "News", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.sidenav_awards:
+                        Toast.makeText(context, "awards", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.sidenav_teams:
+                        Toast.makeText(context, "teams", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.sidenav_rankings:
+                        //refreshFragment(new StatsFragment());
+                        Toast.makeText(context, "rankings", Toast.LENGTH_SHORT).show();
+                        break;
+
+
+                }
+
+                return true;
+            }
+        });
+
         if (cd.isConnectingToInternet()) {
             callLiveMatchesAPI();
             callNewsAPI();

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/sidenav_news"
+        android:enabled="true"
+        android:icon="@drawable/ic_news"
+        android:title="News" />
+    <item
+        android:id="@+id/sidenav_awards"
+        android:enabled="true"
+        android:icon="@drawable/ic_awards"
+        android:title="Awards" />
+    <item
+        android:id="@+id/sidenav_teams"
+        android:enabled="true"
+        android:icon="@drawable/ic_teams"
+        android:title="Teams" />
+    <item
+        android:id="@+id/sidenav_rankings"
+        android:enabled="true"
+        android:icon="@drawable/ic_rankings"
+        android:title="Rankings" />
+    <item
+        android:id="@+id/sidenav_events"
+        android:enabled="true"
+        android:icon="@drawable/ic_events"
+        android:title="Events" />
+
+</menu>

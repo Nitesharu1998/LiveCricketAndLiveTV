@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -9,15 +10,49 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:background="@color/white"
+        android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
         tools:context=".Activities.Fragments.RankingPlayersFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcl_countryList"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/single_country"
-            />
+            android:layout_height="match_parent"
+            android:background="@drawable/curved_top_bg"
+            android:backgroundTint="#F4F6FA">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtI_seach"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingHorizontal="20dp"
+                android:textColorHint="@color/app_primarycolor"
+                app:boxStrokeColor="@color/teal_200">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tet_countryName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_16sdp"
+                    android:digits="@string/text_only"
+                    android:hint="Enter Country Name" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcl_countryList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtI_seach"
+                tools:listitem="@layout/single_country" />
+
+
+        </RelativeLayout>
+
+        <!-- TODO: Update blank fragment layout -->
+
 
     </FrameLayout>
 </layout>

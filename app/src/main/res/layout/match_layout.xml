@@ -6,7 +6,9 @@
     android:layout_marginHorizontal="@dimen/_8sdp"
     android:orientation="vertical"
     android:id="@+id/cv_matchCard"
-    android:backgroundTint="@color/light_blue"
+    android:outlineSpotShadowColor="@color/black"
+    app:cardElevation="@dimen/_5sdp"
+    android:backgroundTint="@color/light_gray"
     android:layout_marginVertical="@dimen/_12sdp"
     android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
     android:padding="@dimen/_10sdp"
@@ -50,17 +52,28 @@
 
         <TextView
             android:id="@+id/tv_matchtitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_match2team"
             android:fontFamily="@font/nunito_sans"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:gravity="center"
             android:text="2nd Test . South Africa tour of England, 2022"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:id="@+id/ll_blank"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_below="@id/tv_matchtitle"
+            android:layout_marginVertical="@dimen/_4sdp"
+            android:background="#80000000"
+            android:orientation="horizontal" />
 
         <ImageView
             android:id="@+id/iv_team1"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_below="@+id/tv_matchtitle"
             android:layout_marginTop="@dimen/_10sdp"
             android:src="@drawable/ic_applogo" />
 
@@ -68,14 +81,14 @@
             android:id="@+id/tv_match1team"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_below="@+id/tv_matchtitle"
+
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_toRightOf="@+id/iv_team1"
             android:fontFamily="@font/nunito_sans"
             android:gravity="center"
             android:text="match one team name"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
 
             />
 
@@ -83,14 +96,14 @@
             android:id="@+id/tv_match1score"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_below="@+id/tv_matchtitle"
+
             android:layout_alignParentEnd="true"
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/nunito_sans"
             android:gravity="center"
             android:text="team one score"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
         <ImageView
             android:id="@+id/iv_team2"
@@ -111,7 +124,7 @@
             android:fontFamily="@font/nunito_sans"
             android:gravity="center"
             android:text="match one team name"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             />
 
         <TextView
@@ -124,20 +137,20 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/nunito_sans"
             android:text="team one score"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
 
         <TextView
             android:id="@+id/tv_matchstatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_match2score"
+            android:layout_below="@+id/ll_blank"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_4sdp"
             android:fontFamily="@font/nunito_sans"
             android:text="match one status"
-            android:textColor="@color/status_orange" />
+            android:gravity="center"
+            android:textColor="@color/dark_gray" />
 
     </RelativeLayout>
 

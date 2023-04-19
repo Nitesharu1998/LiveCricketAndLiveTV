@@ -10,12 +10,18 @@ public class Constants {
     public static final String LIVEMATHCES = "https://www.espncricinfo.com/live-cricket-score";
     public static final String UPCOMINGMATCHES = "https://www.espncricinfo.com/live-cricket-match-schedule-fixtures";
     public static final String RECENTMATCHES = "https://www.espncricinfo.com/live-cricket-match-results";
-    public static final int NEWSCONSTANT = 1;
     public static final String PREDICTIONS_URL = "https://www.onlinecricketbetting.net/cricket-betting-tips/?utm_source=yt&utm_medium=vd&utm_campaign=youthiya";
     public static final String IS_FIRST_RUN = "ISFIRSTRUN";
     public static final String USERNAME = "USERNAME";
     public static final String USER_AVATAR = "USER_AVATAR";
-    public static String CRICK_APIKEY = "97c51abc-9777-49a0-afe8-fa97cc6f2dcc";
+
+    public static final String MenBattingRanking = "https://www.cricbuzz.com/cricket-stats/icc-rankings/men/batting";
+    public static final String MenBowlingRanking = "https://www.cricbuzz.com/cricket-stats/icc-rankings/men/bowling";
+    public static final String MenAllRounderRanking = "https://www.cricbuzz.com/cricket-stats/icc-rankings/men/all-rounder";
+
+    public static final String WomenBattingRanking = "https://www.cricbuzz.com/cricket-stats/icc-rankings/women/batting";
+    public static final String WomenBowlingRanking = "https://www.cricbuzz.com/cricket-stats/icc-rankings/women/bowling";
+    public static final String WomenAllRounderRanking = "https://www.cricbuzz.com/cricket-stats/icc-rankings/women/all-rounder";
 
     public static AdsJsonPOJO adsJsonPOJO;
     public static int hitCounter = 0;

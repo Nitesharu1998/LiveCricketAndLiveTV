@@ -27,6 +27,7 @@ import java.util.ArrayList;
 
 public class StatsFragment extends Fragment {
     Context context;
+    FragmentStatsBinding fragmentStatsBinding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,18 +37,10 @@ public class StatsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        FragmentStatsBinding fragmentStatsBinding = FragmentStatsBinding.inflate(LayoutInflater.from(getContext()), container, false);
+        fragmentStatsBinding = FragmentStatsBinding.inflate(LayoutInflater.from(getContext()), container, false);
         context = fragmentStatsBinding.getRoot().getContext();
         fragmentStatsBinding.rclPlayers.setHasFixedSize(true);
-        //callPopularPlayerAPI(fragmentStatsBinding.rclPlayers);
-//        AdUtils.showNativeAd(requireActivity(), Constants.adsJsonPOJO.getParameters().getNative_id().getDefaultValue().getValue(), fragmentStatsBinding.nativeAds, false);
-        AppAsyncTasks.CallTrendingPlayers callTrendingPlayers = new AppAsyncTasks.CallTrendingPlayers("https://www.cricbuzz.com/cricket-stats/icc-rankings/men/batting", requireActivity(), new AppInterfaces.WebScrappingInterface() {
-            @Override
-            public void getScrapedDocument(Elements document) {
-                setUpTrendingPlayersList(fragmentStatsBinding.rclPlayers, getPlayerList(document));
-            }
-        });
-        callTrendingPlayers.execute();
+        callRankingURL(Constants.MenBattingRanking);
 
         fragmentStatsBinding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +50,16 @@ public class StatsFragment extends Fragment {
         });
 
         return fragmentStatsBinding.getRoot();
+    }
+
+    private void callRankingURL(String playerURL) {
+        AppAsyncTasks.CallTrendingPlayers callTrendingPlayers = new AppAsyncTasks.CallTrendingPlayers(playerURL, requireActivity(), new AppInterfaces.WebScrappingInterface() {
+            @Override
+            public void getScrapedDocument(Elements document) {
+                setUpTrendingPlayersList(fragmentStatsBinding.rclPlayers, getPlayerList(document));
+            }
+        });
+        callTrendingPlayers.execute();
     }
 
     private ArrayList<TrendingPlayersResponseModel.PlayerDTO> getPlayerList(Elements document) {

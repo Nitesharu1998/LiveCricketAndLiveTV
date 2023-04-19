@@ -2,6 +2,8 @@ package com.example.livecrickettvscores.Activities.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +28,8 @@ import java.util.ArrayList;
 
 public class RankingPlayersFragment extends Fragment {
     FragmentRankingPlayersBinding binding;
+    ArrayList<CountriesResponseModel> responseModel = new ArrayList<>();
+    ArrayList<CountriesResponseModel> filteredCountries;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,7 +43,39 @@ public class RankingPlayersFragment extends Fragment {
         });
         callRankingContries.execute();
 
+
+        binding.tetCountryName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.toString().length() > 0) {
+                    filterCountries(charSequence.toString());
+                } else {
+                    setUpAdapter(responseModel);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         return binding.getRoot();
+    }
+
+    private void filterCountries(String countryName) {
+        filteredCountries = new ArrayList<>();
+        for (int i = 0; i < responseModel.size(); i++) {
+            if (responseModel.get(i).getCountryName().toLowerCase().contains(countryName.toLowerCase())) {
+                filteredCountries.add(responseModel.get(i));
+            }
+        }
+        setUpAdapter(filteredCountries);
     }
 
     private void setUpCountryList(Elements document) {
@@ -53,6 +89,12 @@ public class RankingPlayersFragment extends Fragment {
             countriesResponseModels.add(countriesResponseModel);
         }
 
+        responseModel = countriesResponseModels;
+
+        setUpAdapter(countriesResponseModels);
+    }
+
+    private void setUpAdapter(ArrayList<CountriesResponseModel> countriesResponseModels) {
         binding.rclCountryList.setLayoutManager(Global.getManagerWithOrientation(requireContext(), RecyclerView.VERTICAL));
         CountriesAdapter adapter = new CountriesAdapter(requireContext(), countriesResponseModels, new AppInterfaces.NewsAdapterClick() {
             @Override
