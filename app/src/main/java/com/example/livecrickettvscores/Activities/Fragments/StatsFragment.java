@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,9 +18,11 @@ import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.PlayerInformation;
 import com.example.livecrickettvscores.Activities.Retrofit.AppAsyncTasks;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.TrendingPlayersResponseModel;
+import com.example.livecrickettvscores.Activities.Utils.ConnectionDetector;
 import com.example.livecrickettvscores.Activities.Utils.Constants;
 import com.example.livecrickettvscores.Activities.Utils.Global;
 import com.example.livecrickettvscores.databinding.FragmentStatsBinding;
+import com.google.android.material.tabs.TabLayout;
 
 import org.jsoup.select.Elements;
 
@@ -28,6 +31,8 @@ import java.util.ArrayList;
 public class StatsFragment extends Fragment {
     Context context;
     FragmentStatsBinding fragmentStatsBinding;
+    ConnectionDetector cd;
+    ArrayList<String> playerTypes = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,7 +45,22 @@ public class StatsFragment extends Fragment {
         fragmentStatsBinding = FragmentStatsBinding.inflate(LayoutInflater.from(getContext()), container, false);
         context = fragmentStatsBinding.getRoot().getContext();
         fragmentStatsBinding.rclPlayers.setHasFixedSize(true);
+        cd = new ConnectionDetector(requireActivity());
+        setUpTabs();
+        initListeners();
+        playerTypes.add("Overall");
+        playerTypes.add("Test");
+        playerTypes.add("ODI");
+        playerTypes.add("T20");
+       // ArrayAdapter adapter =new ArrayAdapter(requireActivity(), android.R.layout.si)
+
         callRankingURL(Constants.MenBattingRanking);
+
+
+        return fragmentStatsBinding.getRoot();
+    }
+
+    private void initListeners() {
 
         fragmentStatsBinding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,8 +69,49 @@ public class StatsFragment extends Fragment {
             }
         });
 
-        return fragmentStatsBinding.getRoot();
+
+        fragmentStatsBinding.tablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        AdUtils.showInterstitialAd(requireActivity(), new AppInterfaces.InterStitialADInterface() {
+                            @Override
+                            public void adLoadState(boolean isLoaded) {
+                                if (cd.isConnectingToInternet())
+                                    callRankingURL(Constants.MenBattingRanking);
+                            }
+                        });
+                        break;
+                    case 1:
+                        AdUtils.showInterstitialAd(requireActivity(), new AppInterfaces.InterStitialADInterface() {
+                            @Override
+                            public void adLoadState(boolean isLoaded) {
+                                if (cd.isConnectingToInternet())
+                                    callRankingURL(Constants.WomenBattingRanking);
+                            }
+                        });
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
+
+    private void setUpTabs() {
+        fragmentStatsBinding.tablayout.addTab(fragmentStatsBinding.tablayout.newTab().setText("Men's"));
+        fragmentStatsBinding.tablayout.addTab(fragmentStatsBinding.tablayout.newTab().setText("Women's"));
+    }
+
 
     private void callRankingURL(String playerURL) {
         AppAsyncTasks.CallTrendingPlayers callTrendingPlayers = new AppAsyncTasks.CallTrendingPlayers(playerURL, requireActivity(), new AppInterfaces.WebScrappingInterface() {
@@ -65,7 +126,7 @@ public class StatsFragment extends Fragment {
     private ArrayList<TrendingPlayersResponseModel.PlayerDTO> getPlayerList(Elements document) {
         ArrayList<TrendingPlayersResponseModel.PlayerDTO> playerList = new ArrayList<>();
         TrendingPlayersResponseModel.PlayerDTO singePlayer;
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < document.size(); i++) {
             singePlayer = new TrendingPlayersResponseModel.PlayerDTO();
             singePlayer.setFaceImageId(document.get(i).select("div.cb-col.cb-col-50").select("img").attr("src"));
             singePlayer.setName(document.get(i).select("div.cb-col.cb-col-50").select("img").attr("title"));

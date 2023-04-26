@@ -47,7 +47,7 @@ public class TrendingPlayersAdapter extends RecyclerView.Adapter<TrendingPlayers
                 .into(holder.iv_player);
 
 
-        holder.rl_player.setOnClickListener(v -> newsAdapterClick.getClickedNewsID(position));
+        holder.tv_playername.setOnClickListener(v -> newsAdapterClick.getClickedNewsID(position));
     }
 
     @Override
@@ -67,7 +67,7 @@ public class TrendingPlayersAdapter extends RecyclerView.Adapter<TrendingPlayers
             tv_playercountry = binding.tvPlayercountry;
             tv_playername = binding.tvPlayername;
             iv_player = binding.ivPlayer;
-            rl_player = binding.rlPlayer;
+            //rl_player = binding.rlPlayer;
         }
     }
 }

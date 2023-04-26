@@ -17,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -93,16 +95,19 @@ public class HomeFragment extends Fragment {
                 switch (item.getItemId()) {
                     case R.id.sidenav_news:
                         Toast.makeText(context, "News", Toast.LENGTH_SHORT).show();
+                        drawerLayout.close();
                         break;
                     case R.id.sidenav_awards:
                         Toast.makeText(context, "awards", Toast.LENGTH_SHORT).show();
+                        drawerLayout.close();
                         break;
                     case R.id.sidenav_teams:
                         Toast.makeText(context, "teams", Toast.LENGTH_SHORT).show();
+                        drawerLayout.close();
                         break;
                     case R.id.sidenav_rankings:
-                        //refreshFragment(new StatsFragment());
-                        Toast.makeText(context, "rankings", Toast.LENGTH_SHORT).show();
+                        refreshFragment(new StatsFragment());
+                        drawerLayout.close();
                         break;
 
 
@@ -120,6 +125,12 @@ public class HomeFragment extends Fragment {
         AdUtils.showNativeAd(requireActivity(), Constants.adsJsonPOJO.getParameters().getNative_id().getDefaultValue().getValue(), native_ads, false);
         Global.sout("Home fragment ", "home fragment initiated");
         return view;
+    }
+
+    private void refreshFragment(Fragment statsFragment) {
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frm_homefrag, statsFragment).commit();
     }
 
     private void callNewsAPI() {

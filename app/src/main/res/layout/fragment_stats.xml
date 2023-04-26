@@ -4,17 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_gray"
+    android:background="@color/transparent"
     tools:context=".Activities.Fragments.StatsFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
         android:id="@+id/rl_appbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/purple_700"
-        android:paddingHorizontal="@dimen/_12sdp"
-        android:paddingVertical="@dimen/_8sdp">
+        android:layout_height="wrap_content"
+        android:background="@color/app_primarycolor">
 
         <ImageView
             android:id="@+id/iv_back"
@@ -26,22 +24,43 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginStart="@dimen/_15sdp"
-            android:layout_toRightOf="@id/iv_back"
+            android:layout_toEndOf="@id/iv_back"
             android:fontFamily="@font/nunito_sans"
-            android:text="Statistics"
+            android:text="Rankings"
             android:textColor="@color/white"
             android:textSize="@dimen/_14sdp"
             android:textStyle="bold" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tablayout"
+            style="@style/TabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_below="@+id/iv_back"
+            android:animateLayoutChanges="true"
+            android:background="@drawable/appdefault_bg"
+            android:outlineSpotShadowColor="@color/teal_200"
+            android:paddingVertical="@dimen/_12sdp"
+            app:tabIndicator="@color/teal_200"
+            app:tabIndicatorAnimationDuration="@integer/material_motion_duration_long_1"
+            app:tabIndicatorAnimationMode="elastic"
+            app:tabIndicatorColor="@color/teal_200"
+            app:tabIndicatorFullWidth="false"
+            app:tabIndicatorHeight="@dimen/_2sdp"
+            app:tabPaddingBottom="@dimen/_4sdp"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="@color/light_gray" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/rl_appbar"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_marginVertical="@dimen/_8sdp"
+        android:background="@drawable/appdefault_bg"
+
+        android:paddingVertical="@dimen/_8sdp"
         android:orientation="vertical">
 
 
@@ -67,25 +86,39 @@
                 android:paddingStart="@dimen/_8sdp" />
         </com.google.android.material.card.MaterialCardView>
 
-
-        <TextView
-            android:id="@+id/txtpopular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:fontFamily="@font/nunito_sans"
-            android:text="Popular Players"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/_12sdp"
-            android:textStyle="bold" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcl_players"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtpopular"
-            android:layout_above="@+id/native_ads"
-            tools:listitem="@layout/singleplayer_layout" />
+            android:background="@drawable/curved_top_bg"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtpopular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:fontFamily="@font/nunito_sans"
+                android:text="Popular Players"
+                android:visibility="gone"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spn_playersType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcl_players"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_above="@+id/native_ads"
+                android:layout_below="@+id/txtpopular"
+                tools:listitem="@layout/singleplayer_layout" />
+        </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/native_ads"
