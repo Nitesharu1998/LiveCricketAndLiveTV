@@ -2,6 +2,7 @@ package com.example.livecrickettvscores.Activities.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 import com.example.livecrickettvscores.Activities.Utils.Global;
+import com.example.livecrickettvscores.Activities.Utils.StringUtils;
 import com.example.livecrickettvscores.databinding.SingleUpcomingMatchBinding;
 
 import java.util.ArrayList;
@@ -35,6 +37,11 @@ public class SingleUpcomingDetailsAdapter extends RecyclerView.Adapter<SingleUpc
 
     @Override
     public void onBindViewHolder(@NonNull SingleUpcomingDetailsAdapter.ViewHolder holder, int position) {
+        if (StringUtils.isNull(fixturesResponseModel.get(position).getMatchType())) {
+            holder.tv_intl.setVisibility(View.GONE);
+        } else {
+            holder.tv_intl.setVisibility(View.VISIBLE);
+        }
         holder.tv_intl.setText(fixturesResponseModel.get(position).getMatchType());
         holder.tv_match1team.setText(fixturesResponseModel.get(position).getTeamOne());
         holder.tv_match2team.setText(fixturesResponseModel.get(position).getTeamTwo());

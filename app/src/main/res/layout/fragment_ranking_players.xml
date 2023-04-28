@@ -21,12 +21,32 @@
             android:background="@drawable/curved_top_bg"
             android:backgroundTint="#F4F6FA">
 
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tablayout"
+                style="@style/TabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/appdefault_bg"
+                android:outlineSpotShadowColor="@color/teal_200"
+                android:paddingVertical="@dimen/_12sdp"
+                app:tabIndicator="@color/teal_200"
+                app:tabIndicatorAnimationDuration="@integer/material_motion_duration_long_1"
+                app:tabIndicatorAnimationMode="elastic"
+                app:tabIndicatorColor="@color/teal_200"
+                app:tabIndicatorFullWidth="false"
+                app:tabIndicatorHeight="@dimen/_2sdp"
+                app:tabPaddingBottom="@dimen/_4sdp"
+                app:tabSelectedTextColor="@color/white"
+                app:tabTextColor="@color/light_gray" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtI_seach"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_below="@+id/tablayout"
                 android:paddingHorizontal="20dp"
                 android:textColorHint="@color/app_primarycolor"
                 app:boxStrokeColor="@color/teal_200">
@@ -36,6 +56,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_16sdp"
+                    android:textColor="@color/black"
                     android:digits="@string/text_only"
                     android:hint="Enter Country Name" />
 

@@ -66,23 +66,6 @@ public class AppHomeActivity extends AppCompatActivity {
             }
         });
 
-
-        /*appbottomnav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                AdUtils.showInterstitialAd(AppHomeActivity.this, new AppInterfaces.InterStitialADInterface() {
-                    @Override
-                    public void adLoadState(boolean isLoaded) {
-                        setUpBottomNavigation(item.getItemId());
-                    }
-                });
-
-                return true;
-            }
-        });
-        appbottomnav.setSelectedItemId(R.id.home);
-        appbottomnav.performClick();
-        setUpBottomNavigation(R.id.home);*/
     }
 
     private void setUpBottomNavigation(int itemId) {

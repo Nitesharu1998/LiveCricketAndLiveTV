@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.livecrickettvscores.Activities.APIControllers.StatsAPIController;
 import com.example.livecrickettvscores.Activities.Adapters.TrendingPlayersAdapter;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
@@ -21,6 +21,7 @@ import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.Trendin
 import com.example.livecrickettvscores.Activities.Utils.ConnectionDetector;
 import com.example.livecrickettvscores.Activities.Utils.Constants;
 import com.example.livecrickettvscores.Activities.Utils.Global;
+import com.example.livecrickettvscores.R;
 import com.example.livecrickettvscores.databinding.FragmentStatsBinding;
 import com.google.android.material.tabs.TabLayout;
 
@@ -33,6 +34,7 @@ public class StatsFragment extends Fragment {
     FragmentStatsBinding fragmentStatsBinding;
     ConnectionDetector cd;
     ArrayList<String> playerTypes = new ArrayList<>();
+    public static int tabPosition;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,11 +50,12 @@ public class StatsFragment extends Fragment {
         cd = new ConnectionDetector(requireActivity());
         setUpTabs();
         initListeners();
-        playerTypes.add("Overall");
-        playerTypes.add("Test");
-        playerTypes.add("ODI");
-        playerTypes.add("T20");
-       // ArrayAdapter adapter =new ArrayAdapter(requireActivity(), android.R.layout.si)
+        playerTypes.add("Batting");
+        playerTypes.add("Bowling");
+        playerTypes.add("All Rounder");
+        ArrayAdapter adapter = new ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_dropdown_item, playerTypes);
+        adapter.setDropDownViewResource(R.layout.spinner_player_type);
+        fragmentStatsBinding.spnPlayersType.setAdapter(adapter);
 
         callRankingURL(Constants.MenBattingRanking);
 
@@ -69,15 +72,58 @@ public class StatsFragment extends Fragment {
             }
         });
 
+        fragmentStatsBinding.spnPlayersType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (fragmentStatsBinding.tablayout.getSelectedTabPosition()) {
+                    case 0:
+
+                        switch (i) {
+                            case 0:
+                                callRankingURL(Constants.MenBattingRanking);
+                                break;
+                            case 1:
+                                callRankingURL(Constants.MenBowlingRanking);
+                                break;
+                            case 2:
+                                callRankingURL(Constants.MenAllRounderRanking);
+                                break;
+                        }
+
+                        break;
+                    case 1:
+
+                        switch (i) {
+                            case 0:
+                                callRankingURL(Constants.WomenBattingRanking);
+                                break;
+                            case 1:
+                                callRankingURL(Constants.WomenBowlingRanking);
+                                break;
+                            case 2:
+                                callRankingURL(Constants.WomenAllRounderRanking);
+                                break;
+                        }
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         fragmentStatsBinding.tablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                tabPosition = tab.getPosition();
                 switch (tab.getPosition()) {
                     case 0:
                         AdUtils.showInterstitialAd(requireActivity(), new AppInterfaces.InterStitialADInterface() {
                             @Override
                             public void adLoadState(boolean isLoaded) {
+                                fragmentStatsBinding.spnPlayersType.setSelection(0);
                                 if (cd.isConnectingToInternet())
                                     callRankingURL(Constants.MenBattingRanking);
                             }
@@ -87,6 +133,7 @@ public class StatsFragment extends Fragment {
                         AdUtils.showInterstitialAd(requireActivity(), new AppInterfaces.InterStitialADInterface() {
                             @Override
                             public void adLoadState(boolean isLoaded) {
+                                fragmentStatsBinding.spnPlayersType.setSelection(0);
                                 if (cd.isConnectingToInternet())
                                     callRankingURL(Constants.WomenBattingRanking);
                             }
@@ -134,22 +181,7 @@ public class StatsFragment extends Fragment {
             singePlayer.setId(document.get(i).select("div.cb-col.cb-col-67.cb-rank-plyr").select("a").attr("href"));
             playerList.add(singePlayer);
         }
-
-
         return playerList;
-    }
-
-
-    private void callPopularPlayerAPI(RecyclerView rclPlayers) {
-        StatsAPIController statsAPIController = new StatsAPIController(context);
-        statsAPIController.callTrendingPlayerAPI(new AppInterfaces.APIResponseInterface() {
-            @Override
-            public void theApiResponse(TrendingPlayersResponseModel trendingPlayersResponseModel) {
-                if (!Global.isClassNull(trendingPlayersResponseModel) && !Global.isArrayListNull(trendingPlayersResponseModel.getPlayer())) {
-                    setUpTrendingPlayersList(rclPlayers, trendingPlayersResponseModel.getPlayer());
-                }
-            }
-        });
     }
 
     private void setUpTrendingPlayersList(RecyclerView rclPlayers, ArrayList<TrendingPlayersResponseModel.PlayerDTO> playerDTO) {
@@ -167,6 +199,7 @@ public class StatsFragment extends Fragment {
                             intent.putExtra("playerURL", Constants.CricBuzzBaseURL + playerDTO.get(someID).getId());
                             intent.putExtra("playerName", playerDTO.get(someID).getName());
                             intent.putExtra("playerImage", "https://www.cricbuzz.com" + playerDTO.get(someID).getFaceImageId());
+                            intent.putExtra("playerCountry", playerDTO.get(someID).getTeamName());
                             startActivity(intent);
                         }
                     });

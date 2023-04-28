@@ -104,16 +104,78 @@
                 android:textSize="@dimen/_12sdp"
                 android:textStyle="bold" />
 
-            <Spinner
-                android:id="@+id/spn_playersType"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/spinner_bg"
+                android:orientation="vertical">
+
+                <Spinner
+                    android:id="@+id/spn_playersType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_35sdp"
+                    android:divider="@color/light_gray"
+                    android:elevation="@dimen/_4sdp"
+                    android:pointerIcon="arrow"
+                    android:popupBackground="@color/white"
+                    android:popupElevation="0dp"
+                    android:spinnerMode="dropdown" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+                    app:cardCornerRadius="@dimen/_10sdp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_2sdp"
+                        android:background="@color/app_primarycolor"
+                        android:gravity="center"
+                        android:padding="@dimen/_8sdp"
+                        android:text="Position"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp" />
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+                    app:cardCornerRadius="@dimen/_10sdp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_2sdp"
+                        android:background="@color/app_primarycolor"
+                        android:gravity="center"
+                        android:padding="@dimen/_8sdp"
+                        android:text="Player Information"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp" />
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcl_players"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_2sdp"
                 android:layout_above="@+id/native_ads"
                 android:layout_below="@+id/txtpopular"
                 tools:listitem="@layout/singleplayer_layout" />

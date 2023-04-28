@@ -1,14 +1,16 @@
 package com.example.livecrickettvscores.Activities;
 
+import static com.example.livecrickettvscores.Activities.Fragments.StatsFragment.tabPosition;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.livecrickettvscores.Activities.Adapters.CountriesAdapter;
+import com.example.livecrickettvscores.Activities.Adapters.PlayerAdapter;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.Retrofit.AppAsyncTasks;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.CountriesResponseModel;
@@ -24,6 +26,7 @@ import java.util.ArrayList;
 public class CountryPlayersActivity extends AppCompatActivity {
     Activity activity;
     ActivityCountryPlayersBinding binding;
+    String PlayerCountry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +34,24 @@ public class CountryPlayersActivity extends AppCompatActivity {
         activity = CountryPlayersActivity.this;
         binding = DataBindingUtil.setContentView(activity, R.layout.activity_country_players);
         String countryLink = Constants.CricBuzzBaseURL + getIntent().getStringExtra("playerLink") + "/players";
+        PlayerCountry = getIntent().getStringExtra("playerCountry");
+
+        if (tabPosition == 0) {
+            binding.tvTitle.setText(PlayerCountry + " Men's Cricket Team");
+        } else {
+            binding.tvTitle.setText(PlayerCountry + "'s Cricket Team");
+        }
         AppAsyncTasks.GetPlayers getPlayers = new AppAsyncTasks.GetPlayers(countryLink, activity, new AppInterfaces.WebScrappingInterface() {
             @Override
             public void getScrapedDocument(Elements document) {
-                setUpPlayerList(document);
+                if (document.isEmpty()) {
+                    binding.rclCountryPlayers.setVisibility(View.GONE);
+                    binding.tvNodatafound.setVisibility(View.VISIBLE);
+                } else {
+                    binding.rclCountryPlayers.setVisibility(View.VISIBLE);
+                    binding.tvNodatafound.setVisibility(View.GONE);
+                    setUpPlayerList(document);
+                }
             }
         });
         getPlayers.execute();
@@ -42,7 +59,6 @@ public class CountryPlayersActivity extends AppCompatActivity {
 
     private void setUpPlayerList(Elements document) {
         ArrayList<CountriesResponseModel> responseModelArrayList = new ArrayList<>();
-
         for (int i = 0; i < document.size(); i++) {
             CountriesResponseModel responseModel = new CountriesResponseModel();
             responseModel.setCountryName(document.get(i).select("div[class=cb-font-16 text-hvr-underline]").text());
@@ -51,17 +67,19 @@ public class CountryPlayersActivity extends AppCompatActivity {
             responseModelArrayList.add(responseModel);
 
         }
-        CountriesAdapter adapter = new CountriesAdapter(activity, responseModelArrayList, new AppInterfaces.NewsAdapterClick() {
+        PlayerAdapter adapter = new PlayerAdapter(activity, responseModelArrayList, new AppInterfaces.NewsAdapterClick() {
             @Override
             public void getClickedNewsID(Integer newsID) {
                 Intent intent = new Intent(activity, PlayerInformation.class);
-                intent.putExtra("playerURL",Constants.CricBuzzBaseURL+ responseModelArrayList.get(newsID).getCountryEndpoint());
+                intent.putExtra("playerURL", Constants.CricBuzzBaseURL + responseModelArrayList.get(newsID).getCountryEndpoint());
                 intent.putExtra("playerName", responseModelArrayList.get(newsID).getCountryName());
-                intent.putExtra("playerImage",Constants.CricBuzzBaseURL+responseModelArrayList.get(newsID).getCountryFlag());
+                intent.putExtra("playerImage", Constants.CricBuzzBaseURL + responseModelArrayList.get(newsID).getCountryFlag());
+                intent.putExtra("playerCountry", PlayerCountry);
                 startActivity(intent);
             }
         });
-        binding.rclCountryPlayers.setLayoutManager(Global.getManagerWithOrientation(activity, RecyclerView.VERTICAL));
+
+        binding.rclCountryPlayers.setLayoutManager(Global.getGridLayoutManager(activity, 2));
         binding.rclCountryPlayers.setAdapter(adapter);
 
 

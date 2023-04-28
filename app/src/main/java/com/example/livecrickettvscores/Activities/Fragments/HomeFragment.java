@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -57,6 +58,7 @@ public class HomeFragment extends Fragment {
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
     ImageView iv_nav;
+    FrameLayout frameLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,7 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         context = view.getContext();
+        frameLayout = view.findViewById(R.id.frm_homefrag);
         cd = new ConnectionDetector(context);
         rcl_livematches = view.findViewById(R.id.rcl_livematches);
         rcl_trendingnews = view.findViewById(R.id.rcl_trendingnews);
@@ -128,6 +131,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void refreshFragment(Fragment statsFragment) {
+        frameLayout.removeAllViews();
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frm_homefrag, statsFragment).commit();

@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_10sdp"
+            android:visibility="gone"
             android:layout_toEndOf="@+id/iv_news"
             android:fontFamily="@font/nunito_sans"
             android:text="NDTV sports"
@@ -43,7 +44,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_toEndOf="@+id/tv_newssource"
             android:fontFamily="@font/nunito_sans"
-            android:gravity="end"
+            android:gravity="start"
             android:text="NDTV sports"
             android:textColor="@color/gray"
             android:textStyle="bold" />

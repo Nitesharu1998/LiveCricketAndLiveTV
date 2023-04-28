@@ -13,21 +13,24 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.bumptech.glide.Glide;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.Fragments.CareerFragment;
 import com.example.livecrickettvscores.Activities.Fragments.InfoFragment;
 import com.example.livecrickettvscores.Activities.Fragments.PlayerNewsFragment;
+import com.example.livecrickettvscores.Activities.Utils.Global;
 import com.example.livecrickettvscores.R;
 import com.google.android.material.tabs.TabLayout;
 
 public class PlayerInformation extends AppCompatActivity {
     ImageView iv_back;
-    TextView tv_playername;
+    TextView tv_playername, tv_playercountry;
+    ImageView civ_playerimage;
     TabLayout tabLayout;
     Activity activity;
     Context context;
-    String playerURL, playerName, playerImage;
+    String playerURL, playerName, playerImage, playerCountry;
     FrameLayout fl_mainframe;
 
     @Override
@@ -58,7 +61,7 @@ public class PlayerInformation extends AppCompatActivity {
                         AdUtils.showInterstitialAd(PlayerInformation.this, new AppInterfaces.InterStitialADInterface() {
                             @Override
                             public void adLoadState(boolean isLoaded) {
-                                refreshFragment(new InfoFragment(playerURL, playerImage, playerName));
+                                refreshFragment(new InfoFragment(playerURL, playerImage, playerName, playerCountry));
                             }
                         });
 
@@ -112,16 +115,26 @@ public class PlayerInformation extends AppCompatActivity {
     private void initView() {
         iv_back = findViewById(R.id.iv_back);
         tv_playername = findViewById(R.id.tv_playername);
+        civ_playerimage = findViewById(R.id.civ_playerimage);
+        tv_playercountry = findViewById(R.id.tv_playercountry);
         tabLayout = findViewById(R.id.tablayout);
         fl_mainframe = findViewById(R.id.fl_mainframe);
         activity = PlayerInformation.this;
         context = getApplicationContext();
+
         playerURL = getIntent().getStringExtra("playerURL");
         playerImage = getIntent().getStringExtra("playerImage");
+        Global.sout("playerImage", playerImage);
         playerName = getIntent().getStringExtra("playerName");
-
+        playerCountry = getIntent().getStringExtra("playerCountry");
+        tv_playername.setText(playerName);
+        tv_playercountry.setText(playerCountry);
+        if (playerImage.contains("50x50")) {
+            Glide.with(activity).load(playerImage.replace("50x50", "150x150")).into(civ_playerimage);
+        } else {
+            Glide.with(activity).load(playerImage.replace("75x75", "150x150")).into(civ_playerimage);
+        }
     }
-
     private void setUpTabs() {
         //TODO static part
         tabLayout.addTab(tabLayout.newTab().setText("Info"));

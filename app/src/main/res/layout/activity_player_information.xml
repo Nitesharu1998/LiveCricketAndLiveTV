@@ -5,12 +5,13 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@drawable/appdefault_bg"
     tools:context=".Activities.PlayerInformation">
     <RelativeLayout
         android:id="@+id/rl_appbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/purple_700"
+        android:background="@color/app_primarycolor"
         android:paddingHorizontal="@dimen/_12sdp"
         android:paddingVertical="@dimen/_8sdp">
 
@@ -22,7 +23,6 @@
 
 
         <TextView
-            android:id="@+id/tv_playername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -35,28 +35,77 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/rl_profileview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/app_primarycolor"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingVertical="@dimen/_12sdp">
+
+        <ImageView
+            android:id="@+id/civ_playerimage"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:backgroundTint="@color/transparent"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_toRightOf="@+id/civ_playerimage"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_playername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_12sdp"
+                android:fontFamily="@font/nunito_sans"
+                android:text="playername"
+                android:textColor="@color/white" />
+
+
+            <TextView
+                android:id="@+id/tv_playercountry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_sans"
+                android:text="--"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tablayout"
         style="@style/TabLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/light_blue"
-        android:paddingVertical="@dimen/_8sdp"
-        app:tabIndicator="@color/white"
+        android:layout_height="70dp"
+        android:animateLayoutChanges="true"
+        android:background="@drawable/appdefault_bg"
+        android:outlineSpotShadowColor="@color/teal_200"
+        android:paddingVertical="@dimen/_12sdp"
         app:tabIndicatorAnimationMode="elastic"
-        app:tabIndicatorColor="@color/white"
+        app:tabIndicator="@color/teal_200"
         app:tabIndicatorFullWidth="false"
-        app:tabIndicatorHeight="@dimen/_3sdp"
+        app:tabIndicatorAnimationDuration="@integer/material_motion_duration_long_1"
+        app:tabIndicatorColor="@color/teal_200"
+        app:tabIndicatorHeight="@dimen/_2sdp"
+        app:tabPaddingBottom="@dimen/_4sdp"
         app:tabSelectedTextColor="@color/white"
-        app:tabTextColor="@color/white"
-        android:layout_marginBottom="@dimen/_12sdp"/>
+        app:tabTextColor="@color/light_gray" />
+
+
     <FrameLayout
         android:id="@+id/fl_mainframe"
         android:layout_width="match_parent"
+        android:background="@drawable/curved_top_bg"
+        android:layout_marginHorizontal="@dimen/_2sdp"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/_4sdp"
-        />
-
+        android:layout_marginBottom="@dimen/_4sdp" />
 
 
 </LinearLayout>

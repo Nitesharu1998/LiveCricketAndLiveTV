@@ -10,13 +10,24 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <TextView
+        android:id="@+id/tv_relatedText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/_12sdp"
+        android:paddingStart="@dimen/_8sdp"
+        android:text="Related Articles"
+        android:textColor="@color/app_primarycolor"
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcl_playernews"
         android:layout_width="match_parent"
+        android:layout_below="@+id/tv_relatedText"
         android:layout_height="match_parent"
         android:layout_above="@+id/native_ads"
-        android:padding="@dimen/_12sdp"
-        />
+        android:padding="@dimen/_12sdp" />
 
     <LinearLayout
         android:id="@+id/native_ads"

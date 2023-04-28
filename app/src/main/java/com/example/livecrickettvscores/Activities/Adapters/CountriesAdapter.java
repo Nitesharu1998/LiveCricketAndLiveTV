@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.CountriesResponseModel;
+import com.example.livecrickettvscores.Activities.Utils.Constants;
 import com.example.livecrickettvscores.Activities.Utils.Global;
 import com.example.livecrickettvscores.R;
 import com.example.livecrickettvscores.databinding.SingleCountryBinding;
@@ -22,9 +23,11 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
     Context context;
     ArrayList<CountriesResponseModel> countriesResponseModels;
     AppInterfaces.NewsAdapterClick newsAdapterClick;
+    boolean isBaseURL;
 
-    public CountriesAdapter(Context context, ArrayList<CountriesResponseModel> countriesResponseModels, AppInterfaces.NewsAdapterClick newsAdapterClick) {
+    public CountriesAdapter(boolean isBaseURL, Context context, ArrayList<CountriesResponseModel> countriesResponseModels, AppInterfaces.NewsAdapterClick newsAdapterClick) {
         this.context = context;
+        this.isBaseURL = isBaseURL;
         this.countriesResponseModels = countriesResponseModels;
         this.newsAdapterClick = newsAdapterClick;
     }
@@ -38,7 +41,12 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull CountriesAdapter.ViewHolder holder, int position) {
-        Glide.with(context).load(Global.getFlagOfCountry(countriesResponseModels.get(position).getCountryName())).into(holder.binding.ivCountry);
+        if (isBaseURL) {
+            Glide.with(context).load(Constants.CricBuzzBaseURL + countriesResponseModels.get(position).getCountryFlag()).into(holder.binding.ivCountry);
+        } else {
+            Glide.with(context).load(Global.getFlagOfCountry(countriesResponseModels.get(position).getCountryName())).into(holder.binding.ivCountry);
+
+        }
         holder.binding.tvCountryName.setText(countriesResponseModels.get(position).getCountryName());
         holder.binding.tvCountryName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,9 +61,8 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
         return countriesResponseModels.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         SingleCountryBinding binding;
-
         public ViewHolder(@NonNull SingleCountryBinding binding) {
             super(binding.getRoot());
             this.binding = binding;

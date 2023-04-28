@@ -49,7 +49,7 @@ public class SplashActivity extends AppCompatActivity {
                             synchronized (this) {
                                 Intent intent;
                                 try {
-                                    wait(3000);
+                                    wait(1000);
                                 } catch (InterruptedException e) {
                                     Global.sout("running thread interrupted", e.getLocalizedMessage());
                                 } finally {
@@ -84,7 +84,7 @@ public class SplashActivity extends AppCompatActivity {
                                     synchronized (this) {
                                         Intent intent;
                                         try {
-                                            wait(2000);
+                                            wait(1000);
                                         } catch (InterruptedException e) {
                                             Global.sout("running thread interrupted", e.getLocalizedMessage());
                                         } finally {

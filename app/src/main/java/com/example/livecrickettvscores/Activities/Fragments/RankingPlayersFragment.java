@@ -1,5 +1,7 @@
 package com.example.livecrickettvscores.Activities.Fragments;
 
+import static com.example.livecrickettvscores.Activities.Fragments.StatsFragment.tabPosition;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -21,6 +23,7 @@ import com.example.livecrickettvscores.Activities.Utils.Constants;
 import com.example.livecrickettvscores.Activities.Utils.Global;
 import com.example.livecrickettvscores.R;
 import com.example.livecrickettvscores.databinding.FragmentRankingPlayersBinding;
+import com.google.android.material.tabs.TabLayout;
 
 import org.jsoup.select.Elements;
 
@@ -35,13 +38,34 @@ public class RankingPlayersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_ranking_players, container, false);
-        AppAsyncTasks.CallRankingContries callRankingContries = new AppAsyncTasks.CallRankingContries(Constants.CricketTeamURL, binding.getRoot().getContext(), new AppInterfaces.WebScrappingInterface() {
+        setUptabs();
+        callCountryList(Constants.CricketTeamURL);
+
+        binding.tablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void getScrapedDocument(Elements document) {
-                setUpCountryList(document);
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        tabPosition = tab.getPosition();
+                        callCountryList(Constants.CricketTeamURL);
+                        break;
+                    case 1:
+                        tabPosition = tab.getPosition();
+                        callCountryList(Constants.CricketTeamWomenURL);
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
-        callRankingContries.execute();
 
 
         binding.tetCountryName.addTextChangedListener(new TextWatcher() {
@@ -66,6 +90,21 @@ public class RankingPlayersFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+
+    private void callCountryList(String cricketTeamURL) {
+        AppAsyncTasks.CallRankingContries callRankingContries = new AppAsyncTasks.CallRankingContries(cricketTeamURL, binding.getRoot().getContext(), new AppInterfaces.WebScrappingInterface() {
+            @Override
+            public void getScrapedDocument(Elements document) {
+                setUpCountryList(document);
+            }
+        });
+        callRankingContries.execute();
+    }
+
+    private void setUptabs() {
+        binding.tablayout.addTab(binding.tablayout.newTab().setText("Men's"));
+        binding.tablayout.addTab(binding.tablayout.newTab().setText("Women's"));
     }
 
     private void filterCountries(String countryName) {
@@ -96,10 +135,10 @@ public class RankingPlayersFragment extends Fragment {
 
     private void setUpAdapter(ArrayList<CountriesResponseModel> countriesResponseModels) {
         binding.rclCountryList.setLayoutManager(Global.getManagerWithOrientation(requireContext(), RecyclerView.VERTICAL));
-        CountriesAdapter adapter = new CountriesAdapter(requireContext(), countriesResponseModels, new AppInterfaces.NewsAdapterClick() {
+        CountriesAdapter adapter = new CountriesAdapter(false, requireContext(), countriesResponseModels, new AppInterfaces.NewsAdapterClick() {
             @Override
             public void getClickedNewsID(Integer countryId) {
-                startActivity(new Intent(binding.getRoot().getContext(), CountryPlayersActivity.class).putExtra("playerLink", countriesResponseModels.get(countryId).getCountryEndpoint()));
+                startActivity(new Intent(binding.getRoot().getContext(), CountryPlayersActivity.class).putExtra("playerLink", countriesResponseModels.get(countryId).getCountryEndpoint()).putExtra("playerCountry", countriesResponseModels.get(countryId).getCountryName()));
             }
         });
         binding.rclCountryList.setAdapter(adapter);

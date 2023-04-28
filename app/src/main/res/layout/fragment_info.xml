@@ -15,12 +15,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/curved_top_bg"
             android:orientation="vertical">
 
             <RelativeLayout
                 android:id="@+id/rl_profileview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:paddingHorizontal="@dimen/_12sdp"
                 android:paddingVertical="@dimen/_12sdp">
 
@@ -28,7 +30,6 @@
                     android:id="@+id/civ_playerimage"
                     android:layout_width="@dimen/_100sdp"
                     android:layout_height="@dimen/_100sdp"
-                    android:src="@drawable/testimage"
                     app:civ_border_color="@color/purple_700"
                     app:civ_border_width="@dimen/_1sdp" />
 
@@ -49,20 +50,13 @@
                         android:text="playername"
                         android:textColor="@color/black" />
 
-                    <TextView
-                        android:id="@+id/tv_playerdob"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito_sans"
-                        android:text="player dob and age"
-                        android:textColor="@color/dark_gray" />
 
                     <TextView
                         android:id="@+id/tv_playercountry"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunito_sans"
-                        android:text="coountry name"
+                        android:text="--"
                         android:textColor="@color/dark_gray" />
                 </LinearLayout>
 
@@ -81,14 +75,15 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito_sans"
                     android:text="Personal Information"
-                    android:textColor="@color/dark_gray" />
+                    android:textColor="@color/app_primarycolor"
+                    android:textSize="@dimen/_14sdp" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_4sdp"
                     android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-                    android:background="@color/white"
+                    android:backgroundTint="@color/light_gray"
                     android:outlineSpotShadowColor="@color/white"
                     app:cardCornerRadius="@dimen/_24sdp">
 
@@ -103,20 +98,22 @@
                             android:background="@color/light_gray"
                             android:fontFamily="@font/nunito_sans"
                             android:paddingVertical="@dimen/_12sdp"
+                            android:textColor="@color/app_primarycolor"
+                            android:textStyle="bold"
                             android:paddingStart="@dimen/_12sdp"
-                            android:text="Birth Place" />
+                            android:text="Born" />
 
                         <TextView
                             android:id="@+id/tv_birthplace"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_toRightOf="@+id/txt_birthplace"
+                            android:layout_toRightOf="@+id/txt_dob"
                             android:background="@color/light_gray"
                             android:fontFamily="@font/nunito_sans"
                             android:paddingVertical="@dimen/_12sdp"
                             android:paddingStart="@dimen/_12sdp"
                             android:text="Birth Place to place here"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/app_secondarycolor" />
 
                         <TextView
                             android:id="@+id/txt_nickname"
@@ -152,7 +149,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/txt_nickname"
-                            android:layout_marginTop="@dimen/_1sdp"
+                            android:textColor="@color/app_primarycolor"
+                            android:textStyle="bold"
                             android:background="@color/light_gray"
                             android:fontFamily="@font/nunito_sans"
                             android:paddingVertical="@dimen/_12sdp"
@@ -164,22 +162,49 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/tv_nickname"
-                            android:layout_marginTop="@dimen/_1sdp"
-                            android:layout_toRightOf="@+id/txt_role"
+                            android:layout_toRightOf="@+id/txt_dob"
                             android:background="@color/light_gray"
                             android:fontFamily="@font/nunito_sans"
                             android:paddingVertical="@dimen/_12sdp"
                             android:paddingStart="@dimen/_12sdp"
                             android:text="Role to place here"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/app_secondarycolor" />
+
+                        <TextView
+                            android:id="@+id/txt_dob"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_role"
+                            android:background="@color/light_gray"
+                            android:fontFamily="@font/nunito_sans"
+                            android:paddingVertical="@dimen/_12sdp"
+                            android:paddingStart="@dimen/_12sdp"
+                            android:text="Date Of Birth"
+                            android:textColor="@color/app_primarycolor"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:id="@+id/tv_playerdob"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_role"
+                            android:layout_toEndOf="@+id/txt_dob"
+                            android:background="@color/light_gray"
+                            android:fontFamily="@font/nunito_sans"
+                            android:paddingVertical="@dimen/_12sdp"
+                            android:paddingStart="@dimen/_12sdp"
+                            android:text="player dob and age"
+                            android:textColor="@color/app_secondarycolor" />
 
 
                         <TextView
                             android:id="@+id/txt_battingstyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/txt_role"
-                            android:layout_marginTop="@dimen/_1sdp"
+                            android:layout_below="@+id/txt_dob"
+                            android:textColor="@color/app_primarycolor"
+                            android:textStyle="bold"
                             android:background="@color/light_gray"
                             android:fontFamily="@font/nunito_sans"
                             android:paddingVertical="@dimen/_12sdp"
@@ -190,15 +215,14 @@
                             android:id="@+id/tv_battingstyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_role"
-                            android:layout_marginTop="@dimen/_1sdp"
+                            android:layout_below="@+id/tv_playerdob"
                             android:layout_toRightOf="@+id/txt_battingstyle"
                             android:background="@color/light_gray"
                             android:fontFamily="@font/nunito_sans"
                             android:paddingVertical="@dimen/_12sdp"
                             android:paddingStart="@dimen/_12sdp"
                             android:text="Batting style to place here"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/app_secondarycolor" />
 
 
                     </RelativeLayout>
@@ -220,7 +244,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito_sans"
                     android:text="ICC Ranking"
-                    android:textColor="@color/dark_gray" />
+                    android:textColor="@color/app_primarycolor"
+                    android:textSize="@dimen/_14sdp" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
@@ -250,7 +275,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginEnd="@dimen/_2sdp"
                                 android:layout_weight="1"
-                                android:background="@color/light_blue"
+                                android:background="@color/app_primarycolor"
                                 android:fontFamily="@font/nunito_sans"
                                 android:paddingVertical="@dimen/_8sdp"
                                 android:textColor="@color/white" />
@@ -260,7 +285,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="@dimen/_2sdp"
                                 android:layout_weight="1"
-                                android:background="@color/light_blue"
+                                android:background="@color/app_primarycolor"
                                 android:fontFamily="@font/nunito_sans"
                                 android:gravity="center"
                                 android:paddingVertical="@dimen/_8sdp"
@@ -272,7 +297,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="@dimen/_2sdp"
                                 android:layout_weight="1"
-                                android:background="@color/light_blue"
+                                android:background="@color/app_primarycolor"
                                 android:fontFamily="@font/nunito_sans"
                                 android:gravity="center"
                                 android:paddingVertical="@dimen/_8sdp"
@@ -283,7 +308,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="@color/light_blue"
+                                android:background="@color/app_primarycolor"
                                 android:fontFamily="@font/nunito_sans"
                                 android:gravity="center"
                                 android:paddingVertical="@dimen/_8sdp"
@@ -305,7 +330,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="@dimen/_2sdp"
                                 android:layout_weight="1"
-                                android:background="@color/light_blue"
+                                android:background="@color/app_primarycolor"
                                 android:fontFamily="@font/nunito_sans"
                                 android:gravity="center"
                                 android:paddingVertical="@dimen/_8sdp"
@@ -365,7 +390,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="@dimen/_2sdp"
                                 android:layout_weight="1"
-                                android:background="@color/light_blue"
+                                android:background="@color/app_primarycolor"
                                 android:fontFamily="@font/nunito_sans"
                                 android:gravity="center"
                                 android:paddingVertical="@dimen/_8sdp"
@@ -499,7 +524,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito_sans"
                     android:text="Teams"
-                    android:textColor="@color/dark_gray" />
+                    android:textColor="@color/app_primarycolor"
+                    android:textSize="@dimen/_14sdp" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
@@ -528,7 +554,8 @@
                     android:layout_marginTop="@dimen/_12sdp"
                     android:fontFamily="@font/nunito_sans"
                     android:text="Profile"
-                    android:textColor="@color/dark_gray" />
+                    android:textColor="@color/app_primarycolor"
+                    android:textSize="@dimen/_14sdp" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"

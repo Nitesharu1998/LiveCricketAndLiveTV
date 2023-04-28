@@ -9,8 +9,10 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.provider.Settings;
+import android.util.Log;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -496,6 +498,12 @@ public class Global {
         return manager;
     }
 
+    public static RecyclerView.LayoutManager getGridLayoutManager(Context context, int spanCount) {
+        GridLayoutManager manager = new GridLayoutManager(context, spanCount);
+        manager.setOrientation(RecyclerView.VERTICAL);
+        return manager;
+    }
+
     public static String getTextFromDataModel(ArrayList<NewsDetailsResponseModel.ContentDTO> content) {
         String newsDetails = "";
         try {
@@ -522,15 +530,14 @@ public class Global {
     }
 
     public static CricketFlagsResponseModel setUpFlagsModel(String json) {
-        Type flagsType = new TypeToken<CricketFlagsResponseModel>() {
-        }.getType();
-        return new Gson().fromJson(json, flagsType);
+        return new Gson().fromJson(json, new TypeToken<CricketFlagsResponseModel>() {
+        }.getType());
     }
 
     public static String getFlagOfCountry(String teamName) {
-        if (!Global.isArrayListNull(Constants.cricketFlagsModel.getFlagList())) {
+        if (!Global.isArrayListNull(Constants.cricketFlagsModel.getFlagList()) && !Global.isClassNull(Constants.cricketFlagsModel)) {
             for (int i = 0; i < Constants.cricketFlagsModel.getFlagList().size(); i++) {
-                if (StringUtils.CheckEqualIgnoreCase(Constants.cricketFlagsModel.getFlagList().get(i).getFlagName(), teamName)) {
+                if (teamName.contains(Constants.cricketFlagsModel.getFlagList().get(i).getFlagName())) {
                     return Constants.cricketFlagsModel.getFlagList().get(i).getFlagURL();
                 }
             }
