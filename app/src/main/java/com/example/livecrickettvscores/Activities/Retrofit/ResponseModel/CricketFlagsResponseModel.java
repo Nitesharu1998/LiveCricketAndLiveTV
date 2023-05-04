@@ -11,7 +11,7 @@ public class CricketFlagsResponseModel {
         FlagList = flagList;
     }
 
-    ArrayList<FlagList> FlagList;
+    ArrayList<FlagList> FlagList = new ArrayList<>();
 
     public class FlagList {
         String FlagName, FlagURL;

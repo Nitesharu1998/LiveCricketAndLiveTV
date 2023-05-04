@@ -2,11 +2,14 @@ package com.example.livecrickettvscores.Activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.livecrickettvscores.Activities.Adapters.FullScoreBoardAdapter;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.Retrofit.AppAsyncTasks;
@@ -22,6 +25,9 @@ import com.google.android.material.tabs.TabLayout;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class FullScoreBoardActivity extends AppCompatActivity {
     ActivityFullScoreBoardBinding binding;
@@ -35,18 +41,38 @@ public class FullScoreBoardActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_full_score_board);
         activity = FullScoreBoardActivity.this;
         setTabs();
+        setTopUI();
+        initListeners();
         if (!StringUtils.isNull(matchesDTO.getMatchScoreLink())) {
             Global.sout("matchlink", Constants.ESPNBaseURL + Constants.matchDTO.getMatchScoreLink());
             AppAsyncTasks.GetFinishedScoreBoard getFinishedScoreBoard = new AppAsyncTasks.GetFinishedScoreBoard(true, Constants.ESPNBaseURL + matchesDTO.getMatchScoreLink(), activity, new AppInterfaces.WebScrappingInterface() {
                 @Override
                 public void getScrapedDocument(Elements scoreBoardElements) {
-                    fullScoreBoardResponseModel = setUpResponseModel(scoreBoardElements);
-                    setUpFullScoreBoardList(getResponseModelForTeams(true));
+                    setManOfTheMatch(Constants.ManOfTheMatchElements);
+                    if (!scoreBoardElements.isEmpty()) {
+
+                        fullScoreBoardResponseModel = setUpResponseModel(scoreBoardElements);
+                        setUpFullScoreBoardList(getResponseModelForTeams(true));
+                    } else {
+                        Toast.makeText(activity, "The score data is not available now...", Toast.LENGTH_SHORT).show();
+                        onBackPressed();
+                    }
+
                 }
             });
             getFinishedScoreBoard.execute();
         }
 
+
+    }
+
+    private void initListeners() {
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         binding.tabTeamNames.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -70,6 +96,35 @@ public class FullScoreBoardActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void setManOfTheMatch(Elements manOfTheMatchElements) {
+        if (!manOfTheMatchElements.isEmpty()) {
+            String MOMScore = manOfTheMatchElements.select("span[class=ds-text-tight-s ds-font-regular]").text();
+            if (MOMScore.contains("&")) {
+                String[] momSplit = MOMScore.split("&");
+                binding.tvMOMPlayerScore.setText(momSplit[0] + "\n&\n" + momSplit[1]);
+
+            } else {
+                binding.tvMOMPlayerScore.setText(manOfTheMatchElements.select("span[class=ds-text-tight-s ds-font-regular]").text());
+
+            }
+            Global.sout("manOfTheMatchElements\n", manOfTheMatchElements);
+            binding.tvMOMPlayer.setText(StringUtils.toCamelCase(manOfTheMatchElements.select("div[class=ds-relative]").select("img").attr("alt").replace("-", " ")));
+
+        }
+    }
+
+    private void setTopUI() {
+        binding.tvMatch1score.setText(Constants.matchDTO.getTeamOneScore());
+        binding.tvMatch2score.setText(Constants.matchDTO.getTeamTwoScore());
+        binding.tvMatch1team.setText(Constants.matchDTO.getTeamOne());
+        binding.tvMatch2team.setText(Constants.matchDTO.getTeamTwo());
+        binding.tvMatchstatus.setText(Constants.matchDTO.getSession());
+        binding.tvMatchtitle.setText(Constants.matchDTO.getMatchTitle());
+
+        Glide.with(getApplicationContext()).load(Global.getFlagOfCountry(true,Constants.matchDTO.getTeamOne())).into(binding.ivTeam1);
+        Glide.with(getApplicationContext()).load(Global.getFlagOfCountry(true,Constants.matchDTO.getTeamTwo())).into(binding.ivTeam2);
     }
 
     private FullScoreBoardResponseModel getResponseModelForTeams(boolean isTeamOne) {
@@ -112,7 +167,7 @@ public class FullScoreBoardActivity extends AppCompatActivity {
             Elements battingElements = scoreBoardElements.get(i).select("table[class=ds-w-full ds-table ds-table-md ds-table-auto  ci-scorecard-table]"); //4
             Elements bowlingElements = scoreBoardElements.get(i).select("table[class=ds-w-full ds-table ds-table-md ds-table-auto ]");//4
             FullScoreBoardResponseModel.MatchInningDTO matchInningDTO = new FullScoreBoardResponseModel.MatchInningDTO();
-            matchInningDTO.setTeamName(scoreBoardElements.get(i).select("span[class=ds-text-title-xs ds-font-bold ds-capitalize]").text() + scoreBoardElements.get(i).select("span[class=ds-text-compact-xs ds-font-regular]").text());
+            matchInningDTO.setTeamName(scoreBoardElements.get(i).select("span[class=ds-text-title-xs ds-font-bold ds-capitalize]").text() + " " + scoreBoardElements.get(i).select("span[class=ds-text-compact-xs ds-font-regular]").text());
             matchInningDTO.setTeamFallOfWicket(scoreBoardElements.get(i).select("div[class=ds-text-tight-s ds-font-regular ds-leading-4]").select("span").text());
             matchInningDTO.setTeamTotal(scoreBoardElements.get(i).select("td[class=ds-font-bold ds-bg-fill-content-alternate ds-text-tight-m ds-min-w-max ds-flex ds-items-center !ds-pl-[100px]]").text() + "    " + scoreBoardElements.get(i).select("td[class=ds-font-bold ds-bg-fill-content-alternate ds-text-tight-m ds-min-w-max ds-text-right]").text());
             for (int j = 0; j < battingElements.size(); j++) {
@@ -123,12 +178,12 @@ public class FullScoreBoardActivity extends AppCompatActivity {
                 }
                 matchInningDTO.setBatsmanDTOS(batsmanList);
             }
-
             for (int j = 0; j < bowlingElements.size(); j++) {
                 ArrayList<FullScoreBoardResponseModel.BowlerDTO> bowlerList = new ArrayList<>();
                 Elements singleBowler = bowlingElements.get(j).select("tr");
+                System.out.println("bowler element\n" + singleBowler.get(1));
                 for (int k = 1; k < singleBowler.size(); k++) {
-                    bowlerList.add(getBowler(singleBowler.get(k).getAllElements()));
+                    bowlerList.add(getBowler(singleBowler.get(0).getAllElements(), singleBowler.get(k).getAllElements()));
                 }
                 matchInningDTO.setBowlerDTOS(bowlerList);
             }
@@ -139,7 +194,6 @@ public class FullScoreBoardActivity extends AppCompatActivity {
 
         return filterResponseModel(responseModel);
     }
-
     private FullScoreBoardResponseModel filterResponseModel(FullScoreBoardResponseModel responseModel) {
         FullScoreBoardResponseModel localResponseModel = responseModel;
         ArrayList<FullScoreBoardResponseModel.BatsmanDTO> localBatsmanList;
@@ -165,18 +219,20 @@ public class FullScoreBoardActivity extends AppCompatActivity {
         return localResponseModel;
     }
 
-    private FullScoreBoardResponseModel.BowlerDTO getBowler(Elements singleBowler) {
+    private FullScoreBoardResponseModel.BowlerDTO getBowler(Elements AllElements, Elements singleBowler) {
+        Elements AllElementsTest = AllElements.select("th[class=ds-w-0 ds-whitespace-nowrap ds-min-w-max ds-text-right]");
+
         FullScoreBoardResponseModel.BowlerDTO bowlerDTO = new FullScoreBoardResponseModel.BowlerDTO();
         Elements bowlerScore = singleBowler.select("td[class=ds-w-0 ds-whitespace-nowrap ds-min-w-max ds-text-right]");
+        Elements bowlerScoreWicket = singleBowler.select("td[class=ds-w-0 ds-whitespace-nowrap ds-text-right]").select("strong");
         bowlerDTO.setBowlerName(singleBowler.select("a[class=ds-inline-flex ds-items-start ds-leading-none]").select("span").text());
         for (int i = 0; i < bowlerScore.size(); i++) {
             bowlerDTO.setO(bowlerScore.get(0).text());
             bowlerDTO.setM(bowlerScore.get(1).text());
             bowlerDTO.setR(bowlerScore.get(2).text());
-            bowlerDTO.setW(bowlerScore.get(3).text());
-            bowlerDTO.setEcon(bowlerScore.get(4).text());
+            bowlerDTO.setW(bowlerScoreWicket.text());
+            bowlerDTO.setEcon(bowlerScore.get(3).text());
         }
-
         return bowlerDTO;
     }
 
@@ -208,6 +264,12 @@ public class FullScoreBoardActivity extends AppCompatActivity {
 
 
         return batsmanDTO;
+    }
+
+    private String filterText(String singleSplitString) {
+        String[] words = singleSplitString.split(", ");
+        Set<String> uniqueWords = new LinkedHashSet<>(Arrays.asList(words));
+        return String.join(", ", uniqueWords);
     }
 
     @Override

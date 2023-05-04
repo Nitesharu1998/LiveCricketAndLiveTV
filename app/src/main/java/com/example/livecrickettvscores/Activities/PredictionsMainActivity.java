@@ -14,17 +14,14 @@ import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.Retrofit.AppAsyncTasks;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.PredictionDetailsModel;
+import com.example.livecrickettvscores.Activities.Utils.Constants;
 import com.example.livecrickettvscores.Activities.Utils.DateUtil;
 import com.example.livecrickettvscores.Activities.Utils.Global;
-import com.example.livecrickettvscores.Activities.videoplayer.utils.TimeUtils;
 import com.example.livecrickettvscores.databinding.ActivityPredictionsMainBinding;
 
 import org.jsoup.select.Elements;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 public class PredictionsMainActivity extends AppCompatActivity {
     ActivityPredictionsMainBinding binding;
@@ -37,15 +34,15 @@ public class PredictionsMainActivity extends AppCompatActivity {
         binding = ActivityPredictionsMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         activity = PredictionsMainActivity.this;
-
+        AdUtils.showNativeAd(activity, Constants.adsJsonPOJO.getParameters().getNative_id().getDefaultValue().getValue(),binding.nativeAds,false);
         callFantasyPredictionsData();
-
         initListeners();
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        finish();
     }
 
     private void callFantasyPredictionsData() {
@@ -71,16 +68,11 @@ public class PredictionsMainActivity extends AppCompatActivity {
                             if (multipleElements.get(i).select("div.tip-meta").select("div").select("span").get(0).ownText().equals("Who will win the match")) {
                                 model.setMatchWin(multipleElements.get(i).select("div.tip-meta").select("div").select("i").hasClass("fas fa-check"));
                             }
-                            /*if (multipleElements.get(i).select("div.tip-meta").select("div").select("span").get(1).ownText().equals("Dream11 Team Prediction")) {
-                                predictionDetailsModels.get(i).setDreamElevenPredicted(multipleElements.get(i).select("div.tip-meta").select("div").select("i").hasClass("fas fa-check"));
-
-                            }*/
-
                             predictionDetailsModels.add(model);
                         }
                     }
                     setUpFantasyList(predictionDetailsModels);
-                }/////////////
+                }
             }
         });
         getPredictionTask.execute();
@@ -107,6 +99,7 @@ public class PredictionsMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onBackPressed();
+
             }
         });
     }

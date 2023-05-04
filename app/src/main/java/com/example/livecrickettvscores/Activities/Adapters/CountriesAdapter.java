@@ -44,7 +44,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
         if (isBaseURL) {
             Glide.with(context).load(Constants.CricBuzzBaseURL + countriesResponseModels.get(position).getCountryFlag()).into(holder.binding.ivCountry);
         } else {
-            Glide.with(context).load(Global.getFlagOfCountry(countriesResponseModels.get(position).getCountryName())).into(holder.binding.ivCountry);
+            Glide.with(context).load(Global.getFlagOfCountry(true,countriesResponseModels.get(position).getCountryName())).into(holder.binding.ivCountry);
 
         }
         holder.binding.tvCountryName.setText(countriesResponseModels.get(position).getCountryName());

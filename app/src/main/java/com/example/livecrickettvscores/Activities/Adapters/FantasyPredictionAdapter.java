@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.PredictionDetailsModel;
 import com.example.livecrickettvscores.Activities.Utils.InputUtils;
+import com.example.livecrickettvscores.R;
 import com.example.livecrickettvscores.databinding.SinglepredictionLayoutBinding;
 import com.google.android.material.button.MaterialButton;
 
@@ -52,7 +54,7 @@ public class FantasyPredictionAdapter extends RecyclerView.Adapter<FantasyPredic
         holder.btnMatch.setText("See Match Prediction");
         holder.tv_time.setText(singleData.getTime());
         if (InputUtils.CheckEqualCaseSensitive(singleData.getPredictionStatus(), "Prediction posted!")) {
-            holder.btnMatch.setBackgroundColor(Color.parseColor("#103CC5"));
+            holder.btnMatch.setBackgroundColor(activity.getColor(R.color.app_primarycolor));
             holder.btnMatch.setClickable(true);
 
             holder.btnMatch.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +64,8 @@ public class FantasyPredictionAdapter extends RecyclerView.Adapter<FantasyPredic
                 }
             });
         } else {
-            holder.btnMatch.setBackgroundColor(Color.parseColor("#A3A3A3"));
+            Toast.makeText(activity, "Predictions are not currently available", Toast.LENGTH_SHORT).show();
+            //holder.btnMatch.setBackgroundColor(activity.getColor(R.color.dark_gray));
             holder.btnMatch.setClickable(false);
         }
 

@@ -6,7 +6,7 @@
         android:topRightRadius="@dimen/_20sdp" />
     <solid android:color="#3300FFF0" />
     <stroke
-        android:width="@dimen/_2sdp"
+        android:width="@dimen/_1sdp"
         android:color="#00FFF0" />
     <size
         android:width="@dimen/_10sdp"

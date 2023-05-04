@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.livecrickettvscores.Activities.Adapters.TrendingPlayersAdapter;
+import com.example.livecrickettvscores.Activities.AppHomeActivity;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.PlayerInformation;
@@ -68,7 +69,9 @@ public class StatsFragment extends Fragment {
         fragmentStatsBinding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                requireActivity().finish();
+
+                startActivity(new Intent(requireActivity(), AppHomeActivity.class));
+
             }
         });
 

@@ -55,6 +55,19 @@ public class CountryPlayersActivity extends AppCompatActivity {
             }
         });
         getPlayers.execute();
+
+        binding.icBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
     private void setUpPlayerList(Elements document) {

@@ -46,8 +46,8 @@ public class SingleUpcomingDetailsAdapter extends RecyclerView.Adapter<SingleUpc
         holder.tv_match1team.setText(fixturesResponseModel.get(position).getTeamOne());
         holder.tv_match2team.setText(fixturesResponseModel.get(position).getTeamTwo());
         holder.tv_matchtitle.setText(fixturesResponseModel.get(position).getMatchTitle());
-        Glide.with(context).load(Global.getFlagOfCountry(fixturesResponseModel.get(position).getTeamOne())).diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(holder.binding.ivTeam1);
-        Glide.with(context).load(Global.getFlagOfCountry(fixturesResponseModel.get(position).getTeamTwo())).diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(holder.binding.ivTeam2);
+        Glide.with(context).load(Global.getFlagOfCountry(true,fixturesResponseModel.get(position).getTeamOne())).diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(holder.binding.ivTeam1);
+        Glide.with(context).load(Global.getFlagOfCountry(true,fixturesResponseModel.get(position).getTeamTwo())).diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(holder.binding.ivTeam2);
     }
 
     @Override

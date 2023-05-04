@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
@@ -12,76 +13,196 @@
             android:id="@+id/tv_matchTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_4sdp"
+            android:layout_marginVertical="@dimen/_12sdp"
+            android:layout_marginStart="-8dp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@drawable/match_title_bg"
+            android:paddingVertical="@dimen/_8sdp"
+            android:paddingStart="@dimen/_12sdp"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold"
+
             android:textColor="@color/black" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_2sdp"
-            android:background="@color/light_gray"
-            android:orientation="horizontal"
-            android:paddingVertical="@dimen/_4sdp">
+            android:background="@color/white"
+            android:orientation="horizontal">
 
-            <TextView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="6"
-                android:text="Batsman"
-                android:textColor="@color/black" />
+                android:backgroundTint="@color/app_primarycolor"
+                android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                app:cardCornerRadius="@dimen/_4sdp">
 
-            <TextView
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/_4sdp"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:text="Batsman"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp" />
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/app_primarycolor"
+                android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                app:cardCornerRadius="@dimen/_4sdp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/_4sdp"
+                    android:text="R"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/app_primarycolor"
+                android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/_4sdp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/_4sdp"
+                    android:text="B"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="R"
-                android:textColor="@color/black" />
+                android:backgroundTint="@color/app_primarycolor"
+                android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                app:cardCornerRadius="@dimen/_4sdp">
 
-            <TextView
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/_4sdp"
+                    android:text="4s"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp" />
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="B"
-                android:textColor="@color/black" />
+                android:backgroundTint="@color/app_primarycolor"
+                android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                app:cardCornerRadius="@dimen/_4sdp">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="4s"
-                android:textColor="@color/black" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/_4sdp"
+                    android:text="6s"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp" />
+            </com.google.android.material.card.MaterialCardView>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="6s"
-                android:textColor="@color/black" />
-
-            <TextView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:gravity="center"
-                android:text="SR"
-                android:textColor="@color/black" />
+                android:backgroundTint="@color/app_primarycolor"
+                android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                app:cardCornerRadius="@dimen/_4sdp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/_4sdp"
+                    android:text="SR"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp" />
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcl_batsmanList"
             android:layout_width="match_parent"
+            android:layout_marginTop="0.5dp"
+            android:paddingHorizontal="@dimen/_4sdp"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/single_batsman_layout"/>
+            tools:listitem="@layout/single_batsman_layout" />
 
-        <TextView
-            android:id="@+id/tv_Scoretext"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_2sdp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:backgroundTint="@color/app_primarycolor"
+                android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                app:cardCornerRadius="@dimen/_4sdp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/_4sdp"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:text="Team Total"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:backgroundTint="@color/app_primarycolor"
+                android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                app:cardCornerRadius="@dimen/_4sdp">
+
+                <TextView
+                    android:id="@+id/tv_Scoretext"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="@dimen/_4sdp"
+                    android:textColor="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:textSize="@dimen/_10sdp" />
+            </com.google.android.material.card.MaterialCardView>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_fallOfWickets"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_12sdp"
             android:layout_marginVertical="@dimen/_4sdp"
             android:textColor="@color/black" />
 
@@ -93,52 +214,115 @@
             android:orientation="horizontal"
             android:paddingVertical="@dimen/_4sdp">
 
-            <TextView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="6"
-                android:text="Bowlers"
-                android:textColor="@color/black" />
+                android:backgroundTint="@color/app_primarycolor"
+                android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                app:cardCornerRadius="@dimen/_4sdp">
 
-            <TextView
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/_4sdp"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:text="Bowlers"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp" />
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/app_primarycolor"
+                android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                app:cardCornerRadius="@dimen/_4sdp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/_4sdp"
+                    android:text="O"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="O"
-                android:textColor="@color/black" />
+                android:backgroundTint="@color/app_primarycolor"
+                android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                app:cardCornerRadius="@dimen/_4sdp">
 
-            <TextView
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/_4sdp"
+                    android:text="M"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="M"
-                android:textColor="@color/black" />
+                android:backgroundTint="@color/app_primarycolor"
+                android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/_4sdp">
 
-            <TextView
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/_4sdp"
+                    android:text="R"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp" />
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="R"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="W"
-                android:textColor="@color/black" />
+                android:backgroundTint="@color/app_primarycolor"
+                android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                app:cardCornerRadius="@dimen/_4sdp">
 
-            <TextView
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/_4sdp"
+                    android:text="W"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:gravity="center"
-                android:text="Econ"
-                android:textColor="@color/black" />
+                android:backgroundTint="@color/app_primarycolor"
+                android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                app:cardCornerRadius="@dimen/_4sdp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/_4sdp"
+                    android:text="Econ"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp" />
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 

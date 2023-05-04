@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
     android:layout_margin="@dimen/_8sdp"
-    app:cardCornerRadius="@dimen/_24sdp">
+    app:cardCornerRadius="@dimen/_7sdp">
 
     <RelativeLayout
         android:id="@+id/rl_matchview"
@@ -13,14 +13,27 @@
         android:layout_height="match_parent"
         android:padding="@dimen/_4sdp">
 
-        <ImageView
-            android:id="@+id/iv_news"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_news"
             android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_80sdp"
             android:layout_centerVertical="true"
-            app:cornerRadius="@dimen/_24sdp"
-            android:background="@drawable/rounded_rectangle"
-            android:src="@drawable/ic_applogo" />
+            android:layout_marginStart="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/_1sdp"
+            android:backgroundTint="@color/light_gray"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+            app:cardCornerRadius="@dimen/_4sdp"
+            app:strokeColor="@color/white">
+
+            <ImageView
+                android:id="@+id/iv_news"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_rectangle"
+                android:src="@drawable/ic_applogo"
+                android:scaleType="fitXY"
+                app:cornerRadius="@dimen/_24sdp" />
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/tv_newssource"
@@ -29,7 +42,7 @@
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:visibility="gone"
-            android:layout_toEndOf="@+id/iv_news"
+            android:layout_toEndOf="@+id/cv_news"
             android:fontFamily="@font/nunito_sans"
             android:text="NDTV sports"
             android:textColor="@color/gray"
@@ -58,7 +71,7 @@
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_12sdp"
             android:layout_marginBottom="@dimen/_12sdp"
-            android:layout_toEndOf="@+id/iv_news"
+            android:layout_toEndOf="@+id/cv_news"
             android:fontFamily="@font/nunito_sans"
             android:text="‘You think he's not better than the ones selectors, warns them..."
             android:textColor="@color/black"

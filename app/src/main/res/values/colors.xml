@@ -16,4 +16,5 @@
     <color name="transparent">#00050505</color>
     <color name="app_primarycolor">#2E2445</color>
     <color name="app_secondarycolor">#ABA7B5</color>
+    <color name="deep_blue">#1C3A50</color>
 </resources>

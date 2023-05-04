@@ -27,7 +27,7 @@
                     android:id="@+id/ll_appbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="@drawable/appdefault_bg"
+                    android:background="@color/transparent"
                     android:orientation="horizontal"
                     android:paddingHorizontal="@dimen/_4sdp"
                     android:paddingVertical="@dimen/_8sdp">
@@ -64,7 +64,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/white"
                     android:orientation="vertical">
 
                     <!--Trending news-->
@@ -73,10 +72,10 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
                         android:layout_marginTop="@dimen/_8sdp"
                         android:background="@drawable/curved_top_bg"
-                        android:padding="@dimen/_4sdp">
+                        android:paddingTop="@dimen/_12sdp"
+                       >
 
                         <TextView
                             android:id="@+id/tv_trendingnews"
@@ -84,8 +83,9 @@
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/_12sdp"
                             android:layout_marginVertical="@dimen/_4sdp"
+                            android:layout_marginEnd="@dimen/_25sdp"
                             android:layout_marginStart="-12dp"
-                            android:paddingStart="@dimen/_12sdp"
+                            android:paddingStart="@dimen/_18sdp"
                             android:background="@drawable/match_title_bg"
                             android:fontFamily="@font/nunito_sans"
                             android:text="Spotlight"
@@ -105,7 +105,8 @@
                     <!--Featured news-->
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:background="@color/white">
 
                         <TextView
                             android:id="@+id/tv_featurednews"
@@ -114,7 +115,8 @@
                             android:paddingVertical="@dimen/_12sdp"
                             android:layout_marginVertical="@dimen/_4sdp"
                             android:layout_marginStart="-12dp"
-                            android:paddingStart="@dimen/_12sdp"
+                            android:paddingStart="@dimen/_18sdp"
+                            android:layout_marginEnd="@dimen/_25sdp"
                             android:background="@drawable/match_title_bg"
                             android:fontFamily="@font/nunito_sans"
                             android:text="Featured News"
@@ -156,6 +158,8 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="@dimen/_60sdp"
             android:layout_gravity="start"
+            app:itemTextColor="@color/app_primarycolor"
+            app:itemVerticalPadding="@dimen/_8sdp"
             android:background="@drawable/nav_background"
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/header_layout"

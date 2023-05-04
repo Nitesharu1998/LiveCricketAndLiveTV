@@ -3,26 +3,31 @@
     <item
         android:id="@+id/sidenav_news"
         android:enabled="true"
+        android:visible="false"
         android:icon="@drawable/ic_news"
         android:title="News" />
     <item
         android:id="@+id/sidenav_awards"
         android:enabled="true"
+        android:visible="false"
         android:icon="@drawable/ic_awards"
         android:title="Awards" />
     <item
-        android:id="@+id/sidenav_teams"
+        android:id="@+id/sidenav_prediction"
         android:enabled="true"
         android:icon="@drawable/ic_teams"
-        android:title="Teams" />
+
+        android:title="Cricket Predictions" />
     <item
         android:id="@+id/sidenav_rankings"
         android:enabled="true"
+        android:visible="true"
         android:icon="@drawable/ic_rankings"
         android:title="Rankings" />
     <item
         android:id="@+id/sidenav_events"
         android:enabled="true"
+        android:visible="false"
         android:icon="@drawable/ic_events"
         android:title="Events" />
 

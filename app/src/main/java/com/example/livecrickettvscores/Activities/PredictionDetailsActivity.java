@@ -46,12 +46,21 @@ public class PredictionDetailsActivity extends AppCompatActivity {
             }
         });
         setContentView(binding.getRoot());
+
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
     }
+
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
+        finish();
     }
 
     private void getThePredictionDetails(String predictionURL) {
@@ -67,6 +76,8 @@ public class PredictionDetailsActivity extends AppCompatActivity {
                         String team2image = document.select("div.away").select("img").attr("src");
                         String team1name = document.select("div.home").select("div.name").get(0).text();
                         String team2name = document.select("div.away").select("div.name").get(0).text();
+
+                        binding.tvTitle.setText(team1name + " vs " + team2name + " Predictions");
 
                         probmatch1 = Math.round(Float.parseFloat(StringUtils.isNull(document.select("div.container-2").select("div.wizard").select("div.row").select("div.box").select("div.teams").select("div.home").select("div.prob").text().replace("%", "")) ? "0" : document.select("div.container-2").select("div.wizard").select("div.row").select("div.box").select("div.teams").select("div.home").select("div.prob").text().replace("%", "")));
                         probmatch2 = Math.round(Float.parseFloat(StringUtils.isNull(document.select("div.container-2").select("div.wizard").select("div.row").select("div.box").select("div.teams").select("div.away").select("div.prob").text().replace("%", "")) ? "0" : document.select("div.container-2").select("div.wizard").select("div.row").select("div.box").select("div.teams").select("div.away").select("div.prob").text().replace("%", "")));

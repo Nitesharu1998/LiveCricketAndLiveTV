@@ -4,15 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_gray"
+    android:background="@drawable/appdefault_bg"
     android:orientation="vertical"
-    android:paddingHorizontal="@dimen/_12sdp"
     tools:context=".Activities.PredictionDetailsActivity">
 
     <!--TODO match details view-->
+    <RelativeLayout
+        android:id="@+id/rl_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/app_primarycolor"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingVertical="@dimen/_8sdp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:src="@drawable/ic_back" />
+
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_toRightOf="@id/iv_back"
+            android:fontFamily="@font/nunito_sans"
+            android:text="Prediction Details"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
     <ScrollView
         android:id="@+id/scr_details"
         android:layout_width="match_parent"
+        android:layout_below="@+id/rl_appbar"
+        android:paddingHorizontal="@dimen/_12sdp"
         android:layout_above="@+id/native_ads"
         android:layout_height="match_parent">
         <LinearLayout
@@ -33,7 +63,7 @@
                     android:fontFamily="@font/nunito_sans"
                     android:gravity="center"
                     android:text="27th jan 2023"
-                    android:textColor="@color/dark_gray"
+                    android:textColor="@color/white"
                      />
 
                 <TextView
@@ -46,7 +76,7 @@
                     android:gravity="center"
                     android:fontFamily="@font/nunito_sans"
                     android:text="14:00"
-                    android:textColor="@color/dark_gray"
+                    android:textColor="@color/white"
                     app:drawableStartCompat="@drawable/ic_clock" />
 
             </RelativeLayout>
@@ -61,7 +91,7 @@
                 android:fontFamily="@font/nunito_sans"
                 android:gravity="center"
                 android:text="Daren sammy stadium"
-                android:textColor="@color/gray"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_12sdp" />
 
             <RelativeLayout
@@ -84,7 +114,7 @@
                     android:fontFamily="@font/nunito_sans"
                     android:gravity="center"
                     android:text="team 1"
-                    android:textColor="@color/dark_gray"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -102,7 +132,7 @@
                         android:fontFamily="@font/nunito_sans"
                         android:layout_marginEnd="@dimen/_12sdp"
                         android:text="0/0 in 0.0"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/white" />
 
                     <LinearLayout
 
@@ -119,7 +149,7 @@
                         android:layout_marginStart="@dimen/_12sdp"
                         android:fontFamily="@font/nunito_sans"
                         android:text="0/0 in 0.0"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/white" />
 
 
                 </LinearLayout>
@@ -140,7 +170,7 @@
                     android:fontFamily="@font/nunito_sans"
                     android:gravity="center"
                     android:text="team 1"
-                    android:textColor="@color/dark_gray"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -179,7 +209,7 @@
                         android:layout_centerHorizontal="true"
                         android:fontFamily="@font/nunito_sans"
                         android:text="bk vs tkr winnnig probability"
-                        android:textColor="@color/dark_gray"
+                        android:textColor="@color/app_primarycolor"
                         android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
@@ -287,7 +317,6 @@
                 android:layout_marginTop="@dimen/_30sdp"
                 android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
                 android:outlineSpotShadowColor="@color/white"
-                android:elevation="@dimen/_4sdp"
                 app:cardCornerRadius="@dimen/_24sdp"
                 app:cardElevation="@dimen/_4sdp">
 
@@ -301,7 +330,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_information"
-                        android:background="@color/purple_700"
+                        android:background="@color/app_primarycolor"
                         android:gravity="center"
                         android:paddingVertical="@dimen/_12sdp"
                         android:text="bk vs tkr betting tips"

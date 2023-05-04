@@ -85,7 +85,7 @@
                     android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
                     android:backgroundTint="@color/light_gray"
                     android:outlineSpotShadowColor="@color/white"
-                    app:cardCornerRadius="@dimen/_24sdp">
+                    app:cardCornerRadius="@dimen/_14sdp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -113,7 +113,7 @@
                             android:paddingVertical="@dimen/_12sdp"
                             android:paddingStart="@dimen/_12sdp"
                             android:text="Birth Place to place here"
-                            android:textColor="@color/app_secondarycolor" />
+                            android:textColor="#BF2E2445" />
 
                         <TextView
                             android:id="@+id/txt_nickname"
@@ -168,7 +168,7 @@
                             android:paddingVertical="@dimen/_12sdp"
                             android:paddingStart="@dimen/_12sdp"
                             android:text="Role to place here"
-                            android:textColor="@color/app_secondarycolor" />
+                            android:textColor="#BF2E2445" />
 
                         <TextView
                             android:id="@+id/txt_dob"
@@ -195,7 +195,7 @@
                             android:paddingVertical="@dimen/_12sdp"
                             android:paddingStart="@dimen/_12sdp"
                             android:text="player dob and age"
-                            android:textColor="@color/app_secondarycolor" />
+                            android:textColor="#BF2E2445" />
 
 
                         <TextView
@@ -222,7 +222,7 @@
                             android:paddingVertical="@dimen/_12sdp"
                             android:paddingStart="@dimen/_12sdp"
                             android:text="Batting style to place here"
-                            android:textColor="@color/app_secondarycolor" />
+                            android:textColor="#BF2E2445" />
 
 
                     </RelativeLayout>
@@ -254,14 +254,13 @@
                     android:background="@color/white"
                     android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
                     android:outlineSpotShadowColor="@color/white"
-                    app:cardCornerRadius="@dimen/_24sdp">
+                    app:cardCornerRadius="@dimen/_14sdp">
 
                     <TableLayout
                         android:id="@+id/tbl_iccranking"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:divider="@color/white"
-                        android:dividerPadding="@dimen/_12sdp">
+                        android:layout_height="match_parent"
+                        android:divider="@color/white">
 
                         <TableRow
                             android:layout_width="match_parent"
@@ -382,7 +381,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginBottom="@dimen/_1sdp"
                             android:gravity="center">
 
                             <TextView
@@ -534,7 +532,7 @@
                     android:backgroundTint="@color/light_gray"
                     android:outlineSpotShadowColor="@color/white"
                     android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-                    app:cardCornerRadius="@dimen/_24sdp">
+                    app:cardCornerRadius="@dimen/_14sdp">
 
                     <TextView
                         android:id="@+id/tv_teamname"
@@ -564,7 +562,7 @@
                     android:backgroundTint="@color/light_gray"
                     android:outlineSpotShadowColor="@color/white"
                     android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-                    app:cardCornerRadius="@dimen/_24sdp">
+                    app:cardCornerRadius="@dimen/_14sdp">
 
                     <TextView
                         android:id="@+id/tv_profile"

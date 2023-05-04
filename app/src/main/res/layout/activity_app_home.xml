@@ -136,7 +136,7 @@
        android:background="@drawable/nav_background"
        android:fitsSystemWindows="false"
        app:headerLayout="@layout/header_layout"
-       app:itemIconTint="@null"
+       app:itemIconTint="@color/app_primarycolor"
        app:menu="@menu/side_nav_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

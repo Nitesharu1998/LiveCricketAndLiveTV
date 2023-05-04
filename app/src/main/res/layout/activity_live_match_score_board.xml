@@ -1,545 +1,1028 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+        android:background="@drawable/appdefault_bg"
         android:orientation="vertical"
         tools:context=".Activities.MatchScoreBoardActivity">
 
         <!--match main details UI-->
-        <LinearLayout
-            android:id="@+id/ll_mainLinear"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/iv_bgteam1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/tv_matchtitle"
-                android:layout_weight="1"
-                android:alpha="0.8"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_applogo"
-                android:visibility="gone" />
-
-            <ImageView
-                android:id="@+id/iv_bgteam2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/tv_matchtitle"
-                android:layout_weight="1"
-                android:alpha="0.8"
-
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_applogo"
-                android:visibility="gone" />
-
-        </LinearLayout>
 
         <RelativeLayout
+            android:id="@+id/rl_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/app_primarycolor"
+            android:paddingHorizontal="@dimen/_12sdp"
+            android:paddingVertical="@dimen/_8sdp">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:src="@drawable/ic_back" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_toRightOf="@id/iv_back"
+                android:fontFamily="@font/nunito_sans"
+                android:text="Live"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_matchCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_10sdp">
+            android:layout_below="@+id/rl_appbar"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_2sdp"
+            android:backgroundTint="@color/transparent"
+            android:orientation="vertical"
+            android:outlineSpotShadowColor="@color/black"
+            android:padding="@dimen/_10sdp"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+            app:cardCornerRadius="@dimen/_24sdp"
+            app:cardElevation="@dimen/_5sdp">
 
-            <TextView
-                android:id="@+id/tv_matchtitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito_sans"
-                android:text="2nd Test . South Africa tour of England, 2022"
-                android:textColor="@color/dark_gray" />
-
-            <ImageView
-                android:id="@+id/iv_team1"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_below="@+id/tv_matchtitle"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:src="@drawable/ic_applogo" />
-
-            <TextView
-                android:id="@+id/tv_match1team"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_below="@+id/tv_matchtitle"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_toRightOf="@+id/iv_team1"
-                android:fontFamily="@font/nunito_sans"
-                android:gravity="center"
-                android:text="match one team name"
-                android:textColor="@color/black"
-
-                />
-
-            <TextView
-                android:id="@+id/tv_match1score"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_below="@+id/tv_matchtitle"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:fontFamily="@font/nunito_sans"
-                android:gravity="center"
-                android:text="team one score"
-                android:textColor="@color/black" />
-
-            <ImageView
-                android:id="@+id/iv_team2"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_below="@+id/iv_team1"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:src="@drawable/ic_applogo" />
-
-            <TextView
-                android:id="@+id/tv_match2team"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_below="@+id/tv_match1score"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_toRightOf="@+id/iv_team1"
-                android:fontFamily="@font/nunito_sans"
-                android:gravity="center"
-                android:text="match one team name"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/tv_match2score"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_below="@+id/tv_match1score"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:fontFamily="@font/nunito_sans"
-                android:text="team one score"
-                android:textColor="@color/black" />
-
-
-            <TextView
-                android:id="@+id/tv_matchstatus"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_match2score"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:fontFamily="@font/nunito_sans"
-                android:text="match one status"
-                android:textColor="@color/status_orange" />
+                android:background="#2600FFF0"
+                android:padding="@dimen/_10sdp">
 
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/ivLive"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:src="@drawable/ic_live" />
+
+                <TextView
+                    android:id="@+id/tv_matchtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_match2team"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/nunito_sans"
+                    android:gravity="center"
+                    android:text="2nd Test . South Africa tour of England, 2022"
+                    android:textColor="@color/white" />
+
+                <LinearLayout
+                    android:id="@+id/ll_blank"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_below="@id/tv_matchtitle"
+                    android:layout_marginVertical="@dimen/_4sdp"
+                    android:background="@color/white"
+                    android:orientation="horizontal" />
+
+                <ImageView
+                    android:id="@+id/iv_team1"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/ivLive"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:src="@drawable/ic_applogo" />
+
+                <TextView
+                    android:id="@+id/tv_match1team"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/ivLive"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_toRightOf="@+id/iv_team1"
+                    android:fontFamily="@font/nunito_sans"
+                    android:gravity="center"
+                    android:text="match one team name"
+                    android:textColor="@color/white"
+
+                    />
+
+                <TextView
+                    android:id="@+id/tv_match1score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/ivLive"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/nunito_sans"
+                    android:gravity="center"
+                    android:text="team one score"
+                    android:textColor="@color/white" />
+
+                <ImageView
+                    android:id="@+id/iv_team2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/iv_team1"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:src="@drawable/ic_applogo" />
+
+                <TextView
+                    android:id="@+id/tv_match2team"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/tv_match1score"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_toRightOf="@+id/iv_team1"
+                    android:fontFamily="@font/nunito_sans"
+                    android:gravity="center"
+                    android:text="match one team name"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/tv_match2score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/tv_match1score"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/nunito_sans"
+                    android:text="team one score"
+                    android:textColor="@color/white" />
+
+
+                <TextView
+                    android:id="@+id/tv_matchstatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_matchtitle"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/nunito_sans"
+                    android:gravity="center"
+                    android:text="match one status"
+                    android:textColor="@color/white" />
+
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
         <!--match main details UI-->
 
 
         <!--match score details UI-->
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:orientation="vertical">
-            <!--batsman UI-->
-
+            android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_2sdp"
-                android:background="@color/light_gray"
-                android:orientation="horizontal"
-                android:paddingVertical="@dimen/_4sdp">
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/curved_top_bg"
+                android:paddingHorizontal="@dimen/_4sdp"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:text="Batsman"
-                    android:textColor="@color/black" />
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:orientation="vertical">
+                    <!--batsman UI-->
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="R"
-                    android:textColor="@color/black" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="B"
-                    android:textColor="@color/black" />
+                        android:layout_marginVertical="@dimen/_8sdp"
+                        android:background="@color/white"
+                        android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="4s"
-                    android:textColor="@color/black" />
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:backgroundTint="@color/app_primarycolor"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="6s"
-                    android:textColor="@color/black" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:paddingStart="@dimen/_8sdp"
+                                android:text="Batsman"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp" />
+                        </com.google.android.material.card.MaterialCardView>
 
-                <TextView
-                    android:layout_width="0dp"
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/app_primarycolor"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="R"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/app_primarycolor"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="B"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/app_primarycolor"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="4s"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp" />
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/app_primarycolor"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="6s"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:backgroundTint="@color/app_primarycolor"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="SR"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </LinearLayout>
+
+                    <!--batsman one-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_1sdp"
+                        android:background="@color/white"
+                        android:layout_marginHorizontal="@dimen/_2sdp"
+                        android:orientation="horizontal"
+                        app:strokeColor="@color/white">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:layout_weight="6"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp">
+
+                            <TextView
+                                android:id="@+id/batman1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:paddingStart="@dimen/_4sdp"
+                                android:singleLine="true"
+                                android:text="Batsman"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/batman1Runs"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="R"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp" />
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/batman1Balls"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="B"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp" />
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_1sdp"
+
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/batman1Fours"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="4s"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp"
+                                app:strokeColor="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/batman1Six"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="6s"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp" />
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/batman1Strike"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="SR"
+                                android:textColor="@color/black"
+
+                                android:textSize="@dimen/_10sdp" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+                    <!--batsman one-->
+
+                    <!--batsman one-->
+                    <LinearLayout
+                        android:id="@+id/ll_batsmanTwo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_2sdp"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingVertical="@dimen/_4sdp">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:layout_weight="6"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp">
+
+                            <TextView
+                                android:id="@+id/batman2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="Batsman"
+                                android:textColor="@color/black" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/batman2Runs"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="R"
+                                android:textColor="@color/black" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/batman2Balls"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="B"
+                                android:textColor="@color/black" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/batman2Fours"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="4s"
+                                android:textColor="@color/black" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/batman2Six"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="6s"
+                                android:textColor="@color/black" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:layout_weight="2"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/batman2Strike"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="SR"
+                                android:textColor="@color/black" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </LinearLayout>
+                    <!--batsman one-->
+
+
+                    <!--batsman UI-->
+
+                </LinearLayout>
+                <!--match score details UI-->
+
+                <!--match score details UI-->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="SR"
-                    android:textColor="@color/black" />
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:orientation="vertical">
+                    <!--Bowler UI-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingVertical="@dimen/_4sdp">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:backgroundTint="@color/app_primarycolor"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:paddingStart="@dimen/_8sdp"
+                                android:text="Bowlers"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp" />
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/app_primarycolor"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="O"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/app_primarycolor"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="M"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/app_primarycolor"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="R"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp" />
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/app_primarycolor"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="W"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:backgroundTint="@color/app_primarycolor"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="Econ"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14sdp" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </LinearLayout>
+
+                    <!--Bowler one-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_1sdp"
+                        android:layout_marginHorizontal="@dimen/_2sdp"
+                        android:background="@color/white"
+                        android:orientation="horizontal">
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:layout_weight="6"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/bowler1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="6"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:paddingStart="@dimen/_4sdp"
+                                android:singleLine="true"
+                                android:text="Batsman"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp" />
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/bowler1Over"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="R"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp" />
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/bowler1Maiden"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="B"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp" />
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/bowler1Runs"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="4s"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/bowler1Wikets"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="6s"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp" />
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/bowler1Economy"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="SR"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+                    <!--batsman one-->
+
+                    <!--Bowler one-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:layout_marginHorizontal="@dimen/_2sdp"
+                        android:orientation="horizontal"
+                        android:paddingVertical="@dimen/_4sdp">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:layout_weight="6"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/bowler2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="Batsman"
+                                android:textColor="@color/black" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/bowler2Over"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="R"
+                                android:textColor="@color/black" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/bowler2Maiden"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="B"
+                                android:textColor="@color/black" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/bowler2Runs"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="4s"
+                                android:textColor="@color/black" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/bowler2Wikets"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="6s"
+                                android:textColor="@color/black" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:layout_weight="2"
+                            android:backgroundTint="@color/light_gray"
+                            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                            app:cardCornerRadius="@dimen/_4sdp"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/bowler2Economy"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/_4sdp"
+                                android:text="SR"
+                                android:textColor="@color/black" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+                    <!--batsman one-->
+
+
+                    <!--Bowler UI-->
+
+                </LinearLayout>
+                <!--match score details UI-->
+
 
             </LinearLayout>
-
-            <!--batsman one-->
             <LinearLayout
+                android:id="@+id/native_ads"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_2sdp"
-                android:background="@color/white"
-                android:orientation="horizontal"
-                android:paddingVertical="@dimen/_4sdp">
-
-                <TextView
-                    android:id="@+id/batman1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:text="Batsman"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/batman1Runs"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="R"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/batman1Balls"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="B"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/batman1Fours"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="4s"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/batman1Six"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="6s"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/batman1Strike"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="SR"
-                    android:textColor="@color/black" />
-
-            </LinearLayout>
-            <!--batsman one-->
-
-            <!--batsman one-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_2sdp"
-                android:background="@color/white"
-                android:orientation="horizontal"
-                android:paddingVertical="@dimen/_4sdp">
-
-                <TextView
-                    android:id="@+id/batman2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:text="Batsman"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/batman2Runs"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="R"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/batman2Balls"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="B"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/batman2Fours"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="4s"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/batman2Six"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="6s"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/batman2Strike"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="SR"
-                    android:textColor="@color/black" />
-
-            </LinearLayout>
-            <!--batsman one-->
+                android:layout_gravity="bottom"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/_1sdp"
+                android:orientation="vertical"
+                android:visibility="gone" />
+        </RelativeLayout>
 
 
-            <!--batsman UI-->
 
-        </LinearLayout>
-        <!--match score details UI-->
-
-        <!--match score details UI-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:orientation="vertical">
-            <!--Bowler UI-->
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_2sdp"
-                android:background="@color/light_gray"
-                android:orientation="horizontal"
-                android:paddingVertical="@dimen/_4sdp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:text="Bowlers"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="O"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="M"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="R"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="W"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="Econ"
-                    android:textColor="@color/black" />
-
-            </LinearLayout>
-
-            <!--Bowler one-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_2sdp"
-                android:background="@color/white"
-                android:orientation="horizontal"
-                android:paddingVertical="@dimen/_4sdp">
-
-                <TextView
-                    android:id="@+id/bowler1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:text="Batsman"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/bowler1Over"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="R"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/bowler1Maiden"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="B"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/bowler1Runs"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="4s"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/bowler1Wikets"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="6s"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/bowler1Economy"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="SR"
-                    android:textColor="@color/black" />
-
-            </LinearLayout>
-            <!--batsman one-->
-
-            <!--Bowler one-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_2sdp"
-                android:background="@color/white"
-                android:orientation="horizontal"
-                android:paddingVertical="@dimen/_4sdp">
-
-                <TextView
-                    android:id="@+id/bowler2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:text="Batsman"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/bowler2Over"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="R"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/bowler2Maiden"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="B"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/bowler2Runs"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="4s"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/bowler2Wikets"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="6s"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/bowler2Economy"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="SR"
-                    android:textColor="@color/black" />
-
-            </LinearLayout>
-            <!--batsman one-->
-
-
-            <!--Bowler UI-->
-
-        </LinearLayout>
-        <!--match score details UI-->
 
     </LinearLayout>
 </layout>

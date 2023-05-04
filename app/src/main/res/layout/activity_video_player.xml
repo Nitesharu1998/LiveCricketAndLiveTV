@@ -13,7 +13,7 @@
         android:id="@+id/more_item_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/purple_700"
+        android:background="@color/app_primarycolor"
         android:elevation="10dp"
         tools:targetApi="lollipop">
 
@@ -23,28 +23,29 @@
 
             <RelativeLayout
                 android:id="@+id/back"
-                android:layout_width="30dp"
-                android:layout_height="30dp">
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/ic_arrow_left" />
+                    android:src="@drawable/ic_back" />
             </RelativeLayout>
 
             <TextView
                 android:id="@+id/all_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
-                android:gravity="center_vertical"
-                android:textAllCaps="false"
+                android:layout_toEndOf="@+id/back"
+                android:gravity="start"
                 android:text="Video Player"
+                android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="15dp"
+                android:textSize="@dimen/_14sdp"
                 android:textStyle="bold" />
             <ImageView
                 android:id="@+id/category"

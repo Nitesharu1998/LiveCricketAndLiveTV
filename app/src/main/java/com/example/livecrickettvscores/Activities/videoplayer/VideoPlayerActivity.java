@@ -322,7 +322,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void startVideo(YoutubeVideo video) {
-        playerBinding = null;
         songService.pauseSong();
         Intent intent = new Intent(VideoPlayerActivity.this, YoutubePlayerActivity.class);
         intent.putExtra("video", video);

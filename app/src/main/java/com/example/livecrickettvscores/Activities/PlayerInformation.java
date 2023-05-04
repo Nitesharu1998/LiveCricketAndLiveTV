@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +33,7 @@ public class PlayerInformation extends AppCompatActivity {
     Context context;
     String playerURL, playerName, playerImage, playerCountry;
     FrameLayout fl_mainframe;
+    LinearLayout native_ads;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

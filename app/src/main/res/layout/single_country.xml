@@ -9,14 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/light_gray"
-        android:paddingHorizontal="@dimen/_12sdp"
-        android:paddingVertical="@dimen/_10sdp">
+        android:paddingBottom="@dimen/_4sdp">
 
         <ImageView
             android:id="@+id/iv_country"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
-            />
+            android:layout_centerVertical="true" />
 
         <TextView
             android:id="@+id/tv_countryName"
@@ -24,14 +23,14 @@
             android:layout_height="@dimen/_30sdp"
             android:textSize="@dimen/_16sdp"
             android:text=""
-            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/iv_country"
             android:textColor="@color/app_primarycolor"
             android:layout_marginStart="@dimen/_8sdp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
+            android:layout_height="0.8dp"
             android:layout_below="@+id/iv_country"
             android:layout_marginTop="@dimen/_20sdp"
             android:background="#80000000"

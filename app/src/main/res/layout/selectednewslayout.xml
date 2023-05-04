@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:background="@drawable/appdefault_bg"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/purple_700"
+        android:background="@color/app_primarycolor"
         android:paddingHorizontal="@dimen/_12sdp"
         android:paddingVertical="@dimen/_8sdp">
 
@@ -58,7 +59,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_200sdp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/testimage" />
+                   />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -102,12 +103,12 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="@dimen/_10sdp"
-
+                    android:visibility="gone"
                     android:layout_toStartOf="@id/tv_uploadtime"
                     android:fontFamily="@font/nunito_sans"
                     android:gravity="center"
                     android:text="NDTV sports"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
                 <TextView
                     android:id="@+id/tv_uploadtime"
@@ -130,7 +131,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Test news header"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <TextView
 
@@ -139,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_10sdp"
                 android:text=".afl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjf"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <!--featured news recycler view for next read-->
 

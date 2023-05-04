@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:padding="@dimen/_10sdp"
     android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-    app:cardCornerRadius="@dimen/_24sdp">
+    app:cardCornerRadius="@dimen/_12sdp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -73,7 +73,6 @@
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_weight="0.4"
-                android:layout_marginStart="@dimen/_4sdp"
                 android:src="@drawable/ic_applogo" /><!--team 2 image-->
         </LinearLayout>
 
@@ -99,7 +98,6 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="@dimen/_8sdp"
             android:layout_below="@+id/tv_matchtitle"
             android:fontFamily="@font/nunito_sans"
             android:gravity="center_horizontal"

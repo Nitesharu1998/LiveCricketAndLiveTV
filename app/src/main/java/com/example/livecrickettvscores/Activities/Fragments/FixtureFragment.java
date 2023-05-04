@@ -252,6 +252,8 @@ public class FixtureFragment extends Fragment {
             MatchMainAdapater adapter = new MatchMainAdapater(getContext(), fixturesResponseModel, new AppInterfaces.NewsAdapterClick() {
                 @Override
                 public void getClickedNewsID(Integer newsID) {
+
+
                 }
             });
             rcl_fixtures.setAdapter(adapter);

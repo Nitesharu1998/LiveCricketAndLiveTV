@@ -3,6 +3,7 @@ package com.example.livecrickettvscores.Activities.Retrofit;
 import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.FirebaseADHandlers.FirebaseUtils;
@@ -397,6 +398,8 @@ public class AppAsyncTasks {
                 elements = document.select("div.ds-grow").select("div[class=ds-mt-3]");
                 ElementsTest.addAll(elements);
             } catch (IOException e) {
+                webScrappingInterface.getScrapedDocument(null);
+                Toast.makeText(context, "Score not found...", Toast.LENGTH_SHORT).show();
                 throw new RuntimeException(e);
             }
             return "";
@@ -438,8 +441,11 @@ public class AppAsyncTasks {
         @Override
         protected String doInBackground(String... strings) {
             try {
-                Document document = Jsoup.connect(NewsURL).get();
+                Document document = Jsoup.connect(NewsURL).ignoreHttpErrors(true).get();
+                elements = document.select("div[class=ds-px-4 ds-py-2 ds-self-stretch ds-w-full ds-border-line odd:ds-border-b]");
+                //ElementsTest.addAll(document.select("div[class=ds-px-4 ds-py-2 ds-self-stretch ds-w-full ds-border-line odd:ds-border-b]"));
                 ElementsTest.addAll(document.select("div[class=ds-rounded-lg ds-mt-2]"));
+                Constants.ManOfTheMatchElements = elements;
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

@@ -8,7 +8,8 @@
     tools:context=".Activities.videoplayer.fragment.YoutubeFragment">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/appdefault_bg">
         <ScrollView
             android:id="@+id/scrl"
             android:layout_above="@+id/rl"
@@ -35,7 +36,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_marginHorizontal="10dp"
                         android:layout_marginVertical="15dp"
-
+                        android:paddingStart="@dimen/_14sdp"
                         android:hint="Search here..."
                         android:background="@drawable/back_button_circle"
                         android:inputType="text"
@@ -59,54 +60,75 @@
                         app:tint="@color/black" />
                 </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/tv_top_10_playlist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/layout_search"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Top 10 playlist"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_top_10_playlist"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_top_10_playlist"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_top_10_playlist" />
-
-                <TextView
-                    android:id="@+id/tv_top_100_playlist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/rv_top_10_playlist"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Top 100 playlist"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_top_100_playlist"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_top_100_playlist"
-                    android:nestedScrollingEnabled="false"
                     android:orientation="vertical"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:spanCount="3"
-                    tools:listitem="@layout/item_top_100_playlist" />
+                    android:layout_below="@+id/layout_search"
+                    android:background="@drawable/curved_top_bg">
+
+                    <TextView
+                        android:id="@+id/tv_top_10_playlist"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:layout_below="@id/layout_search"
+                        android:layout_marginStart="-2dp"
+                        android:paddingStart="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_25sdp"
+                        android:paddingVertical="@dimen/_12sdp"
+                        android:background="@drawable/match_title_bg"
+                        android:layout_marginTop="20dp"
+                        android:text="Top 10 playlist"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_top_10_playlist"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_top_10_playlist"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/item_top_10_playlist" />
+
+                    <TextView
+                        android:id="@+id/tv_top_100_playlist"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_25sdp"
+                        android:paddingVertical="@dimen/_12sdp"
+                        android:paddingStart="@dimen/_8sdp"
+                        android:layout_below="@id/rv_top_10_playlist"
+                        android:layout_marginStart="-2dp"
+                        android:background="@drawable/match_title_bg"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginVertical="@dimen/_8sdp"
+                        android:textColor="@color/black"
+                        android:text="Top 100 playlist"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_top_100_playlist"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_top_100_playlist"
+                        android:nestedScrollingEnabled="false"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:spanCount="3"
+                        tools:listitem="@layout/item_top_100_playlist" />
+                </LinearLayout>
+
+
             </RelativeLayout>
 
         </ScrollView>
         <RelativeLayout
             android:id="@+id/rl"
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@color/white">
             <LinearLayout

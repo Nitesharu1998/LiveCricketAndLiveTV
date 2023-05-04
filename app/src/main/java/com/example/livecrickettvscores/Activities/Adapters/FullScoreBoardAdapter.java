@@ -33,13 +33,13 @@ public class FullScoreBoardAdapter extends RecyclerView.Adapter<FullScoreBoardAd
     @Override
     public void onBindViewHolder(@NonNull FullScoreBoardAdapter.ViewHolder holder, int position) {
         holder.binding.tvMatchTitle.setText(fullScoreBoardResponseModel.getMatchInningDTOS().get(position).getTeamName());
-        holder.binding.tvScoretext.setText(fullScoreBoardResponseModel.getMatchInningDTOS().get(position).getTeamTotal() + "\n" + fullScoreBoardResponseModel.getMatchInningDTOS().get(position).getTeamFallOfWicket());
-
+        holder.binding.tvScoretext.setText(fullScoreBoardResponseModel.getMatchInningDTOS().get(position).getTeamTotal());
+        holder.binding.tvFallOfWickets.setText("Fall of Wickets:\n"+fullScoreBoardResponseModel.getMatchInningDTOS().get(position).getTeamFallOfWicket());
         BatsmanAdapter batsmanAdapter = new BatsmanAdapter(actvity, fullScoreBoardResponseModel.getMatchInningDTOS().get(position).getBatsmanDTOS());
         BowlerAdapter bowlerAdapter = new BowlerAdapter(actvity, fullScoreBoardResponseModel.getMatchInningDTOS().get(position).getBowlerDTOS());
 
-        holder.binding.rclBatsmanList.setLayoutManager(Global.getManagerWithOrientation(actvity,RecyclerView.VERTICAL));
-        holder.binding.rclBowlerList.setLayoutManager(Global.getManagerWithOrientation(actvity,RecyclerView.VERTICAL));
+        holder.binding.rclBatsmanList.setLayoutManager(Global.getManagerWithOrientation(actvity, RecyclerView.VERTICAL));
+        holder.binding.rclBowlerList.setLayoutManager(Global.getManagerWithOrientation(actvity, RecyclerView.VERTICAL));
 
         holder.binding.rclBatsmanList.setAdapter(batsmanAdapter);
         holder.binding.rclBowlerList.setAdapter(bowlerAdapter);

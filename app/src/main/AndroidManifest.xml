@@ -89,9 +89,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".videoplayer.YoutubePlayerActivity"
-            android:exported="true" />
+        <activity android:name="com.example.livecrickettvscores.Activities.videoplayer.YoutubePlayerActivity" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"

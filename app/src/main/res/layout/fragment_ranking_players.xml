@@ -10,67 +10,118 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:background="@color/white"
+        android:background="@drawable/appdefault_bg"
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
         tools:context=".Activities.Fragments.RankingPlayersFragment">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/curved_top_bg"
-            android:backgroundTint="#F4F6FA">
+            android:orientation="vertical">
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tablayout"
-                style="@style/TabLayout"
+
+            <RelativeLayout
+                android:id="@+id/rl_appbar"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:animateLayoutChanges="true"
-                android:background="@drawable/appdefault_bg"
-                android:outlineSpotShadowColor="@color/teal_200"
-                android:paddingVertical="@dimen/_12sdp"
-                app:tabIndicator="@color/teal_200"
-                app:tabIndicatorAnimationDuration="@integer/material_motion_duration_long_1"
-                app:tabIndicatorAnimationMode="elastic"
-                app:tabIndicatorColor="@color/teal_200"
-                app:tabIndicatorFullWidth="false"
-                app:tabIndicatorHeight="@dimen/_2sdp"
-                app:tabPaddingBottom="@dimen/_4sdp"
-                app:tabSelectedTextColor="@color/white"
-                app:tabTextColor="@color/light_gray" />
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/transparent"
+                android:paddingHorizontal="@dimen/_12sdp"
+                android:paddingVertical="@dimen/_8sdp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtI_seach"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_below="@+id/tablayout"
-                android:paddingHorizontal="20dp"
-                android:textColorHint="@color/app_primarycolor"
-                app:boxStrokeColor="@color/teal_200">
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:src="@drawable/ic_back"
+                    android:visibility="gone" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tet_countryName"
-                    android:layout_width="match_parent"
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_16sdp"
-                    android:textColor="@color/black"
-                    android:digits="@string/text_only"
-                    android:hint="Enter Country Name" />
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_toRightOf="@id/iv_back"
+                    android:fontFamily="@font/nunito_sans"
+                    android:text="Rankings"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcl_countryList"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txtI_seach"
-                tools:listitem="@layout/single_country" />
+                android:layout_height="match_parent"
+                android:background="@color/transparent">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tablayout"
+                    style="@style/TabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:animateLayoutChanges="true"
+                    android:background="@drawable/appdefault_bg"
+                    android:outlineSpotShadowColor="@color/teal_200"
+                    android:paddingVertical="@dimen/_12sdp"
+                    app:tabIndicator="@color/teal_200"
+                    app:tabIndicatorAnimationDuration="@integer/material_motion_duration_long_1"
+                    app:tabIndicatorAnimationMode="elastic"
+                    app:tabIndicatorColor="@color/teal_200"
+                    app:tabIndicatorFullWidth="false"
+                    app:tabIndicatorHeight="@dimen/_2sdp"
+                    app:tabPaddingBottom="@dimen/_4sdp"
+                    app:tabSelectedTextColor="@color/white"
+                    app:tabTextColor="@color/light_gray" />
+
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/tablayout"
+                    android:background="@drawable/curved_top_bg"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:backgroundTint="#CCFFFC"
+                        android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:strokeWidth="@dimen/_1sdp"
+                        app:strokeColor="@color/teal_200">
+
+                        <EditText
+                            android:id="@+id/edt_countryName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="@dimen/_12sdp"
+                            android:background="@null"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black"
+                            android:drawableEnd="@drawable/search_icon"
+                            android:hint="Enter country name"
+                            android:paddingHorizontal="@dimen/_8sdp" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcl_countryList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:paddingHorizontal="@dimen/_8sdp"
+                        android:layout_marginHorizontal="@dimen/_8sdp"
+                        android:background="@drawable/ranking_bg"
+                        android:layout_below="@+id/txtI_seach"
+                        tools:listitem="@layout/single_country" />
+                </LinearLayout>
 
 
-        </RelativeLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
 
         <!-- TODO: Update blank fragment layout -->
 

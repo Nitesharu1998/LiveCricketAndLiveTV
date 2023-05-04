@@ -88,9 +88,9 @@ public class SplashActivity extends AppCompatActivity {
                                         } catch (InterruptedException e) {
                                             Global.sout("running thread interrupted", e.getLocalizedMessage());
                                         } finally {
-                                            finish();
                                             intent = new Intent(activity, AppHomeActivity.class);
                                             startActivity(intent);
+                                            finish();
                                         }
                                     }
                                 }

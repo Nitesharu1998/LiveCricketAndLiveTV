@@ -19,7 +19,6 @@ import com.example.livecrickettvscores.Activities.Fragments.FixtureFragment;
 import com.example.livecrickettvscores.Activities.Fragments.HomeFragment;
 import com.example.livecrickettvscores.Activities.Fragments.RankingPlayersFragment;
 import com.example.livecrickettvscores.Activities.videoplayer.VideoPlayerActivity;
-import com.example.livecrickettvscores.Activities.videoplayer.fragment.YoutubeFragment;
 import com.example.livecrickettvscores.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -83,17 +82,9 @@ public class AppHomeActivity extends AppCompatActivity {
                 //refreshFragment(new StatsFragment());
                 refreshFragment(new RankingPlayersFragment());
                 break;
-            /*case R.id.more:
-                refreshFragment(new MoreFragment());
-                break;*/
         }
     }
 
-    private void refreshFragment(YoutubeFragment youtubeFragment) {
-        android.app.FragmentManager fragmentManager = getFragmentManager();
-        android.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fl_mainframe, youtubeFragment).commit();
-    }
 
     @Override
     public void onBackPressed() {

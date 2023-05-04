@@ -1,157 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/_8sdp"
-    android:orientation="vertical"
-    android:id="@+id/cv_matchCard"
-    android:outlineSpotShadowColor="@color/black"
-    app:cardElevation="@dimen/_5sdp"
-    android:backgroundTint="@color/light_gray"
-    android:layout_marginVertical="@dimen/_12sdp"
-    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-    android:padding="@dimen/_10sdp"
-    app:cardCornerRadius="@dimen/_24sdp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:id="@+id/ll_mainLinear"
+    <data>
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_matchCard"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/iv_bgteam1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/tv_matchtitle"
-            android:layout_weight="1"
-            android:scaleType="fitXY"
-            android:alpha="0.8"
-            android:visibility="gone"
-            android:src="@drawable/ic_applogo" />
-
-        <ImageView
-            android:id="@+id/iv_bgteam2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/tv_matchtitle"
-            android:layout_weight="1"
-            android:visibility="gone"
-
-            android:scaleType="fitXY"
-            android:alpha="0.8"
-            android:src="@drawable/ic_applogo" />
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/_10sdp">
-
-        <TextView
-            android:id="@+id/tv_matchtitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_match2team"
-            android:fontFamily="@font/nunito_sans"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:gravity="center"
-            android:text="2nd Test . South Africa tour of England, 2022"
-            android:textColor="@color/black" />
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_8sdp"
+        android:layout_marginVertical="@dimen/_12sdp"
+        android:backgroundTint="@color/light_gray"
+        android:orientation="vertical"
+        android:outlineSpotShadowColor="@color/black"
+        android:padding="@dimen/_10sdp"
+        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+        app:cardCornerRadius="@dimen/_14sdp">
 
         <LinearLayout
-            android:id="@+id/ll_blank"
+            android:id="@+id/ll_mainLinear"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:layout_below="@id/tv_matchtitle"
-            android:layout_marginVertical="@dimen/_4sdp"
-            android:background="#80000000"
-            android:orientation="horizontal" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/iv_team1"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:src="@drawable/ic_applogo" />
+            <ImageView
+                android:id="@+id/iv_bgteam1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tv_matchtitle"
+                android:layout_weight="1"
+                android:alpha="0.8"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_applogo"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tv_match1team"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            <ImageView
+                android:id="@+id/iv_bgteam2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tv_matchtitle"
+                android:layout_weight="1"
+                android:alpha="0.8"
 
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_toRightOf="@+id/iv_team1"
-            android:fontFamily="@font/nunito_sans"
-            android:gravity="center"
-            android:text="match one team name"
-            android:textColor="@color/black"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_applogo"
+                android:visibility="gone" />
 
-            />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_match1score"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:fontFamily="@font/nunito_sans"
-            android:gravity="center"
-            android:text="team one score"
-            android:textColor="@color/black" />
-
-        <ImageView
-            android:id="@+id/iv_team2"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_below="@+id/iv_team1"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:src="@drawable/ic_applogo" />
-
-        <TextView
-            android:id="@+id/tv_match2team"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_below="@+id/tv_match1score"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_toRightOf="@+id/iv_team1"
-            android:fontFamily="@font/nunito_sans"
-            android:gravity="center"
-            android:text="match one team name"
-            android:textColor="@color/black"
-            />
-
-        <TextView
-            android:id="@+id/tv_match2score"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_below="@+id/tv_match1score"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:fontFamily="@font/nunito_sans"
-            android:text="team one score"
-            android:textColor="@color/black" />
-
-
-        <TextView
-            android:id="@+id/tv_matchstatus"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ll_blank"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:fontFamily="@font/nunito_sans"
-            android:text="match one status"
-            android:gravity="center"
-            android:textColor="@color/dark_gray" />
+            android:layout_height="match_parent"
+            android:padding="@dimen/_10sdp">
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_matchtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_match2team"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text="2nd Test . South Africa tour of England, 2022"
+                android:textColor="@color/black"
+                android:textSize="12dp" />
 
-</com.google.android.material.card.MaterialCardView>
+            <LinearLayout
+                android:id="@+id/ll_blank"
+                android:layout_width="match_parent"
+                android:layout_height="0.2dp"
+                android:layout_below="@id/tv_matchtitle"
+                android:layout_marginVertical="@dimen/_4sdp"
+                android:background="#80000000"
+                android:orientation="horizontal" />
+
+            <ImageView
+                android:id="@+id/iv_team1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:src="@drawable/ic_applogo" />
+
+            <TextView
+                android:id="@+id/tv_match1team"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_toRightOf="@+id/iv_team1"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text="match one team name"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+
+                />
+
+            <TextView
+                android:id="@+id/tv_match1score"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text="team one score"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv_team2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/iv_team1"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:src="@drawable/ic_applogo" />
+
+            <TextView
+                android:id="@+id/tv_match2team"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@+id/tv_match1score"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_toRightOf="@+id/iv_team1"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text="match one team name"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_match2score"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@+id/tv_match1score"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:fontFamily="@font/nunito_sans"
+                android:text="team one score"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/tv_matchstatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_blank"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/nunito_sans"
+                android:gravity="center"
+                android:text="match one status"
+
+                android:textColor="@color/dark_gray" />
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

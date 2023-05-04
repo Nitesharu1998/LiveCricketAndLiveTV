@@ -38,8 +38,6 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             zipAlignEnabled true
             debuggable false
@@ -48,8 +46,6 @@ android {
         }
         debug {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            minifyEnabled false
-            shrinkResources false
             zipAlignEnabled false
             debuggable true
             jniDebuggable true
@@ -80,6 +76,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
 
     //Retrofit
@@ -111,6 +108,9 @@ dependencies {
 
     //ADs
     implementation 'com.google.android.gms:play-services-ads-lite:21.5.0'
+
+    //WorkManger
+    implementation "androidx.work:work-runtime:2.7.1"
 
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
     implementation 'androidx.media:media:1.6.0'

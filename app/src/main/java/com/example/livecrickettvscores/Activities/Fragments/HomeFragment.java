@@ -30,6 +30,7 @@ import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.FullScoreBoardActivity;
 import com.example.livecrickettvscores.Activities.LiveMatchScoreBoardActivity;
+import com.example.livecrickettvscores.Activities.PredictionsMainActivity;
 import com.example.livecrickettvscores.Activities.Retrofit.AppAsyncTasks;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.LatestNewsModel;
@@ -49,7 +50,6 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class HomeFragment extends Fragment {
-
     RecyclerView rcl_featurednews, rcl_trendingnews, rcl_livematches;
     Context context;
     LinearLayout native_ads;
@@ -104,29 +104,35 @@ public class HomeFragment extends Fragment {
                         Toast.makeText(context, "awards", Toast.LENGTH_SHORT).show();
                         drawerLayout.close();
                         break;
-                    case R.id.sidenav_teams:
-                        Toast.makeText(context, "teams", Toast.LENGTH_SHORT).show();
-                        drawerLayout.close();
+                    case R.id.sidenav_prediction:
+                        AdUtils.showInterstitialAd(requireActivity(), new AppInterfaces.InterStitialADInterface() {
+                            @Override
+                            public void adLoadState(boolean isLoaded) {
+                                startActivity(new Intent(context, PredictionsMainActivity.class));
+                                drawerLayout.close();
+                            }
+                        });
                         break;
                     case R.id.sidenav_rankings:
-                        refreshFragment(new StatsFragment());
-                        drawerLayout.close();
+                        AdUtils.showInterstitialAd(requireActivity(), new AppInterfaces.InterStitialADInterface() {
+                            @Override
+                            public void adLoadState(boolean isLoaded) {
+                                refreshFragment(new StatsFragment());
+                                drawerLayout.close();
+                            }
+                        });
+
                         break;
-
-
                 }
-
                 return true;
             }
         });
-
         if (cd.isConnectingToInternet()) {
             callLiveMatchesAPI();
             callNewsAPI();
         }
 
         AdUtils.showNativeAd(requireActivity(), Constants.adsJsonPOJO.getParameters().getNative_id().getDefaultValue().getValue(), native_ads, false);
-        Global.sout("Home fragment ", "home fragment initiated");
         return view;
     }
 
@@ -406,19 +412,20 @@ public class HomeFragment extends Fragment {
             rcl_livematches.setLayoutManager(manager);
             rcl_livematches.removeAllViews();
 
-            FixturesAdapter fixturesAdapter = new FixturesAdapter(context, fixturesResponseModel.get(0).getMatches(), new AppInterfaces.NewsAdapterClick() {
+            FixturesAdapter fixturesAdapter = new FixturesAdapter(true, context, fixturesResponseModel.get(0).getMatches(), new AppInterfaces.NewsAdapterClick() {
                 @Override
                 public void getClickedNewsID(Integer newsID) {
                     //TODO to open the score of match
                     Constants.matchDTO = fixturesResponseModel.get(0).getMatches().get(newsID);
-                    if (!fixturesResponseModel.get(0).getMatches().get(newsID).getSession().contains("won")) {
+                    if (Constants.matchDTO.getSession().contains("won") || Constants.matchDTO.getSession().contains("draw") || Constants.matchDTO.getSession().contains("match over") || Constants.matchDTO.getSession().contains("abandoned") || Constants.matchDTO.getSession().contains("No result")) {
+                        Constants.matchDTO.setMatchScoreLink(Constants.matchDTO.getMatchScoreLink().replace("live-cricket-score", "full-scoreboard"));
+                        context.startActivity(new Intent(context, FullScoreBoardActivity.class));
+                    } else if (Constants.matchDTO.getSession().contains("chose") || Constants.matchDTO.getSession().contains("lead") || Constants.matchDTO.getSession().contains("trail") || Constants.matchDTO.getSession().contains("need")) {
                         context.startActivity(new Intent(context, LiveMatchScoreBoardActivity.class));
-                    } else if (Constants.matchDTO.getMatchScoreLink().contains("live-cricket-score")) {
-                        Constants.matchDTO.getMatchScoreLink().replace("live-cricket-score", "full-scorecard");
-                        context.startActivity(new Intent(context, FullScoreBoardActivity.class));
-                    } else if (Constants.matchDTO.getMatchScoreLink().contains("match-preview")) {
-                        Constants.matchDTO.getMatchScoreLink().replace("match-preview", "full-scorecard");
-                        context.startActivity(new Intent(context, FullScoreBoardActivity.class));
+                    } else if (Constants.matchDTO.getSession().contains("yet")) {
+                        Toast.makeText(context, "Score are not available yet", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "Score are not available...", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

@@ -9,7 +9,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.provider.Settings;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -45,35 +44,6 @@ import java.util.Locale;
 
 public class Global {
 
-    public static String PE_BTech = "3";
-    public static String Prepaid = "PREPAID";
-    public static int selectedPosition;
-    public static int selectedRemarksID;
-    public static boolean todisplaytimerforPosition = false;
-    public static boolean callAPIEditOrder = false;
-    public static boolean toDisplayTimerFlag = false;
-    public static boolean TimerFlag = true;
-    public static boolean displayedtimer = false;
-    public String fontDefault = "OPENSANS-REGULAR_3.TTF";
-    public String fontRegular = "OPENSANS-REGULAR_3.TTF";
-    public String fontLight = "OPENSANS-LIGHT_3.TTF";
-    public String fontBold = "OPENSANS-BOLD_2.TTF";
-    public String fontSemiBold = "OPENSANS-SEMIBOLD_2.TTF";
-    public String fontItalic = "OPENSANS-ITALIC_2.TTF";
-    public String tableAarogyam = "Aarogyam";
-    public String tableProfile = "Profile";
-    public String tableTests = "Tests";
-    public String tableOffer = "Offer";
-    public String tableOfferCart = "OfferCart";
-    public String tableThyronomicOfferCart = "ThyronomicOfferCart";
-    public String tableAarogyamChilds = "Aarogyam_childs";
-    public String tableProfileChilds = "Profile_childs";
-    public String tableTestsChilds = "Tests_childs";
-    public String tableOfferChilds = "Offer_childs";
-    //Live ---------------------------
-    public String tableOfferCartChilds = "OfferCart_childs";
-    public String tableThyronomicOfferCartChilds = "ThyronomicOfferCart_childs";
-    public String tableCart = "Cart";
     ProgressDialog progressDialog;
     private Context context;
 
@@ -534,12 +504,19 @@ public class Global {
         }.getType());
     }
 
-    public static String getFlagOfCountry(String teamName) {
+    public static String getFlagOfCountry(boolean isMen, String teamName) {
         if (!Global.isArrayListNull(Constants.cricketFlagsModel.getFlagList()) && !Global.isClassNull(Constants.cricketFlagsModel)) {
             for (int i = 0; i < Constants.cricketFlagsModel.getFlagList().size(); i++) {
-                if (teamName.contains(Constants.cricketFlagsModel.getFlagList().get(i).getFlagName())) {
-                    return Constants.cricketFlagsModel.getFlagList().get(i).getFlagURL();
+                if (isMen) {
+                    if (Constants.cricketFlagsModel.getFlagList().get(i).getFlagName().contains(teamName)) {
+                        return Constants.cricketFlagsModel.getFlagList().get(i).getFlagURL();
+                    }
+                } else {
+                    if (teamName.contains(Constants.cricketFlagsModel.getFlagList().get(i).getFlagName())) {
+                        return Constants.cricketFlagsModel.getFlagList().get(i).getFlagURL();
+                    }
                 }
+
             }
         }
         return "";

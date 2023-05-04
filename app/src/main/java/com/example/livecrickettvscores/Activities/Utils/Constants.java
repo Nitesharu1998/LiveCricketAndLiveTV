@@ -5,6 +5,8 @@ import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdsJsonPOJO
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.CricketFlagsResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 
+import org.jsoup.select.Elements;
+
 public class Constants {
 
     public static final String LIVEMATHCES = "https://www.espncricinfo.com/live-cricket-score";
@@ -37,4 +39,5 @@ public class Constants {
     public static FixturesResponseModel.MatchesDTO matchDTO;
     public static String CricketTeamURL = "https://www.cricbuzz.com/cricket-team";
     public static String CricketTeamWomenURL = "https://www.cricbuzz.com/cricket-team/women";
+    public static Elements ManOfTheMatchElements ;
 }

@@ -45,17 +45,19 @@ public class MatchMainAdapater extends RecyclerView.Adapter<MatchMainAdapater.Vi
         manager.setOrientation(RecyclerView.VERTICAL);
         holder.rcl_matches.setLayoutManager(manager);
         holder.rcl_matches.removeAllViews();
-        FixturesAdapter adapter = new FixturesAdapter(context, fixturesResponseModel.get(position).getMatches(), new AppInterfaces.NewsAdapterClick() {
+        FixturesAdapter adapter = new FixturesAdapter(false, context, fixturesResponseModel.get(position).getMatches(), new AppInterfaces.NewsAdapterClick() {
             @Override
             public void getClickedNewsID(Integer newsID) {
                 Constants.matchDTO = fixturesResponseModel.get(position).getMatches().get(newsID);
-                if (Constants.matchDTO.getSession().contains("won") || Constants.matchDTO.getSession().contains("draw") || Constants.matchDTO.getSession().contains("match over")) {
+                if (Constants.matchDTO.getSession().contains("won") || Constants.matchDTO.getSession().contains("draw") || Constants.matchDTO.getSession().contains("match over")
+                        || Constants.matchDTO.getSession().contains("abandoned") || Constants.matchDTO.getSession().contains("No Result")) {
                     Constants.matchDTO.setMatchScoreLink(Constants.matchDTO.getMatchScoreLink().replace("live-cricket-score", "full-scoreboard"));
                     context.startActivity(new Intent(context, FullScoreBoardActivity.class));
-                }
-                if (Constants.matchDTO.getSession().contains("choose") || Constants.matchDTO.getSession().contains("lead") || Constants.matchDTO.getSession().contains("trail")) {
+                } else if (Constants.matchDTO.getSession().contains("chose") || Constants.matchDTO.getSession().contains("lead") || Constants.matchDTO.getSession().contains("trail") || Constants.matchDTO.getSession().contains("need")) {
                     context.startActivity(new Intent(context, LiveMatchScoreBoardActivity.class));
                 } else if (Constants.matchDTO.getSession().contains("yet")) {
+                    Toast.makeText(context, "Score are not available yet", Toast.LENGTH_SHORT).show();
+                }else{
                     Toast.makeText(context, "Score are not available yet", Toast.LENGTH_SHORT).show();
                 }
 
