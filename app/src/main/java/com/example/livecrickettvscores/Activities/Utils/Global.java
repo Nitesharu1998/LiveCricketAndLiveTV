@@ -39,8 +39,11 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.Locale;
+import java.util.Set;
 
 public class Global {
 
@@ -303,8 +306,8 @@ public class Global {
         progressDialog.setCancelable(false);
 
         try {
-            if (progressDialog != null && !progressDialog.isShowing())
-                progressDialog.show();
+             /*if (progressDialog != null && !progressDialog.isShowing())
+               progressDialog.show();*/
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -516,9 +519,13 @@ public class Global {
                         return Constants.cricketFlagsModel.getFlagList().get(i).getFlagURL();
                     }
                 }
-
             }
         }
         return "";
+    }
+    public static String filterText(String singleSplitString, String charToSplit, String charToJoin) {
+        String[] words = singleSplitString.split(charToSplit);
+        Set<String> uniqueWords = new LinkedHashSet<>(Arrays.asList(words));
+        return String.join(charToJoin, uniqueWords);
     }
 }

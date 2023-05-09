@@ -20,8 +20,8 @@
         <TextView
             android:id="@+id/tv_countryName"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_30sdp"
-            android:textSize="@dimen/_16sdp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_12sdp"
             android:text=""
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/iv_country"

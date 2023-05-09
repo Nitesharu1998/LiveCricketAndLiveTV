@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -67,11 +68,12 @@ public class LiveMatchScoreBoardActivity extends AppCompatActivity {
         AppAsyncTasks.GetLiveScoreBoard getLiveScoreBoard = new AppAsyncTasks.GetLiveScoreBoard(showLoader, Constants.ESPNBaseURL + matchDetails.getMatchScoreLink(), activity, new AppInterfaces.WebScrappingInterface() {
             @Override
             public void getScrapedDocument(Elements document) {
-                if (!document.isEmpty()) {
+                if (!document.isEmpty() && document.size() > 1) {
                     setUpTopUi(document.get(0));
                     setUpScores(document.get(1));
                     initiateDelayForRefresh();
                 } else {
+                    Toast.makeText(activity, "Scores will be available after some time...", Toast.LENGTH_SHORT).show();
                     onBackPressed();
                 }
 
@@ -88,11 +90,11 @@ public class LiveMatchScoreBoardActivity extends AppCompatActivity {
         for (int i = 0; i < teamScoreElements.size(); i++) {
             if (i == 0) {
                 binding.tvMatch1team.setText(teamScoreElements.get(i).select("div[class=ds-flex ds-items-center ds-min-w-0 ds-mr-1]").select("a").text());
-                Glide.with(activity).load(Global.getFlagOfCountry(true,teamScoreElements.get(i).select("div[class=ds-flex ds-items-center ds-min-w-0 ds-mr-1]").select("a").text())).into(binding.ivTeam1);
+                Glide.with(activity).load(Global.getFlagOfCountry(true,teamScoreElements.get(i).select("div[class=ds-flex ds-items-center ds-min-w-0 ds-mr-1]").select("a").text())).error(R.drawable.default_flag).into(binding.ivTeam1);
                 binding.tvMatch1score.setText(teamScoreElements.get(i).select("span[class=ds-text-compact-s ds-mr-0.5]").text() + teamScoreElements.get(i).select("strong").text());
             } else {
                 binding.tvMatch2team.setText(teamScoreElements.get(i).select("div[class=ds-flex ds-items-center ds-min-w-0 ds-mr-1]").select("a").text());
-                Glide.with(activity).load(teamScoreElements.get(i).select("div[class=ds-flex ds-items-center ds-min-w-0 ds-mr-1]").select("a").text()).into(binding.ivTeam2);
+                Glide.with(activity).load(teamScoreElements.get(i).select("div[class=ds-flex ds-items-center ds-min-w-0 ds-mr-1]").select("a").text()).error(R.drawable.default_flag).into(binding.ivTeam2);
                 binding.tvMatch2score.setText(teamScoreElements.get(i).select("span[class=ds-text-compact-s ds-mr-0.5]").text() + teamScoreElements.get(i).select("strong").text());
 
             }

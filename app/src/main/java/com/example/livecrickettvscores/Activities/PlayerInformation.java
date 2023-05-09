@@ -132,9 +132,9 @@ public class PlayerInformation extends AppCompatActivity {
         tv_playername.setText(playerName);
         tv_playercountry.setText(playerCountry);
         if (playerImage.contains("50x50")) {
-            Glide.with(activity).load(playerImage.replace("50x50", "150x150")).into(civ_playerimage);
+            Glide.with(activity).load(playerImage.replace("50x50", "150x150")).error(R.drawable.defaultavatar).into(civ_playerimage);
         } else {
-            Glide.with(activity).load(playerImage.replace("75x75", "150x150")).into(civ_playerimage);
+            Glide.with(activity).load(playerImage.replace("75x75", "150x150")).error(R.drawable.defaultavatar).into(civ_playerimage);
         }
     }
     private void setUpTabs() {

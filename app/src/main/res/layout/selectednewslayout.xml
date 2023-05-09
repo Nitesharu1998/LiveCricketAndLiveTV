@@ -51,6 +51,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/transparent"
                 android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
                 app:cardCornerRadius="@dimen/_38sdp">
 
@@ -82,7 +83,7 @@
                         android:id="@+id/iv_uploader"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_applogo" />
+                        android:src="@drawable/defaultavatar" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <TextView
@@ -90,12 +91,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_marginStart="@dimen/_8sdp"
-
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_toRightOf="@id/cv_uploaderimg"
                     android:fontFamily="@font/nunito_sans"
                     android:text="NDTV sports"
-                    android:textColor="@color/gray" />
+                    android:textColor="@color/white" />
 
                 <TextView
                     android:id="@+id/tv_uploadername"
@@ -121,7 +121,7 @@
                     android:fontFamily="@font/nunito_sans"
                     android:gravity="center"
                     android:text=". 3 hours ago"
-                    android:textColor="@color/gray" />
+                    android:textColor="@color/white" />
 
 
             </RelativeLayout>
@@ -130,6 +130,8 @@
                 android:id="@+id/tv_newsheader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold"
                 android:text="Test news header"
                 android:textColor="@color/white" />
 
@@ -139,6 +141,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_10sdp"
+                android:justificationMode="inter_word"
+                android:lineSpacingExtra="@dimen/_2sdp"
                 android:text=".afl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjfafl; fj adsfadsfhasdf asdfaksdfhakdfj adjfaosj dfjsdfj aodjf"
                 android:textColor="@color/white" />
 

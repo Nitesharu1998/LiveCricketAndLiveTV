@@ -11,7 +11,6 @@ import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.PlayerC
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.PlayerDetailsResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.TrendingPlayersResponseModel;
 
-import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 public class AppInterfaces {
@@ -67,7 +66,7 @@ public class AppInterfaces {
     }
 
     public interface AppOpenADInterface {
-        void appOpenAdState(boolean state_load);
+        void appOpenAdState(boolean loadState);
     }
     public interface FlagsInterface {
         void setFlagsData(CricketFlagsResponseModel cricketFlagsResponseModel);

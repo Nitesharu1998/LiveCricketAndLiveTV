@@ -23,6 +23,7 @@ import com.example.livecrickettvscores.Activities.Utils.Constants;
 import com.example.livecrickettvscores.Activities.Utils.Global;
 import com.example.livecrickettvscores.R;
 import com.google.android.material.tabs.TabLayout;
+import com.google.gson.Gson;
 
 import org.jsoup.select.Elements;
 
@@ -152,9 +153,7 @@ public class FixtureFragment extends Fragment {
     private ArrayList<FixturesResponseModel> getUpComingList(Elements upComingElements) {
 
         ArrayList<FixturesResponseModel> fixturesResponseModelArrayList = new ArrayList<>();
-
         FixturesResponseModel responseModel;
-
         Elements singleMatchElement;
         Elements singleTempMatchElement;
         for (int i = 0; i < upComingElements.size(); i++) {//4
@@ -164,9 +163,10 @@ public class FixtureFragment extends Fragment {
             responseModel.setMatchTitle(upComingElements.get(i).select("div.ds-flex.ds-justify-center.ds-mb-2").select("span").text());
             singleMatchElement = upComingElements.get(i).select("div.ds-border.ds-border-line.ds-rounded-xl.ds-overflow-hidden").select("a").attr("class", "ds-no-tap-higlight");
             singleTempMatchElement = upComingElements.get(i).select("div.ds-border.ds-border-line.ds-rounded-xl.ds-overflow-hidden").select("div[class=ds-w-2/5]");
+            System.out.println("singleTempMatchElement\n" + singleTempMatchElement + "singleMatchElement\n" + singleMatchElement);
             for (int j = 0; j < singleMatchElement.size(); j++) {
                 FixturesResponseModel.MatchesDTO singleMatch = new FixturesResponseModel.MatchesDTO();
-                singleMatch.setMatchTime(singleMatchElement.get(j).select("span[class=ds-text-compact-xs ds-font-bold ds-block ds--mb-1 ds-mt-[3px] ds-text-typo]").text());
+                singleMatch.setMatchTime(singleMatchElement.get(j).select("div[class=ds-flex-none ds-w-40]").select("span.ds-text-compact-xxs.ds-text-typo-mid3").text());
                 singleMatch.setTeamOne(singleMatchElement.get(j).select("div[class=ds-w-3/5]").select("p.ds-text-compact-s.ds-font-bold.ds--mb-1.ds-text-typo").text().replace("Int’l", ""));
                 String[] filtername = singleMatch.getTeamOne().split("vs");
                 singleMatch.setTeamOne(filtername[0].trim());
@@ -178,7 +178,9 @@ public class FixtureFragment extends Fragment {
             responseModel.setMatches(matchesDTOS);
 
             fixturesResponseModelArrayList.add(responseModel);
+
         }
+        System.out.println("upcoming >>>>>>\n" + new Gson().toJson(fixturesResponseModelArrayList));
 
         return fixturesResponseModelArrayList;
 
@@ -225,7 +227,6 @@ public class FixtureFragment extends Fragment {
                 }
                 matchList.add(matchesDTO);
             }
-            //Collections.reverse(matchList);
             fixturesResponseModel.setMatches(matchList);
             fixturesResponseModelArrayList.add(fixturesResponseModel);
 

@@ -15,6 +15,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 import com.example.livecrickettvscores.Activities.Utils.Global;
 import com.example.livecrickettvscores.Activities.Utils.StringUtils;
+import com.example.livecrickettvscores.R;
 import com.example.livecrickettvscores.databinding.SingleUpcomingMatchBinding;
 
 import java.util.ArrayList;
@@ -42,12 +43,15 @@ public class SingleUpcomingDetailsAdapter extends RecyclerView.Adapter<SingleUpc
         } else {
             holder.tv_intl.setVisibility(View.VISIBLE);
         }
+        String[] timeSplit = fixturesResponseModel.get(position).getMatchTime().split("GMT");
         holder.tv_intl.setText(fixturesResponseModel.get(position).getMatchType());
         holder.tv_match1team.setText(fixturesResponseModel.get(position).getTeamOne());
         holder.tv_match2team.setText(fixturesResponseModel.get(position).getTeamTwo());
         holder.tv_matchtitle.setText(fixturesResponseModel.get(position).getMatchTitle());
-        Glide.with(context).load(Global.getFlagOfCountry(true,fixturesResponseModel.get(position).getTeamOne())).diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(holder.binding.ivTeam1);
-        Glide.with(context).load(Global.getFlagOfCountry(true,fixturesResponseModel.get(position).getTeamTwo())).diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(holder.binding.ivTeam2);
+        holder.tv_matchLocation.setText(fixturesResponseModel.get(position).getMatchLocation());
+        holder.tv_matchTime.setText(timeSplit[1]);
+        Glide.with(context).load(Global.getFlagOfCountry(true,fixturesResponseModel.get(position).getTeamOne())).error(R.drawable.default_flag).diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(holder.binding.ivTeam1);
+        Glide.with(context).load(Global.getFlagOfCountry(true,fixturesResponseModel.get(position).getTeamTwo())).error(R.drawable.default_flag).diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(holder.binding.ivTeam2);
     }
 
     @Override
@@ -57,7 +61,7 @@ public class SingleUpcomingDetailsAdapter extends RecyclerView.Adapter<SingleUpc
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_team2, iv_team1;
-        TextView tv_intl, tv_matchtitle, tv_match1team, tv_match2team;
+        TextView tv_intl, tv_matchtitle, tv_match1team, tv_match2team, tv_matchLocation,tv_matchTime;
         SingleUpcomingMatchBinding binding;
 
         public ViewHolder(@NonNull SingleUpcomingMatchBinding itemView) {
@@ -69,6 +73,8 @@ public class SingleUpcomingDetailsAdapter extends RecyclerView.Adapter<SingleUpc
             tv_matchtitle = itemView.tvMatchtitle;
             tv_match1team = itemView.tvMatch1team;
             tv_match2team = itemView.tvMatch2team;
+            tv_matchLocation = itemView.tvMatchLocation;
+            tv_matchTime = itemView.tvMatchTime;
         }
     }
 }

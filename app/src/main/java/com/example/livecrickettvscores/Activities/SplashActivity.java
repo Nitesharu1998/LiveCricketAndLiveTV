@@ -39,7 +39,7 @@ public class SplashActivity extends AppCompatActivity {
 
         if (Constants.adsJsonPOJO != null && !StringUtils.isNull(Constants.adsJsonPOJO.getParameters().getApp_open_ad().getDefaultValue().getValue())) {
             Constants.adsJsonPOJO = Global.getAdsData(appPreferencesManger.getAdsModel());
-            Constants.adsJsonPOJO.getParameters().getShowAd().getDefaultValue().setValue("false");
+            //Constants.adsJsonPOJO.getParameters().getShowAd().getDefaultValue().setValue("false");
             AdUtils.showAppOpenAd(activity, new AppInterfaces.AppOpenADInterface() {
                 @Override
                 public void appOpenAdState(boolean state_load) {

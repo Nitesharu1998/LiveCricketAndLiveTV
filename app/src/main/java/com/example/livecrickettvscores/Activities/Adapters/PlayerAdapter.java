@@ -41,7 +41,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull PlayerAdapter.ViewHolder holder, int position) {
         String[] playerfullName = responseModelArrayList.get(position).getCountryName().split(" ");
-        Glide.with(activity).load(Constants.CricBuzzBaseURL + responseModelArrayList.get(position).getCountryFlag()).into(holder.binding.ivPlayerImage);
+        Glide.with(activity).load(Constants.CricBuzzBaseURL + responseModelArrayList.get(position).getCountryFlag()).error(R.drawable.defaultavatar).into(holder.binding.ivPlayerImage);
         if (playerfullName.length > 1) {
             holder.binding.tvPlayerLastName.setText(playerfullName[1]);
             holder.binding.tvPlayerFirstName.setText(playerfullName[0]);

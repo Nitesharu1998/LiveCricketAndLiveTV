@@ -58,7 +58,7 @@
                 android:layout_height="match_parent"
                 android:padding="@dimen/_12sdp"
                 android:background="@color/transparent"
-                android:backgroundTint="#1C3A50">
+                android:backgroundTint="@color/deep_blue">
 
                 <TextView
                     android:id="@+id/tv_matchtitle"

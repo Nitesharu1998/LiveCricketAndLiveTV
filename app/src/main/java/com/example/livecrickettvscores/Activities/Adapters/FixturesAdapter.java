@@ -81,8 +81,8 @@ public class FixturesAdapter extends RecyclerView.Adapter<FixturesAdapter.ViewHo
         holder.tv_match1score.setText(matchesDTOArrayList.get(position).getTeamOneScore());
         holder.tv_match2score.setText(matchesDTOArrayList.get(position).getTeamTwoScore());
 
-        Glide.with(context).load(Global.getFlagOfCountry(true,matchesDTOArrayList.get(position).getTeamOne())).into(holder.iv_team1);
-        Glide.with(context).load(Global.getFlagOfCountry(true,matchesDTOArrayList.get(position).getTeamTwo())).into(holder.iv_team2);
+        Glide.with(context).load(Global.getFlagOfCountry(true,matchesDTOArrayList.get(position).getTeamOne())).error(R.drawable.default_flag).into(holder.iv_team1);
+        Glide.with(context).load(Global.getFlagOfCountry(true,matchesDTOArrayList.get(position).getTeamTwo())).error(R.drawable.default_flag).into(holder.iv_team2);
 
         holder.ll_mainLinear.setOnClickListener(new View.OnClickListener() {
             @Override

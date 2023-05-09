@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
-import com.example.livecrickettvscores.Activities.Utils.Constants;
 import com.example.livecrickettvscores.Activities.videoplayer.data.model.youtube.YoutubeVideo;
 import com.example.livecrickettvscores.BuildConfig;
 import com.example.livecrickettvscores.R;

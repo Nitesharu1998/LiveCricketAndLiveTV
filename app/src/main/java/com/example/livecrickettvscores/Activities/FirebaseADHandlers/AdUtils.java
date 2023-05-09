@@ -1,7 +1,6 @@
 package com.example.livecrickettvscores.Activities.FirebaseADHandlers;
 
 import android.app.Activity;
-import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
+import com.example.livecrickettvscores.Activities.PreferencesManager.AppPreferencesManger;
 import com.example.livecrickettvscores.Activities.Utils.ConnectionDetector;
 import com.example.livecrickettvscores.Activities.Utils.Constants;
 import com.example.livecrickettvscores.Activities.Utils.ConstantsMessages;
@@ -38,7 +38,7 @@ import com.google.android.gms.ads.nativead.NativeAdView;
 import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
-
+import com.google.gson.Gson;
 
 public class AdUtils {
 
@@ -48,11 +48,16 @@ public class AdUtils {
     private static AppOpenAd appOpenAd;
     private static Global global;
 
+    private static  boolean interstitialAdLoaded;
+
+
 
     public static void showRewardAd(Activity activity) {
+        AppPreferencesManger appPreferencesManger = new AppPreferencesManger(activity);
+        Constants.adsJsonPOJO = new Gson().fromJson(appPreferencesManger.getAdsModel(), AdsJsonPOJO.class);
         cd = new ConnectionDetector(activity);
 
-        if (cd.isConnectingToInternet() && Constants.adsJsonPOJO.getParameters().getShowAd().getDefaultValue().getValue().equals("true")) {
+        if (cd.isConnectingToInternet()) {
             AdRequest adRequest = new AdRequest.Builder().build();
             RewardedAd.load(activity, Constants.adsJsonPOJO.getParameters().getRewarded_ad().getValueType(), adRequest, new RewardedAdLoadCallback() {
                 @Override
@@ -93,14 +98,15 @@ public class AdUtils {
 
 
     public static void showNativeAd(Activity activity, String nativeAd, LinearLayout adContainer, boolean isFullScreenAd) {
+        AppPreferencesManger appPreferencesManger = new AppPreferencesManger(activity);
+        Constants.adsJsonPOJO = new Gson().fromJson(appPreferencesManger.getAdsModel(), AdsJsonPOJO.class);
         cd = new ConnectionDetector(activity);
-        if (!StringUtils.isNull(nativeAd) && Constants.adsJsonPOJO.getParameters().getShowAd().getDefaultValue().getValue().equals("true")) {
-            if (cd.isConnectingToInternet()) {
+        if (!StringUtils.isNull(nativeAd)) {
+            if (cd.isConnectingToInternet() && Constants.adsJsonPOJO.getParameters().getShowAd().getDefaultValue().getValue().equals("true")) {
                 try {
                     AdLoader adLoader = new AdLoader.Builder(activity, nativeAd).forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
                         @Override
                         public void onNativeAdLoaded(NativeAd nativeAd) {
-
                             google_unifiedNativeAd = nativeAd;
                             NativeAdView unifiedNativeAdView;
                             try {
@@ -111,15 +117,12 @@ public class AdUtils {
                                 }
                                 unifiedNativeAdView.isHardwareAccelerated();
                                 populateUnifiedNativeAdView(google_unifiedNativeAd, unifiedNativeAdView, isFullScreenAd);
+
                                 adContainer.removeAllViews();
                                 adContainer.addView(unifiedNativeAdView);
                                 adContainer.setVisibility(View.VISIBLE);
                             } catch (Exception e2) {
-                                Global.sout("Native ad exception", e2.getLocalizedMessage());
-                                Global.sout("Native ad exception", e2.getLocalizedMessage());
                                 e2.printStackTrace();
-
-
                             }
                         }
                     }).withAdListener(new AdListener() {
@@ -138,7 +141,6 @@ public class AdUtils {
                         }
                     }).withNativeAdOptions(new NativeAdOptions.Builder().build()).build();
                     adLoader.loadAd(new AdRequest.Builder().build());
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -150,10 +152,11 @@ public class AdUtils {
 
     public static void showBannerAd(LinearLayout adContainer, Activity activity) {
         cd = new ConnectionDetector(activity);
+        AppPreferencesManger appPreferencesManger = new AppPreferencesManger(activity);
+        Constants.adsJsonPOJO = new Gson().fromJson(appPreferencesManger.getAdsModel(), AdsJsonPOJO.class);
 
-
-        if (!StringUtils.isNull(Constants.adsJsonPOJO.getParameters().getBanner_id().getDefaultValue().getValue()) && Constants.adsJsonPOJO.getParameters().getShowAd().getDefaultValue().getValue().equals("true")) {
-            if (cd.isConnectingToInternet()) {
+        if (!StringUtils.isNull(Constants.adsJsonPOJO.getParameters().getBanner_id().getDefaultValue().getValue())) {
+            if (cd.isConnectingToInternet()&& Constants.adsJsonPOJO.getParameters().getShowAd().getDefaultValue().getValue().equals("true")) {
                 AdView mAdView = new AdView(activity);
                 if (cd.isConnectingToInternet()) {
                     AdRequest adRequest = new AdRequest.Builder().build();
@@ -208,12 +211,22 @@ public class AdUtils {
     }
 
     public static void showInterstitialAd(Activity activity, AppInterfaces.InterStitialADInterface interStitialADInterface) {
+        AppPreferencesManger appPreferencesManger = new AppPreferencesManger(activity);
+        Constants.adsJsonPOJO = new Gson().fromJson(appPreferencesManger.getAdsModel(), AdsJsonPOJO.class);
+
         cd = new ConnectionDetector(activity);
         global = new Global(activity);
-        Constants.hitCounter = 0;
-        if (cd.isConnectingToInternet() && Constants.adsJsonPOJO.getParameters().getShowAd().getDefaultValue().getValue().equals("true")) {
+
+        if (cd.isConnectingToInternet()&& Constants.adsJsonPOJO.getParameters().getShowAd().getDefaultValue().getValue().equals("true")) {
             if (Constants.hitCounter == Integer.parseInt(Constants.adsJsonPOJO.getParameters().getApp_open_ad().getDefaultValue().getHits())) {
                 Constants.hitCounter = 0;
+
+                if(interstitialAdLoaded && mpreloadAds != null){
+                    loadInterstitialAd(activity, interStitialADInterface);
+                    return;
+                }
+
+
                 global.showProgressDialog(activity, ConstantsMessages.PLEASE_WAIT);
                 AdRequest adRequest = new AdRequest.Builder().build();
                 InterstitialAd.load(activity, Constants.adsJsonPOJO.getParameters().getFull_id().getDefaultValue().getValue(), adRequest, new InterstitialAdLoadCallback() {
@@ -232,49 +245,50 @@ public class AdUtils {
                     }
                 });
             } else {
-                global.hideProgressDialog();
                 Constants.hitCounter++;
                 interStitialADInterface.adLoadState(false);
 
             }
 
-        } else {
-            global.hideProgressDialog();
+        }else {
             interStitialADInterface.adLoadState(false);
         }
     }
 
     public static void showAppOpenAd(Activity activity, AppInterfaces.AppOpenADInterface appOpenADInterface) {
+        AppPreferencesManger appPreferencesManger = new AppPreferencesManger(activity);
+        Constants.adsJsonPOJO = new Gson().fromJson(appPreferencesManger.getAdsModel(), AdsJsonPOJO.class);
         global = new Global(activity);
 
         AdRequest adRequest = new AdRequest.Builder().build();
-        if (!StringUtils.isNull(Constants.adsJsonPOJO.getParameters().getApp_open_ad().getDefaultValue().getValue()) && Constants.adsJsonPOJO.getParameters().getShowAd().getDefaultValue().getValue().equals("true")) {
+        if (!StringUtils.isNull(Constants.adsJsonPOJO.getParameters().getApp_open_ad().getDefaultValue().getValue())
+                && Constants.adsJsonPOJO.getParameters().getShowAd().getDefaultValue().getValue().equals("true")){
             global.showProgressDialog(activity, ConstantsMessages.PLEASE_WAIT);
             AppOpenAd.load(activity, Constants.adsJsonPOJO.getParameters().getApp_open_ad().getDefaultValue().getValue(), adRequest, AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT, new AppOpenAd.AppOpenAdLoadCallback() {
 
                 @Override
-                public void onAdLoaded(AppOpenAd ad) {
+                public void onAdLoaded(@NonNull AppOpenAd ad) {
                     global.hideProgressDialog();
                     appOpenAd = ad;
                     showAdIfAvailable(activity, appOpenADInterface);
                 }
 
                 @Override
-                public void onAdFailedToLoad(LoadAdError loadAdError) {
+                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                     global.hideProgressDialog();
                     // Handle the error.
                     appOpenADInterface.appOpenAdState(false);
                 }
 
             });
-        } else {
+        }else{
             appOpenADInterface.appOpenAdState(false);
         }
-
-
     }
 
     private static void showAdIfAvailable(Activity activity, AppInterfaces.AppOpenADInterface appOpenADInterface) {
+        AppPreferencesManger appPreferencesManger = new AppPreferencesManger(activity);
+        Constants.adsJsonPOJO = new Gson().fromJson(appPreferencesManger.getAdsModel(), AdsJsonPOJO.class);
         FullScreenContentCallback fullScreenContentCallback = new FullScreenContentCallback() {
             @Override
             public void onAdDismissedFullScreenContent() {
@@ -308,16 +322,18 @@ public class AdUtils {
                 @Override
                 public void onAdDismissedFullScreenContent() {
                     interStitialADInterface.adLoadState(true);
+                    resetInterstitialAd();
+                    precacheInterstitialAd(activity);
                 }
 
                 @Override
-                public void onAdFailedToShowFullScreenContent(AdError adError) {
+                public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+                    resetInterstitialAd();
                     interStitialADInterface.adLoadState(false);
                 }
 
                 @Override
-                public void onAdShowedFullScreenContent() {
-                }
+                public void onAdShowedFullScreenContent() {}
             });
             interstitialAd.show(activity);
         } else {
@@ -384,59 +400,31 @@ public class AdUtils {
     }
 
 
-    private static class AsyncAdHandler extends AsyncTask {
-        Activity activity;
-        boolean isFullScreenAd;
-        String nativeAd;
+    public static void precacheInterstitialAd(Activity activity) {
+        AppPreferencesManger appPreferencesManger = new AppPreferencesManger(activity);
+        Constants.adsJsonPOJO = new Gson().fromJson(appPreferencesManger.getAdsModel(), AdsJsonPOJO.class);
+        cd = new ConnectionDetector(activity);
 
-        public AsyncAdHandler(Activity activity, boolean isFullScreenAd, String nativeAd) {
-            this.activity = activity;
-            this.isFullScreenAd = isFullScreenAd;
-            this.nativeAd = nativeAd;
-        }
-
-        @Override
-        protected Object doInBackground(Object[] objects) {
-            AdLoader adLoader = new AdLoader.Builder(activity, nativeAd).forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
-                @Override
-                public void onNativeAdLoaded(NativeAd nativeAd) {
-                    google_unifiedNativeAd = nativeAd;
-                    NativeAdView unifiedNativeAdView;
-                    try {
-                        if (isFullScreenAd) {
-                            unifiedNativeAdView = (NativeAdView) activity.getLayoutInflater().inflate(R.layout.full_native_ad_param, null);
-                        } else {
-                            unifiedNativeAdView = (NativeAdView) activity.getLayoutInflater().inflate(R.layout.small_native_ad, null);
-                        }
-                        unifiedNativeAdView.isHardwareAccelerated();
-                        populateUnifiedNativeAdView(google_unifiedNativeAd, unifiedNativeAdView, isFullScreenAd);
-
-                        //adContainer.removeAllViews();
-                        //adContainer.addView(unifiedNativeAdView);
-                    } catch (Exception e2) {
-                        e2.printStackTrace();
+        if (cd.isConnectingToInternet()&& Constants.adsJsonPOJO.getParameters().getShowAd().getDefaultValue().getValue().equals("true")) {
+                AdRequest adRequest = new AdRequest.Builder().build();
+                InterstitialAd.load(activity, Constants.adsJsonPOJO.getParameters().getFull_id().getDefaultValue().getValue(), adRequest, new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        mpreloadAds = interstitialAd;
+                        interstitialAdLoaded = true;
                     }
 
-                }
-
-
-            }).withAdListener(new AdListener() {
-                @Override
-                public void onAdFailedToLoad(LoadAdError adError) {
-
-                    try {
-                        //adContainer.setVisibility(View.GONE);
-                        return;
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                      resetInterstitialAd();
                     }
-
-                    String stringBuilder = adError + "";
-                    Log.i("onAdFailedToLoad", stringBuilder.trim());
-                }
-            }).withNativeAdOptions(new NativeAdOptions.Builder().build()).build();
-            adLoader.loadAd(new AdRequest.Builder().build());
-            return null;
+                });
         }
     }
+
+    private static void resetInterstitialAd(){
+        mpreloadAds = null;
+        interstitialAdLoaded = false;
+    }
+
 }

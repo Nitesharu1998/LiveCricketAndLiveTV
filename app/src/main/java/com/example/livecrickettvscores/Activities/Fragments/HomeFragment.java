@@ -224,8 +224,8 @@ public class HomeFragment extends Fragment {
 
         binding.tvNewsheader.setText(hline);
         binding.tvUploadtime.setText(pubTime);
-        Glide.with(context).load(Constants.CricBuzzBaseURL + document.select("img.cb-auth-img").attr("src")).into(binding.ivUploader);
-        Glide.with(context).load(Constants.CricBuzzBaseURL + document.select("div.cb-sptlt-hdr").select("div.cb-sptlt-sctn").select("img").attr("src")).into(binding.newsImage);
+        Glide.with(context).load(Constants.CricBuzzBaseURL + document.select("img.cb-auth-img").attr("src")).error(R.drawable.defaultavatar).into(binding.ivUploader);
+        Glide.with(context).load(Constants.CricBuzzBaseURL + document.select("div.cb-sptlt-hdr").select("div.cb-sptlt-sctn").select("img").attr("src")).error(R.drawable.news_default).into(binding.newsImage);
 
         binding.tvAuthor.setText(document.select("div.cb-sptlt-hdr").select("div.cb-spt-athr").text());
 
@@ -245,9 +245,9 @@ public class HomeFragment extends Fragment {
         binding.ivShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+                Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                intent.putExtra(android.content.Intent.EXTRA_TEXT, newsSource);
+                intent.putExtra(Intent.EXTRA_TEXT, newsSource);
                 startActivity(Intent.createChooser(intent, newsSource));
 
             }
@@ -293,7 +293,7 @@ public class HomeFragment extends Fragment {
             String newsTitle, newsDesc = "";
             SelectednewslayoutBinding binding = SelectednewslayoutBinding.inflate(LayoutInflater.from(context), null, false);
             btms.setContentView(binding.getRoot());
-            Glide.with(context).load(Constants.CricBuzzBaseURL + newsDetails.select("section.cb-news-img-section.horizontal-img-container").select("img").attr("src")).into(binding.newsImage);
+            Glide.with(context).load(Constants.CricBuzzBaseURL + newsDetails.select("section.cb-news-img-section.horizontal-img-container").select("img").attr("src")).error(R.drawable.news_default).into(binding.newsImage);
 //            binding.tvUploadername.setText(newsDetailsResponseModel.getCoverImage().getSource());
 //            binding.tvNewsdetails.setText(Global.getTextFromDataModel(newsDetailsResponseModel.getContent()));
             Elements description = newsDetails.select("section.cb-nws-dtl-itms");

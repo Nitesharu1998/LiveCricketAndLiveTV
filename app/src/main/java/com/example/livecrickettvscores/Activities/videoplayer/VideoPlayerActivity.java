@@ -91,18 +91,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
 
             }
         });
-//        binding.category.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                AdUtils.showInterstitialAd(VideoPlayerActivity.this, new AppInterfaces.InterStitialADInterface() {
-//                    @Override
-//                    public void adLoadState(boolean isLoaded) {
-//                        startActivity(new Intent(VideoPlayerActivity.this, AllCategoriesActivity.class));
-//                    }
-//                });
-//
-//            }
-//        });
+
         bindNavBottomActions();
 
         if(songs == null) {
@@ -131,23 +120,16 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
         binding.navBottomMenu.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case (R.id.video):
-//                    AdUtils.showInterstitialAd(VideoPlayerActivity.this, new AppInterfaces.InterStitialADInterface() {
-//                        @Override
-//                        public void adLoadState(boolean isLoaded) {
-                            playerBinding = null;
-                            replaceFragment(new YoutubeFragment(), false);
-                            binding.navBottomPlayer.getRoot().setVisibility(View.GONE);
-//                        }
-//                    });
+
+                    playerBinding = null;
+                    replaceFragment(new YoutubeFragment(), false);
+                    binding.navBottomPlayer.getRoot().setVisibility(View.GONE);
+
                     break;
                 case (R.id.files):
-//                    AdUtils.showInterstitialAd(VideoPlayerActivity.this, new AppInterfaces.InterStitialADInterface() {
-//                        @Override
-//                        public void adLoadState(boolean isLoaded) {
-                            playerBinding = null;
-                            replaceFragment(new DeviceFragment(), false);
-//                        }
-//                    });
+
+                    playerBinding = null;
+                    replaceFragment(new DeviceFragment(), false);
                     break;
             }
             return true;

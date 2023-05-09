@@ -49,7 +49,7 @@ public class UpcomingMatchAdapter extends RecyclerView.Adapter<UpcomingMatchAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_matchTitle;
+        TextView tv_matchTitle,tv_matchLocation,tv_matchTime ;
         RecyclerView rcl_matches;
 
         public ViewHolder(SinglelivematchlayoutBinding binding) {

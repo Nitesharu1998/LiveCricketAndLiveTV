@@ -33,6 +33,7 @@ public class RankingPlayersFragment extends Fragment {
     FragmentRankingPlayersBinding binding;
     ArrayList<CountriesResponseModel> responseModel = new ArrayList<>();
     ArrayList<CountriesResponseModel> filteredCountries;
+    private boolean isMen=false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,10 +47,12 @@ public class RankingPlayersFragment extends Fragment {
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (tab.getPosition()) {
                     case 0:
+                        isMen = true;
                         tabPosition = tab.getPosition();
                         callCountryList(Constants.CricketTeamURL);
                         break;
                     case 1:
+                        isMen=false;
                         tabPosition = tab.getPosition();
                         callCountryList(Constants.CricketTeamWomenURL);
                         break;
@@ -93,13 +96,12 @@ public class RankingPlayersFragment extends Fragment {
     }
 
     private void callCountryList(String cricketTeamURL) {
-        AppAsyncTasks.CallRankingContries callRankingContries = new AppAsyncTasks.CallRankingContries(cricketTeamURL, binding.getRoot().getContext(), new AppInterfaces.WebScrappingInterface() {
+        AppAsyncTasks.CallRankingContries callRankingCountries = new AppAsyncTasks.CallRankingContries(cricketTeamURL, binding.getRoot().getContext(), new AppInterfaces.WebScrappingInterface() {
             @Override
             public void getScrapedDocument(Elements document) {
                 setUpCountryList(document);
             }
-        });
-        callRankingContries.execute();
+        }); callRankingCountries.execute();
     }
 
     private void setUptabs() {
@@ -135,7 +137,7 @@ public class RankingPlayersFragment extends Fragment {
 
     private void setUpAdapter(ArrayList<CountriesResponseModel> countriesResponseModels) {
         binding.rclCountryList.setLayoutManager(Global.getManagerWithOrientation(requireContext(), RecyclerView.VERTICAL));
-        CountriesAdapter adapter = new CountriesAdapter(false, requireContext(), countriesResponseModels, new AppInterfaces.NewsAdapterClick() {
+        CountriesAdapter adapter = new CountriesAdapter(isMen,false, requireContext(), countriesResponseModels, new AppInterfaces.NewsAdapterClick() {
             @Override
             public void getClickedNewsID(Integer countryId) {
                 startActivity(new Intent(binding.getRoot().getContext(), CountryPlayersActivity.class).putExtra("playerLink", countriesResponseModels.get(countryId).getCountryEndpoint()).putExtra("playerCountry", countriesResponseModels.get(countryId).getCountryName()));

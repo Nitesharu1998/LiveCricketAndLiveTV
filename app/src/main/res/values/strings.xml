@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Live Cricket TV &amp; Scores</string>
+    <string name="app_name">Live Cricket TV Match Score</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_player_information">PlayerInformation</string>

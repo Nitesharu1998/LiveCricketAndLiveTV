@@ -4,13 +4,13 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +20,7 @@ import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.Retrofit.AppAsyncTasks;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.NewsListResponseModel;
 import com.example.livecrickettvscores.Activities.Utils.Global;
+import com.example.livecrickettvscores.R;
 import com.example.livecrickettvscores.databinding.FragmentPlayerNewsBinding;
 import com.example.livecrickettvscores.databinding.SelectednewslayoutBinding;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -40,8 +41,8 @@ public class PlayerNewsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentPlayerNewsBinding.inflate(LayoutInflater.from(getContext()), container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentPlayerNewsBinding.inflate(inflater, container, false);
         //callPlayerNewsAPI();
 
         AppAsyncTasks.CallClickedPlayerDetails getPlayerNews = new AppAsyncTasks.CallClickedPlayerDetails(playerURL, requireContext(), new AppInterfaces.WebScrappingInterface() {
@@ -85,7 +86,7 @@ public class PlayerNewsFragment extends Fragment {
                 AppAsyncTasks.CallNewsDetails callNewsDetails = new AppAsyncTasks.CallNewsDetails(newsListResponseModel.getNewsList().get(newsID).getStory().getSource(), requireContext(), new AppInterfaces.WebScrappingInterface() {
                     @Override
                     public void getScrapedDocument(Elements document) {
-                        openBottomSheetOfNewsDetails(newsListResponseModel.getNewsList().get(newsID).getStory().getSource(), document.select("div.cb-col.cb-col-100.cb-bg-white"));
+                        openBottomSheetOfNewsDetails(newsListResponseModel.getNewsList().get(newsID).getStory().getPubTime(),newsListResponseModel.getNewsList().get(newsID).getStory().getSource(), document.select("div.cb-col.cb-col-100.cb-bg-white"));
                     }
                 });
                 callNewsDetails.execute();
@@ -95,25 +96,28 @@ public class PlayerNewsFragment extends Fragment {
     }
 
 
-    private void openBottomSheetOfNewsDetails(String source, Elements newsElements) {
-        BottomSheetDialog btms = new BottomSheetDialog(getContext());
-
+    private void openBottomSheetOfNewsDetails(String date,String source, Elements newsElements) {
+        BottomSheetDialog btms = new BottomSheetDialog(requireContext());
         try {
-            Elements newsdetailsElements = newsElements.select("section.cb-spt-news-dtl-itms.cb-sptlt-sctn").nextAll();
-            String newsDetails = "";
-            SelectednewslayoutBinding binding = SelectednewslayoutBinding.inflate(LayoutInflater.from(getContext()), null, false);
-            btms.setContentView(binding.getRoot());
-            Glide.with(getContext()).load("https://www.cricbuzz.com" + newsElements.select("section.cb-news-img-section").select("img").attr("src")).into(binding.newsImage);
-            Glide.with(getContext()).load("https://www.cricbuzz.com" + newsElements.select("div.cb-nws-sub-txt").select("img").attr("src")).into(binding.ivUploader);
-            binding.tvUploadername.setText(newsElements.select("div.cb-nws-sub-txt").select("div.cb-spt-athr").text());
-            binding.tvNewsheader.setText(newsElements.select("div.cb-sptlt-hdr").select("h1.spt-nws-dtl-hdln").text());
-            binding.tvUploadername.setText(newsElements.select("div.cb-sptlt-hdr").select("div.cb-nws-sub-txt").select("div.cb-spt-athr").text());
-            binding.tvAuthor.setVisibility(View.GONE);
-            for (int i = 0; i < newsdetailsElements.size(); i++) {
-                newsDetails = newsDetails + newsdetailsElements.get(i).select("p.cb-nws-para").text() + "\n";
+            Elements newsdetailsElements = newsElements.select("section[class=cb-spt-news-dtl-itms cb-sptlt-sctn]");
+            if (newsdetailsElements.isEmpty()){
+                newsdetailsElements = newsElements.select("section[class=cb-nws-dtl-itms]");
             }
-            binding.tvNewsdetails.setText(newsDetails.trim());
 
+            StringBuilder newsDetails = new StringBuilder();
+            SelectednewslayoutBinding binding = SelectednewslayoutBinding.inflate(LayoutInflater.from(requireContext()), null, false);
+            btms.setContentView(binding.getRoot());
+            Glide.with(requireContext()).load("https://www.cricbuzz.com" + newsElements.select("section.cb-news-img-section").select("meta").attr("itemprop","url")).error(R.drawable.news_default).into(binding.newsImage);
+            Glide.with(requireContext()).load("https://www.cricbuzz.com" + newsElements.select("div.cb-nws-sub-txt").select("img").attr("src")).error(R.drawable.defaultavatar).into(binding.ivUploader);
+            binding.tvUploadername.setText(newsElements.select("div.cb-nws-sub-txt").select("span").attr("itemprop", "name").text()/*.select("div.cb-spt-athr").text()*/);
+            binding.tvNewsheader.setText(newsElements.select("h1[class=nws-dtl-hdln]").text());
+            binding.tvUploadtime.setText(date);
+            binding.tvAuthor.setText(Global.filterText(newsElements.select("div[class=cb-nws-sub-txt]").select("a[class=cb-text-link]").select("span").attr("itemprop","name").text()," ", " "));
+            binding.tvAuthor.setVisibility(View.VISIBLE);
+            for (int i = 0; i < newsdetailsElements.size(); i++) {
+                newsDetails.append(newsdetailsElements.get(i).select("p.cb-nws-para").text()).append("\n");
+            }
+            binding.tvNewsdetails.setText(newsDetails.toString().trim());
 
             binding.ivBack.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -121,11 +125,12 @@ public class PlayerNewsFragment extends Fragment {
                     btms.dismiss();
                 }
             });
+
             binding.ivLink.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     try {
-                        ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                        ClipboardManager clipboardManager = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
                         ClipData clipData = ClipData.newPlainText("text", source);
                         clipboardManager.setPrimaryClip(clipData);
                         Toast.makeText(getContext(), "Link is copied to clipboard", Toast.LENGTH_SHORT).show();
@@ -135,20 +140,11 @@ public class PlayerNewsFragment extends Fragment {
                 }
             });
 
-            binding.ivShare.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                  /*Create an ACTION_SEND Intent*/
-                    Intent intent = new Intent(android.content.Intent.ACTION_SEND);
-                    /*This will be the actual content you wish you share.*/
-                    /*The type of the content is text, obviously.*/
-                    intent.setType("text/plain");
-                    /*Applying information Subject and Body.*/
-                    intent.putExtra(android.content.Intent.EXTRA_TEXT, source);
-                    /*Fire!*/
-                    startActivity(Intent.createChooser(intent, source));
-
-                }
+            binding.ivShare.setOnClickListener(view -> {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, source);
+                startActivity(Intent.createChooser(intent, source));
             });
         } catch (Exception e) {
             throw new RuntimeException(e);

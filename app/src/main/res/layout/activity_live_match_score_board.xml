@@ -61,7 +61,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#2600FFF0"
+                android:background="@color/deep_blue"
                 android:padding="@dimen/_10sdp">
 
                 <ImageView
@@ -177,7 +177,6 @@
         </com.google.android.material.card.MaterialCardView>
 
         <!--match main details UI-->
-
 
         <!--match score details UI-->
         <RelativeLayout
@@ -487,6 +486,7 @@
                                 android:layout_height="wrap_content"
                                 android:paddingVertical="@dimen/_4sdp"
                                 android:text="Batsman"
+                                android:singleLine="true"
                                 android:textColor="@color/black" />
                         </com.google.android.material.card.MaterialCardView>
 
@@ -603,7 +603,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
                     android:orientation="vertical">
                     <!--Bowler UI-->
 
@@ -894,6 +894,7 @@
                                 android:layout_height="wrap_content"
                                 android:paddingVertical="@dimen/_4sdp"
                                 android:text="Batsman"
+                                android:singleLine="true"
                                 android:textColor="@color/black" />
                         </com.google.android.material.card.MaterialCardView>
 

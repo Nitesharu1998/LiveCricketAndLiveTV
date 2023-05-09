@@ -44,13 +44,12 @@ public class FullScoreBoardActivity extends AppCompatActivity {
         setTopUI();
         initListeners();
         if (!StringUtils.isNull(matchesDTO.getMatchScoreLink())) {
-            Global.sout("matchlink", Constants.ESPNBaseURL + Constants.matchDTO.getMatchScoreLink());
+            //Global.sout("matchlink", Constants.ESPNBaseURL + Constants.matchDTO.getMatchScoreLink());
             AppAsyncTasks.GetFinishedScoreBoard getFinishedScoreBoard = new AppAsyncTasks.GetFinishedScoreBoard(true, Constants.ESPNBaseURL + matchesDTO.getMatchScoreLink(), activity, new AppInterfaces.WebScrappingInterface() {
                 @Override
                 public void getScrapedDocument(Elements scoreBoardElements) {
                     setManOfTheMatch(Constants.ManOfTheMatchElements);
                     if (!scoreBoardElements.isEmpty()) {
-
                         fullScoreBoardResponseModel = setUpResponseModel(scoreBoardElements);
                         setUpFullScoreBoardList(getResponseModelForTeams(true));
                     } else {
@@ -102,16 +101,18 @@ public class FullScoreBoardActivity extends AppCompatActivity {
         if (!manOfTheMatchElements.isEmpty()) {
             String MOMScore = manOfTheMatchElements.select("span[class=ds-text-tight-s ds-font-regular]").text();
             if (MOMScore.contains("&")) {
-                String[] momSplit = MOMScore.split("&");
-                binding.tvMOMPlayerScore.setText(momSplit[0] + "\n&\n" + momSplit[1]);
+                String[] MOM_Split = MOMScore.split("&");
+                binding.tvMOMPlayerScore.setText(MOM_Split[0] + "\n&\n" + MOM_Split[1]);
 
             } else {
                 binding.tvMOMPlayerScore.setText(manOfTheMatchElements.select("span[class=ds-text-tight-s ds-font-regular]").text());
 
             }
-            Global.sout("manOfTheMatchElements\n", manOfTheMatchElements);
+            //Global.sout("manOfTheMatchElements\n", manOfTheMatchElements);
             binding.tvMOMPlayer.setText(StringUtils.toCamelCase(manOfTheMatchElements.select("div[class=ds-relative]").select("img").attr("alt").replace("-", " ")));
 
+        }else {
+            binding.rlManOfTheMatch.setVisibility(View.GONE);
         }
     }
 
@@ -123,8 +124,8 @@ public class FullScoreBoardActivity extends AppCompatActivity {
         binding.tvMatchstatus.setText(Constants.matchDTO.getSession());
         binding.tvMatchtitle.setText(Constants.matchDTO.getMatchTitle());
 
-        Glide.with(getApplicationContext()).load(Global.getFlagOfCountry(true,Constants.matchDTO.getTeamOne())).into(binding.ivTeam1);
-        Glide.with(getApplicationContext()).load(Global.getFlagOfCountry(true,Constants.matchDTO.getTeamTwo())).into(binding.ivTeam2);
+        Glide.with(getApplicationContext()).load(Global.getFlagOfCountry(true,Constants.matchDTO.getTeamOne())).error(R.drawable.default_flag).into(binding.ivTeam1);
+        Glide.with(getApplicationContext()).load(Global.getFlagOfCountry(true,Constants.matchDTO.getTeamTwo())).error(R.drawable.default_flag).into(binding.ivTeam2);
     }
 
     private FullScoreBoardResponseModel getResponseModelForTeams(boolean isTeamOne) {
@@ -163,12 +164,17 @@ public class FullScoreBoardActivity extends AppCompatActivity {
     private FullScoreBoardResponseModel setUpResponseModel(Elements scoreBoardElements) {
         FullScoreBoardResponseModel responseModel = new FullScoreBoardResponseModel();
         ArrayList<FullScoreBoardResponseModel.MatchInningDTO> matchInningDTOArrayList = new ArrayList<>();
-        for (int i = 0; i < scoreBoardElements.size(); i++) {//2
+        for (int i = 0; i < scoreBoardElements.size(); i++) {
+
+            Elements ManOfTheMatchElement = scoreBoardElements.get(i).select("div[class=ds-text-tight-s ds-font-regular ds-leading-4]");
+
             Elements battingElements = scoreBoardElements.get(i).select("table[class=ds-w-full ds-table ds-table-md ds-table-auto  ci-scorecard-table]"); //4
             Elements bowlingElements = scoreBoardElements.get(i).select("table[class=ds-w-full ds-table ds-table-md ds-table-auto ]");//4
             FullScoreBoardResponseModel.MatchInningDTO matchInningDTO = new FullScoreBoardResponseModel.MatchInningDTO();
+
+            matchInningDTO.setTeamFallOfWicket(ManOfTheMatchElement.size() > 1 ? ManOfTheMatchElement.get(1).select("span").text().replace("DRS", "") : ManOfTheMatchElement.select("span").text().replace("DRS", ""));
+
             matchInningDTO.setTeamName(scoreBoardElements.get(i).select("span[class=ds-text-title-xs ds-font-bold ds-capitalize]").text() + " " + scoreBoardElements.get(i).select("span[class=ds-text-compact-xs ds-font-regular]").text());
-            matchInningDTO.setTeamFallOfWicket(scoreBoardElements.get(i).select("div[class=ds-text-tight-s ds-font-regular ds-leading-4]").select("span").text());
             matchInningDTO.setTeamTotal(scoreBoardElements.get(i).select("td[class=ds-font-bold ds-bg-fill-content-alternate ds-text-tight-m ds-min-w-max ds-flex ds-items-center !ds-pl-[100px]]").text() + "    " + scoreBoardElements.get(i).select("td[class=ds-font-bold ds-bg-fill-content-alternate ds-text-tight-m ds-min-w-max ds-text-right]").text());
             for (int j = 0; j < battingElements.size(); j++) {
                 ArrayList<FullScoreBoardResponseModel.BatsmanDTO> batsmanList = new ArrayList<>();
@@ -181,7 +187,6 @@ public class FullScoreBoardActivity extends AppCompatActivity {
             for (int j = 0; j < bowlingElements.size(); j++) {
                 ArrayList<FullScoreBoardResponseModel.BowlerDTO> bowlerList = new ArrayList<>();
                 Elements singleBowler = bowlingElements.get(j).select("tr");
-                System.out.println("bowler element\n" + singleBowler.get(1));
                 for (int k = 1; k < singleBowler.size(); k++) {
                     bowlerList.add(getBowler(singleBowler.get(0).getAllElements(), singleBowler.get(k).getAllElements()));
                 }
@@ -264,12 +269,6 @@ public class FullScoreBoardActivity extends AppCompatActivity {
 
 
         return batsmanDTO;
-    }
-
-    private String filterText(String singleSplitString) {
-        String[] words = singleSplitString.split(", ");
-        Set<String> uniqueWords = new LinkedHashSet<>(Arrays.asList(words));
-        return String.join(", ", uniqueWords);
     }
 
     @Override

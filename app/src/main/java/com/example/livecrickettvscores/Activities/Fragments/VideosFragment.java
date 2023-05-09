@@ -1,27 +1,14 @@
 package com.example.livecrickettvscores.Activities.Fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.livecrickettvscores.Activities.Adapters.viewpagerAdapater;
-import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
-import com.example.livecrickettvscores.Activities.Retrofit.AppAsyncTasks;
-import com.example.livecrickettvscores.Activities.Utils.Constants;
-import com.example.livecrickettvscores.Activities.Utils.Global;
-import com.example.livecrickettvscores.R;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
-import org.jsoup.select.Elements;
+import com.example.livecrickettvscores.R;
 
 public class VideosFragment extends Fragment {
     RecyclerView rcl_videos;

@@ -13,8 +13,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/_12sdp"
+
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_intl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#DB1EB1"
+            android:layout_below="@+id/tv_matchtitle"
+            android:layout_gravity="end"
+            android:paddingHorizontal="@dimen/_8sdp"
+            android:fontFamily="@font/nunito_sans"
+            android:gravity="center_horizontal"
+            android:text=""
+            android:textStyle="bold"
+            android:textColor="@color/white" /> <!--intl text-->
 
         <LinearLayout
             android:id="@+id/ll_matches"
@@ -91,18 +105,27 @@
             android:textColor="@color/app_primarycolor" />
 
 
-
-
         <TextView
-            android:id="@+id/tv_intl"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_matchTime"
+            android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/tv_matchtitle"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/_8sdp"
             android:fontFamily="@font/nunito_sans"
             android:gravity="center_horizontal"
             android:text="match one team name"
-            android:textColor="@color/app_primarycolor" /> <!--intl text-->
+            android:textColor="@color/app_primarycolor" />
+
+        <TextView
+            android:id="@+id/tv_matchLocation"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@+id/tv_matchtitle"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/nunito_sans"
+            android:gravity="center_horizontal"
+            android:text="match one team name"
+            android:textColor="@color/app_primarycolor" />
 
     </LinearLayout>
 

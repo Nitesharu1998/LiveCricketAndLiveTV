@@ -24,10 +24,12 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
     ArrayList<CountriesResponseModel> countriesResponseModels;
     AppInterfaces.NewsAdapterClick newsAdapterClick;
     boolean isBaseURL;
+    boolean isMen;
 
-    public CountriesAdapter(boolean isBaseURL, Context context, ArrayList<CountriesResponseModel> countriesResponseModels, AppInterfaces.NewsAdapterClick newsAdapterClick) {
+    public CountriesAdapter(boolean isMen, boolean isBaseURL, Context context, ArrayList<CountriesResponseModel> countriesResponseModels, AppInterfaces.NewsAdapterClick newsAdapterClick) {
         this.context = context;
         this.isBaseURL = isBaseURL;
+        this.isMen = isMen;
         this.countriesResponseModels = countriesResponseModels;
         this.newsAdapterClick = newsAdapterClick;
     }
@@ -42,9 +44,9 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
     @Override
     public void onBindViewHolder(@NonNull CountriesAdapter.ViewHolder holder, int position) {
         if (isBaseURL) {
-            Glide.with(context).load(Constants.CricBuzzBaseURL + countriesResponseModels.get(position).getCountryFlag()).into(holder.binding.ivCountry);
+            Glide.with(context).load(Constants.CricBuzzBaseURL + countriesResponseModels.get(position).getCountryFlag()).error(R.drawable.default_flag).into(holder.binding.ivCountry);
         } else {
-            Glide.with(context).load(Global.getFlagOfCountry(true,countriesResponseModels.get(position).getCountryName())).into(holder.binding.ivCountry);
+            Glide.with(context).load(Global.getFlagOfCountry(isMen, countriesResponseModels.get(position).getCountryName())).error(R.drawable.default_flag).into(holder.binding.ivCountry);
 
         }
         holder.binding.tvCountryName.setText(countriesResponseModels.get(position).getCountryName());
