@@ -18,6 +18,7 @@ import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.Fragments.FixtureFragment;
 import com.example.livecrickettvscores.Activities.Fragments.HomeFragment;
 import com.example.livecrickettvscores.Activities.Fragments.RankingPlayersFragment;
+import com.example.livecrickettvscores.Activities.Utils.Constants;
 import com.example.livecrickettvscores.Activities.videoplayer.VideoPlayerActivity;
 import com.example.livecrickettvscores.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -42,7 +43,7 @@ public class AppHomeActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.mNavigationView);
         rg_bottomNav = findViewById(R.id.rg_bottomNav);
         drawerLayout = findViewById(R.id.drawer);
-        //AdUtils.showNativeAd(this, Constants.adsJsonPOJO.getParameters().getNative_id().getDefaultValue().getValue(), ll_nativeAds, false);
+        AdUtils.showNativeAd(this, Constants.adsJsonPOJO.getParameters().getNative_id().getDefaultValue().getValue(), ll_nativeAds, false);
 
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.opendrawer, R.string.closedrawer);
 

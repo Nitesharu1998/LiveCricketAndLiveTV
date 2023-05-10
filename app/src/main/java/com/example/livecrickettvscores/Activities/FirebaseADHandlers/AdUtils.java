@@ -117,7 +117,7 @@ public class AdUtils {
                                 }
                                 unifiedNativeAdView.isHardwareAccelerated();
                                 populateUnifiedNativeAdView(google_unifiedNativeAd, unifiedNativeAdView, isFullScreenAd);
-
+                                Global.sout("ADs status","native success");
                                 adContainer.removeAllViews();
                                 adContainer.addView(unifiedNativeAdView);
                                 adContainer.setVisibility(View.VISIBLE);
@@ -130,6 +130,7 @@ public class AdUtils {
                         public void onAdFailedToLoad(LoadAdError adError) {
 
                             try {
+                                Global.sout("ADs status", "native failed");
                                 adContainer.setVisibility(View.GONE);
                                 return;
                             } catch (Exception e) {

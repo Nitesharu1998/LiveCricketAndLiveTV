@@ -61,6 +61,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_8sdp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -131,16 +132,6 @@
                             android:background="@color/white"
                             android:paddingHorizontal="@dimen/_4sdp" />
 
-                        <LinearLayout
-                            android:id="@+id/native_ads"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/rcl_featurednews"
-                            android:layout_alignParentBottom="true"
-                            android:layout_gravity="bottom"
-                            android:layout_marginBottom="@dimen/_1sdp"
-                            android:orientation="vertical"
-                            android:visibility="gone" />
 
                     </RelativeLayout>
                 </LinearLayout>

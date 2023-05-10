@@ -57,7 +57,7 @@ public class FixtureFragment extends Fragment {
         native_ads = view.findViewById(R.id.native_ads);
         iv_back = view.findViewById(R.id.iv_back);
         cd =new ConnectionDetector(context);
-        AdUtils.showNativeAd(requireActivity(), Constants.adsJsonPOJO.getParameters().getNative_id().getDefaultValue().getValue(), native_ads, false);
+        //AdUtils.showNativeAd(requireActivity(), Constants.adsJsonPOJO.getParameters().getNative_id().getDefaultValue().getValue(), native_ads, false);
 
 
         Global.sout("Fixture fragment ", "Fixture fragment initiated");

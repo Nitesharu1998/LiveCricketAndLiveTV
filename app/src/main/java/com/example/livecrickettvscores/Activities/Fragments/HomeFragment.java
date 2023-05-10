@@ -75,7 +75,7 @@ public class HomeFragment extends Fragment {
         rcl_livematches = view.findViewById(R.id.rcl_livematches);
         rcl_trendingnews = view.findViewById(R.id.rcl_trendingnews);
         rcl_featurednews = view.findViewById(R.id.rcl_featurednews);
-        native_ads = view.findViewById(R.id.native_ads);
+        //native_ads = view.findViewById(R.id.native_ads);
         navigationView = view.findViewById(R.id.mNavigationView);
         drawerLayout = view.findViewById(R.id.drawer);
         iv_nav = view.findViewById(R.id.iv_nav);
@@ -132,7 +132,7 @@ public class HomeFragment extends Fragment {
             callNewsAPI();
         }
 
-        AdUtils.showNativeAd(requireActivity(), Constants.adsJsonPOJO.getParameters().getNative_id().getDefaultValue().getValue(), native_ads, false);
+        //AdUtils.showNativeAd(requireActivity(), Constants.adsJsonPOJO.getParameters().getNative_id().getDefaultValue().getValue(), native_ads, false);
         return view;
     }
 
@@ -157,7 +157,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void callSpotlightNewsApi(String cricketSpotlightNewsURL) {
-
         AppAsyncTasks.GetFeaturedNews getFeaturedNews = new AppAsyncTasks.GetFeaturedNews(cricketSpotlightNewsURL, context, new AppInterfaces.WebScrappingInterface() {
             @Override
             public void getScrapedDocument(Elements document) {
@@ -216,6 +215,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void openBtmsforDiffScrapedData(String newsSource, String pubTime, String hline, Elements document) {
+        Global.sout("openBtmsforDiffScrapedData", "openBtmsforDiffScrapedData clicked");
         BottomSheetDialog btms = new BottomSheetDialog(context);
         String description = "";
         Elements textElements = document.select("p.cb-nws-para");
@@ -288,42 +288,38 @@ public class HomeFragment extends Fragment {
 
 
     private void openBottomSheetOfNewsDetails(String newsSource, String pubTime, String hline, Elements newsDetails) {
-        if (true/*newsDetailsResponseModel.getContent() != null && newsDetailsResponseModel.getContent().size() > 0*/) {
-            BottomSheetDialog btms = new BottomSheetDialog(context);
-            String newsTitle, newsDesc = "";
-            SelectednewslayoutBinding binding = SelectednewslayoutBinding.inflate(LayoutInflater.from(context), null, false);
-            btms.setContentView(binding.getRoot());
-            Glide.with(context).load(Constants.CricBuzzBaseURL + newsDetails.select("section.cb-news-img-section.horizontal-img-container").select("img").attr("src")).error(R.drawable.news_default).into(binding.newsImage);
-//            binding.tvUploadername.setText(newsDetailsResponseModel.getCoverImage().getSource());
-//            binding.tvNewsdetails.setText(Global.getTextFromDataModel(newsDetailsResponseModel.getContent()));
-            Elements description = newsDetails.select("section.cb-nws-dtl-itms");
-            binding.ivUploader.setVisibility(View.GONE);
-            binding.tvAuthor.setText("CricBuzz");
-            binding.tvNewsheader.setText(hline);
-            binding.tvUploadtime.setText(pubTime);
-            binding.tvUploadername.setVisibility(View.GONE);
-            for (int i = 1; i < description.size(); i++) {
-                newsDesc = newsDesc + description.get(i).select("p.cb-nws-para").text() + "\n";
+
+        Global.sout("openBottomSheetOfNewsDetails", "openBottomSheetOfNewsDetails clicked");
+        BottomSheetDialog btms = new BottomSheetDialog(context);
+        String newsTitle, newsDesc = "";
+        SelectednewslayoutBinding binding = SelectednewslayoutBinding.inflate(LayoutInflater.from(context), null, false);
+        btms.setContentView(binding.getRoot());
+        binding.ivUploader.setImageResource(R.drawable.defaultavatar2);
+        Glide.with(context).load(Constants.CricBuzzBaseURL + newsDetails.select("section.cb-news-img-section.horizontal-img-container").select("img").attr("src")).error(R.drawable.news_default).into(binding.newsImage);
+        Elements description = newsDetails.select("section.cb-nws-dtl-itms");
+        binding.ivUploader.setVisibility(View.VISIBLE);
+        binding.tvAuthor.setText("CricBuzz");
+        binding.tvNewsheader.setText(hline);
+        binding.tvUploadtime.setText(pubTime);
+        binding.tvUploadername.setVisibility(View.GONE);
+        for (int i = 1; i < description.size(); i++) {
+            newsDesc = newsDesc + description.get(i).select("p.cb-nws-para").text() + "\n";
+        }
+        binding.tvNewsdetails.setText(newsDesc);
+
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btms.dismiss();
             }
-            binding.tvNewsdetails.setText(newsDesc);
+        });
 
-//            binding.tvUploadtime.setText(DateUtil.getDateFromSeconds(Long.parseLong(newsDetailsResponseModel.getPublishTime())));
-//            binding.tvAuthor.setText(newsDetailsResponseModel.getAuthors().get(0).getName());
-
-
-            binding.ivBack.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    btms.dismiss();
-                }
-            });
-
-            binding.ivShare.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(android.content.Intent.ACTION_SEND);
-                    intent.setType("text/plain");
-                    intent.putExtra(android.content.Intent.EXTRA_TEXT, newsSource);
+        binding.ivShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(android.content.Intent.EXTRA_TEXT, newsSource);
                     startActivity(Intent.createChooser(intent, newsSource));
 
                 }
@@ -332,7 +328,7 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     try {
-                        ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(context.CLIPBOARD_SERVICE);
+                        ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
                         ClipData clipData = ClipData.newPlainText("text", newsSource);
                         clipboardManager.setPrimaryClip(clipData);
                         Toast.makeText(context, "Link is copied to clipboard", Toast.LENGTH_SHORT).show();
@@ -341,9 +337,7 @@ public class HomeFragment extends Fragment {
                     }
                 }
             });
-
-            btms.show();
-        }
+        btms.show();
     }
 
 

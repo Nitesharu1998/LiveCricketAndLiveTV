@@ -15,13 +15,13 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/_12sdp"
             android:layout_marginStart="-8dp"
+            android:singleLine="true"
             android:layout_marginEnd="@dimen/_20sdp"
             android:background="@drawable/match_title_bg"
             android:paddingVertical="@dimen/_8sdp"
             android:paddingStart="@dimen/_12sdp"
             android:textSize="@dimen/_12sdp"
             android:textStyle="bold"
-
             android:textColor="@color/black" />
 
         <LinearLayout
