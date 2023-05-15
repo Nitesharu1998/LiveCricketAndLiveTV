@@ -1,5 +1,7 @@
 package com.example.livecrickettvscores.Activities.Fragments;
 
+import static com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils.loadInitialInterstitialAds;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -68,6 +70,12 @@ public class FixtureFragment extends Fragment {
         }
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadInitialInterstitialAds(requireActivity());
     }
 
     private void setUptabs() {
@@ -250,7 +258,7 @@ public class FixtureFragment extends Fragment {
             manager.setOrientation(RecyclerView.VERTICAL);
             rcl_fixtures.setLayoutManager(manager);
             rcl_fixtures.removeAllViews();
-            MatchMainAdapater adapter = new MatchMainAdapater(getContext(), fixturesResponseModel, new AppInterfaces.NewsAdapterClick() {
+            MatchMainAdapater adapter = new MatchMainAdapater(requireActivity(), fixturesResponseModel, new AppInterfaces.NewsAdapterClick() {
                 @Override
                 public void getClickedNewsID(Integer newsID) {
 

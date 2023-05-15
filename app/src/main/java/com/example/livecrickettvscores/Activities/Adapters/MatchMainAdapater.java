@@ -1,6 +1,6 @@
 package com.example.livecrickettvscores.Activities.Adapters;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -21,14 +21,14 @@ import com.example.livecrickettvscores.databinding.SinglelivematchlayoutBinding;
 import java.util.ArrayList;
 
 public class MatchMainAdapater extends RecyclerView.Adapter<MatchMainAdapater.ViewHolder> {
-    Context context;
+    Activity activity;
     ArrayList<FixturesResponseModel> fixturesResponseModel;
     AppInterfaces.NewsAdapterClick newsAdapterClick;
 
-    public MatchMainAdapater(Context context, ArrayList<FixturesResponseModel> fixturesResponseModel, AppInterfaces.NewsAdapterClick newsAdapterClick) {
-        this.context = context;
+    public MatchMainAdapater(Activity activity, ArrayList<FixturesResponseModel> fixturesResponseModel, AppInterfaces.NewsAdapterClick newsAdapterClick) {
+        this.activity = activity;
         this.fixturesResponseModel = fixturesResponseModel;
-        this.newsAdapterClick=newsAdapterClick;
+        this.newsAdapterClick = newsAdapterClick;
     }
 
     @NonNull
@@ -41,26 +41,24 @@ public class MatchMainAdapater extends RecyclerView.Adapter<MatchMainAdapater.Vi
     @Override
     public void onBindViewHolder(@NonNull MatchMainAdapater.ViewHolder holder, int position) {
         holder.tv_matchTitle.setText(fixturesResponseModel.get(position).getMatchTitle());
-        LinearLayoutManager manager = new LinearLayoutManager(context);
+        LinearLayoutManager manager = new LinearLayoutManager(activity);
         manager.setOrientation(RecyclerView.VERTICAL);
         holder.rcl_matches.setLayoutManager(manager);
         holder.rcl_matches.removeAllViews();
-        FixturesAdapter adapter = new FixturesAdapter(false, context, fixturesResponseModel.get(position).getMatches(), new AppInterfaces.NewsAdapterClick() {
+        FixturesAdapter adapter = new FixturesAdapter(false, activity, fixturesResponseModel.get(position).getMatches(), new AppInterfaces.NewsAdapterClick() {
             @Override
             public void getClickedNewsID(Integer newsID) {
                 Constants.matchDTO = fixturesResponseModel.get(position).getMatches().get(newsID);
-                if (Constants.matchDTO.getSession().contains("won") || Constants.matchDTO.getSession().contains("draw") || Constants.matchDTO.getSession().contains("match over")
-                        || Constants.matchDTO.getSession().contains("abandoned") || Constants.matchDTO.getSession().contains("No Result")) {
+                if (Constants.matchDTO.getSession().contains("won") || Constants.matchDTO.getSession().contains("draw") || Constants.matchDTO.getSession().contains("match over") || Constants.matchDTO.getSession().contains("abandoned") || Constants.matchDTO.getSession().contains("No Result")) {
                     Constants.matchDTO.setMatchScoreLink(Constants.matchDTO.getMatchScoreLink().replace("live-cricket-score", "full-scoreboard"));
-                    context.startActivity(new Intent(context, FullScoreBoardActivity.class));
+                    activity.startActivity(new Intent(activity, FullScoreBoardActivity.class));
                 } else if (Constants.matchDTO.getSession().contains("chose") || Constants.matchDTO.getSession().contains("lead") || Constants.matchDTO.getSession().contains("trail") || Constants.matchDTO.getSession().contains("need")) {
-                    context.startActivity(new Intent(context, LiveMatchScoreBoardActivity.class));
+                    activity.startActivity(new Intent(activity, LiveMatchScoreBoardActivity.class));
                 } else if (Constants.matchDTO.getSession().contains("yet")) {
-                    Toast.makeText(context, "Score are not available yet", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(context, "Score are not available yet", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "Score are not available yet", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(activity, "Score are not available yet", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
         holder.rcl_matches.setAdapter(adapter);

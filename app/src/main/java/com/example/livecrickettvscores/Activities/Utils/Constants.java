@@ -4,8 +4,11 @@ package com.example.livecrickettvscores.Activities.Utils;
 import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdsJsonPOJO;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.CricketFlagsResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
 
 import org.jsoup.select.Elements;
+
+import java.util.ArrayList;
 
 public class Constants {
 
@@ -39,5 +42,7 @@ public class Constants {
     public static FixturesResponseModel.MatchesDTO matchDTO;
     public static String CricketTeamURL = "https://www.cricbuzz.com/cricket-team";
     public static String CricketTeamWomenURL = "https://www.cricbuzz.com/cricket-team/women";
-    public static Elements ManOfTheMatchElements ;
+    public static Elements ManOfTheMatchElements;
+
+    public static ArrayList<InterstitialAd> InterstitialList = new ArrayList<>();
 }

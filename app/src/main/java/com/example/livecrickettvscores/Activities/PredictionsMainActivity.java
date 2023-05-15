@@ -42,7 +42,13 @@ public class PredictionsMainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
+        AdUtils.showInterstitialAd(PredictionsMainActivity.this, new AppInterfaces.InterStitialADInterface() {
+            @Override
+            public void adLoadState(boolean isLoaded) {
+                finish();
+            }
+        });
+
     }
 
     private void callFantasyPredictionsData() {

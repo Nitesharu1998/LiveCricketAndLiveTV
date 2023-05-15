@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.livecrickettvscores.Activities.Adapters.FullScoreBoardAdapter;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
+import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.Retrofit.AppAsyncTasks;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FullScoreBoardResponseModel;
@@ -40,6 +41,7 @@ public class FullScoreBoardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_full_score_board);
         activity = FullScoreBoardActivity.this;
+        AdUtils.showNativeAd(activity, Constants.adsJsonPOJO.getParameters().getNative_id().getDefaultValue().getValue(), binding.nativeAds, false);
         setTabs();
         setTopUI();
         initListeners();
@@ -274,6 +276,11 @@ public class FullScoreBoardActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
+        AdUtils.showInterstitialAd(activity, new AppInterfaces.InterStitialADInterface() {
+            @Override
+            public void adLoadState(boolean isLoaded) {
+                finish();
+            }
+        });
     }
 }

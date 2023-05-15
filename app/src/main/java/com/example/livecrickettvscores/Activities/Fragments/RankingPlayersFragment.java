@@ -1,5 +1,6 @@
 package com.example.livecrickettvscores.Activities.Fragments;
 
+import static com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils.loadInitialInterstitialAds;
 import static com.example.livecrickettvscores.Activities.Fragments.StatsFragment.tabPosition;
 
 import android.content.Intent;
@@ -34,7 +35,11 @@ public class RankingPlayersFragment extends Fragment {
     ArrayList<CountriesResponseModel> responseModel = new ArrayList<>();
     ArrayList<CountriesResponseModel> filteredCountries;
     private boolean isMen=false;
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadInitialInterstitialAds(requireActivity());
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment

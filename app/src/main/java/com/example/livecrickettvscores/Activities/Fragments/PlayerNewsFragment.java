@@ -1,5 +1,7 @@
 package com.example.livecrickettvscores.Activities.Fragments;
 
+import static com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils.loadInitialInterstitialAds;
+
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -39,7 +41,11 @@ public class PlayerNewsFragment extends Fragment {
     public PlayerNewsFragment(String playerURL) {
         this.playerURL = playerURL;
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadInitialInterstitialAds(requireActivity());
+    }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentPlayerNewsBinding.inflate(inflater, container, false);

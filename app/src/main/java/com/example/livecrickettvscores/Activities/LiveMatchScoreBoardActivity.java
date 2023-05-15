@@ -17,6 +17,7 @@ import androidx.work.WorkerParameters;
 
 import com.bumptech.glide.Glide;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
+import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.Retrofit.AppAsyncTasks;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.FixturesResponseModel;
 import com.example.livecrickettvscores.Activities.Utils.Constants;
@@ -38,6 +39,7 @@ public class LiveMatchScoreBoardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_live_match_score_board);
         activity = LiveMatchScoreBoardActivity.this;
+        AdUtils.showNativeAd(activity, Constants.adsJsonPOJO.getParameters().getNative_id().getDefaultValue().getValue(), binding.nativeAds, false);
         workManager = WorkManager.getInstance(activity);
         if (!Global.isClassNull(matchDetails)) {
             callLiveMatchDetails(true);
@@ -60,8 +62,14 @@ public class LiveMatchScoreBoardActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        workManager.cancelAllWork();
-        finish();
+        AdUtils.showInterstitialAd(activity, new AppInterfaces.InterStitialADInterface() {
+            @Override
+            public void adLoadState(boolean isLoaded) {
+                workManager.cancelAllWork();
+                finish();
+            }
+        });
+
     }
 
     private void callLiveMatchDetails(boolean showLoader) {

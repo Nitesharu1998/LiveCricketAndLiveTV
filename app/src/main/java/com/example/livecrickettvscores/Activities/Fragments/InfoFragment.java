@@ -1,5 +1,7 @@
 package com.example.livecrickettvscores.Activities.Fragments;
 
+import static com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils.loadInitialInterstitialAds;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -29,7 +31,11 @@ public class InfoFragment extends Fragment {
         this.playerName = playerName;
         this.playerCountry = playerCountry;
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadInitialInterstitialAds(requireActivity());
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment

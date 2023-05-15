@@ -1,8 +1,11 @@
 package com.example.livecrickettvscores.Activities;
 
+import static com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils.loadInitialInterstitialAds;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,7 +42,7 @@ public class SplashActivity extends AppCompatActivity {
 
         if (Constants.adsJsonPOJO != null && !StringUtils.isNull(Constants.adsJsonPOJO.getParameters().getApp_open_ad().getDefaultValue().getValue())) {
             Constants.adsJsonPOJO = Global.getAdsData(appPreferencesManger.getAdsModel());
-            Constants.adsJsonPOJO.getParameters().getShowAd().getDefaultValue().setValue("true");
+            Constants.adsJsonPOJO.getParameters().getShowAd().getDefaultValue().setValue("false");
             AdUtils.showAppOpenAd(activity, new AppInterfaces.AppOpenADInterface() {
                 @Override
                 public void appOpenAdState(boolean state_load) {
@@ -53,6 +56,7 @@ public class SplashActivity extends AppCompatActivity {
                                 } catch (InterruptedException e) {
                                     Global.sout("running thread interrupted", e.getLocalizedMessage());
                                 } finally {
+                                    //MyApplication.getInstance().getOneTimeWorkRequest();
                                     finish();
                                     intent = new Intent(activity, AppHomeActivity.class);
                                     startActivity(intent);
@@ -104,5 +108,10 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e( "onRestart: ", "Splash restart");
+        loadInitialInterstitialAds(SplashActivity.this);
+    }
 }

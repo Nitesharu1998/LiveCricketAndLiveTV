@@ -1,5 +1,7 @@
 package com.example.livecrickettvscores.Activities.Fragments;
 
+import static com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils.loadInitialInterstitialAds;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,5 +17,10 @@ public class BattingBowlingStats extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_batting_bowling_stats, container, false);
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadInitialInterstitialAds(requireActivity());
     }
 }

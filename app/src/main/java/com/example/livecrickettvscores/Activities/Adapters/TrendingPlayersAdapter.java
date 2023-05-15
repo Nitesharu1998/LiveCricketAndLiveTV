@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.TrendingPlayersResponseModel;
+import com.example.livecrickettvscores.R;
 import com.example.livecrickettvscores.databinding.SingleplayerLayoutBinding;
 
 import java.util.ArrayList;
@@ -42,8 +43,7 @@ public class TrendingPlayersAdapter extends RecyclerView.Adapter<TrendingPlayers
         holder.tv_playername.setText(playerDTO.get(position).getName());
 
         Glide.with(context).load("https://www.cricbuzz.com" + playerDTO.get(position).getFaceImageId())
-                .encodeQuality(70)
-
+                .error(R.drawable.defaultavatar)
                 .into(holder.iv_player);
 
 

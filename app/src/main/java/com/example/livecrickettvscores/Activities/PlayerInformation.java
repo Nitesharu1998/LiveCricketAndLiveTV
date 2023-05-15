@@ -44,9 +44,18 @@ public class PlayerInformation extends AppCompatActivity {
         setUpTabs();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        AdUtils.showInterstitialAd(activity, new AppInterfaces.InterStitialADInterface() {
+            @Override
+            public void adLoadState(boolean isLoaded) {
+                finish();
+            }
+        });
+    }
+
     private void initListener() {
-
-
 
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override

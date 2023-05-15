@@ -58,12 +58,13 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onBackPressed() {
-//        AdUtils.showInterstitialAd(VideoPlayerActivity.this, new AppInterfaces.InterStitialADInterface() {
-//            @Override
-//            public void adLoadState(boolean isLoaded) {
-                //startActivity(new Intent(VideoPlayerActivity.this, DashboardActivity.class));
-//            }
-//        });
+        AdUtils.showInterstitialAd(VideoPlayerActivity.this, new AppInterfaces.InterStitialADInterface() {
+            @Override
+            public void adLoadState(boolean isLoaded) {
+                startActivity(new Intent(VideoPlayerActivity.this, AppHomeActivity.class));
+                finish();
+            }
+        });
 
     }
 

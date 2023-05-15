@@ -31,6 +31,7 @@ public class FirebaseUtils {
             @Override
             public void onComplete(@NonNull Task<Boolean> task) {
                 if (task.isSuccessful()) {
+                    //MyApplication.getInstance().getOneTimeWorkRequest();
                     jsonData = mFirebaseRemoteConfig.getAll().get("AppAdDataCricketOriginal").asString();
                     adDataInterface.getAdData(Global.getAdsData(jsonData));
                 }

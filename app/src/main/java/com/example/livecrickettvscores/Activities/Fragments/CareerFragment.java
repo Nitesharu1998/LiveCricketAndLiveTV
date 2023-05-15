@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -89,8 +90,15 @@ public class CareerFragment extends Fragment {
     }*/
 
     private void setUpPlayerCareerList(PlayerCareerDetailsResponseModel playerCareerDetailsResponseModel) {
-        binding.rclCareerinfo.setLayoutManager(Global.getManagerWithOrientation(context, RecyclerView.VERTICAL));
-        CareerDetailsAdapter adapter = new CareerDetailsAdapter(context, playerCareerDetailsResponseModel.getValues());
-        binding.rclCareerinfo.setAdapter(adapter);
+        if (Global.isClassNull(playerCareerDetailsResponseModel)) {
+            binding.rclCareerinfo.setLayoutManager(Global.getManagerWithOrientation(context, RecyclerView.VERTICAL));
+            CareerDetailsAdapter adapter = new CareerDetailsAdapter(context, playerCareerDetailsResponseModel.getValues());
+            binding.rclCareerinfo.setAdapter(adapter);
+            binding.rclCareerinfo.setVisibility(View.VISIBLE);
+            binding.tvNodatafound.setVisibility(View.GONE);
+        }else{
+            binding.rclCareerinfo.setVisibility(View.GONE);
+            binding.tvNodatafound.setVisibility(View.VISIBLE);
+        }
     }
 }

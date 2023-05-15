@@ -16,6 +16,7 @@ import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.NewsListResponseModel;
 import com.example.livecrickettvscores.Activities.Utils.DateUtil;
 import com.example.livecrickettvscores.Activities.Utils.Global;
+import com.example.livecrickettvscores.R;
 import com.example.livecrickettvscores.databinding.SinglefeaturednewsBinding;
 
 import java.util.ArrayList;
@@ -49,7 +50,6 @@ public class FeaturedNewsAdapter extends RecyclerView.Adapter<FeaturedNewsAdapte
 
         if (state == 0) {
             holder.tv_newssource.setVisibility(View.VISIBLE);
-
             holder.rl_matchview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -57,7 +57,7 @@ public class FeaturedNewsAdapter extends RecyclerView.Adapter<FeaturedNewsAdapte
                 }
             });
             holder.tv_newsdate.setText(DateUtil.getDateFromSeconds(Long.parseLong(newsListDTO.getStory().getPubTime())));
-            Glide.with(context).load(Global.getTheImage(context, String.valueOf(newsListDTO.getStory().getImageId()))).into(holder.iv_news);
+            Glide.with(context).load(Global.getTheImage(context, String.valueOf(newsListDTO.getStory().getImageId()))).error(R.drawable.ic_applogo).into(holder.iv_news);
         } else {
             holder.tv_newssource.setVisibility(View.GONE);
             holder.rl_matchview.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +67,7 @@ public class FeaturedNewsAdapter extends RecyclerView.Adapter<FeaturedNewsAdapte
                 }
             });
             holder.tv_newsdate.setText((newsListDTO.getStory().getPubTime()));
-            Glide.with(context).load(newsListDTO.getStory().getImageURL()).into(holder.iv_news);
+            Glide.with(context).load(newsListDTO.getStory().getImageURL()).error(R.drawable.ic_applogo).into(holder.iv_news);
         }
 
 

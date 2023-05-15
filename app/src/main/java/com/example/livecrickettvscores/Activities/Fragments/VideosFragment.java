@@ -1,5 +1,7 @@
 package com.example.livecrickettvscores.Activities.Fragments;
 
+import static com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils.loadInitialInterstitialAds;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,5 +29,10 @@ public class VideosFragment extends Fragment {
 
     private void initViews(ViewGroup container) {
         rcl_videos = container.findViewById(R.id.rcl_videos);
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadInitialInterstitialAds(requireActivity());
     }
 }

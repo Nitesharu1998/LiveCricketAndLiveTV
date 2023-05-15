@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.example.livecrickettvscores.Activities.Adapters.PlayerAdapter;
 import com.example.livecrickettvscores.Activities.AppInterface.AppInterfaces;
+import com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils;
 import com.example.livecrickettvscores.Activities.Retrofit.AppAsyncTasks;
 import com.example.livecrickettvscores.Activities.Retrofit.ResponseModel.CountriesResponseModel;
 import com.example.livecrickettvscores.Activities.Utils.Constants;
@@ -67,7 +68,12 @@ public class CountryPlayersActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
+        AdUtils.showInterstitialAd(activity, new AppInterfaces.InterStitialADInterface() {
+            @Override
+            public void adLoadState(boolean isLoaded) {
+                finish();
+            }
+        });
     }
 
     private void setUpPlayerList(Elements document) {

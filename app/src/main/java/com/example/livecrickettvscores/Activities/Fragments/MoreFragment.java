@@ -1,5 +1,7 @@
 package com.example.livecrickettvscores.Activities.Fragments;
 
+import static com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils.loadInitialInterstitialAds;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +23,11 @@ public class MoreFragment extends Fragment {
     FragmentMoreBinding binding;
     Context context;
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadInitialInterstitialAds(requireActivity());
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentMoreBinding.inflate(inflater, container, false);

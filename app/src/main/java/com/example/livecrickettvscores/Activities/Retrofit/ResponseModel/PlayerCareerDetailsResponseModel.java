@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class PlayerCareerDetailsResponseModel {
 
-    private ArrayList<ValuesDTO> values;
+    private ArrayList<ValuesDTO> values =new ArrayList<>();
 
     public ArrayList<ValuesDTO> getValues() {
         return values;

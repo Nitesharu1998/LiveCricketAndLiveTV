@@ -1,5 +1,7 @@
 package com.example.livecrickettvscores.Activities.Fragments;
 
+import static com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils.loadInitialInterstitialAds;
+
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -397,6 +399,12 @@ public class HomeFragment extends Fragment {
         }
 
         return fixturesResponseModelArrayList;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadInitialInterstitialAds(requireActivity());
     }
 
     private void setUpMatchesListView(ArrayList<FixturesResponseModel> fixturesResponseModel) {

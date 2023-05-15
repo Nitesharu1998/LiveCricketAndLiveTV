@@ -1,5 +1,7 @@
 package com.example.livecrickettvscores.Activities.Fragments;
 
+import static com.example.livecrickettvscores.Activities.FirebaseADHandlers.AdUtils.loadInitialInterstitialAds;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,7 +38,11 @@ public class StatsFragment extends Fragment {
     ConnectionDetector cd;
     ArrayList<String> playerTypes = new ArrayList<>();
     public static int tabPosition;
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadInitialInterstitialAds(requireActivity());
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,15 +71,6 @@ public class StatsFragment extends Fragment {
     }
 
     private void initListeners() {
-
-        fragmentStatsBinding.ivBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                startActivity(new Intent(requireActivity(), AppHomeActivity.class));
-
-            }
-        });
 
         fragmentStatsBinding.spnPlayersType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

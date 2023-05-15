@@ -12,21 +12,16 @@
         android:id="@+id/rl_appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/app_primarycolor">
+        android:background="@color/transparent">
 
-        <ImageView
-            android:id="@+id/iv_back"
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:src="@drawable/ic_back" />
 
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_textRanking"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginStart="@dimen/_15sdp"
-            android:layout_toEndOf="@id/iv_back"
             android:fontFamily="@font/nunito_sans"
             android:text="Rankings"
             android:textColor="@color/white"
@@ -38,7 +33,7 @@
             style="@style/TabLayout"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_below="@+id/iv_back"
+            android:layout_below="@+id/tv_textRanking"
             android:animateLayoutChanges="true"
             android:background="@drawable/appdefault_bg"
             android:outlineSpotShadowColor="@color/teal_200"
