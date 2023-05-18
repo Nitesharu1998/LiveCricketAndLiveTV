@@ -1,34 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
-        android:id="@+id/sidenav_news"
+        android:id="@+id/sidenav_rankings"
         android:enabled="true"
-        android:visible="false"
-        android:icon="@drawable/ic_news"
-        android:title="News" />
-    <item
-        android:id="@+id/sidenav_awards"
-        android:enabled="true"
-        android:visible="false"
-        android:icon="@drawable/ic_awards"
-        android:title="Awards" />
+        android:icon="@drawable/ic_rankings"
+        android:title="Rankings"
+        android:visible="true" />
     <item
         android:id="@+id/sidenav_prediction"
         android:enabled="true"
         android:icon="@drawable/ic_teams"
-
         android:title="Cricket Predictions" />
+
     <item
-        android:id="@+id/sidenav_rankings"
+        android:id="@+id/sidenav_privacy"
         android:enabled="true"
-        android:visible="true"
-        android:icon="@drawable/ic_rankings"
-        android:title="Rankings" />
+        android:icon="@drawable/ic_privacy_policy"
+        android:title="Privacy Policy"
+        android:visible="true" />
+
+
     <item
-        android:id="@+id/sidenav_events"
+        android:id="@+id/sidenav_terms_conditions"
         android:enabled="true"
-        android:visible="false"
-        android:icon="@drawable/ic_events"
-        android:title="Events" />
+        android:icon="@drawable/ic_terms_condition"
+        android:title="Terms &amp; Conditions "
+        android:visible="true" />
+    <item
+        android:id="@+id/sidenav_rateus"
+        android:enabled="true"
+        android:icon="@drawable/ic_rateus"
+        android:title="Rate US"
+        android:visible="true" />
+
+    <item
+        android:id="@+id/sidenav_share"
+        android:enabled="true"
+        android:icon="@drawable/ic_share"
+        android:title="Share App"
+        android:visible="true" />
 
 </menu>

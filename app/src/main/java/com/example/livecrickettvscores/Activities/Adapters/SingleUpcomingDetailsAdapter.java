@@ -49,7 +49,11 @@ public class SingleUpcomingDetailsAdapter extends RecyclerView.Adapter<SingleUpc
         holder.tv_match2team.setText(fixturesResponseModel.get(position).getTeamTwo());
         holder.tv_matchtitle.setText(fixturesResponseModel.get(position).getMatchTitle());
         holder.tv_matchLocation.setText(fixturesResponseModel.get(position).getMatchLocation());
-        holder.tv_matchTime.setText(timeSplit[1]);
+        if (timeSplit.length>1){
+            holder.tv_matchTime.setText(timeSplit[1]);
+        }else {
+            holder.tv_matchTime.setText(fixturesResponseModel.get(position).getMatchTime());
+        }
         Glide.with(context).load(Global.getFlagOfCountry(true,fixturesResponseModel.get(position).getTeamOne())).error(R.drawable.default_flag).diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(holder.binding.ivTeam1);
         Glide.with(context).load(Global.getFlagOfCountry(true,fixturesResponseModel.get(position).getTeamTwo())).error(R.drawable.default_flag).diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(holder.binding.ivTeam2);
     }

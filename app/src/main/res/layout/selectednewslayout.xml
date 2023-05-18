@@ -33,7 +33,7 @@
             android:layout_width="@dimen/_35sdp"
             android:layout_height="@dimen/_35sdp"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_share" />
+            android:src="@drawable/ic_shareoption" />
     </RelativeLayout>
 
     <ScrollView

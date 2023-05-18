@@ -45,4 +45,5 @@ public class Constants {
     public static Elements ManOfTheMatchElements;
 
     public static ArrayList<InterstitialAd> InterstitialList = new ArrayList<>();
+    public static String TermsAndConditionURL = "https://visicmedia.blogspot.com/p/privacy-policy_16.html";
 }

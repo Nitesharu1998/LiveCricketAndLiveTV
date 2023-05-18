@@ -41,7 +41,8 @@ import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.google.gson.Gson;
 
-public class AdUtils {
+public class
+AdUtils {
 
     static NativeAd google_unifiedNativeAd;
     private static ConnectionDetector cd;
@@ -243,7 +244,7 @@ public class AdUtils {
         AdRequest adRequest = new AdRequest.Builder().build();
         if (!StringUtils.isNull(Constants.adsJsonPOJO.getParameters().getApp_open_ad().getDefaultValue().getValue())
                 && Constants.adsJsonPOJO.getParameters().getShowAd().getDefaultValue().getValue().equals("true")){
-            global.showProgressDialog(activity, ConstantsMessages.PLEASE_WAIT);
+            //global.showProgressDialog(activity, ConstantsMessages.PLEASE_WAIT);
             AppOpenAd.load(activity, Constants.adsJsonPOJO.getParameters().getApp_open_ad().getDefaultValue().getValue(), adRequest, AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT, new AppOpenAd.AppOpenAdLoadCallback() {
 
                 @Override

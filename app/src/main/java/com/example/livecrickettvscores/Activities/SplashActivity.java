@@ -50,15 +50,16 @@ public class SplashActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             synchronized (this) {
-                                Intent intent;
+
                                 try {
                                     wait(1000);
                                 } catch (InterruptedException e) {
                                     Global.sout("running thread interrupted", e.getLocalizedMessage());
                                 } finally {
+                                    Intent intent = appPreferencesManger.getIsFirstRun() ? new Intent(SplashActivity.this, AppHomeActivity.class) : new Intent(SplashActivity.this, TermsAndConditionActivity.class);
+                                    ;
                                     //MyApplication.getInstance().getOneTimeWorkRequest();
                                     finish();
-                                    intent = new Intent(activity, AppHomeActivity.class);
                                     startActivity(intent);
                                 }
                             }
@@ -90,7 +91,7 @@ public class SplashActivity extends AppCompatActivity {
                                         } catch (InterruptedException e) {
                                             Global.sout("running thread interrupted", e.getLocalizedMessage());
                                         } finally {
-                                            intent = new Intent(activity, AppHomeActivity.class);
+                                            intent = appPreferencesManger.getIsFirstRun() ? new Intent(SplashActivity.this, AppHomeActivity.class) : new Intent(SplashActivity.this, TermsAndConditionActivity.class);
                                             startActivity(intent);
                                             finish();
                                         }

@@ -93,7 +93,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        /*navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -128,7 +128,7 @@ public class HomeFragment extends Fragment {
                 }
                 return true;
             }
-        });
+        });*/
         if (cd.isConnectingToInternet()) {
             callLiveMatchesAPI();
             callNewsAPI();

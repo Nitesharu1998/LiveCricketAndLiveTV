@@ -1,6 +1,7 @@
 package com.example.livecrickettvscores.Activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -28,6 +29,7 @@ import com.example.livecrickettvscores.Activities.Fragments.RankingPlayersFragme
 import com.example.livecrickettvscores.Activities.Fragments.StatsFragment;
 import com.example.livecrickettvscores.Activities.Utils.Constants;
 import com.example.livecrickettvscores.Activities.videoplayer.VideoPlayerActivity;
+import com.example.livecrickettvscores.BuildConfig;
 import com.example.livecrickettvscores.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -69,12 +71,32 @@ public class AppHomeActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 switch (item.getItemId()) {
-                    case R.id.sidenav_news:
-                        Toast.makeText(AppHomeActivity.this, "News", Toast.LENGTH_SHORT).show();
+                    case R.id.sidenav_privacy:
+                        AdUtils.showInterstitialAd(AppHomeActivity.this, new AppInterfaces.InterStitialADInterface() {
+                            @Override
+                            public void adLoadState(boolean isLoaded) {
+                                startActivity(new Intent(AppHomeActivity.this, PrivacyPolicyActivity.class));
+                            }
+                        });
                         drawerLayout.close();
                         break;
-                    case R.id.sidenav_awards:
-                        Toast.makeText(AppHomeActivity.this, "awards", Toast.LENGTH_SHORT).show();
+                    case R.id.sidenav_terms_conditions:
+                        AdUtils.showInterstitialAd(AppHomeActivity.this, new AppInterfaces.InterStitialADInterface() {
+                            @Override
+                            public void adLoadState(boolean isLoaded) {
+                                startActivity(new Intent(AppHomeActivity.this, TermsAndConditionWebViewActivity.class));
+                            }
+                        });
+                        drawerLayout.close();
+                        break;
+
+                    case R.id.sidenav_share:
+                        shareApp();
+                        drawerLayout.close();
+                        break;
+
+                    case R.id.sidenav_rateus:
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID)));
                         drawerLayout.close();
                         break;
                     case R.id.sidenav_prediction:
@@ -120,6 +142,21 @@ public class AppHomeActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    private void shareApp() {
+        try {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, R.string.app_name);
+            String shareMessage = "\nLet me recommend you this application\n\n";
+            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n\n";
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+            startActivity(Intent.createChooser(shareIntent, "Share Via"));
+        } catch (Exception e) {
+            //e.toString();
+        }
 
     }
 

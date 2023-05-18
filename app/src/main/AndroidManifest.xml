@@ -28,6 +28,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Activities.TermsAndConditionWebViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.TermsAndConditionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.PrivacyPolicyActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.CountryPlayersActivity"
             android:exported="false" />
         <activity
@@ -81,6 +90,7 @@
             android:theme="@style/Theme.Design.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
@@ -88,7 +98,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name="com.example.livecrickettvscores.Activities.videoplayer.YoutubePlayerActivity" />
+        <activity android:name=".Activities.videoplayer.YoutubePlayerActivity" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"

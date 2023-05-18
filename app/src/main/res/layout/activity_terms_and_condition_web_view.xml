@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/appdefault_bg"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".Activities.TermsAndConditionWebViewActivity">
+
+        <LinearLayout
+            android:id="@+id/ll_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/transparent"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/_4sdp"
+            android:paddingVertical="@dimen/_8sdp">
+
+            <ImageView
+                android:id="@+id/iv_nav"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:src="@drawable/ic_back"
+                android:visibility="visible" />
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_weight="7"
+                android:fontFamily="@font/nunito_sans"
+                android:text="Terms And Conditions"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <WebView
+            android:id="@+id/wv_termsCondition"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ll_appbar"
+            android:layout_above="@+id/native_ads" />
+
+        <LinearLayout
+            android:id="@+id/native_ads"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_1sdp"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical"
+            android:visibility="gone" />
+    </RelativeLayout>
+</layout>
